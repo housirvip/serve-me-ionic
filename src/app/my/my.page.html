@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            My
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-button (click)="toLogin()">login</ion-button>
+            <ion-button (click)="toRegister()">register</ion-button>
+            <ion-button (click)="toLogout()">logout</ion-button>
+        </ion-row>
+        <ion-row>
+            {{user ? 'Welcome ' + user.username + ', your role is ' + user.role : 'Please login'}}
+        </ion-row>
+    </ion-grid>
+</ion-content>

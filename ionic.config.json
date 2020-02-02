@@ -1,0 +1,8 @@
+{
+  "name": "serve-me",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}
