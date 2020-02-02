@@ -7,6 +7,15 @@
 </ion-header>
 
 <ion-content>
+    <ion-item>
+        <ion-avatar slot="start">
+            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        </ion-avatar>
+        <ion-label>
+            <h2>{{user ? 'Welcome ' + user.username : 'Please login'}}</h2>
+            <p>{{user ? 'Your ROLE is ' + user.role : ''}}</p>
+        </ion-label>
+    </ion-item>
     <ion-grid>
         <ion-row>
             <ion-button (click)="toLogin()">login</ion-button>
@@ -14,7 +23,7 @@
             <ion-button (click)="toLogout()">logout</ion-button>
         </ion-row>
         <ion-row>
-            {{user ? 'Welcome ' + user.username + ', your role is ' + user.role : 'Please login'}}
+
         </ion-row>
     </ion-grid>
 </ion-content>
