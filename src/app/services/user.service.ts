@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {User} from '../classes/user';
-import {BaseResponse} from '../core/base-response';
-import {Auth} from '../classes/auth';
 import {HttpClient} from '@angular/common/http';
+
+import {BaseResponse} from '../core/base-response';
+import {User} from '../classes/user';
+import {Auth} from '../classes/auth';
 
 @Injectable({
     providedIn: 'root'
@@ -84,6 +85,9 @@ export class UserService {
         }
         this.http.get<BaseResponse>('user/detail', {}).subscribe(
             res => {
+                if (res.code !== 0) {
+                    return;
+                }
                 this._user = res.result;
                 this._isLogin = true;
                 if (this._user.role.indexOf('ROLE_ADMIN') > 0) {
