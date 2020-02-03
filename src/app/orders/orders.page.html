@@ -1,9 +1,53 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>orders</ion-title>
+      <ion-grid>
+          <ion-row>
+              <ion-title>Orders</ion-title>
+
+          </ion-row>
+      </ion-grid>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-searchbar showCancelButton="always"></ion-searchbar>
+        </ion-row>
+        <ion-row>
+            <ion-segment (ionChange)="segmentChanged($event)">
+                <ion-segment-button value="wating">
+                    <ion-label>wating</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="biding">
+                    <ion-label>biding</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="progress">
+                    <ion-label>progress</ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="completed">
+                    <ion-label>completed</ion-label>
+                </ion-segment-button>
+            </ion-segment>
+        </ion-row>
+        <ion-list *ngFor="let order of orders ">
+            <ion-card>
+                <img src="../../assets/order/cleaner.png" />
+                <ion-card-header>
+                    <ion-card-title>{{order.title}}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-list>
+                        <ion-item>
+                            price:{{order.price}}
+                        </ion-item>
+                        <ion-item>
+                            time:{{order.time}}
+                        </ion-item>
+                    </ion-list>
 
+                </ion-card-content>
+            </ion-card>
+        </ion-list>
+    </ion-grid>
 </ion-content>
