@@ -12,6 +12,8 @@ npm install
 ionic serve
 # if you have not install ionic
 npm install -g @ionic/cli
+# if you have not cordova
+npm i -g cordova
 #if you want to build android apk
 ionic cordova build android --prod
 ```
