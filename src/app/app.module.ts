@@ -10,6 +10,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BaseInterceptor} from './core/base-interceptor';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {FingerprintAIO} from '@ionic-native/fingerprint-aio/ngx';
 
 @NgModule({
     declarations: [AppComponent],
@@ -23,6 +24,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
     providers: [
         StatusBar,
         SplashScreen,
+        FingerprintAIO,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
         {provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true},
     ],

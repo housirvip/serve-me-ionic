@@ -9,8 +9,10 @@ import {Order} from '../classes/orders/order';
 })
 export class OrdersPage implements OnInit {
 
-  constructor(private orderService: OrderService) { }
-  orders: Order[];
+    orders: Order[];
+
+    constructor(private orderService: OrderService) {
+    }
 
   ngOnInit() {
    this.orderService.RequestOrder();
