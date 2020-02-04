@@ -3,9 +3,9 @@ import {OrderService} from '../services/order.service';
 import {Order} from '../classes/orders/order';
 
 @Component({
-  selector: 'app-orders',
-  templateUrl: './orders.page.html',
-  styleUrls: ['./orders.page.scss'],
+    selector: 'app-orders',
+    templateUrl: './orders.page.html',
+    styleUrls: ['./orders.page.scss'],
 })
 export class OrdersPage implements OnInit {
 
@@ -22,6 +22,7 @@ export class OrdersPage implements OnInit {
     }
 
   ngOnInit() {
+
   }
 
     segmentChanged(ev: any) {
