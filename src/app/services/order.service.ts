@@ -11,7 +11,7 @@ export class OrderService {
     constructor(private httpClient: HttpClient) {
     }
 
-    getOrder() {
+    getWaitingOrder() {
         return [
             {
                 title: 'Look for cleaner',
@@ -20,6 +20,7 @@ export class OrderService {
                 status: orderStatus.waiting,
                 serverProvider: 'Bill',
                 time: '01/01/2020',
+                imgUrl: '../../assets/order/cleaner.png'
             },
             {
                 title: 'Really need someone help me',
@@ -28,7 +29,73 @@ export class OrderService {
                 status: orderStatus.waiting,
                 serverProvider: 'Jack',
                 time: '02/01/2020',
+                imgUrl: '../../assets/order/cleaner.png'
             },
+        ];
+    }
+    getBidingOrder() {
+        return [
+            {
+                title: 'Look for cleaner',
+                price: '12.99$',
+                type: workType.Cleaner,
+                status: orderStatus.waiting,
+                serverProvider: 'Bill',
+                time: '01/01/2020',
+                imgUrl: '../../assets/order/repair.png'
+            }];
+    }
+    getProgressOrder() {
+        return [
+            {
+                title: 'Look for cleaner',
+                price: '12.99$',
+                type: workType.Cleaner,
+                status: orderStatus.waiting,
+                serverProvider: 'Bill',
+                time: '01/01/2020',
+                imgUrl: '../../assets/order/weedcleaner.png'
+            },
+            {
+                title: 'Look for cleaner',
+                price: '12.99$',
+                type: workType.Cleaner,
+                status: orderStatus.waiting,
+                serverProvider: 'Bill',
+                time: '01/01/2020',
+                imgUrl: '../../assets/order/weedcleaner.png'
+            }];
+    }
+
+    getCompletedOrder() {
+        return [
+            {
+                title: 'Look for cleaner',
+                price: '12.99$',
+                type: workType.Cleaner,
+                status: orderStatus.waiting,
+                serverProvider: 'Bill',
+                time: '01/01/2020',
+                imgUrl: '../../assets/order/dogwalker.png'
+            },
+            {
+                title: 'Look for cleaner',
+                price: '12.99$',
+                type: workType.Cleaner,
+                status: orderStatus.waiting,
+                serverProvider: 'Bill',
+                time: '01/01/2020',
+                imgUrl: '../../assets/order/dogwalker.png'
+            },
+            {
+                title: 'Look for cleaner',
+                price: '12.99$',
+                type: workType.Cleaner,
+                status: orderStatus.waiting,
+                serverProvider: 'Bill',
+                time: '01/01/2020',
+                imgUrl: '../../assets/order/dogwalker.png'
+            }
         ];
     }
 }

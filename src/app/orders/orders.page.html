@@ -30,23 +30,9 @@
                 </ion-segment-button>
             </ion-segment>
         </ion-row>
-        <ion-list *ngFor="let order of orders ">
-            <ion-card>
-                <img src="../../assets/order/cleaner.png" alt=""/>
-                <ion-card-header>
-                    <ion-card-title>{{order.title}}</ion-card-title>
-                </ion-card-header>
-                <ion-card-content>
-                    <ion-list>
-                        <ion-item>
-                            price:{{order.price}}
-                        </ion-item>
-                        <ion-item>
-                            time:{{order.time}}
-                        </ion-item>
-                    </ion-list>
-                </ion-card-content>
-            </ion-card>
-        </ion-list>
+        <app-orders-list-for-waiting *ngIf="waitingPageVisable" ></app-orders-list-for-waiting>
+        <app-orders-list-for-biding *ngIf="bidingPageVisable"></app-orders-list-for-biding>
+        <app-orders-list-for-progress *ngIf="progressPageVisable" ></app-orders-list-for-progress>
+        <app-orders-list-for-completed *ngIf="completedPageVisable"></app-orders-list-for-completed>
     </ion-grid>
 </ion-content>

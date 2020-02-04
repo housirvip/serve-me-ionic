@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Order} from '../../classes/orders/order';
+import {OrderService} from '../../services/order.service';
 
 @Component({
   selector: 'app-orders-list-for-waiting',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrdersListForWaitingComponent implements OnInit {
 
-  constructor() { }
+  orders: Order[];
+  constructor(private orderService: OrderService) {
+    this.orders = this.orderService.getWaitingOrder();
+  }
 
   ngOnInit() {}
 
