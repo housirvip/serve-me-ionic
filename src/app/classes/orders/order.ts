@@ -8,4 +8,5 @@ export class Order {
     status: orderStatus;
     serverProvider: string;
     time: string;
+    imgUrl: string;
 }
