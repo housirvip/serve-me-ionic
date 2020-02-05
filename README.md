@@ -17,3 +17,7 @@ npm i -g cordova
 #if you want to build android apk
 ionic cordova build android --prod
 ```
+
+## prototype
+
+> https://org.modao.cc/app/be72e5e3b68ff7c3efe0e0d0e3bdafb0429a96a7
