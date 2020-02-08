@@ -1,34 +1,26 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <ion-grid>
     <form [formGroup]="authForm" (ngSubmit)="doRegister()">
-      <ion-item>
-        <ion-label position="floating">UserName</ion-label>
-        <ion-input type="text" formControlName="username"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Password</ion-label>
-        <ion-input type="password" formControlName="password"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Password Confirm</ion-label>
-        <ion-input type="password" formControlName="password2"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Email</ion-label>
-        <ion-input type="text" formControlName="email"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Phone</ion-label>
-        <ion-input type="text" formControlName="phone"></ion-input>
-      </ion-item>
-      <ion-button (click)="dismiss()">cancel</ion-button>
-      <ion-button type="submit">register</ion-button>
+        <ion-item>
+            <ion-label position="floating">UserName</ion-label>
+            <ion-input type="text" formControlName="username"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Password Confirm</ion-label>
+            <ion-input type="password" formControlName="password2"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Phone</ion-label>
+            <ion-input type="text" formControlName="phone"></ion-input>
+        </ion-item>
+        <ion-button (click)="dismiss()">cancel</ion-button>
+        <ion-button type="submit">register</ion-button>
     </form>
-  </ion-grid>
 </ion-content>

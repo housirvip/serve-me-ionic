@@ -1,5 +1,5 @@
 {
-  "appId": "io.ionic.starter",
+  "appId": "edu.uta.cse.serveme",
   "appName": "serve-me",
   "bundledWebRuntime": false,
   "npmClient": "npm",

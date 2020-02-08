@@ -3,9 +3,9 @@ import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
-import {MyPage} from './my.page';
 import {LoginPageModule} from '../login/login.module';
 import {RegisterPageModule} from '../register/register.module';
+import {MePage} from './me.page';
 
 @NgModule({
     imports: [
@@ -14,9 +14,9 @@ import {RegisterPageModule} from '../register/register.module';
         FormsModule,
         LoginPageModule,
         RegisterPageModule,
-        RouterModule.forChild([{path: '', component: MyPage}])
+        RouterModule.forChild([{path: '', component: MePage}])
     ],
-    declarations: [MyPage]
+    declarations: [MePage]
 })
-export class MyPageModule {
+export class MePageModule {
 }

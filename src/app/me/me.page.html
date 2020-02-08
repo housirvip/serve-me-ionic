@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-title>
-            My
+            Me
         </ion-title>
     </ion-toolbar>
 </ion-header>
@@ -9,7 +9,7 @@
 <ion-content>
     <ion-item>
         <ion-avatar slot="start">
-            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+            <img src="../../assets/avatar.png" alt="">
         </ion-avatar>
         <ion-label>
             <h2>{{user ? 'Welcome ' + user.username : 'Please login'}}</h2>
@@ -22,9 +22,6 @@
             <ion-button (click)="toRegister()">register</ion-button>
             <ion-button (click)="toLogout()">logout</ion-button>
             <ion-button (click)="toFingerPrint()">finger</ion-button>
-        </ion-row>
-        <ion-row>
-
         </ion-row>
     </ion-grid>
 </ion-content>

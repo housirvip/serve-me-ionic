@@ -7,10 +7,10 @@ import {FingerprintAIO} from '@ionic-native/fingerprint-aio/ngx';
 
 @Component({
     selector: 'app-my',
-    templateUrl: 'my.page.html',
-    styleUrls: ['my.page.scss']
+    templateUrl: 'me.page.html',
+    styleUrls: ['me.page.scss']
 })
-export class MyPage {
+export class MePage {
 
     constructor(private modalController: ModalController,
                 private userService: UserService,
@@ -24,14 +24,16 @@ export class MyPage {
 
     async toLogin() {
         const modal = await this.modalController.create({
-            component: LoginPage
+            component: LoginPage,
+            cssClass: 'medium-modal'
         });
         return await modal.present();
     }
 
     async toRegister() {
         const modal = await this.modalController.create({
-            component: RegisterPage
+            component: RegisterPage,
+            cssClass: 'medium-modal'
         });
         return await modal.present();
     }
@@ -50,7 +52,7 @@ export class MyPage {
 
     toFingerPrint() {
         this.fingerprintAIO.show({
-            description: 'Please touch your finger'
+            description: 'Authenticate'
         })
             .then((result: any) => {
                 this.presentToast(result).then(() => {

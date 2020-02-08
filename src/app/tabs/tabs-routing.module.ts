@@ -32,12 +32,12 @@ const routes: Routes = [
                 ]
             },
             {
-                path: 'my',
+                path: 'me',
                 children: [
                     {
                         path: '',
                         loadChildren: () =>
-                            import('../my/my.module').then(m => m.MyPageModule)
+                            import('../me/me-page.module').then(m => m.MePageModule)
                     }
                 ]
             },
