@@ -42,6 +42,16 @@ const routes: Routes = [
                 ]
             },
             {
+                path: 'profile',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: () =>
+                            import('../profile/profile-page.module').then(m => m.ProfilePageModule)
+                    }
+                ]
+            },
+            {
                 path: '',
                 redirectTo: '/tabs/dashboard',
                 pathMatch: 'full'
