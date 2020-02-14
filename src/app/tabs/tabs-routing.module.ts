@@ -53,7 +53,7 @@
             },
             {
                 path: 'settings',
-                loadChildren: () => import('../NavigationMenu/settings/settings.module').then( m => m.SettingsPageModule)
+                loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule)
             },
             {
                 path: '',

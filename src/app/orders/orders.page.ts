@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {OrderService} from '../services/order.service';
 import {Order} from '../classes/orders/order';
 import {orderStatus} from '../classes/orders/orderStatus';
+import {ToastService} from '../services/toast.service';
 
 @Component({
     selector: 'app-orders',
@@ -12,7 +13,8 @@ export class OrdersPage implements OnInit {
 
     orders: Order[];
 
-    constructor(private orderService: OrderService) {
+    constructor(private orderService: OrderService,
+                private toastService: ToastService) {
     }
 
     ngOnInit() {
@@ -25,5 +27,13 @@ export class OrdersPage implements OnInit {
 
     segmentChanged(ev: any) {
         this.getOrders(ev.detail.value as orderStatus);
+    }
+
+    doRefresh(event) {
+        setTimeout(() => {
+            this.toastService.presentToast('updated', 2000).then(() => {
+            });
+            event.target.complete();
+        }, 1000);
     }
 }

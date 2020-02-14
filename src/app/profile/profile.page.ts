@@ -1,9 +1,6 @@
 import {Component} from '@angular/core';
-import {ModalController, ToastController} from '@ionic/angular';
-import {LoginPage} from '../login/login.page';
-import {RegisterPage} from '../register/register.page';
+import {ModalController} from '@ionic/angular';
 import {UserService} from '../services/user.service';
-import {FingerprintAIO} from '@ionic-native/fingerprint-aio/ngx';
 import {MePage} from '../me/me.page';
 
 @Component({
@@ -14,21 +11,11 @@ import {MePage} from '../me/me.page';
 export class ProfilePage {
 
     constructor(private modalController: ModalController,
-                private userService: UserService,
-                private toastController: ToastController,
-                ) {
+                private userService: UserService) {
     }
 
     get user() {
         return this.userService.user;
-    }
-
-    async presentToast(msg: string) {
-        const toast = await this.toastController.create({
-            message: msg,
-            duration: 2000
-        });
-        return await toast.present();
     }
 
     async toMe() {
@@ -38,5 +25,4 @@ export class ProfilePage {
         });
         return await modal.present();
     }
-
 }

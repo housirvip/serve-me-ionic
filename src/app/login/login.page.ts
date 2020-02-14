@@ -14,6 +14,21 @@ import {FirebaseService} from '../services/firebase.service';
 export class LoginPage {
     authForm: FormGroup;
 
+    requiredInformation = [
+        {
+            title: 'email',
+            formControlName: 'email',
+            icon: 'mail',
+            type: 'text'
+        },
+        {
+            title: 'password',
+            formControlName: 'password',
+            icon: 'lock-closed',
+            type: 'password'
+        }
+    ];
+
     constructor(private modalController: ModalController,
                 private formBuilder: FormBuilder,
                 private userService: UserService,

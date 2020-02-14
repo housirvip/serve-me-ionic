@@ -9,13 +9,13 @@
                 <ion-label>
                     <ion-text color="medium">
                         <h1 *ngIf="user"><strong>{{user.username}}</strong></h1>
-                        <h1 *ngIf="!user" (click)="toLogin()"><strong>sign in</strong></h1>
+                        <h1 *ngIf="!user" (click)="toLogin()"><strong>Sign in</strong></h1>
                     </ion-text>
                     <ion-text color="primary" *ngIf="user">
                         <h2>point: 66</h2>
                     </ion-text>
                     <ion-text color="primary">
-                        <h2 *ngIf="!user">sign up</h2>
+                        <h2 *ngIf="!user" (click)="toRegister()">Sign up</h2>
                     </ion-text>
                 </ion-label>
             </ion-item>
@@ -53,17 +53,9 @@
             <ion-icon name="apps"></ion-icon>
             <ion-label>Dashboard</ion-label>
         </ion-tab-button>
-        <ion-tab-button tab="tab2">
-            <ion-icon name="finger-print"></ion-icon>
-            <ion-label>TBD</ion-label>
-        </ion-tab-button>
         <ion-tab-button tab="orders">
             <ion-icon name="clipboard"></ion-icon>
             <ion-label>Orders</ion-label>
-        </ion-tab-button>
-        <ion-tab-button tab="me">
-            <ion-icon name="person"></ion-icon>
-            <ion-label>Me</ion-label>
         </ion-tab-button>
     </ion-tab-bar>
 </ion-tabs>

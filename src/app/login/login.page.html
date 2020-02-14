@@ -1,65 +1,39 @@
-<!--<ion-content>-->
-<!--    <form [formGroup]="authForm" (ngSubmit)="doLogin()">-->
-<!--        <ion-item>-->
-<!--            <ion-label position="floating">Email</ion-label>-->
-<!--            <ion-input type="text" formControlName="email"></ion-input>-->
-<!--        </ion-item>-->
-<!--        <ion-item>-->
-<!--            <ion-label position="floating">Password</ion-label>-->
-<!--            <ion-input type="password" formControlName="password"></ion-input>-->
-<!--        </ion-item>-->
-<!--        <ion-button (click)="dismiss()">cancel</ion-button>-->
-<!--        <ion-button type="submit">login</ion-button>-->
-<!--    </form>-->
-<!--</ion-content>-->
-
-
-<ion-content padding class="animated fadeIn login auth-page">
+<ion-content class="animated fadeIn login auth-page">
     <div id="closedButton">
-       <ion-icon name="close" (click)="dismiss()"></ion-icon>
+        <ion-icon name="close" (click)="dismiss()"></ion-icon>
     </div>
     <div class="theme-bg"></div>
     <div class="auth-content">
-
         <!-- Logo -->
-        <div padding-horizontal text-center class="animated fadeInDown">
+        <div class="animated fadeInDown">
             <div class="logo"></div>
-
         </div>
-
         <!-- Login form -->
         <form [formGroup]="authForm" class="list-form">
-            <ion-item no-padding class="animated fadeInUp">
-                <ion-label position="floating">
-                    <ion-icon name="mail" item-start></ion-icon>
-                    Email
-                </ion-label>
-                <ion-input color="secondary" type="email" formControlName="email"></ion-input>
-            </ion-item>
-
-            <ion-item no-padding class="animated fadeInUp">
-                <ion-label position="floating">
-                    <ion-icon name="lock-closed" item-start></ion-icon>
-                    Password
-                </ion-label>
-                <ion-input color="secondary" type="password" formControlName="password"></ion-input>
-            </ion-item>
+            <div *ngFor="let item of requiredInformation">
+                <ion-item class="animated fadeInUp">
+                    <ion-label position="floating">
+                        <ion-icon name="{{item.icon}}"></ion-icon>
+                        {{item.title}}
+                    </ion-label>
+                    <ion-input color="secondary" type="{{item.type}}" formControlName="{{item.formControlName}}"></ion-input>
+                </ion-item>
+            </div>
         </form>
-
-        <p text-right tappable (click)="forgotPass()" class="paz">
+        <p tappable (click)="forgotPass()" class="paz">
             <ion-text color="light">
                 <strong>Forgot Pass?</strong>
             </ion-text>
         </p>
-
         <div>
-            <ion-button icon-left size="medium" expand="full" shape="round" color="dark" (click)="doLogin()" [disabled]="!authForm.valid" tappable>
+            <ion-button size="medium" expand="full" shape="round" color="dark" (click)="doLogin()"
+                        [disabled]="!authForm.valid" tappable>
                 <ion-icon name="log-in"></ion-icon>
-                Signin
+                Sign in
             </ion-button>
-            <p text-center>
+            <p>
                 <ion-text color="light">
-                    Or Signin with:
+                    Or Sign in with:
                 </ion-text>
             </p>
             <ion-grid class="btn-group">
@@ -81,17 +55,6 @@
                     </ion-col>
                 </ion-row>
             </ion-grid>
-
         </div>
-
-        <!-- Other links -->
-        <div text-center margin-top>
-      <span (click)="goToRegister()" class="paz" tappable>
-        <ion-text color="light">
-          New here? <strong>Sign Up</strong>
-        </ion-text>
-      </span>
-        </div>
-
     </div>
 </ion-content>
