@@ -2,8 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {FirebaseService} from '../services/firebase.service';
 
-import { Platform } from '@ionic/angular';
+import {ModalController, Platform} from '@ionic/angular';
 import {Router, RouterEvent} from '@angular/router';
+import {LoginPage} from '../login/login.page';
+import {RegisterPage} from '../register/register.page';
 
 @Component({
     selector: 'app-tabs',
@@ -14,8 +16,24 @@ export class TabsPage implements OnInit {
 
     menuPages = [
         {
+            title: 'profile',
+            url: '/tabs/profile',
+            icon: 'person'
+        },
+        {
             title: 'settings',
-            url: '/tabs/settings'
+            url: '/tabs/settings',
+            icon : 'settings'
+        },
+        {
+            title: 'service provider',
+            url: '/tabs/settings',
+            icon : 'hammer'
+        },
+        {
+            title: 'sign out',
+            url: '/tabs/settings',
+            icon : 'log-out'
         }
     ];
 
@@ -23,7 +41,8 @@ export class TabsPage implements OnInit {
 
     constructor(private userService: UserService,
                 private firebaseService: FirebaseService,
-                private router: Router) {
+                private router: Router,
+                private modalController: ModalController) {
         this.router.events.subscribe((event: RouterEvent) => {
             console.log('router event trigged:' + event.url);
             this.selectedMenuPath = event.url;
@@ -31,8 +50,26 @@ export class TabsPage implements OnInit {
     }
 
 
+
     ngOnInit(): void {
         this.userService.getUser();
         this.firebaseService.notifyToUpdate();
+    }
+
+    async toLogin() {
+        console.log('tologin()');
+        const modal = await this.modalController.create({
+            component: LoginPage,
+            cssClass: 'medium-modal'
+        });
+        return await modal.present();
+    }
+
+    async toRegister() {
+        const modal = await this.modalController.create({
+            component: RegisterPage,
+            cssClass: 'medium-modal'
+        });
+        return await modal.present();
     }
 }
