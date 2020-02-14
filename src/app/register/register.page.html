@@ -1,26 +1,112 @@
-<ion-content>
-    <form [formGroup]="authForm" (ngSubmit)="doRegister()">
-        <ion-item>
-            <ion-label position="floating">UserName</ion-label>
-            <ion-input type="text" formControlName="username"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label position="floating">Password</ion-label>
-            <ion-input type="password" formControlName="password"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label position="floating">Password Confirm</ion-label>
-            <ion-input type="password" formControlName="password2"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label position="floating">Email</ion-label>
-            <ion-input type="text" formControlName="email"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label position="floating">Phone</ion-label>
-            <ion-input type="text" formControlName="phone"></ion-input>
-        </ion-item>
-        <ion-button (click)="dismiss()">cancel</ion-button>
-        <ion-button type="submit">register</ion-button>
-    </form>
+<!--<ion-content>-->
+<!--    <form [formGroup]="authForm" (ngSubmit)="doRegister()">-->
+<!--        <ion-item>-->
+<!--            <ion-label position="floating">UserName</ion-label>-->
+<!--            <ion-input type="text" formControlName="username"></ion-input>-->
+<!--        </ion-item>-->
+<!--        <ion-item>-->
+<!--            <ion-label position="floating">Password</ion-label>-->
+<!--            <ion-input type="password" formControlName="password"></ion-input>-->
+<!--        </ion-item>-->
+<!--        <ion-item>-->
+<!--            <ion-label position="floating">Password Confirm</ion-label>-->
+<!--            <ion-input type="password" formControlName="password2"></ion-input>-->
+<!--        </ion-item>-->
+<!--        <ion-item>-->
+<!--            <ion-label position="floating">Email</ion-label>-->
+<!--            <ion-input type="text" formControlName="email"></ion-input>-->
+<!--        </ion-item>-->
+<!--        <ion-item>-->
+<!--            <ion-label position="floating">Phone</ion-label>-->
+<!--            <ion-input type="text" formControlName="phone"></ion-input>-->
+<!--        </ion-item>-->
+<!--        <ion-button (click)="dismiss()">cancel</ion-button>-->
+<!--        <ion-button type="submit">register</ion-button>-->
+<!--    </form>-->
+<!--</ion-content>-->
+
+<!--<ion-content>-->
+<!--    <form [formGroup]="authForm" (ngSubmit)="doLogin()">-->
+<!--        <ion-item>-->
+<!--            <ion-label position="floating">Email</ion-label>-->
+<!--            <ion-input type="text" formControlName="email"></ion-input>-->
+<!--        </ion-item>-->
+<!--        <ion-item>-->
+<!--            <ion-label position="floating">Password</ion-label>-->
+<!--            <ion-input type="password" formControlName="password"></ion-input>-->
+<!--        </ion-item>-->
+<!--        <ion-button (click)="dismiss()">cancel</ion-button>-->
+<!--        <ion-button type="submit">login</ion-button>-->
+<!--    </form>-->
+<!--</ion-content>-->
+
+
+<ion-content padding class="animated fadeIn login auth-page">
+    <div id="closedButton">
+        <ion-icon name="close" (click)="dismiss()"></ion-icon>
+    </div>
+    <div class="theme-bg"></div>
+    <div class="auth-content">
+
+        <!-- Logo -->
+        <div padding-horizontal text-center class="animated fadeInDown">
+            <div class="logo"></div>
+
+        </div>
+
+        <!-- register form -->
+        <form [formGroup]="authForm" class="list-form" (ngSubmit)="doRegister()">
+            <div *ngFor="let item of requiredInformation">
+                <ion-item no-padding class="animated fadeInUp">
+                    <ion-label position="floating">
+                        <ion-icon name="{{item.icon}}" item-start></ion-icon>
+                        {{item.title}}
+                    </ion-label>
+                    <ion-input color="secondary" type="{{item.type}}" formControlName="{{item.formControlName}}"></ion-input>
+                </ion-item>
+            </div>
+        </form>
+
+        <!-- button for sign in -->
+        <div>
+            <ion-button icon-left size="medium" expand="full" shape="round" color="dark" type="submit" [disabled]="!authForm.valid" tappable>
+                <ion-icon name="log-in"></ion-icon>
+                Signup
+            </ion-button>
+            <!-- Other way to sign up -->
+
+            <p text-center>
+                <ion-text color="light">
+                    Or Signin with:
+                </ion-text>
+            </p>
+            <ion-grid class="btn-group">
+                <ion-row>
+                    <ion-col size="4">
+                        <ion-button shape="round" expand="full" color="secondary">
+                            <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col size="4">
+                        <ion-button shape="round" expand="full" color="secondary">
+                            <ion-icon slot="icon-only" name="logo-twitter"></ion-icon>
+                        </ion-button>
+                    </ion-col>
+                    <ion-col size="4">
+                        <ion-button shape="round" expand="full" color="secondary">
+                            <ion-icon slot="icon-only" name="logo-google"></ion-icon>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </div>
+
+
+
+    </div>
 </ion-content>
+
+
+
+

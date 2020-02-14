@@ -14,6 +14,39 @@ import {FirebaseService} from '../services/firebase.service';
 export class RegisterPage {
     authForm: FormGroup;
 
+    requiredInformation = [
+        {
+            title : 'username',
+            formControlName: 'username',
+            icon: 'person',
+            type: 'text'
+        },
+        {
+            title : 'password',
+            formControlName: 'password',
+            icon: 'lock-closed',
+            type: 'password'
+        },
+        {
+            title : 'confirm password',
+            formControlName: 'password2',
+            icon: 'lock-closed',
+            type: 'password'
+        },
+        {
+            title : 'email',
+            formControlName: 'email',
+            icon: 'mail',
+            type: 'text'
+        },
+        {
+            title : 'phone',
+            formControlName: 'phone',
+            icon: 'call',
+            type: 'text'
+        },
+    ];
+
     constructor(private modalController: ModalController,
                 private formBuilder: FormBuilder,
                 private userService: UserService,
