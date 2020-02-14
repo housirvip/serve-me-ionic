@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {FirebaseX} from '@ionic-native/firebase-x';
 import {Subject} from 'rxjs';
+import {FirebaseX} from '@ionic-native/firebase-x/ngx';
 
 @Injectable({
     providedIn: 'root'
