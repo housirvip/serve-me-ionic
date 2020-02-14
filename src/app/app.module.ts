@@ -13,6 +13,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FingerprintAIO} from '@ionic-native/fingerprint-aio/ngx';
 import {FirebaseX} from '@ionic-native/firebase-x';
 
+
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],

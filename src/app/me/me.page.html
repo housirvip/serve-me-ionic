@@ -11,13 +11,14 @@
         <ion-avatar slot="start">
             <img src="../../assets/avatar.png" alt="">
         </ion-avatar>
-        <ion-label>
+        <ion-label (click)="toProfile()" slot="start" >
             <h2>{{user ? 'Welcome ' + user.username : 'Please login'}}</h2>
             <p>{{user ? 'Your ROLE is ' + user.role : ''}}</p>
         </ion-label>
     </ion-item>
     <ion-grid>
         <ion-row>
+            <ion-button (click)="toProfile()">profile</ion-button>
             <ion-button (click)="toLogin()">login</ion-button>
             <ion-button (click)="toRegister()">register</ion-button>
             <ion-button (click)="toLogout()">logout</ion-button>

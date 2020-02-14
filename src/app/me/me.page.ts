@@ -4,6 +4,8 @@ import {LoginPage} from '../login/login.page';
 import {RegisterPage} from '../register/register.page';
 import {UserService} from '../services/user.service';
 import {FingerprintAIO} from '@ionic-native/fingerprint-aio/ngx';
+import {ProfilePage} from '../profile/profile.page';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-my',
@@ -15,6 +17,7 @@ export class MePage {
 
     constructor(private modalController: ModalController,
                 private userService: UserService,
+                private router: Router,
                 private toastController: ToastController,
                 private fingerprintAIO: FingerprintAIO) {
     }
@@ -41,6 +44,10 @@ export class MePage {
 
     toLogout() {
         this.userService.logout();
+    }
+
+    async toProfile() {
+        this.router.navigateByUrl('/tabs/profile');
     }
 
     async presentToast(msg: string) {
