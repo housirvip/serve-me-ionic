@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {FirebaseService} from '../services/firebase.service';
 
-import {ModalController, Platform} from '@ionic/angular';
+import {ModalController} from '@ionic/angular';
 import {Router, RouterEvent} from '@angular/router';
 import {LoginPage} from '../login/login.page';
 import {RegisterPage} from '../register/register.page';
@@ -23,21 +23,20 @@ export class TabsPage implements OnInit {
         {
             title: 'settings',
             url: '/tabs/settings',
-            icon : 'settings'
+            icon: 'settings'
         },
         {
             title: 'service provider',
             url: '/tabs/settings',
-            icon : 'hammer'
-        },
-        {
-            title: 'sign out',
-            url: '/tabs/settings',
-            icon : 'log-out'
+            icon: 'hammer'
         }
     ];
 
     selectedMenuPath = '';
+
+    get user() {
+        return this.userService.user;
+    }
 
     constructor(private userService: UserService,
                 private firebaseService: FirebaseService,
@@ -49,15 +48,12 @@ export class TabsPage implements OnInit {
         });
     }
 
-
-
     ngOnInit(): void {
         this.userService.getUser();
         this.firebaseService.notifyToUpdate();
     }
 
     async toLogin() {
-        console.log('tologin()');
         const modal = await this.modalController.create({
             component: LoginPage,
             cssClass: 'medium-modal'
@@ -71,5 +67,9 @@ export class TabsPage implements OnInit {
             cssClass: 'medium-modal'
         });
         return await modal.present();
+    }
+
+    toLogout() {
+        this.userService.logout();
     }
 }

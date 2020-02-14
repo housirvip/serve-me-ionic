@@ -1,36 +1,32 @@
-<ion-menu>
+<ion-menu side="start" menuId="first" contentId="main">
     <ion-header>
         <ion-toolbar color="dark" class="user-profile">
 
             <ion-item margin-bottom>
                 <ion-avatar slot="start" class="user-avatar">
-                    <img src="../../assets/img/avatar.png">
+                    <img src="../../assets/img/avatar.png" alt="">
                 </ion-avatar>
                 <ion-label>
                     <ion-text color="medium">
-                        <h1><strong *ngIf="userService.isLogin">UserName</strong></h1>
-                        <h1 (click)="toLogin()"><strong >sign in</strong></h1>
+                        <h1 *ngIf="user"><strong>{{user.username}}</strong></h1>
+                        <h1 *ngIf="!user" (click)="toLogin()"><strong>sign in</strong></h1>
                     </ion-text>
-                    <ion-text color="primary" *ngIf="userService.isLogin">
-                        <h2>point:</h2>
+                    <ion-text color="primary" *ngIf="user">
+                        <h2>point: 66</h2>
                     </ion-text>
                     <ion-text color="primary">
-                        <h2>sign up</h2>
+                        <h2 *ngIf="!user">sign up</h2>
                     </ion-text>
-
-
                 </ion-label>
             </ion-item>
-
         </ion-toolbar>
     </ion-header>
 
-    <ion-content >
+    <ion-content>
         <ion-list>
-            <ion-list-header >
+            <ion-list-header>
                 <ion-label>Menu</ion-label>
             </ion-list-header>
-
             <ion-menu-toggle auto-hide="false" *ngFor="let p of menuPages">
                 <ion-item [routerLink]="[p.url]" color="">
                     <ion-icon slot="start" [name]="p.icon" color="primary"></ion-icon>
@@ -39,39 +35,35 @@
                     </ion-label>
                 </ion-item>
             </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false">
+                <ion-item color="" (click)="toLogout()">
+                    <ion-icon slot="start" name="log-out" color="primary"></ion-icon>
+                    <ion-label>
+                        sign out
+                    </ion-label>
+                </ion-item>
+            </ion-menu-toggle>
         </ion-list>
     </ion-content>
 </ion-menu>
-<ion-router-outlet main></ion-router-outlet>
-
-
-
+<ion-router-outlet id="main"></ion-router-outlet>
 <ion-tabs>
     <ion-tab-bar slot="bottom">
         <ion-tab-button tab="dashboard">
             <ion-icon name="apps"></ion-icon>
             <ion-label>Dashboard</ion-label>
         </ion-tab-button>
-
         <ion-tab-button tab="tab2">
             <ion-icon name="finger-print"></ion-icon>
             <ion-label>TBD</ion-label>
         </ion-tab-button>
-
         <ion-tab-button tab="orders">
             <ion-icon name="clipboard"></ion-icon>
             <ion-label>Orders</ion-label>
         </ion-tab-button>
-
         <ion-tab-button tab="me">
             <ion-icon name="person"></ion-icon>
             <ion-label>Me</ion-label>
         </ion-tab-button>
-
-<!--        <ion-tab-button tab="profile2">-->
-<!--            <ion-icon name="profile1"></ion-icon>-->
-<!--            <ion-label>profile</ion-label>-->
-<!--        </ion-tab-button>-->
     </ion-tab-bar>
-
 </ion-tabs>
