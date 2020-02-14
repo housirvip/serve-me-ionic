@@ -1,8 +1,8 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {TabsPage} from './tabs.page';
+ import {NgModule} from '@angular/core';
+ import {RouterModule, Routes} from '@angular/router';
+ import {TabsPage} from './tabs.page';
 
-const routes: Routes = [
+ const routes: Routes = [
     {
         path: 'tabs',
         component: TabsPage,
@@ -52,6 +52,10 @@ const routes: Routes = [
                 ]
             },
             {
+                path: 'settings',
+                loadChildren: () => import('../NavigationMenu/settings/settings.module').then( m => m.SettingsPageModule)
+            },
+            {
                 path: '',
                 redirectTo: '/tabs/dashboard',
                 pathMatch: 'full'
@@ -65,7 +69,7 @@ const routes: Routes = [
     }
 ];
 
-@NgModule({
+ @NgModule({
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })

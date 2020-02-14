@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
 
 import { Platform } from '@ionic/angular';
+import {Router, RouterEvent} from '@angular/router';
 
 @Component({
     selector: 'app-tabs',
@@ -10,7 +11,21 @@ import { Platform } from '@ionic/angular';
 })
 export class TabsPage implements OnInit {
 
-    constructor(private userService: UserService) {
+    menuPages = [
+        {
+            title: 'settings',
+            url: '/tabs/settings'
+        }
+    ];
+
+    selectedMenuPath = '';
+
+    constructor(private userService: UserService,
+                private router: Router) {
+        this.router.events.subscribe((event: RouterEvent) => {
+            console.log('router event trigged:' + event.url);
+            this.selectedMenuPath = event.url;
+        });
     }
 
 
