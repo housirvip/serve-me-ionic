@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
+import {FirebaseService} from '../services/firebase.service';
 
 import { Platform } from '@ionic/angular';
 import {Router, RouterEvent} from '@angular/router';
@@ -21,6 +22,7 @@ export class TabsPage implements OnInit {
     selectedMenuPath = '';
 
     constructor(private userService: UserService,
+                private firebaseService: FirebaseService,
                 private router: Router) {
         this.router.events.subscribe((event: RouterEvent) => {
             console.log('router event trigged:' + event.url);
@@ -31,5 +33,6 @@ export class TabsPage implements OnInit {
 
     ngOnInit(): void {
         this.userService.getUser();
+        this.firebaseService.notifyToUpdate();
     }
 }

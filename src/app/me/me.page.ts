@@ -13,6 +13,7 @@ import {Router} from '@angular/router';
     styleUrls: ['me.page.scss']
 })
 export class MePage {
+    asd: boolean;
 
     constructor(private modalController: ModalController,
                 private userService: UserService,

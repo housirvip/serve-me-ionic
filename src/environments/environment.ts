@@ -4,8 +4,9 @@
 
 export const environment = {
     production: false,
-    apiUrl: 'http://localhost:8000/'
-    // apiUrl: 'https://serve-me-java.herokuapp.com/'
+    // apiUrl: 'http://localhost:8000/'
+    // apiUrl: 'http://192.168.1.139:8000/'
+    apiUrl: 'https://serve-me-java.herokuapp.com/'
 };
 
 /*

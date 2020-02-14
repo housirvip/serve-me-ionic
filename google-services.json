@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1098703889152",
+    "firebase_url": "https://serve-me-ionic.firebaseio.com",
+    "project_id": "serve-me-ionic",
+    "storage_bucket": "serve-me-ionic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098703889152:android:3b9e34d4699740524e49e5",
+        "android_client_info": {
+          "package_name": "edu.uta.cse.serveme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1098703889152-mo857tpjjbr42nn7via0oko0iun6v1bk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwzoX5SWAoSyy3hJRS9cfKBgTeN4GW0nE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1098703889152-mo857tpjjbr42nn7via0oko0iun6v1bk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
