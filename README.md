@@ -1,6 +1,6 @@
 # serve-me-ionic
 
-> Build with [Ionic](https://ionicframework.com/), version 4
+> Build with [Ionic](https://ionicframework.com/), version 5
 
 ## How to use
 
