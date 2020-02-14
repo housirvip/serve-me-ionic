@@ -48,8 +48,6 @@ export class UserService {
                     }
                     this._jwt = res.result;
                     localStorage.setItem('jwt', this._jwt);
-                    // refresh user detail info after user login
-                    this.getUser();
                 });
         });
     }
@@ -64,8 +62,6 @@ export class UserService {
                     }
                     this._jwt = res.result;
                     localStorage.setItem('jwt', this._jwt);
-                    // refresh user detail info after user login
-                    this.getUser();
                 });
         });
     }
@@ -83,7 +79,7 @@ export class UserService {
         if (!this._jwt) {
             return;
         }
-        this.http.get<BaseResponse>('user/detail', {}).subscribe(
+        this.http.get<BaseResponse>('user/myself', {}).subscribe(
             res => {
                 if (res.code !== 0) {
                     return;
@@ -93,6 +89,19 @@ export class UserService {
                 if (this._user.role.indexOf('ROLE_ADMIN') > 0) {
                     this._isAdmin = true;
                 }
+            });
+    }
+
+    getUserInfo() {
+        if (!this._jwt) {
+            return;
+        }
+        this.http.get<BaseResponse>('user/info', {}).subscribe(
+            res => {
+                if (res.code !== 0) {
+                    return;
+                }
+                this._user.userInfo = res.result;
             });
     }
 }

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
+import {FirebaseService} from '../services/firebase.service';
 
 @Component({
     selector: 'app-tabs',
@@ -8,10 +9,12 @@ import {UserService} from '../services/user.service';
 })
 export class TabsPage implements OnInit {
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService,
+                private firebaseService: FirebaseService) {
     }
 
     ngOnInit(): void {
         this.userService.getUser();
+        this.firebaseService.notifyToUpdate();
     }
 }

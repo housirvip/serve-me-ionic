@@ -11,6 +11,7 @@ import {AppComponent} from './app.component';
 import {BaseInterceptor} from './core/base-interceptor';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FingerprintAIO} from '@ionic-native/fingerprint-aio/ngx';
+import {FirebaseX} from '@ionic-native/firebase-x';
 
 @NgModule({
     declarations: [AppComponent],
@@ -25,6 +26,7 @@ import {FingerprintAIO} from '@ionic-native/fingerprint-aio/ngx';
         StatusBar,
         SplashScreen,
         FingerprintAIO,
+        FirebaseX,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
         {provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true},
     ],

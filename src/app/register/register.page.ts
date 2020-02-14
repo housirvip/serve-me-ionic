@@ -1,8 +1,10 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ModalController, ToastController} from '@ionic/angular';
-import {UserService} from '../services/user.service';
+import {ModalController} from '@ionic/angular';
 import {Auth} from '../classes/auth';
+import {UserService} from '../services/user.service';
+import {ToastService} from '../services/toast.service';
+import {FirebaseService} from '../services/firebase.service';
 
 @Component({
     selector: 'app-register',
@@ -15,7 +17,8 @@ export class RegisterPage {
     constructor(private modalController: ModalController,
                 private formBuilder: FormBuilder,
                 private userService: UserService,
-                private toastController: ToastController) {
+                private firebaseService: FirebaseService,
+                private toastService: ToastService) {
         this.authForm = this.formBuilder.group({
             username: new FormControl('', Validators.compose([
                 Validators.required,
@@ -75,20 +78,17 @@ export class RegisterPage {
             this.userService.register(this.authForm.value as Auth).then(
                 res => {
                     if (res.code === 0) {
-                        this.presentToast('Register Successfully').then(() => {
+                        this.toastService.presentToast('Register Successfully', 2000).then(() => {
                         });
+                        // refresh user detail info after user login
+                        this.userService.getUser();
+                        // update the local mobile firebase token to server
+                        this.firebaseService.notifyToUpdate();
+                        // close this modal
                         this.dismiss();
                     }
                 });
 
         }
-    }
-
-    async presentToast(msg: string) {
-        const toast = await this.toastController.create({
-            message: msg,
-            duration: 2000
-        });
-        return await toast.present();
     }
 }

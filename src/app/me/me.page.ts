@@ -11,6 +11,7 @@ import {FingerprintAIO} from '@ionic-native/fingerprint-aio/ngx';
     styleUrls: ['me.page.scss']
 })
 export class MePage {
+    asd: boolean;
 
     constructor(private modalController: ModalController,
                 private userService: UserService,
