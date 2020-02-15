@@ -12,6 +12,8 @@ import {FirebaseService} from './services/firebase.service';
     styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
+    menuId: string;
+    contentId: string;
 
     constructor(
         private platform: Platform,
@@ -22,6 +24,8 @@ export class AppComponent implements OnInit {
         private userService: UserService,
     ) {
         this.initializeApp();
+        this.menuId = 'first';
+        this.contentId = 'main';
     }
 
     initializeApp() {
@@ -39,6 +43,6 @@ export class AppComponent implements OnInit {
     }
 
     async openMenu() {
-        await this.menu.open('first');
+        await this.menu.open(this.menuId);
     }
 }
