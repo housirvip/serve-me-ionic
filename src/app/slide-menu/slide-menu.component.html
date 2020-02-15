@@ -1,4 +1,4 @@
-<ion-menu menuId="first" contentId="main">
+<ion-menu [menuId]="menuId" [contentId]="contentId">
     <ion-header>
         <ion-toolbar color="dark" class="user-profile">
             <ion-item margin-bottom>
@@ -50,7 +50,6 @@
                     </ion-label>
                 </ion-item>
             </ion-menu-toggle>
-
             <ion-menu-toggle auto-hide="false" *ngIf="user">
                 <ion-item>
                     <ion-icon slot="start" name="hammer-outline" color="primary"></ion-icon>

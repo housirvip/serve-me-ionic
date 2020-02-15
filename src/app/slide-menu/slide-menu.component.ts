@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
 import {MenuController, ModalController} from '@ionic/angular';
@@ -11,29 +11,8 @@ import {RegisterPage} from '../register/register.page';
     styleUrls: ['./slide-menu.component.scss'],
 })
 export class SlideMenuComponent implements OnInit {
-
-    menuPages = [
-        {
-            title: 'Dashboard',
-            url: '/dashboard',
-            icon: 'home-outline'
-        },
-        {
-            title: 'Profile',
-            url: '/profile',
-            icon: 'person-outline'
-        },
-        {
-            title: 'Orders',
-            url: '/orders',
-            icon: 'clipboard-outline'
-        },
-        {
-            title: 'Settings',
-            url: '/settings',
-            icon: 'settings-outline'
-        }
-    ];
+    @Input() menuId: string;
+    @Input() contentId: string;
 
     get user() {
         return this.userService.user;
