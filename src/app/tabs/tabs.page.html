@@ -35,10 +35,19 @@
                 </ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle auto-hide="false" *ngIf="user">
+                <ion-item>
+                    <ion-icon slot="start" name="hammer-outline" color="primary"></ion-icon>
+                    <ion-label>
+                        Service Provider
+                    </ion-label>
+                    <ion-toggle color="secondary"></ion-toggle>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false" *ngIf="user">
                 <ion-item (click)="toLogout()">
                     <ion-icon slot="start" name="log-out-outline" color="primary"></ion-icon>
                     <ion-label>
-                        sign out
+                        Sign out
                     </ion-label>
                 </ion-item>
             </ion-menu-toggle>

@@ -16,29 +16,24 @@ export class TabsPage implements OnInit {
 
     menuPages = [
         {
-            title: 'dashboard',
+            title: 'Dashboard',
             url: '/tabs/dashboard',
             icon: 'home-outline'
         },
         {
-            title: 'profile',
+            title: 'Profile',
             url: '/tabs/profile',
             icon: 'person-outline'
         },
         {
-            title: 'orders',
+            title: 'Orders',
             url: '/tabs/orders',
             icon: 'clipboard-outline'
         },
         {
-            title: 'settings',
+            title: 'Settings',
             url: '/tabs/settings',
             icon: 'settings-outline'
-        },
-        {
-            title: 'service provider',
-            url: '/tabs/settings',
-            icon: 'hammer-outline'
         }
     ];
 
@@ -86,8 +81,7 @@ export class TabsPage implements OnInit {
         this.userService.logout();
     }
 
-    openMenu() {
-        this.menu.open('first').then(r => {
-        });
+    async openMenu() {
+        await this.menu.open('first');
     }
 }
