@@ -1,29 +1,16 @@
+.active-item {
+  border-left: 8px solid var(--ion-color-primary)
+}
 
-  .active-item {
-    border-left: 8px solid var(--ion-color-primary)
+ion-toolbar.user-profile {
+
+  .user-avatar {
+    width: 90px;
+    height: 90px;
   }
 
-  .bg-profile {
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain
+  .item-inner {
+    border-width: 0;
   }
-
-
-
-
-
-  ion-toolbar.user-profile {
-
-    .user-avatar {
-      width: 90px;
-      height: 90px;
-    }
-
-    .item-inner {
-      border-width: 0;
-    }
-  }
-
+}
 

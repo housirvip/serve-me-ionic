@@ -1,7 +1,6 @@
 <ion-menu side="start" menuId="first" contentId="main">
     <ion-header>
         <ion-toolbar color="dark" class="user-profile">
-
             <ion-item margin-bottom>
                 <ion-avatar slot="start" class="user-avatar">
                     <img src="../../assets/img/avatar.png" alt="">
@@ -28,16 +27,16 @@
                 <ion-label>Menu</ion-label>
             </ion-list-header>
             <ion-menu-toggle auto-hide="false" *ngFor="let p of menuPages">
-                <ion-item [routerLink]="[p.url]" color="">
+                <ion-item [routerLink]="[p.url]">
                     <ion-icon slot="start" [name]="p.icon" color="primary"></ion-icon>
                     <ion-label>
                         {{p.title}}
                     </ion-label>
                 </ion-item>
             </ion-menu-toggle>
-            <ion-menu-toggle auto-hide="false">
-                <ion-item color="" (click)="toLogout()">
-                    <ion-icon slot="start" name="log-out" color="primary"></ion-icon>
+            <ion-menu-toggle auto-hide="false" *ngIf="user">
+                <ion-item (click)="toLogout()">
+                    <ion-icon slot="start" name="log-out-outline" color="primary"></ion-icon>
                     <ion-label>
                         sign out
                     </ion-label>
@@ -47,15 +46,20 @@
     </ion-content>
 </ion-menu>
 <ion-router-outlet id="main"></ion-router-outlet>
-<ion-tabs>
-    <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="dashboard">
-            <ion-icon name="apps"></ion-icon>
-            <ion-label>Dashboard</ion-label>
-        </ion-tab-button>
-        <ion-tab-button tab="orders">
-            <ion-icon name="clipboard"></ion-icon>
-            <ion-label>Orders</ion-label>
-        </ion-tab-button>
-    </ion-tab-bar>
-</ion-tabs>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-menu">
+    <ion-fab-button (click)="openMenu()" color="secondary">
+        <ion-icon name="grid-outline"></ion-icon>
+    </ion-fab-button>
+</ion-fab>
+<!--<ion-tabs>-->
+<!--    <ion-tab-bar slot="bottom">-->
+<!--        <ion-tab-button tab="dashboard">-->
+<!--            <ion-icon name="apps"></ion-icon>-->
+<!--            <ion-label>Dashboard</ion-label>-->
+<!--        </ion-tab-button>-->
+<!--        <ion-tab-button tab="orders">-->
+<!--            <ion-icon name="clipboard"></ion-icon>-->
+<!--            <ion-label>Orders</ion-label>-->
+<!--        </ion-tab-button>-->
+<!--    </ion-tab-bar>-->
+<!--</ion-tabs>-->
