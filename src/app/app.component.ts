@@ -1,20 +1,25 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import {Platform, ToastController} from '@ionic/angular';
+import {MenuController, Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
-import {FirebaseX} from '@ionic-native/firebase-x';
+import {UserService} from './services/user.service';
+import {FirebaseService} from './services/firebase.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html',
     styleUrls: ['app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
     constructor(
         private platform: Platform,
         private splashScreen: SplashScreen,
-        private statusBar: StatusBar
+        private statusBar: StatusBar,
+        private menu: MenuController,
+        private firebaseService: FirebaseService,
+        private userService: UserService,
     ) {
         this.initializeApp();
     }
@@ -26,5 +31,14 @@ export class AppComponent {
             this.statusBar.overlaysWebView(false);
             this.splashScreen.hide();
         });
+    }
+
+    ngOnInit(): void {
+        this.userService.getUser();
+        this.firebaseService.notifyToUpdate();
+    }
+
+    async openMenu() {
+        await this.menu.open('first');
     }
 }

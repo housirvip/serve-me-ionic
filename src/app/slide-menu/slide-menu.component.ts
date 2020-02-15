@@ -1,64 +1,53 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
-import {FirebaseService} from '../services/firebase.service';
-
-import {MenuController, ModalController} from '@ionic/angular';
 import {Router} from '@angular/router';
+import {MenuController, ModalController} from '@ionic/angular';
 import {LoginPage} from '../login/login.page';
 import {RegisterPage} from '../register/register.page';
 
 @Component({
-    selector: 'app-tabs',
-    templateUrl: 'tabs.page.html',
-    styleUrls: ['tabs.page.scss']
+    selector: 'app-slide-menu',
+    templateUrl: './slide-menu.component.html',
+    styleUrls: ['./slide-menu.component.scss'],
 })
-export class TabsPage implements OnInit {
+export class SlideMenuComponent implements OnInit {
 
     menuPages = [
         {
             title: 'Dashboard',
-            url: '/tabs/dashboard',
+            url: '/dashboard',
             icon: 'home-outline'
         },
         {
             title: 'Profile',
-            url: '/tabs/profile',
+            url: '/profile',
             icon: 'person-outline'
         },
         {
             title: 'Orders',
-            url: '/tabs/orders',
+            url: '/orders',
             icon: 'clipboard-outline'
         },
         {
             title: 'Settings',
-            url: '/tabs/settings',
+            url: '/settings',
             icon: 'settings-outline'
         }
     ];
-
-    // selectedMenuPath = '';
 
     get user() {
         return this.userService.user;
     }
 
     constructor(private userService: UserService,
-                private firebaseService: FirebaseService,
                 private router: Router,
                 private menu: MenuController,
                 private modalController: ModalController) {
-        // this.router.events.subscribe((event: RouterEvent) => {
-        //     console.log('router event trigged:' + event.url);
-        //     this.selectedMenuPath = event.url;
-        // });
     }
 
-    ngOnInit(): void {
+    ngOnInit() {
         this.menu.enable(true, 'first').then(r => {
         });
-        this.userService.getUser();
-        this.firebaseService.notifyToUpdate();
     }
 
     async toLogin() {
@@ -79,9 +68,5 @@ export class TabsPage implements OnInit {
 
     toLogout() {
         this.userService.logout();
-    }
-
-    async openMenu() {
-        await this.menu.open('first');
     }
 }

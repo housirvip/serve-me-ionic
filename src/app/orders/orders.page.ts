@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderService} from '../services/order.service';
-import {Order} from '../classes/orders/order';
-import {orderStatus} from '../classes/orders/orderStatus';
+import {Order} from '../classes/order';
+import {orderStatus} from '../classes/orderStatus';
 import {ToastService} from '../services/toast.service';
 
 @Component({
