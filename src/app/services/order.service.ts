@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {workType} from '../classes/orders/workType';
-import {orderStatus} from '../classes/orders/orderStatus';
+import {workType} from '../classes/workType';
+import {orderStatus} from '../classes/orderStatus';
 import {HttpClient} from '@angular/common/http';
-import {Order} from '../classes/orders/order';
+import {Order} from '../classes/order';
 
 @Injectable({
     providedIn: 'root'

@@ -1,56 +1,53 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
-import {FirebaseService} from '../services/firebase.service';
-
-import {ModalController} from '@ionic/angular';
-import {Router, RouterEvent} from '@angular/router';
+import {Router} from '@angular/router';
+import {MenuController, ModalController} from '@ionic/angular';
 import {LoginPage} from '../login/login.page';
 import {RegisterPage} from '../register/register.page';
 
 @Component({
-    selector: 'app-tabs',
-    templateUrl: 'tabs.page.html',
-    styleUrls: ['tabs.page.scss']
+    selector: 'app-slide-menu',
+    templateUrl: './slide-menu.component.html',
+    styleUrls: ['./slide-menu.component.scss'],
 })
-export class TabsPage implements OnInit {
+export class SlideMenuComponent implements OnInit {
 
     menuPages = [
         {
-            title: 'profile',
-            url: '/tabs/profile',
-            icon: 'person'
+            title: 'Dashboard',
+            url: '/dashboard',
+            icon: 'home-outline'
         },
         {
-            title: 'settings',
-            url: '/tabs/settings',
-            icon: 'settings'
+            title: 'Profile',
+            url: '/profile',
+            icon: 'person-outline'
         },
         {
-            title: 'service provider',
-            url: '/tabs/settings',
-            icon: 'hammer'
+            title: 'Orders',
+            url: '/orders',
+            icon: 'clipboard-outline'
+        },
+        {
+            title: 'Settings',
+            url: '/settings',
+            icon: 'settings-outline'
         }
     ];
-
-    selectedMenuPath = '';
 
     get user() {
         return this.userService.user;
     }
 
     constructor(private userService: UserService,
-                private firebaseService: FirebaseService,
                 private router: Router,
+                private menu: MenuController,
                 private modalController: ModalController) {
-        this.router.events.subscribe((event: RouterEvent) => {
-            console.log('router event trigged:' + event.url);
-            this.selectedMenuPath = event.url;
-        });
     }
 
-    ngOnInit(): void {
-        this.userService.getUser();
-        this.firebaseService.notifyToUpdate();
+    ngOnInit() {
+        this.menu.enable(true, 'first').then(r => {
+        });
     }
 
     async toLogin() {

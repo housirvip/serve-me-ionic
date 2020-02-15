@@ -12,16 +12,24 @@ import {BaseInterceptor} from './core/base-interceptor';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FingerprintAIO} from '@ionic-native/fingerprint-aio/ngx';
 import {FirebaseX} from '@ionic-native/firebase-x/ngx';
+import {RegisterPageModule} from './register/register.module';
+import {LoginPageModule} from './login/login.module';
+import {SlideMenuComponent} from './slide-menu/slide-menu.component';
 
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [
+        AppComponent,
+        SlideMenuComponent,
+    ],
     entryComponents: [],
     imports: [
         BrowserModule,
         IonicModule.forRoot(),
         AppRoutingModule,
         HttpClientModule,
+        LoginPageModule,
+        RegisterPageModule,
     ],
     providers: [
         StatusBar,

@@ -1,0 +1,15 @@
+.active-item {
+  border-left: 8px solid var(--ion-color-primary)
+}
+
+ion-toolbar.user-profile {
+
+  .user-avatar {
+    width: 90px;
+    height: 90px;
+  }
+
+  .item-inner {
+    border-width: 0;
+  }
+}

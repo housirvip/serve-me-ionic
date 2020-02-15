@@ -1,0 +1,81 @@
+<ion-menu menuId="first" contentId="main">
+    <ion-header>
+        <ion-toolbar color="dark" class="user-profile">
+            <ion-item margin-bottom>
+                <ion-avatar slot="start" class="user-avatar">
+                    <img src="../../assets/img/avatar.png" alt="">
+                </ion-avatar>
+                <ion-label>
+                    <ion-text color="medium">
+                        <h1 *ngIf="user"><strong>{{user.username}}</strong></h1>
+                        <h1 *ngIf="!user" (click)="toLogin()"><strong>Sign in</strong></h1>
+                    </ion-text>
+                    <ion-text color="primary" *ngIf="user">
+                        <h2>point: 66</h2>
+                    </ion-text>
+                    <ion-text color="primary">
+                        <h2 *ngIf="!user" (click)="toRegister()">Sign up</h2>
+                    </ion-text>
+                </ion-label>
+            </ion-item>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-list>
+            <ion-list-header>
+                <ion-label>Menu</ion-label>
+            </ion-list-header>
+            <ion-menu-toggle auto-hide="false">
+                <ion-item routerLink="/dashboard">
+                    <ion-icon slot="start" name="home-outline" color="primary"></ion-icon>
+                    <ion-label>
+                        Dashboard
+                    </ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false" *ngIf="user">
+                <ion-item routerLink="/profile">
+                    <ion-icon slot="start" name="person-outline" color="primary"></ion-icon>
+                    <ion-label>
+                        Profile
+                    </ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false" *ngIf="user">
+                <ion-item routerLink="/orders">
+                    <ion-icon slot="start" name="clipboard-outline" color="primary"></ion-icon>
+                    <ion-label>
+                        Orders
+                    </ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+
+            <ion-menu-toggle auto-hide="false" *ngIf="user">
+                <ion-item>
+                    <ion-icon slot="start" name="hammer-outline" color="primary"></ion-icon>
+                    <ion-label>
+                        Service Provider
+                    </ion-label>
+                    <ion-toggle color="secondary"></ion-toggle>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false" *ngIf="user">
+                <ion-item (click)="toLogout()">
+                    <ion-icon slot="start" name="log-out-outline" color="primary"></ion-icon>
+                    <ion-label>
+                        Sign out
+                    </ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false">
+                <ion-item routerLink="/settings">
+                    <ion-icon slot="start" name="settings-outline" color="primary"></ion-icon>
+                    <ion-label>
+                        Settings
+                    </ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+        </ion-list>
+    </ion-content>
+</ion-menu>
