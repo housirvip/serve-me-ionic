@@ -22,17 +22,7 @@ ionic cordova build android
 
 ## Bug
 
-```shell script
-# commands with "--prod" is unavaliable now
-# just like below shows
-ionic build --prod
-ionic cordova build android --prod
-ionic cordova prepare android --prod
-
-# delete "--prod" instead
-# just because the firebaseX plugin
-# wait this plugin to be fixed by it's author
-```
+Slide Menu open animation problem, sometimes flash to open without animation
 
 ## Remember
 
