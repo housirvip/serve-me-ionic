@@ -1,0 +1,26 @@
+
+  .active-item {
+    border-left: 8px solid var(--ion-color-primary)
+  }
+
+  .bg-profile {
+    --background: linear-gradient(135deg, var(--ion-color-light), var(--ion-color-end));
+  }
+
+
+
+
+
+  ion-toolbar.user-profile {
+
+    .user-avatar {
+      width: 90px;
+      height: 90px;
+    }
+
+    .item-inner {
+      border-width: 0;
+    }
+  }
+
+
