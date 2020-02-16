@@ -75,7 +75,7 @@
                     </ion-label>
                 </ion-item>
             </ion-menu-toggle>
-            <ion-menu-toggle auto-hide="false">
+            <ion-menu-toggle auto-hide="false" *ngIf="afAuth.auth.currentUser.emailVerified">
                 <ion-item (click)="veryfiyEmail()" *ngIf="afAuth.auth.currentUser">
                     <ion-icon slot="start" name="settings-outline" color="primary"></ion-icon>
                     <ion-label>
