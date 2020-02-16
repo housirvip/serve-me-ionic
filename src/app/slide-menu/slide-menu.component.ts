@@ -48,6 +48,15 @@ export class SlideMenuComponent implements OnInit {
         return await modal.present();
     }
 
+    veryfiyEmail() {
+
+        const user = this.afAuth.auth.currentUser;
+
+        user.sendEmailVerification().then(() => {
+        }).catch(() => {
+        });
+    }
+
     toLogout() {
         // this.userService.logout();
         this.afAuth.auth.signOut().then( () => {
