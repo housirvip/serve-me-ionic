@@ -74,4 +74,7 @@ export class LoginPage {
 
         }
     }
+
+    forgotPass() {
+    }
 }
