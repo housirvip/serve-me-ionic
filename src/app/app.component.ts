@@ -6,6 +6,8 @@ import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {UserService} from './services/user.service';
 import {FirebaseService} from './services/firebase.service';
 
+
+
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html',

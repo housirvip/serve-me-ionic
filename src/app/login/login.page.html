@@ -1,60 +1,69 @@
-<ion-content class="animated fadeIn login auth-page">
-    <div id="closedButton">
-        <ion-icon name="close" (click)="dismiss()"></ion-icon>
-    </div>
-    <div class="theme-bg"></div>
-    <div class="auth-content">
-        <!-- Logo -->
-        <div class="animated fadeInDown">
-            <div class="logo"></div>
+<!--<ion-content class="animated fadeIn login auth-page">-->
+<!--    <div id="closedButton">-->
+<!--        <ion-icon name="close" (click)="dismiss()"></ion-icon>-->
+<!--    </div>-->
+<!--    <div class="theme-bg"></div>-->
+<!--    <div class="auth-content">-->
+<!--        &lt;!&ndash; Logo &ndash;&gt;-->
+<!--        <div class="animated fadeInDown">-->
+<!--            <div class="logo"></div>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Login form &ndash;&gt;-->
+<!--        <form [formGroup]="authForm" class="list-form">-->
+<!--            <div *ngFor="let item of requiredInformation">-->
+<!--                <ion-item class="animated fadeInUp">-->
+<!--                    <ion-label position="floating">-->
+<!--                        <ion-icon name="{{item.icon}}"></ion-icon>-->
+<!--                        {{item.title}}-->
+<!--                    </ion-label>-->
+<!--                    <ion-input color="secondary" type="{{item.type}}" formControlName="{{item.formControlName}}"></ion-input>-->
+<!--                </ion-item>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--        <p tappable (click)="forgotPass()" class="paz">-->
+<!--            <ion-text color="light">-->
+<!--                <strong>Forgot Pass?</strong>-->
+<!--            </ion-text>-->
+<!--        </p>-->
+<!--        <div>-->
+<!--            <ion-button size="medium" expand="full" shape="round" color="dark" (click)="doLogin()"-->
+<!--                        [disabled]="!authForm.valid" tappable>-->
+<!--                <ion-icon name="log-in"></ion-icon>-->
+<!--                Sign in-->
+<!--            </ion-button>-->
+<!--            <p>-->
+<!--                <ion-text color="light">-->
+<!--                    Or Sign in with:-->
+<!--                </ion-text>-->
+<!--            </p>-->
+<!--            <ion-grid class="btn-group">-->
+<!--                <ion-row>-->
+<!--                    <ion-col size="4">-->
+<!--                        <ion-button shape="round" expand="full" color="secondary">-->
+<!--                            <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>-->
+<!--                        </ion-button>-->
+<!--                    </ion-col>-->
+<!--                    <ion-col size="4">-->
+<!--                        <ion-button shape="round" expand="full" color="secondary">-->
+<!--                            <ion-icon slot="icon-only" name="logo-twitter"></ion-icon>-->
+<!--                        </ion-button>-->
+<!--                    </ion-col>-->
+<!--                    <ion-col size="4">-->
+<!--                        <ion-button shape="round" expand="full" color="secondary">-->
+<!--                            <ion-icon slot="icon-only" name="logo-google"></ion-icon>-->
+<!--                        </ion-button>-->
+<!--                    </ion-col>-->
+<!--                </ion-row>-->
+<!--            </ion-grid>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</ion-content>-->
+<ion-content>
+        <div id="closedButton">
+            <ion-icon name="close" (click)="dismiss()"></ion-icon>
         </div>
-        <!-- Login form -->
-        <form [formGroup]="authForm" class="list-form">
-            <div *ngFor="let item of requiredInformation">
-                <ion-item class="animated fadeInUp">
-                    <ion-label position="floating">
-                        <ion-icon name="{{item.icon}}"></ion-icon>
-                        {{item.title}}
-                    </ion-label>
-                    <ion-input color="secondary" type="{{item.type}}" formControlName="{{item.formControlName}}"></ion-input>
-                </ion-item>
-            </div>
-        </form>
-        <p tappable (click)="forgotPass()" class="paz">
-            <ion-text color="light">
-                <strong>Forgot Pass?</strong>
-            </ion-text>
-        </p>
-        <div>
-            <ion-button size="medium" expand="full" shape="round" color="dark" (click)="doLogin()"
-                        [disabled]="!authForm.valid" tappable>
-                <ion-icon name="log-in"></ion-icon>
-                Sign in
-            </ion-button>
-            <p>
-                <ion-text color="light">
-                    Or Sign in with:
-                </ion-text>
-            </p>
-            <ion-grid class="btn-group">
-                <ion-row>
-                    <ion-col size="4">
-                        <ion-button shape="round" expand="full" color="secondary">
-                            <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>
-                        </ion-button>
-                    </ion-col>
-                    <ion-col size="4">
-                        <ion-button shape="round" expand="full" color="secondary">
-                            <ion-icon slot="icon-only" name="logo-twitter"></ion-icon>
-                        </ion-button>
-                    </ion-col>
-                    <ion-col size="4">
-                        <ion-button shape="round" expand="full" color="secondary">
-                            <ion-icon slot="icon-only" name="logo-google"></ion-icon>
-                        </ion-button>
-                    </ion-col>
-                </ion-row>
-            </ion-grid>
-        </div>
-    </div>
+    <div class="logo"></div>
+
+    <firebase-ui (signInSuccessWithAuthResult)="successCallback($event)"
+                 (signInFailure)="errorCallback($event)">></firebase-ui>
 </ion-content>
