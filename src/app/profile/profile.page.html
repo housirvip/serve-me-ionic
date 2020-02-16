@@ -1,56 +1,95 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>
-            profile
-        </ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-title>
+      My Profile
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-item>
-        <ion-avatar (click)="toMe()" slot="start">
-            <img src="../../assets/avatar.png" alt="">
-        </ion-avatar>
+  <div class="profile-header">
+    <div class="profile-userpic">
+      <ion-avatar (click)="toMe()" slot="start">
+        <img src="../../assets/avatar.png" alt="" />
+        <ion-icon name="create"></ion-icon>
         <ion-label>
-            <h2>{{user ? 'Welcome ' + user.username : 'Please login'}}</h2>
-            <p>{{user ? 'Your ROLE is ' + user.role : ''}}</p>
+          <h1>Points</h1>
+          <p>4500</p>
         </ion-label>
-    </ion-item>
+      </ion-avatar>
+    </div>
 
+    <!-- <ion-label>
+                        <h2>{{user ? 'Welcome ' + user.username : 'Please login'}}</h2>
+                        <p>{{user ? 'Your ROLE is ' + user.role : ''}}</p>
+                    </ion-label> -->
+  </div>
+  <div class="name-container">
     <ion-item>
-        <ion-avatar>
-            <ion-icon name="person"></ion-icon>
-        </ion-avatar>
-        <ion-label>
-            <h1>{{'Username'}}</h1>
-            <p>{{user ? user.username : ''}}</p>
-        </ion-label>
+      <ion-avatar>
+        <div class="name-icon">
+          <ion-icon name="person"></ion-icon>
+        </div>
+      </ion-avatar>
+      <ion-label>
+        <h1>{{'Name'}}</h1>
+        <p>{{user ? user.username : 'Javier'}}</p>
+      </ion-label>
+      <ion-icon name="chevron-forward"></ion-icon>
     </ion-item>
-    <ion-item>
-        <ion-avatar>
-            <ion-icon name="call"></ion-icon>
-        </ion-avatar>
-        <ion-label>
-            <h1>{{'Phone'}}</h1>
-            <p>{{user ? user.phone : ''}}</p>
-        </ion-label>
-    </ion-item>
-    <ion-item>
-        <ion-avatar>
-            <ion-icon name="mail"></ion-icon>
-        </ion-avatar>
-        <ion-label>
-            <h1>{{'Email'}}</h1>
-            <p>{{user ? user.email : ''}}</p>
-        </ion-label>
-    </ion-item>
+  </div>
 
-<!--    <ion-grid>-->
-<!--        <ion-row>-->
-<!--            <ion-button (click)="toLogin()">login</ion-button>-->
-<!--            <ion-button (click)="toRegister()">register</ion-button>-->
-<!--            <ion-button (click)="toLogout()">logout</ion-button>-->
-<!--            <ion-button (click)="toFingerPrint()">finger</ion-button>-->
-<!--        </ion-row>-->
-<!--    </ion-grid>-->
+  <div class="phone-container">
+    <ion-item>
+      <ion-avatar>
+        <div class="phone-icon">
+          <ion-icon name="call"></ion-icon>
+        </div>
+      </ion-avatar>
+      <ion-label>
+        <h1>{{'Phone'}}</h1>
+        <p>{{user ? user.phone : '214-374-9439'}}</p>
+      </ion-label>
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-item>
+  </div>
+
+  <div class="email-container">
+    <ion-item>
+      <ion-avatar>
+        <div class="email-icon">
+          <ion-icon name="mail"></ion-icon>
+        </div>
+      </ion-avatar>
+      <ion-label>
+        <h1>{{'Email'}}</h1>
+        <p>{{user ? user.email : 'javieralexcastro95@gmail.com'}}</p>
+      </ion-label>
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-item>
+  </div>
+
+  <div class="password-container">
+    <ion-item>
+      <ion-avatar>
+        <div class="password-icon">
+          <ion-icon name="lock-open"></ion-icon>
+        </div>
+      </ion-avatar>
+      <ion-label>
+        <h1>{{'Password'}}</h1>
+        <p>{{user ? user.email : '*****'}}</p>
+      </ion-label>
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-item>
+  </div>
+
+  <!--    <ion-grid>-->
+  <!--        <ion-row>-->
+  <!--            <ion-button (click)="toLogin()">login</ion-button>-->
+  <!--            <ion-button (click)="toRegister()">register</ion-button>-->
+  <!--            <ion-button (click)="toLogout()">logout</ion-button>-->
+  <!--            <ion-button (click)="toFingerPrint()">finger</ion-button>-->
+  <!--        </ion-row>-->
+  <!--    </ion-grid>-->
 </ion-content>
