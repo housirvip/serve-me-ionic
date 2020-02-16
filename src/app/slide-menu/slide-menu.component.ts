@@ -14,6 +14,7 @@ export class SlideMenuComponent implements OnInit {
     @Input() menuId: string;
     @Input() contentId: string;
 
+
     get user() {
         return this.userService.user;
     }
