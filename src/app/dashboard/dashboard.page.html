@@ -1,20 +1,33 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>
-            Dashboard
-        </ion-title>
+    <ion-toolbar color="primary">
+        <ion-title >Customer</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ion-card>
-        <img src="../../assets/madison.jpg" alt=""/>
-        <ion-card-header>
-            <ion-card-subtitle>Destination</ion-card-subtitle>
-            <ion-card-title>Madison, WI</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-            Founded in 1829 on an isthmus between Lake Monona and Lake Mendota, Madison was named the capital of the
-            Wisconsin Territory in 1836.
-        </ion-card-content>
-    </ion-card>
+    <ion-refresher slot="fixed" >
+        <ion-refresher-content
+                pullingIcon="arrow-dropdown"
+                pullingText="Pull to refresh"
+                refreshingSpinner="circles"
+                refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar showCancelButton="always"></ion-searchbar>
+    <ion-row class="filter">
+        <ion-button expand="full" fill="outline">
+            type
+            <ion-icon name="arrow-down"></ion-icon>
+        </ion-button>
+        <ion-button expand="full" fill="outline">
+            price
+            <ion-icon name="arrow-down"></ion-icon>
+        </ion-button>
+        <ion-button expand="full" fill="outline">
+            time
+            <ion-icon name="arrow-down"></ion-icon>
+        </ion-button>
+    </ion-row>
+    <ion-list >
+
+    </ion-list>
 </ion-content>
