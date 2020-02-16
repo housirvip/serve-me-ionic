@@ -6,7 +6,18 @@ export const environment = {
     production: false,
     // apiUrl: 'http://localhost:8000/'
     // apiUrl: 'http://192.168.1.139:8000/'
-    apiUrl: 'https://serve-me-java.herokuapp.com/'
+    apiUrl: 'https://serve-me-java.herokuapp.com/',
+
+    firebaseConfig: {
+    apiKey: 'AIzaSyBDAY6j-CsEbns_tUZR1K6yneHLBVeeInE',
+    authDomain: 'loginwithfirebase-4b092.firebaseapp.com',
+    databaseURL: 'https://loginwithfirebase-4b092.firebaseio.com',
+    projectId: 'loginwithfirebase-4b092',
+    storageBucket: 'loginwithfirebase-4b092.appspot.com',
+    messagingSenderId: '68444833382',
+    appId: '1:68444833382:web:09d5b782b72d4b08ba4fa7',
+    measurementId: 'G-7X2DC59Q93'
+    }
 };
 
 /*

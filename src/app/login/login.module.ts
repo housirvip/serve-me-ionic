@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {IonicModule} from '@ionic/angular';
 
 import {LoginPage} from './login.page';
+import {FirebaseUIModule} from 'firebaseui-angular';
 
 @NgModule({
     imports: [
@@ -12,6 +13,7 @@ import {LoginPage} from './login.page';
         FormsModule,
         IonicModule,
         ReactiveFormsModule,
+        FirebaseUIModule,
     ],
     entryComponents: [LoginPage],
     declarations: [LoginPage]
