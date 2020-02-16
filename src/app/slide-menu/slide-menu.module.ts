@@ -4,6 +4,7 @@ import {IonicModule} from '@ionic/angular';
 import {SlideMenuComponent} from './slide-menu.component';
 import {LoginPageModule} from '../login/login.module';
 import {RegisterPageModule} from '../register/register.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
     declarations: [SlideMenuComponent],
@@ -12,6 +13,7 @@ import {RegisterPageModule} from '../register/register.module';
         IonicModule,
         LoginPageModule,
         RegisterPageModule,
+        RouterModule,
     ],
     exports: [
         SlideMenuComponent
