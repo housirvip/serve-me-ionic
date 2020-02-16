@@ -14,7 +14,7 @@
     </ion-refresher>
     <ion-searchbar showCancelButton="always"></ion-searchbar>
     <ion-row class="filter">
-        <ion-button expand="full" fill="outline">
+        <ion-button (click)="presentModal()" expand="full" fill="outline">
             type
             <ion-icon name="arrow-down"></ion-icon>
         </ion-button>
