@@ -1,0 +1,118 @@
+.profile-header {
+  margin-bottom: 20px;
+  background-color: rgb(190, 190, 190, 0.2);
+}
+
+.profile-userpic {
+  position: relative;
+}
+
+.profile-userpic ion-avatar {
+  float: none;
+  padding: 30px 0 30px 30px;
+  width: 30%;
+  height: 30%;
+  -webkit-border-radius: 30% !important;
+  -moz-border-radius: 30% !important;
+  border-radius: 30% !important;
+}
+
+.profile-userpic ion-icon {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  bottom: 30px;
+  left: 30px;
+}
+
+.profile-userpic ion-label {
+  position: absolute;
+  top: 50px;
+  left: 35%;
+}
+
+.profile-userpic ion-label h1 {
+  font-size: 13px;
+  color: gray;
+}
+
+.profile-userpic ion-label p {
+  font-size: 20px;
+  color: black;
+}
+
+//---name
+
+.name-icon ion-icon {
+  width: 25px;
+  height: 25px;
+  padding-top: 7px;
+}
+
+.name-container ion-label h1 {
+  font-size: 13px;
+  color: gray;
+}
+
+.name-container ion-label p {
+  font-size: 15px;
+
+  color: black;
+}
+
+//---phone
+
+.phone-icon ion-icon {
+  width: 25px;
+  height: 25px;
+  padding-top: 7px;
+}
+
+.phone-container ion-label h1 {
+  font-size: 13px;
+  color: gray;
+}
+
+.phone-container ion-label p {
+  font-size: 15px;
+
+  color: black;
+}
+
+//---email
+
+.email-icon ion-icon {
+  width: 25px;
+  height: 25px;
+  padding-top: 7px;
+}
+
+.email-container ion-label h1 {
+  font-size: 13px;
+  color: gray;
+}
+
+.email-container ion-label p {
+  font-size: 15px;
+
+  color: black;
+}
+
+//---password
+
+.password-icon ion-icon {
+  width: 25px;
+  height: 25px;
+  padding-top: 3px;
+}
+
+.password-container ion-label h1 {
+  font-size: 13px;
+  color: gray;
+}
+
+.password-container ion-label p {
+  font-size: 15px;
+
+  color: black;
+}
