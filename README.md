@@ -2,6 +2,15 @@
 
 > Build with [Ionic](https://ionicframework.com/), version 5
 
+## Tools used
+
+- Ionic
+- Angular
+- FirebaseX
+- AngularFire
+- Cordova
+- FingerPrientAIO
+
 ## How to use
 
 ```shell script
@@ -23,6 +32,7 @@ ionic cordova build android
 ## Remember
 
 change the serve-me-ionic/src/environments/environment.ts
+
 if you need to change the server ip address
 
 ## Prototype
