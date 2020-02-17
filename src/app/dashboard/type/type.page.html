@@ -1,0 +1,35 @@
+<ion-content>
+  <div id="closedButton">
+    <ion-icon name="close" (click)="dismiss()"></ion-icon>
+  </div>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-title>
+        Your Vendor
+      </ion-title>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-select (ionChange)="onGenderChange($event)" >
+        <ion-select-option value='{{vendorgender.female}}'>Female</ion-select-option>
+        <ion-select-option value='{{vendorgender.male}}'>Male</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Type</ion-label>
+      <ion-select placeholder="Select One" (ionChange)="onTypeChange($event)" >
+        <ion-select-option value="{{vendortype.Cleaner}}">Cleaner</ion-select-option>
+        <ion-select-option value="{{vendortype.Painter}}">Painter</ion-select-option>
+        <ion-select-option value="{{vendortype.DogWalker}}">Dog walker</ion-select-option>
+        <ion-select-option value="{{vendortype.ElectricalWork}}">Electrical Work</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-button expand="full"  class="submit" (click)="submit()">find result</ion-button>
+</ion-content>
+

@@ -14,17 +14,31 @@
     </ion-refresher>
     <ion-searchbar showCancelButton="always"></ion-searchbar>
     <ion-row class="filter">
-        <ion-button expand="full" fill="outline">
-            type
-            <ion-icon name="arrow-down"></ion-icon>
+        <ion-button (click)="typeModal()" expand="full" fill="outline">
+            <ion-label class="unprocessed" *ngIf="!this.filterService._typeFilled " >
+                type
+                <ion-icon class="unprocessed"  name="arrow-down"></ion-icon>
+            </ion-label>
+            <ion-label class="smallFont" color="primary" *ngIf="this.filterService._typeFilled">
+                {{this.filterService.displayGender()}},{{this.filterService.displayType()}}
+            </ion-label>
+
+        </ion-button>
+        <ion-button (click)="priceModal()" expand="full" fill="outline">
+            <ion-label class="unprocessed"  *ngIf="!this.filterService._priceFilled " >
+                Price
+                <ion-icon name="arrow-down" class="unprocessed"></ion-icon>
+            </ion-label>
+            <ion-label class="smallFont" color="primary" *ngIf="this.filterService._priceFilled">
+               $ {{this.filterService.minPrice}} - {{this.filterService.maxPrice}}
+            </ion-label>
+
         </ion-button>
         <ion-button expand="full" fill="outline">
-            price
-            <ion-icon name="arrow-down"></ion-icon>
-        </ion-button>
-        <ion-button expand="full" fill="outline">
-            time
-            <ion-icon name="arrow-down"></ion-icon>
+            <ion-label class="unprocessed">
+                Date
+                <ion-icon name="arrow-down"></ion-icon>
+            </ion-label>
         </ion-button>
     </ion-row>
     <ion-list >
