@@ -1,4 +1,4 @@
-export enum orderStatus {
+export enum OrderStatus {
     waiting = 'waiting',
     biding = 'biding',
     progress = 'progress',

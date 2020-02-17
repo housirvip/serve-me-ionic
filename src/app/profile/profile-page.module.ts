@@ -4,8 +4,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {ProfilePage} from './profile.page';
-import {MePage} from '../me/me.page';
-import {RegisterPage} from '../register/register.page';
 
 @NgModule({
     imports: [
@@ -14,7 +12,6 @@ import {RegisterPage} from '../register/register.page';
         FormsModule,
         RouterModule.forChild([{path: '', component: ProfilePage}])
     ],
-    entryComponents: [ProfilePage],
     declarations: [ProfilePage]
 
 })

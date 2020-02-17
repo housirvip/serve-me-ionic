@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {workType} from '../classes/workType';
-import {orderStatus} from '../classes/orderStatus';
+import {WorkType} from '../classes/work-type';
+import {OrderStatus} from '../classes/order-status';
 import {HttpClient} from '@angular/common/http';
 import {Order} from '../classes/order';
 
@@ -12,15 +12,15 @@ export class OrderService {
     constructor(private httpClient: HttpClient) {
     }
 
-    getOrders(filter: orderStatus): Order[] {
+    getOrders(filter: OrderStatus): Order[] {
         switch (filter) {
-            case orderStatus.waiting:
+            case OrderStatus.waiting:
                 return [
                     {
                         title: 'Look for cleaner',
                         price: '12.99$',
-                        type: workType.Cleaner,
-                        status: orderStatus.waiting,
+                        type: WorkType.Cleaner,
+                        status: OrderStatus.waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
                         imgUrl: '../../assets/order/cleaner.png'
@@ -28,31 +28,31 @@ export class OrderService {
                     {
                         title: 'Really need someone help me',
                         price: '20.99$',
-                        type: workType.Reparing,
-                        status: orderStatus.waiting,
+                        type: WorkType.Repairing,
+                        status: OrderStatus.waiting,
                         serverProvider: 'Jack',
                         time: '02/01/2020',
                         imgUrl: '../../assets/order/cleaner.png'
                     },
                 ];
-            case orderStatus.biding:
+            case OrderStatus.biding:
                 return [
                     {
                         title: 'Look for cleaner',
                         price: '12.99$',
-                        type: workType.Cleaner,
-                        status: orderStatus.waiting,
+                        type: WorkType.Cleaner,
+                        status: OrderStatus.waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
                         imgUrl: '../../assets/order/repair.png'
                     }];
-            case orderStatus.progress:
+            case OrderStatus.progress:
                 return [
                     {
                         title: 'Look for cleaner',
                         price: '12.99$',
-                        type: workType.Cleaner,
-                        status: orderStatus.waiting,
+                        type: WorkType.Cleaner,
+                        status: OrderStatus.waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
                         imgUrl: '../../assets/order/weedcleaner.png'
@@ -60,19 +60,19 @@ export class OrderService {
                     {
                         title: 'Look for cleaner',
                         price: '12.99$',
-                        type: workType.Cleaner,
-                        status: orderStatus.waiting,
+                        type: WorkType.Cleaner,
+                        status: OrderStatus.waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
                         imgUrl: '../../assets/order/weedcleaner.png'
                     }];
-            case orderStatus.completed:
+            case OrderStatus.completed:
                 return [
                     {
                         title: 'Look for cleaner',
                         price: '12.99$',
-                        type: workType.Cleaner,
-                        status: orderStatus.waiting,
+                        type: WorkType.Cleaner,
+                        status: OrderStatus.waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
                         imgUrl: '../../assets/order/dogwalker.png'
@@ -80,8 +80,8 @@ export class OrderService {
                     {
                         title: 'Look for cleaner',
                         price: '12.99$',
-                        type: workType.Cleaner,
-                        status: orderStatus.waiting,
+                        type: WorkType.Cleaner,
+                        status: OrderStatus.waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
                         imgUrl: '../../assets/order/dogwalker.png'
@@ -89,8 +89,8 @@ export class OrderService {
                     {
                         title: 'Look for cleaner',
                         price: '12.99$',
-                        type: workType.Cleaner,
-                        status: orderStatus.waiting,
+                        type: WorkType.Cleaner,
+                        status: OrderStatus.waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
                         imgUrl: '../../assets/order/dogwalker.png'
