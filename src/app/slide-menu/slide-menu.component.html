@@ -7,7 +7,7 @@
                 </ion-avatar>
                 <ion-label>
                     <ion-text color="medium">
-                        <h1 *ngIf="user"><strong>{{user.username}}</strong></h1>
+                        <h1 *ngIf="user"><strong>{{user.username||user.email||user.phone}}</strong></h1>
                         <h1 *ngIf="!user" (click)="toLogin()"><strong>Sign in</strong></h1>
                     </ion-text>
                     <ion-text color="primary" *ngIf="user">
