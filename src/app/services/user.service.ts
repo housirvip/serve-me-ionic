@@ -48,6 +48,13 @@ export class UserService {
         return this._isCustomer;
     }
 
+    get emailVerified(): boolean {
+        if (!this.afAuth.auth.currentUser) {
+            return true;
+        }
+        return this.afAuth.auth.currentUser.emailVerified;
+    }
+
     constructor(private http: HttpClient,
                 private afAuth: AngularFireAuth,
                 private firebaseService: FirebaseService
@@ -109,6 +116,11 @@ export class UserService {
                 }
                 this._user.userInfo = res.result;
             });
+    }
+
+    async verifyEmail() {
+        const user = this.afAuth.auth.currentUser;
+        return await user.sendEmailVerification();
     }
 
     setUser(user: User) {

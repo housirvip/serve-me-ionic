@@ -3,6 +3,7 @@ import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
 import {MenuController, ModalController} from '@ionic/angular';
 import {LoginPage} from '../login/login.page';
+import {ToastService} from '../services/toast.service';
 
 @Component({
     selector: 'app-slide-menu',
@@ -21,6 +22,7 @@ export class SlideMenuComponent implements OnInit {
     constructor(private userService: UserService,
                 private router: Router,
                 private menu: MenuController,
+                private toastService: ToastService,
                 private modalController: ModalController) {
     }
 
@@ -37,13 +39,14 @@ export class SlideMenuComponent implements OnInit {
         return await modal.present();
     }
 
-    veryfiyEmail() {
-        const user = this.afAuth.auth.currentUser;
-        user.sendEmailVerification().then(() => {
+    verifyEmail() {
+        this.userService.verifyEmail().then(() => {
+            this.toastService.presentToast('email send successfully', 2000).then(r => {
+            });
         }).catch(() => {
         });
     }
-  
+
     toLogout() {
         this.userService.logout();
     }

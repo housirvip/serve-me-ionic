@@ -73,10 +73,10 @@
                 </ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle auto-hide="false">
-                <ion-item (click)="veryfiyEmail()" *ngIf="afAuth.auth.currentUser">
+                <ion-item (click)="verifyEmail()" *ngIf="!userService.emailVerified">
                     <ion-icon slot="start" name="settings-outline" color="primary"></ion-icon>
                     <ion-label>
-                        verfiy email
+                        Verify Email
                     </ion-label>
                 </ion-item>
             </ion-menu-toggle>
