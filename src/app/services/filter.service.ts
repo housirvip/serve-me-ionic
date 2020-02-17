@@ -1,11 +1,15 @@
 import {Injectable} from '@angular/core';
 import {vendorgender, vendortype} from '../classes/vendor';
+import {HttpClient} from '@angular/common/http';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilterService {
+  constructor(private httpClient: HttpClient) {
+    this._typeFilled = false;
+  }
 
 
   // tslint:disable-next-line:variable-name
@@ -42,7 +46,5 @@ export class FilterService {
 
 
 
-  constructor() {
-    this._typeFilled = false;
-  }
+
 }

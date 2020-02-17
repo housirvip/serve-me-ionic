@@ -3,6 +3,7 @@ import {ModalController} from '@ionic/angular';
 import {TypePage} from './type/type.page';
 import {LoginPage} from '../login/login.page';
 import {FilterService} from '../services/filter.service';
+import {PricePage} from './price/price.page';
 
 
 @Component({
@@ -16,9 +17,16 @@ export class DashboardPage {
                 public  filterService: FilterService) {
     }
 
-    async presentModal() {
+    async typeModal() {
         const modal = await this.modalController.create({
             component: TypePage
+        });
+        return await modal.present();
+    }
+
+    async priceModal() {
+        const modal = await this.modalController.create({
+            component: PricePage
         });
         return await modal.present();
     }

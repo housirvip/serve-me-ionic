@@ -1,0 +1,34 @@
+
+<ion-content>
+  <div id="closedButton">
+    <ion-icon name="close" (click)="dismiss()"></ion-icon>
+  </div>
+
+
+
+    <ion-title>
+        Price Range
+    </ion-title>
+  <ion-text class="floatPrice">
+    ${{this.minPrice}}
+  </ion-text>
+  <ion-text style="font-size: 20px">
+    -
+  </ion-text>
+  <ion-text style="margin-left: 23px">
+    ${{this.maxPrice}}
+  </ion-text>
+
+  <ion-text style="margin-left: 23px" color="secondary">
+    per hour
+  </ion-text>
+
+  <ion-item>
+      <ion-range (ionChange)="onChange($event)" id="dual-range"  min="0" max="2000"  dual-knobs pin color="primary">
+        <ion-label slot="start" color="primary">0</ion-label>
+        <ion-label slot="end" color="primary">2000</ion-label>
+      </ion-range>
+
+    </ion-item>
+  <ion-button expand="full"  class="submit" (click)="submit()">find result</ion-button>
+</ion-content>
