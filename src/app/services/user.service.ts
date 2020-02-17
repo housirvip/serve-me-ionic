@@ -3,7 +3,9 @@ import {HttpClient} from '@angular/common/http';
 
 import {BaseResponse} from '../core/base-response';
 import {User} from '../classes/user';
-import {Auth} from '../classes/auth';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFireMessaging} from '@angular/fire/messaging';
+import {FirebaseService} from './firebase.service';
 
 @Injectable({
     providedIn: 'root'
@@ -17,6 +19,10 @@ export class UserService {
     private _isLogin = false;
     // tslint:disable-next-line:variable-name
     private _isAdmin = false;
+    // tslint:disable-next-line:variable-name
+    private _isVendor = false;
+    // tslint:disable-next-line:variable-name
+    private _isCustomer = false;
 
     get jwt(): string {
         return this._jwt;
@@ -34,45 +40,56 @@ export class UserService {
         return this._isAdmin;
     }
 
-    constructor(private http: HttpClient) {
-        this._jwt = localStorage.getItem('jwt');
+    get isVendor(): boolean {
+        return this._isVendor;
     }
 
-    async login(auth: Auth) {
-        return new Promise<BaseResponse>(resolve => {
-            this.http.post<BaseResponse>('auth/login', auth).subscribe(
-                res => {
-                    resolve(res);
-                    if (res.code !== 0) {
-                        return;
-                    }
-                    this._jwt = res.result;
-                    localStorage.setItem('jwt', this._jwt);
-                });
-        });
+    get isCustomer(): boolean {
+        return this._isCustomer;
     }
 
-    async register(auth: Auth) {
-        return new Promise<BaseResponse>(resolve => {
-            this.http.post<BaseResponse>('auth/register', auth).subscribe(
-                res => {
-                    resolve(res);
-                    if (res.code !== 0) {
-                        return;
-                    }
-                    this._jwt = res.result;
-                    localStorage.setItem('jwt', this._jwt);
-                });
+    get emailVerified(): boolean {
+        if (!this.afAuth.auth.currentUser) {
+            return true;
+        }
+        return this.afAuth.auth.currentUser.emailVerified;
+    }
+
+    constructor(private http: HttpClient,
+                private afAuth: AngularFireAuth,
+                private firebaseService: FirebaseService
+    ) {
+        afAuth.idToken.subscribe(jwt => {
+            if (!jwt) {
+                return;
+            }
+            this._jwt = jwt;
+            this.getUser();
+            firebaseService.notifyToUpdate();
         });
     }
 
     logout() {
         // remove all data for user
-        localStorage.removeItem('jwt');
-        this._user = null;
-        this._jwt = null;
-        this._isLogin = false;
-        this._isAdmin = false;
+        this.afAuth.auth.signOut().then(() => {
+                this._user = null;
+                this._jwt = null;
+                this._isLogin = false;
+                this._isAdmin = false;
+                this._isCustomer = false;
+                this._isVendor = false;
+            }
+        );
+    }
+
+    newUser(user: User) {
+        this.http.post<BaseResponse>('auth/register', user).subscribe(
+            res => {
+                if (res.code !== 0) {
+                    return;
+                }
+                this.setUser(res.result);
+            });
     }
 
     getUser() {
@@ -84,11 +101,7 @@ export class UserService {
                 if (res.code !== 0) {
                     return;
                 }
-                this._user = res.result;
-                this._isLogin = true;
-                if (this._user.role.indexOf('ROLE_ADMIN') > 0) {
-                    this._isAdmin = true;
-                }
+                this.setUser(res.result);
             });
     }
 
@@ -103,5 +116,24 @@ export class UserService {
                 }
                 this._user.userInfo = res.result;
             });
+    }
+
+    async verifyEmail() {
+        const user = this.afAuth.auth.currentUser;
+        return await user.sendEmailVerification();
+    }
+
+    setUser(user: User) {
+        this._user = user;
+        this._isLogin = true;
+        if (user.role.indexOf('ROLE_ADMIN') > 0) {
+            this._isAdmin = true;
+        }
+        if (user.role.indexOf('ROLE_CUSTOMER') > 0) {
+            this._isCustomer = true;
+        }
+        if (user.role.indexOf('ROLE_VENDOR') > 0) {
+            this._isLogin = true;
+        }
     }
 }

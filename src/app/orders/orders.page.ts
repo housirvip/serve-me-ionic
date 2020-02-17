@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OrderService} from '../services/order.service';
 import {Order} from '../classes/order';
-import {orderStatus} from '../classes/orderStatus';
+import {OrderStatus} from '../classes/order-status';
 import {ToastService} from '../services/toast.service';
 
 @Component({
@@ -18,15 +18,15 @@ export class OrdersPage implements OnInit {
     }
 
     ngOnInit() {
-        this.getOrders(orderStatus.waiting);
+        this.getOrders(OrderStatus.waiting);
     }
 
-    getOrders(status: orderStatus) {
+    getOrders(status: OrderStatus) {
         this.orders = this.orderService.getOrders(status);
     }
 
     segmentChanged(ev: any) {
-        this.getOrders(ev.detail.value as orderStatus);
+        this.getOrders(ev.detail.value as OrderStatus);
     }
 
     doRefresh(event) {
