@@ -23,12 +23,6 @@ export class TypePage implements OnInit {
   ngOnInit() {
   }
 
-  submit() {
-    this.filterService.gender = this.gender;
-    this.filterService.type = this.type;
-    this.filterService._typeFilled = true;
-    this.dismiss();
-  }
 
   onGenderChange(event) {
     // tslint:disable-next-line:radix
@@ -40,13 +34,24 @@ export class TypePage implements OnInit {
       this.type = parseInt(event.target.value);
   }
 
-
-
   dismiss() {
     this.modalController.dismiss({
       dismissed: true
     }).then(() => {
     });
   }
+
+  submit() {
+    this.filterService.gender = this.gender;
+    this.filterService.type = this.type;
+    this.filterService._typeFilled = true;
+
+    // refresh VendorList
+    this.filterService.getVendorList();
+    this.dismiss();
+  }
+
+
+
 
 }

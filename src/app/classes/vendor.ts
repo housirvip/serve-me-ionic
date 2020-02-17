@@ -11,3 +11,15 @@ export enum vendortype {
     DogWalker,
     ElectricalWork,
 }
+
+
+export class VendorResult {
+    titleName: string;
+    typeString: string;
+    priceString: string;
+    workday: string;
+    workHour: string;
+    rate: number;
+    commentsNum: number;
+    photoUrl;
+}
