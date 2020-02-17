@@ -30,6 +30,13 @@
             {
               "client_id": "1098703889152-mo857tpjjbr42nn7via0oko0iun6v1bk.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1098703889152-ug6plgregupbm4ku4amff430nptg9knr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "edu.uta.cse.serveme"
+              }
             }
           ]
         }

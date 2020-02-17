@@ -1,11 +1,11 @@
-import {workType} from './workType';
-import {orderStatus} from './orderStatus';
+import {WorkType} from './work-type';
+import {OrderStatus} from './order-status';
 
 export class Order {
     title: string;
     price: string;
-    type: workType;
-    status: orderStatus;
+    type: WorkType;
+    status: OrderStatus;
     serverProvider: string;
     time: string;
     imgUrl: string;

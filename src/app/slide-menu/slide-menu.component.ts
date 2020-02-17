@@ -3,8 +3,6 @@ import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
 import {MenuController, ModalController} from '@ionic/angular';
 import {LoginPage} from '../login/login.page';
-import {RegisterPage} from '../register/register.page';
-import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
     selector: 'app-slide-menu',
@@ -23,8 +21,7 @@ export class SlideMenuComponent implements OnInit {
     constructor(private userService: UserService,
                 private router: Router,
                 private menu: MenuController,
-                private modalController: ModalController,
-                public  afAuth: AngularFireAuth) {
+                private modalController: ModalController) {
     }
 
     ngOnInit() {
@@ -40,29 +37,19 @@ export class SlideMenuComponent implements OnInit {
         return await modal.present();
     }
 
-    async toRegister() {
-        const modal = await this.modalController.create({
-            component: RegisterPage,
-            cssClass: 'medium-modal'
-        });
-        return await modal.present();
-    }
-
     veryfiyEmail() {
-
         const user = this.afAuth.auth.currentUser;
-
         user.sendEmailVerification().then(() => {
         }).catch(() => {
         });
     }
-
+  
     toLogout() {
-        // this.userService.logout();
-        this.afAuth.auth.signOut().then( () => {
-             location.reload();
-            }
+        this.userService.logout();
+    }
 
-        );
+    jump(path: string) {
+        this.router.navigate([path]).then(() => {
+        });
     }
 }

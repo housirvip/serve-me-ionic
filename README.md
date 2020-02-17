@@ -20,10 +20,6 @@ npm i -g cordova
 ionic cordova build android
 ```
 
-## Bug
-
-Slide Menu open animation problem, sometimes flash to open without animation
-
 ## Remember
 
 change the serve-me-ionic/src/environments/environment.ts

@@ -3,8 +3,6 @@ import {CommonModule} from '@angular/common';
 import {IonicModule} from '@ionic/angular';
 import {SlideMenuComponent} from './slide-menu.component';
 import {LoginPageModule} from '../login/login.module';
-import {RegisterPageModule} from '../register/register.module';
-import {RouterModule} from '@angular/router';
 
 @NgModule({
     declarations: [SlideMenuComponent],
@@ -12,8 +10,6 @@ import {RouterModule} from '@angular/router';
         CommonModule,
         IonicModule,
         LoginPageModule,
-        RegisterPageModule,
-        RouterModule,
     ],
     exports: [
         SlideMenuComponent
