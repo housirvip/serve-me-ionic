@@ -7,6 +7,20 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class FilterService {
+  get minPrice(): number {
+    return this._minPrice;
+  }
+
+  get maxPrice(): number {
+    return this._maxPrice;
+  }
+  set maxPrice(value: number) {
+    this._maxPrice = value;
+  }
+  // tslint:disable-next-line:adjacent-overload-signatures
+  set minPrice(value: number) {
+    this._minPrice = value;
+  }
   constructor(private httpClient: HttpClient) {
     this._typeFilled = false;
   }
@@ -18,6 +32,14 @@ export class FilterService {
   private _gender: vendorgender;
   // tslint:disable-next-line:variable-name
   private _type: vendortype;
+
+  // tslint:disable-next-line:variable-name
+  public _priceFilled: boolean;
+  // tslint:disable-next-line:variable-name
+  private _maxPrice: number;
+  // tslint:disable-next-line:variable-name
+  private _minPrice: number;
+
 
   set gender(value: vendorgender) {
     this._gender = value;

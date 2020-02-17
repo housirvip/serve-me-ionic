@@ -15,7 +15,8 @@
     <ion-searchbar showCancelButton="always"></ion-searchbar>
     <ion-row class="filter">
         <ion-button (click)="typeModal()" expand="full" fill="outline">
-            <ion-label class="unprocessed" *ngIf="!this.filterService._typeFilled " >type
+            <ion-label class="unprocessed" *ngIf="!this.filterService._typeFilled " >
+                type
                 <ion-icon class="unprocessed"  name="arrow-down"></ion-icon>
             </ion-label>
             <ion-label class="smallFont" color="primary" *ngIf="this.filterService._typeFilled">
@@ -24,9 +25,12 @@
 
         </ion-button>
         <ion-button (click)="priceModal()" expand="full" fill="outline">
-            <ion-label class="unprocessed">
+            <ion-label class="unprocessed"  *ngIf="!this.filterService._priceFilled " >
                 Price
-                <ion-icon name="arrow-down"></ion-icon>
+                <ion-icon name="arrow-down" class="unprocessed"></ion-icon>
+            </ion-label>
+            <ion-label class="smallFont" color="primary" *ngIf="this.filterService._priceFilled">
+               $ {{this.filterService.minPrice}} - {{this.filterService.maxPrice}}
             </ion-label>
 
         </ion-button>

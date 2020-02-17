@@ -27,8 +27,6 @@ export class TypePage implements OnInit {
     this.filterService.gender = this.gender;
     this.filterService.type = this.type;
     this.filterService._typeFilled = true;
-
-
     this.dismiss();
   }
 
