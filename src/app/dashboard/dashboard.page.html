@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-toolbar color="primary">
+    <ion-toolbar color='secondary'>
         <ion-title >Customer</ion-title>
     </ion-toolbar>
 </ion-header>
@@ -42,13 +42,13 @@
         </ion-button>
     </ion-row>
     <ion-list *ngFor="let vendor of vendors">
-        <ion-card color="light" >
+        <ion-card color="" >
             <ion-card-header>
                 <ion-card-title>{{vendor.titleName}}</ion-card-title>
                 <ion-card-subtitle>{{vendor.typeString}}</ion-card-subtitle>
             </ion-card-header>
             <ion-card-content >
-            <ion-item color="light" >
+            <ion-item color="" >
                 <ion-label class="pricehour">
                    <h1>${{vendor.priceString}}/hour</h1>
                     <ion-label>{{vendor.workday}}</ion-label>
@@ -59,7 +59,7 @@
                 <div class="ratingInformation">
                         <ion-icon class="readonlyRating"  *ngFor="let i of [1, 2, 3, 4, 5]" name="star" size="small">
                         </ion-icon>
-                    <ion-label>{{vendor.commentsNum}}comments</ion-label>
+                    <ion-label>{{vendor.commentsNum}} comments</ion-label>
                 </div>
             </ion-card-content>
         </ion-card>

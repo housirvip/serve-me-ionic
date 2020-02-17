@@ -97,7 +97,7 @@ export class FilterService {
         priceString: '23',
         rate: 5,
         titleName: 'James',
-        typeString: 'Cleaner',
+        typeString: 'Dog Walker',
         workHour: '9AM-9PM',
         workday: 'Mon Tues Wed Thurs Fri Sat Sun',
        photoUrl: '../../assets/img/avatar.png'

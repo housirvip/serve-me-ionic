@@ -7,7 +7,7 @@
                 </ion-avatar>
                 <ion-label>
                     <ion-text color="medium">
-                        <h1 *ngIf="user"><strong>{{user.username}}</strong></h1>
+                        <h1 *ngIf="user"><strong>{{user.username||user.email||user.phone}}</strong></h1>
                         <h1 *ngIf="!user" (click)="toLogin()"><strong>Sign in</strong></h1>
                     </ion-text>
                     <ion-text color="primary" *ngIf="user">
@@ -77,6 +77,14 @@
                     <ion-icon slot="start" name="settings-outline" color="primary"></ion-icon>
                     <ion-label>
                         Verify Email
+                    </ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false">
+                <ion-item (click)="verifyEmail()" >
+                    <ion-icon slot="start" name="add-outline" color="primary"></ion-icon>
+                    <ion-label>
+                        Make New Request
                     </ion-label>
                 </ion-item>
             </ion-menu-toggle>
