@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {TypePage} from './type/type.page';
 import {LoginPage} from '../login/login.page';
+import {FilterService} from '../services/filter.service';
 
 
 @Component({
@@ -11,7 +12,8 @@ import {LoginPage} from '../login/login.page';
 })
 export class DashboardPage {
 
-    constructor(public modalController: ModalController) {
+    constructor(public modalController: ModalController,
+                public  filterService: FilterService) {
     }
 
     async presentModal() {
