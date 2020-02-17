@@ -21,6 +21,7 @@ export class LoginPage {
     }
 
     successCallback(signInSuccessData: FirebaseUISignInSuccessWithAuthResult) {
+        console.log(signInSuccessData)
         if (signInSuccessData.authResult.additionalUserInfo.isNewUser) {
             const user: User = new User();
             user.email = signInSuccessData.authResult.user.email;

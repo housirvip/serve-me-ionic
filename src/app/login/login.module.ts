@@ -13,7 +13,6 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     signInOptions: [
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
         firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-        firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
         // {
         //     scopes: [
         //         'public_profile',
