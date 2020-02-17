@@ -10,11 +10,10 @@
   <div class="profile-header">
     <div class="profile-userpic">
       <ion-avatar (click)="toMe()" slot="start">
-        <img src="../../assets/avatar.png" alt="" />
+        <img src="../../assets/img/avatar.png" alt="" />
         <ion-icon name="create"></ion-icon>
         <ion-label>
-          <h1>Points</h1>
-          <p>4500</p>
+
         </ion-label>
       </ion-avatar>
     </div>
@@ -65,6 +64,9 @@
         <h1>{{'Email'}}</h1>
         <p>{{user ? user.email : 'javieralexcastro95@gmail.com'}}</p>
       </ion-label>
+       <ion-label >
+        <h1>verfied</h1>
+      </ion-label>
       <ion-icon name="chevron-forward"></ion-icon>
     </ion-item>
   </div>
@@ -78,7 +80,7 @@
       </ion-avatar>
       <ion-label>
         <h1>{{'Password'}}</h1>
-        <p>{{user ? user.email : '*****'}}</p>
+        <p>{{ '*****'}}</p>
       </ion-label>
       <ion-icon name="chevron-forward"></ion-icon>
     </ion-item>

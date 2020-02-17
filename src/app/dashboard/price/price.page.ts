@@ -37,6 +37,9 @@ export class PricePage implements OnInit {
     this.filterService.maxPrice = this.maxPrice;
     this.filterService.minPrice = this.minPrice;
     this.filterService._priceFilled = true;
+
+    // refresh VendorList
+    this.filterService.getVendorList();
     console.log(this.filterService);
     this.dismiss();
   }

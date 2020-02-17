@@ -41,7 +41,28 @@
             </ion-label>
         </ion-button>
     </ion-row>
-    <ion-list >
-
+    <ion-list *ngFor="let vendor of vendors">
+        <ion-card color="light" >
+            <ion-card-header>
+                <ion-card-title>{{vendor.titleName}}</ion-card-title>
+                <ion-card-subtitle>{{vendor.typeString}}</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content >
+            <ion-item color="light" >
+                <ion-label class="pricehour">
+                   <h1>${{vendor.priceString}}/hour</h1>
+                    <ion-label>{{vendor.workday}}</ion-label>
+                    <ion-label>{{vendor.workHour}}</ion-label>
+                </ion-label>
+                <ion-avatar ><img src="../../assets/img/avatar.png"></ion-avatar>
+            </ion-item>
+                <div class="ratingInformation">
+                        <ion-icon class="readonlyRating"  *ngFor="let i of [1, 2, 3, 4, 5]" name="star" size="small">
+                        </ion-icon>
+                    <ion-label>{{vendor.commentsNum}}comments</ion-label>
+                </div>
+            </ion-card-content>
+        </ion-card>
     </ion-list>
+
 </ion-content>
