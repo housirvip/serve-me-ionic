@@ -19,40 +19,25 @@ export class UpdatePhonePage implements OnInit {
   ngOnInit() {
   }
 
-  submitPhoneNumber() {
+   async submitPhoneNumber() {
       console.log(this.phoneNumber);
       const USphoneNumber =  '+1' + this.phoneNumber;
-    //   const applicationVerifier = new firebase.auth.RecaptchaVerifier(
-    //     'recaptcha-container',
-    //     {
-    //       size: 'invisible'
-    //     }
-    // );
-    //   const provider = new firebase.auth.PhoneAuthProvider();
-    //   provider.verifyPhoneNumber(USphoneNumber, applicationVerifier)
-    // // tslint:disable-next-line:only-arrow-functions
-    //     .then(function(verificationId) {
-    //       const verificationCode = window.prompt('Please enter the verification ' +
-    //           'code that was sent to your mobile device.');
-    //       return firebase.auth.PhoneAuthProvider.credential(verificationId,
-    //           verificationCode);
-    //     })
-    //     // tslint:disable-next-line:only-arrow-functions
-    //     .then(phoneCredential => {
-    //       console.log(phoneCredential);
-    //       this.afAuth.auth.currentUser.updatePhoneNumber(phoneCredential).then(
-    //           () => {
-    //             console.log('update successful');
-    //           }
-    //       );
-    //     });
-      this.presentPopover(USphoneNumber);
+      const applicationVerifier = new firebase.auth.RecaptchaVerifier(
+        'recaptcha-container',
+        {
+          size: 'invisible'
+        }
+    );
+      const provider = new firebase.auth.PhoneAuthProvider();
+      const receivecode = await provider.verifyPhoneNumber(USphoneNumber, applicationVerifier)
+      this.presentPopover(USphoneNumber, receivecode);
+
 
   }
-  async presentPopover(ev: any) {
+  async presentPopover(ev: any, reciveCode: any) {
         const popover = await this.popoverController.create({
             component: VerificationComponent,
-            componentProps: {phone: ev},
+            componentProps: {phone: ev, recv: reciveCode},
             translucent: true
         });
         return await popover.present();

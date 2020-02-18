@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {IonicModule} from '@ionic/angular';
 import {VerificationComponent} from './verification.component';
 import {UpdatePhonePage} from '../update-phone/update-phone.page';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import {UpdatePhonePage} from '../update-phone/update-phone.page';
     imports: [
         CommonModule,
         IonicModule,
+        FormsModule,
     ],
     exports: [
         VerificationComponent

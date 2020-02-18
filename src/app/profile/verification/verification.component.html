@@ -8,7 +8,7 @@
   <ion-card-subtitle>{{this.navParams.get('phone')}}</ion-card-subtitle>
 
 
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="code"></ion-input>
        <ion-label  *ngIf="ifVerificationRight"></ion-label>
       <ion-label color="danger" class="tipwrong" *ngIf="!ifVerificationRight">verification is wrong</ion-label>
 
