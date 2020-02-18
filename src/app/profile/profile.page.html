@@ -9,12 +9,10 @@
 <ion-content>
   <div class="profile-header">
     <div class="profile-userpic">
-      <ion-avatar (click)="toMe()" slot="start">
+      <ion-avatar slot="start">
         <img src="../../assets/img/avatar.png" alt="" />
         <ion-icon name="create"></ion-icon>
-        <ion-label>
-
-        </ion-label>
+        <ion-label> </ion-label>
       </ion-avatar>
     </div>
 
@@ -32,9 +30,11 @@
       </ion-avatar>
       <ion-label>
         <h1>{{'Name'}}</h1>
-        <p>{{user ? user.username : 'Javier'}}</p>
+        <p>{{user ? user.username : user_name}}</p>
       </ion-label>
-      <ion-icon name="chevron-forward"></ion-icon>
+      <ion-button (click)="edit('Name');" fill="clear" color="medium">
+        <ion-icon slot="end" name="chevron-forward"></ion-icon>
+      </ion-button>
     </ion-item>
   </div>
 
@@ -47,9 +47,11 @@
       </ion-avatar>
       <ion-label>
         <h1>{{'Phone'}}</h1>
-        <p>{{user ? user.phone : '214-374-9439'}}</p>
+        <p>{{user ? user.phone : user_phone}}</p>
       </ion-label>
-      <ion-icon name="chevron-forward"></ion-icon>
+      <ion-button (click)="edit('Phone');" fill="clear" color="medium">
+        <ion-icon slot="end" name="chevron-forward"></ion-icon>
+      </ion-button>
     </ion-item>
   </div>
 
@@ -62,12 +64,19 @@
       </ion-avatar>
       <ion-label>
         <h1>{{'Email'}}</h1>
-        <p>{{user ? user.email : 'javieralexcastro95@gmail.com'}}</p>
+        <p>{{user ? user.email : user_email}}</p>
       </ion-label>
-       <ion-label >
-        <h1>verfied</h1>
+      <ion-label>
+        <h2
+          [ngClass]="{ 'verified': user_verified == 'verified', 'unverified':
+          user_verified == 'unverified' }"
+        >
+          {{user_verified}}
+        </h2>
       </ion-label>
-      <ion-icon name="chevron-forward"></ion-icon>
+      <ion-button (click)="edit('Email');" fill="clear" color="medium">
+        <ion-icon slot="end" name="chevron-forward"></ion-icon>
+      </ion-button>
     </ion-item>
   </div>
 
@@ -80,9 +89,15 @@
       </ion-avatar>
       <ion-label>
         <h1>{{'Password'}}</h1>
-        <p>{{ '*****'}}</p>
+        <p>{{user_password}}</p>
       </ion-label>
-      <ion-icon name="chevron-forward"></ion-icon>
+      <ion-button
+        (click)="edit('Enter your current password');"
+        fill="clear"
+        color="medium"
+      >
+        <ion-icon slot="end" name="chevron-forward"></ion-icon>
+      </ion-button>
     </ion-item>
   </div>
 

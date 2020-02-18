@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="profile" icon="arrow-back-outline">
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none">
+    <div class="text-container">
+      <ion-label position="stacked">{{edit_msg}}</ion-label>
+      <ion-input type="{{input_type}}"></ion-input>
+    </div>
+    <ion-button class="edit-button" expand="full" (click)="onClick('Email');">
+      {{button_text}}
+    </ion-button>
+  </ion-item>
+</ion-content>

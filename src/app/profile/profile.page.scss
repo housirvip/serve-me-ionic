@@ -92,9 +92,13 @@
   color: gray;
 }
 
+.email-container ion-label h2 {
+  font-size: 13px;
+  float: right;
+}
+
 .email-container ion-label p {
   font-size: 15px;
-
   color: black;
 }
 
@@ -117,7 +121,10 @@
   color: black;
 }
 
-.verfiyed{}
+.verified {
+  color: green;
+}
 
-.unverfiyed{}
-
+.unverified {
+  color: orange;
+}
