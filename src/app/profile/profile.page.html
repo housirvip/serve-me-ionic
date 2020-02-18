@@ -38,7 +38,7 @@
     </ion-item>
   </div>
 
-  <div class="phone-container">
+  <div class="phone-container" (click)="updatePhonemModal()" >
     <ion-item>
       <ion-avatar>
         <div class="phone-icon">
@@ -49,7 +49,7 @@
         <h1>{{'Phone'}}</h1>
         <p>{{user ? user.phone : user_phone}}</p>
       </ion-label>
-      <ion-button (click)="edit('Phone');" fill="clear" color="medium">
+      <ion-button fill="clear" color="medium">
         <ion-icon slot="end" name="chevron-forward"></ion-icon>
       </ion-button>
     </ion-item>
@@ -101,12 +101,5 @@
     </ion-item>
   </div>
 
-  <!--    <ion-grid>-->
-  <!--        <ion-row>-->
-  <!--            <ion-button (click)="toLogin()">login</ion-button>-->
-  <!--            <ion-button (click)="toRegister()">register</ion-button>-->
-  <!--            <ion-button (click)="toLogout()">logout</ion-button>-->
-  <!--            <ion-button (click)="toFingerPrint()">finger</ion-button>-->
-  <!--        </ion-row>-->
-  <!--    </ion-grid>-->
+
 </ion-content>

@@ -3,22 +3,30 @@ import {ModalController} from '@ionic/angular';
 import {UserService} from '../services/user.service';
 import {TypePage} from '../dashboard/type/type.page';
 import {UpdatePhonePage} from './update-phone/update-phone.page';
-import { Router } from "@angular/router";
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "app-profile",
-  templateUrl: "./profile.page.html",
-  styleUrls: ["./profile.page.scss"]
+  selector: 'app-profile',
+  templateUrl: './profile.page.html',
+  styleUrls: ['./profile.page.scss']
 })
-export class ProfilePage {
-  //example values. Acutal values should be retrieved from db
-  user_points = "4500";
-  user_name = "Javier";
-  user_phone = "214-374-9439";
-  user_email = "javieralexcastro95@gmail.com";
-  user_password = "****";
-  user_verified = "verified";
+
+
 export class ProfilePage implements  OnInit {
+
+    // example values. Acutal values should be retrieved from db
+    // tslint:disable-next-line:variable-name
+    user_points = '4500';
+    // tslint:disable-next-line:variable-name
+    user_name = 'Javier';
+    // tslint:disable-next-line:variable-name
+    user_phone = '214-374-9439';
+    // tslint:disable-next-line:variable-name
+    user_email = 'javieralexcastro95@gmail.com';
+    // tslint:disable-next-line:variable-name
+    user_password = '****';
+    // tslint:disable-next-line:variable-name
+    user_verified = 'unverified';
 
   constructor(
     private modalController: ModalController,
@@ -39,10 +47,16 @@ export class ProfilePage implements  OnInit {
 
     ngOnInit(): void {
         console.log(this.userService.user);
+        console.log(this.userService.emailVerified);
+        if (this.userService.emailVerified === true) {
+            this.user_verified = 'verified';
+        } else {
+            this.user_verified = 'unverified';
+        }
     }
 
 
   edit(field: string) {
-    this.router.navigate(["/edit", field]);
+    this.router.navigate(['/edit', field]);
   }
 }
