@@ -38,7 +38,7 @@
     </ion-item>
   </div>
 
-  <div class="phone-container">
+  <div class="phone-container" (click)="updatePhonemModal()">
     <ion-item>
       <ion-avatar>
         <div class="phone-icon">
@@ -64,8 +64,8 @@
         <h1>{{'Email'}}</h1>
         <p>{{user ? user.email : 'javieralexcastro95@gmail.com'}}</p>
       </ion-label>
-       <ion-label >
-        <h1>verfied</h1>
+       <ion-label class="verfiyed">
+        verfied
       </ion-label>
       <ion-icon name="chevron-forward"></ion-icon>
     </ion-item>
