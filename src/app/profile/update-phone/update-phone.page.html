@@ -1,0 +1,18 @@
+
+
+
+<ion-content >
+  <div id="closedButton">
+    <ion-icon name="close" (click)="dismiss()"></ion-icon>
+  </div>
+
+  <div class="tiplabel">
+    <ion-label >
+      <h2>You can update your number and we'll send a verification code to this number</h2>
+    </ion-label>
+  </div>
+  <ion-input pattern="tel" placeholder="phone number" [(ngModel)]="phoneNumber"></ion-input>
+
+  <div id='recaptcha-container'></div>
+  <ion-button (click)="submitPhoneNumber()" expand="full">next</ion-button>
+</ion-content>

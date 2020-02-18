@@ -94,4 +94,19 @@
 
 
 
+ion-popover{
+  ion-backdrop{
+    opacity: 0.5 !important;
+  }
+  .popover-wrapper{
+    .popover-content{
+      width:80vw;
+      height: 66vw;
+      max-width:500px;
+    }
+  }
+}
+
+
+
 }
