@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {NavParams, PopoverController} from '@ionic/angular';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {firebase} from 'firebaseui-angular';
-import {ToastService} from '../../services/toast.service';
-import {UserService} from '../../services/user.service';
-import {User} from '../../classes/user';
+import {ToastService} from '../../../services/toast.service';
+import {UserService} from '../../../services/user.service';
+import {User} from '../../../classes/user';
 
 @Component({
   selector: 'app-verification',

@@ -5,7 +5,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {ProfilePage} from './profile.page';
 import {UpdatePhonePageModule} from './update-phone/update-phone.module';
-import {VerificationModule} from './verification/verification.module';
+import {VerificationModule} from './update-phone/verification/verification.module';
 
 // @ts-ignore
 @NgModule({
