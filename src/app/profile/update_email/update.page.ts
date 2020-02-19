@@ -2,16 +2,16 @@ import {assertPlatform, Component, OnInit} from '@angular/core';
 import {ModalController, PopoverController} from '@ionic/angular';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {firebase} from 'firebaseui-angular';
-import {VerificationComponent} from '../verification/verification.component';
+import {VerificationComponent} from './verification/verification.component';
 import {tokenReference} from '@angular/compiler';
 
 
 @Component({
   selector: 'app-update-phone',
-  templateUrl: './update-phone.page.html',
-  styleUrls: ['./update-phone.page.scss'],
+  templateUrl: './update.page.html',
+  styleUrls: ['./update.page.scss'],
 })
-export class UpdatePhonePage implements OnInit {
+export class UpdatePage implements OnInit {
   private  ifwarning: boolean;
   private  warningMessage: string;
   private applicationVerifier: firebase.auth.RecaptchaVerifier ;
@@ -38,7 +38,7 @@ export class UpdatePhonePage implements OnInit {
       provider.verifyPhoneNumber(USphoneNumber, this.applicationVerifier).then(
           (received) => {
               this.presentPopover(USphoneNumber, received).then(r => {});
-          }
+          }// todo
       ).catch(
           (res) => {
               // this.applicationVerifier.clear();

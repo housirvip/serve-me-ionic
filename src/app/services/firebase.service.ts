@@ -20,7 +20,7 @@ export class FirebaseService {
     private readyToSendToken() {
         this.token = localStorage.getItem('fcm_token');
         this.subject.asObservable().subscribe(value => {
-            this.http.put('user/update', {fcmToken: value})
+            this.http.put('user/update_phone', {fcmToken: value})
                 .subscribe(() => {
                 });
         });

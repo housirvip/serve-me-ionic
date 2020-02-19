@@ -2,17 +2,17 @@ import {Component, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {UserService} from '../services/user.service';
 import {TypePage} from '../dashboard/type/type.page';
-import {UpdatePhonePage} from './update-phone/update-phone.page';
-import { Router } from '@angular/router';
+import {UpdatePhonePage} from './update_phone/update-phone.page';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.page.html',
-  styleUrls: ['./profile.page.scss']
+    selector: 'app-profile',
+    templateUrl: './profile.page.html',
+    styleUrls: ['./profile.page.scss']
 })
 
 
-export class ProfilePage implements  OnInit {
+export class ProfilePage implements OnInit {
 
     // example values. Acutal values should be retrieved from db
     // tslint:disable-next-line:variable-name
@@ -26,20 +26,21 @@ export class ProfilePage implements  OnInit {
     // tslint:disable-next-line:variable-name
     user_password = '****';
     // tslint:disable-next-line:variable-name
-    user_verified = 'unverified';
+    email_verified = 'unverified';
 
-  constructor(
-    private modalController: ModalController,
-    private userService: UserService,
-    private router: Router
-  ) {}
+    constructor(
+        private modalController: ModalController,
+        private userService: UserService,
+        private router: Router
+    ) {
+    }
 
     get user() {
         return this.userService.user;
     }
 
-    async updatePhonemModal() {
-      // user already have a phone number ,the phone number of this user must have been verifed
+    async updatePhoneModal() {
+        // user already have a phone number ,the phone number of this user must have been verified
         console.log(this.userService.user);
         // hack
         if (this.userService.user.phone) {
@@ -52,18 +53,32 @@ export class ProfilePage implements  OnInit {
         return await modal.present();
     }
 
+    async updateEmailModal() {
+        // user already have a phone number ,the phone number of this user must have been verified
+        console.log(this.userService.user);
+        // hack
+        if (this.userService.user.email) {
+            return;
+        }
+
+        const modal = await this.modalController.create({
+            component: UpdatePhonePage
+        });
+        return await modal.present();
+    }
+
     ngOnInit(): void {
-            console.log(this.user);
-            console.log(this.userService.emailVerified);
-            if (this.userService.emailVerified === true) {
+        console.log(this.user);
+        console.log(this.userService.emailVerified);
+        if (this.userService.emailVerified === true) {
             this.email_verified = 'verified';
         } else {
             this.email_verified = 'unverified';
         }
     }
 
-
-  edit(field: string) {
-    this.router.navigate(['/edit', field]);
-  }
+    edit(field: string) {
+        this.router.navigate(['/profile/edit', field]).then(r => {
+        });
+    }
 }

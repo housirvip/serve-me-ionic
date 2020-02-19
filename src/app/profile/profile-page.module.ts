@@ -4,10 +4,9 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {ProfilePage} from './profile.page';
-import {UpdatePhonePageModule} from './update-phone/update-phone.module';
-import {VerificationModule} from './verification/verification.module';
+import {UpdatePhonePageModule} from './update_phone/update-phone.module';
+import {VerificationModule} from './update_phone/verification/verification.module';
 
-// @ts-ignore
 @NgModule({
     imports: [
         IonicModule,
@@ -15,10 +14,12 @@ import {VerificationModule} from './verification/verification.module';
         FormsModule,
         UpdatePhonePageModule,
         VerificationModule,
-        RouterModule.forChild([{path: '', component: ProfilePage}])
+        RouterModule.forChild([
+            {path: '', component: ProfilePage},
+            {path: 'edit/:field', loadChildren: () => import('./edit/edit-page.module').then(m => m.EditPageModule)}
+        ])
     ],
     declarations: [ProfilePage]
-
 })
 export class ProfilePageModule {
 }

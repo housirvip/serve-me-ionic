@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {IonicModule} from '@ionic/angular';
 import {VerificationComponent} from './verification.component';
-import {UpdatePhonePage} from '../update-phone/update-phone.page';
+import {UpdatePage} from '../update.page';
 import {FormsModule} from '@angular/forms';
 
 
@@ -18,5 +18,5 @@ import {FormsModule} from '@angular/forms';
         VerificationComponent
     ]
 })
-export class VerificationModule {
+export class VerificationEmailModule {
 }

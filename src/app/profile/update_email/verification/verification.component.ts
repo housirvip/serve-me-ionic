@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import {NavParams, PopoverController} from '@ionic/angular';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {firebase} from 'firebaseui-angular';
-import {ToastService} from '../../services/toast.service';
-import {UserService} from '../../services/user.service';
-import {User} from '../../classes/user';
+import {ToastService} from '../../../services/toast.service';
+import {UserService} from '../../../services/user.service';
+import {User} from '../../../classes/user';
 
 @Component({
   selector: 'app-verification',
-  templateUrl: './verification.component.html',
+  templateUrl: './verification-email.component.html',
   styleUrls: ['./verification.component.scss'],
 })
 export class VerificationComponent implements OnInit {
@@ -38,7 +38,7 @@ export class VerificationComponent implements OnInit {
     const verificationId = this.navParams.get('recv');
     const cred =  firebase.auth.PhoneAuthProvider.credential(verificationId, this.code);
     this.afAuth.auth.currentUser.updatePhoneNumber(cred).then((res) => {
-      // verify phone successfull
+      // verify phone successful
       // send phone number to backend
             console.log('verfiy success');
             console.log(res);

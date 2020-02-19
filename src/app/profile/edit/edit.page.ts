@@ -4,6 +4,7 @@ import { UserService } from '../../services/user.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import {log} from 'util';
 
 @Component({
   selector: 'app-edit',
@@ -26,13 +27,13 @@ export class EditPage implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.edit_msg = params.field;
+      log(params.field);
       if (this.edit_msg === 'Enter your current password') {
         this.input_type = 'password';
         this.button_text = 'VERIFY';
       } else if (this.edit_msg === 'Enter your new password') {
         this.input_type = 'password';
       }
-
       // In a real app: dispatch action to load the details here.
     });
   }
@@ -41,7 +42,7 @@ export class EditPage implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
-  onClick() {
+    onClick(email: string) {
     if (this.button_text === 'VERIFY') {
       /*
        * Verify that current password is correct
