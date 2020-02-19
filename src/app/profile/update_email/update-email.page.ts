@@ -77,7 +77,7 @@ export class UpdateEmailPage implements OnInit {
                     this.warningMessage = err.message;
                 }
                 console.log(err);
-                this.dismiss();
+                // this.dismiss();
             }
         );
 
