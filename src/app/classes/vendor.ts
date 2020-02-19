@@ -1,10 +1,10 @@
-export enum vendorgender {
+export enum VendorGender {
     whatever,
     male    ,
     female,
 }
 
-export enum vendortype {
+export enum VendorType {
     whatever,
     Cleaner,
     Painter,
@@ -21,5 +21,5 @@ export class VendorResult {
     workHour: string;
     rate: number;
     commentsNum: number;
-    photoUrl;
+    photoUrl: string;
 }

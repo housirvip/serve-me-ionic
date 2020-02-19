@@ -5,7 +5,6 @@ import {BaseResponse} from '../core/base-response';
 import {User} from '../classes/user';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {FirebaseService} from './firebase.service';
-import {tap} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
