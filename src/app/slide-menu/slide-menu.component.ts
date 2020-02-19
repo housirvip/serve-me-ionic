@@ -42,6 +42,8 @@ export class SlideMenuComponent implements OnInit {
     verifyEmail() {
         this.userService.verifyEmail().then(() => {
             this.toastService.presentToast('email send successfully', 2000).then(r => {
+            }).then(() => {
+                console.log('this.verifyEmail().then.then() trigged');
             });
         }).catch(() => {
         });
@@ -49,6 +51,7 @@ export class SlideMenuComponent implements OnInit {
 
     toLogout() {
         this.userService.logout();
+        this.jump('');
     }
 
     jump(path: string) {

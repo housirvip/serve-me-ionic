@@ -68,10 +68,10 @@
       </ion-label>
       <ion-label>
         <h2
-          [ngClass]="{ 'verified': user_verified == 'verified', 'unverified':
-          user_verified == 'unverified' }"
+          [ngClass]="{ 'verified': email_verified == 'verified', 'unverified':
+          email_verified == 'unverified' }"
         >
-          {{user_verified}}
+          {{email_verified}}
         </h2>
       </ion-label>
       <ion-button (click)="edit('Email');" fill="clear" color="medium">

@@ -67,6 +67,7 @@ export class UserService {
             this.getUser();
             firebaseService.notifyToUpdate();
         });
+        // afAuth.user.subscribe(user => console.log(user));
     }
 
     logout() {
@@ -101,8 +102,23 @@ export class UserService {
                 if (res.code !== 0) {
                     return;
                 }
+                console.log();
                 this.setUser(res.result);
             });
+    }
+
+    updateUser() {
+        if (!this._jwt) {
+            return;
+        }
+        // this.http.get<BaseResponse>('user/myself', {}).subscribe(
+        //     res => {
+        //         if (res.code !== 0) {
+        //             return;
+        //         }
+        //         console.log()
+        //         this.setUser(res.result);
+        //     });
     }
 
     getUserInfo() {
@@ -120,6 +136,7 @@ export class UserService {
 
     async verifyEmail() {
         const user = this.afAuth.auth.currentUser;
+        // user.
         return await user.sendEmailVerification();
     }
 
