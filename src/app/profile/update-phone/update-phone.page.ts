@@ -36,9 +36,8 @@ export class UpdatePhonePage implements OnInit {
       const USphoneNumber =  '+1' + this.phoneNumber;
       const provider = new firebase.auth.PhoneAuthProvider();
       provider.verifyPhoneNumber(USphoneNumber, this.applicationVerifier).then(
-          (receivecode) => {
-
-              this.presentPopover(USphoneNumber, receivecode);
+          (received) => {
+              this.presentPopover(USphoneNumber, received).then(r => {});
           }
       ).catch(
           (res) => {
@@ -51,10 +50,10 @@ export class UpdatePhonePage implements OnInit {
    );
 
   }
-  async presentPopover(ev: any, reciveCode: any) {
+  async presentPopover(ev: any, receiveCode: any) {
         const popover = await this.popoverController.create({
             component: VerificationComponent,
-            componentProps: {phone: ev, recv: reciveCode},
+            componentProps: {phone: ev, recv: receiveCode, phoneNumber: this.phoneNumber},
             translucent: true
         });
         return await popover.present();

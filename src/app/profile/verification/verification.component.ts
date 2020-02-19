@@ -4,6 +4,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {firebase} from 'firebaseui-angular';
 import {ToastService} from '../../services/toast.service';
 import {UserService} from '../../services/user.service';
+import {User} from '../../classes/user';
 
 @Component({
   selector: 'app-verification',
@@ -36,17 +37,19 @@ export class VerificationComponent implements OnInit {
     this.ifVerificationRight = true;
     const verificationId = this.navParams.get('recv');
     const cred =  firebase.auth.PhoneAuthProvider.credential(verificationId, this.code);
-    this.afAuth.auth.currentUser.updatePhoneNumber(cred).then(() => {
+    this.afAuth.auth.currentUser.updatePhoneNumber(cred).then((res) => {
       // verify phone successfull
       // send phone number to backend
             console.log('verfiy success');
+            console.log(res);
             this.toastService.presentToast('verify phone successfull! ', 2000).then(r => {
           });
-           // this.userService.updateUser()
-          // HACK
-          // simply update phoneNumer on front end for test
-          // this.userService.user.phone = this.afAuth.auth.currentUser.phoneNumber
-            console.log(this.userService.user);
+            const user = new User();
+            user.phone = this.navParams.get('phoneNumber');
+            console.log(user);
+            this.userService.updateUser(user).then(r => {
+                console.log(r);
+            });
             this.dismiss();
             }
 

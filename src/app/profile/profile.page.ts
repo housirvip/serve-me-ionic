@@ -53,9 +53,9 @@ export class ProfilePage implements  OnInit {
     }
 
     ngOnInit(): void {
-        console.log(this.userService.user);
-        console.log(this.userService.emailVerified);
-        if (this.userService.emailVerified === true) {
+            console.log(this.user);
+            console.log(this.userService.emailVerified);
+            if (this.userService.emailVerified === true) {
             this.email_verified = 'verified';
         } else {
             this.email_verified = 'unverified';
