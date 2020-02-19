@@ -6,6 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {ProfilePage} from './profile.page';
 import {UpdatePhonePageModule} from './update-phone/update-phone.module';
 import {VerificationModule} from './update-phone/verification/verification.module';
+import {UpdatePasswordPageModule} from './update-password/update-password.module';
 
 // @ts-ignore
 @NgModule({
@@ -15,6 +16,7 @@ import {VerificationModule} from './update-phone/verification/verification.modul
         FormsModule,
         UpdatePhonePageModule,
         VerificationModule,
+        UpdatePasswordPageModule,
         RouterModule.forChild([{path: '', component: ProfilePage}])
     ],
     declarations: [ProfilePage]

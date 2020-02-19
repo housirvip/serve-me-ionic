@@ -85,7 +85,7 @@
     </ion-item>
   </div>
 
-  <div class="password-container">
+  <div class="password-container" (click)="updatePasswordModal()">
     <ion-item>
       <ion-avatar>
         <div class="password-icon">
@@ -97,7 +97,6 @@
         <p>{{user_password}}</p>
       </ion-label>
       <ion-button
-        (click)="edit('Enter your current password');"
         fill="clear"
         color="medium"
       >

@@ -4,6 +4,7 @@ import {UserService} from '../services/user.service';
 import {TypePage} from '../dashboard/type/type.page';
 import {UpdatePhonePage} from './update-phone/update-phone.page';
 import { Router } from '@angular/router';
+import {UpdatePasswordPage} from './update-password/update-password.page';
 
 @Component({
   selector: 'app-profile',
@@ -48,6 +49,14 @@ export class ProfilePage implements  OnInit {
 
         const modal = await this.modalController.create({
             component: UpdatePhonePage
+        });
+        return await modal.present();
+    }
+    async updatePasswordModal() {
+
+
+        const modal = await this.modalController.create({
+            component: UpdatePasswordPage
         });
         return await modal.present();
     }

@@ -33,7 +33,6 @@ export class VerificationComponent implements OnInit {
   }
 
   verify() {
-    // tslint:disable-next-line:only-arrow-functions
     this.ifVerificationRight = true;
     const verificationId = this.navParams.get('recv');
     const cred =  firebase.auth.PhoneAuthProvider.credential(verificationId, this.code);
