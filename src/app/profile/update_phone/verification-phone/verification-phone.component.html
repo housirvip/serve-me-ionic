@@ -1,0 +1,22 @@
+<ion-content>
+<ion-card >
+  <ion-title>
+    <div class=".tiplabel">
+      <h2>send a code to</h2>
+    </div>
+  </ion-title>
+  <ion-card-subtitle>{{this.navParams.get('phone')}}</ion-card-subtitle>
+
+
+      <ion-input [(ngModel)]="code"></ion-input>
+       <ion-label  *ngIf="ifVerificationRight"></ion-label>
+
+      <ion-label color="danger" class="tipwrong" *ngIf="!ifVerificationRight">verification is wrong</ion-label>
+
+
+
+      <ion-button (click)="verify()">verfiy</ion-button>
+</ion-card>
+
+
+</ion-content>

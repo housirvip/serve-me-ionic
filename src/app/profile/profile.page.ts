@@ -4,6 +4,7 @@ import {UserService} from '../services/user.service';
 import {TypePage} from '../dashboard/type/type.page';
 import {UpdatePhonePage} from './update_phone/update-phone.page';
 import {Router} from '@angular/router';
+import {UpdateEmailPage} from './update_email/update-email.page';
 
 @Component({
     selector: 'app-profile',
@@ -62,7 +63,7 @@ export class ProfilePage implements OnInit {
         }
 
         const modal = await this.modalController.create({
-            component: UpdatePhonePage
+            component: UpdateEmailPage
         });
         return await modal.present();
     }

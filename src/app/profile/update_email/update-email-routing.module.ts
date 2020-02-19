@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UpdatePage } from './update.page';
+import { UpdateEmailPage } from './update-email.page';
 
 const routes: Routes = [
 

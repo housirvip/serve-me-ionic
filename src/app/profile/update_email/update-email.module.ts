@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UpdatePhonePageRoutingModule } from './update-routing.module';
+import { UpdatePhonePageRoutingModule } from './update-email-routing.module';
 
-import { UpdatePage } from './update.page';
+import { UpdateEmailPage } from './update-email.page';
 import {TypePage} from '../../dashboard/type/type.page';
 
 @NgModule({
@@ -16,7 +16,7 @@ import {TypePage} from '../../dashboard/type/type.page';
     IonicModule,
     UpdatePhonePageRoutingModule
   ],
-  declarations: [UpdatePage],
-  entryComponents: [UpdatePage],
+  declarations: [UpdateEmailPage],
+  entryComponents: [UpdateEmailPage],
 })
 export class UpdatePhonePageModule {}

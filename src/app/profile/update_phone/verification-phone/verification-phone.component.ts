@@ -8,10 +8,10 @@ import {User} from '../../../classes/user';
 
 @Component({
   selector: 'app-verification',
-  templateUrl: './verification-email.component.html',
-  styleUrls: ['./verification.component.scss'],
+  templateUrl: './verification-phone.component.html',
+  styleUrls: ['./verification-phone.component.scss'],
 })
-export class VerificationComponent implements OnInit {
+export class VerificationPhoneComponent implements OnInit {
 
   private code: string;
   private ifVerificationRight: boolean;

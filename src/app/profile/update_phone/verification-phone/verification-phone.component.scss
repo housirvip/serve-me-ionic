@@ -1,0 +1,35 @@
+
+ion-card{
+  padding: 0;
+}
+.tiplabel{
+  margin-left: 50px;
+  h2{
+    font-weight: bolder;
+  }
+}
+
+ion-card-subtitle{
+  margin-left: 30px;
+}
+
+ion-input{
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid 2px grey;
+  margin-top: 30px;
+  border-radius: 10px;
+}
+
+ion-button{
+  width: 80%;
+  margin-left: 30px;
+  --background: black;
+  margin-top: 50px;
+}
+
+.tipwrong{
+  margin-left: 30px;
+  margin-top: 10px;
+}

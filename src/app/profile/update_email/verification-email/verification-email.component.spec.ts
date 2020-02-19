@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { VerificationComponent } from './verification.component';
+import { VerificationEmailComponent } from './verification-email.component';
 
 describe('VerificationComponent', () => {
-  let component: VerificationComponent;
-  let fixture: ComponentFixture<VerificationComponent>;
+  let component: VerificationEmailComponent;
+  let fixture: ComponentFixture<VerificationEmailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VerificationComponent ],
+      declarations: [ VerificationEmailComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(VerificationComponent);
+    fixture = TestBed.createComponent(VerificationEmailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

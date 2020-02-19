@@ -2,7 +2,7 @@ import {assertPlatform, Component, OnInit} from '@angular/core';
 import {ModalController, PopoverController} from '@ionic/angular';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {firebase} from 'firebaseui-angular';
-import {VerificationComponent} from './verification/verification.component';
+import {VerificationPhoneComponent} from './verification-phone/verification-phone.component';
 import {tokenReference} from '@angular/compiler';
 
 
@@ -52,7 +52,7 @@ export class UpdatePhonePage implements OnInit {
   }
   async presentPopover(ev: any, receiveCode: any) {
         const popover = await this.popoverController.create({
-            component: VerificationComponent,
+            component: VerificationPhoneComponent,
             componentProps: {phone: ev, recv: receiveCode, phoneNumber: this.phoneNumber},
             translucent: true
         });

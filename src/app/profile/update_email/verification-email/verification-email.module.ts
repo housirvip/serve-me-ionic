@@ -1,21 +1,21 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {IonicModule} from '@ionic/angular';
-import {VerificationComponent} from './verification.component';
-import {UpdatePage} from '../update.page';
+import {VerificationEmailComponent} from './verification-email.component';
+import {UpdateEmailPage} from '../update-email.page';
 import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
-    declarations: [VerificationComponent],
-    entryComponents: [VerificationComponent],
+    declarations: [VerificationEmailComponent],
+    entryComponents: [VerificationEmailComponent],
     imports: [
         CommonModule,
         IonicModule,
         FormsModule,
     ],
     exports: [
-        VerificationComponent
+        VerificationEmailComponent
     ]
 })
 export class VerificationEmailModule {
