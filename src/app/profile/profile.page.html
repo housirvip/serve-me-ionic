@@ -49,7 +49,12 @@
         <h1>Phone</h1>
         <p>{{user ? user.phone : user_phone}}</p>
       </ion-label>
-      <ion-button fill="clear" color="medium">
+      <ion-label *ngIf="user?.phone">
+        <h2 class="verified" >
+          {{email_verified}}
+        </h2>
+      </ion-label>
+      <ion-button  fill="clear" color="medium">
         <ion-icon slot="end" name="chevron-forward"></ion-icon>
       </ion-button>
     </ion-item>
