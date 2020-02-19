@@ -4,8 +4,8 @@ import {HttpClient} from '@angular/common/http';
 import {BaseResponse} from '../core/base-response';
 import {User} from '../classes/user';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {AngularFireMessaging} from '@angular/fire/messaging';
 import {FirebaseService} from './firebase.service';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -67,7 +67,6 @@ export class UserService {
             this.getUser();
             firebaseService.notifyToUpdate();
         });
-        // afAuth.user.subscribe(user => console.log(user));
     }
 
     logout() {
@@ -102,41 +101,23 @@ export class UserService {
                 if (res.code !== 0) {
                     return;
                 }
-                console.log();
                 this.setUser(res.result);
             });
     }
 
-    updateUser() {
-        if (!this._jwt) {
-            return;
-        }
-        // this.http.get<BaseResponse>('user/myself', {}).subscribe(
-        //     res => {
-        //         if (res.code !== 0) {
-        //             return;
-        //         }
-        //         console.log()
-        //         this.setUser(res.result);
-        //     });
-    }
-
-    getUserInfo() {
-        if (!this._jwt) {
-            return;
-        }
-        this.http.get<BaseResponse>('user/info', {}).subscribe(
-            res => {
+    async updateUser(user: User) {
+        return this.http.put<BaseResponse>('user/update', user).pipe(
+            tap(res => {
                 if (res.code !== 0) {
                     return;
                 }
-                this._user.userInfo = res.result;
-            });
+                this.getUser();
+            })
+        );
     }
 
     async verifyEmail() {
         const user = this.afAuth.auth.currentUser;
-        // user.
         return await user.sendEmailVerification();
     }
 

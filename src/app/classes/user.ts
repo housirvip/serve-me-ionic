@@ -1,5 +1,3 @@
-import {UserInfo} from './user-info';
-
 export class User {
     id: string;
     username: string;
@@ -10,5 +8,9 @@ export class User {
     role: string[];
     points: number;
     firebaseUid: string;
-    userInfo: UserInfo;
+    sex: string;
+    job: string;
+    state: string;
+    birthday: Date;
+    fcmToken: string;
 }
