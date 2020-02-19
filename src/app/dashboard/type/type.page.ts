@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
-import {vendorgender, vendortype} from '../../classes/vendor';
+import {VendorGender, VendorType} from '../../classes/vendor';
 import {FilterService} from '../../services/filter.service';
 
 @Component({
@@ -10,15 +10,15 @@ import {FilterService} from '../../services/filter.service';
 })
 export class TypePage implements OnInit {
 
-  private gender: vendorgender;
-  private type: vendortype;
-  get vendorgender() { return vendorgender; }
-  get vendortype() { return vendortype; }
+  private gender: VendorGender;
+  private type: VendorType;
+  get vendorgender() { return VendorGender; }
+  get vendortype() { return VendorType; }
 
   constructor(public modalController: ModalController,
               private filterService: FilterService) {
-    this.type = vendortype.whatever;
-    this.gender = vendorgender.whatever;
+    this.type = VendorType.whatever;
+    this.gender = VendorGender.whatever;
   }
   ngOnInit() {
   }
