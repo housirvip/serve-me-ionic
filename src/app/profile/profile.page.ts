@@ -39,6 +39,13 @@ export class ProfilePage implements  OnInit {
     }
 
     async updatePhonemModal() {
+      // user already have a phone number ,the phone number of this user must have been verifed
+        console.log(this.userService.user);
+        // hack
+        if (this.userService.user.phone) {
+            return;
+        }
+
         const modal = await this.modalController.create({
             component: UpdatePhonePage
         });
@@ -46,12 +53,12 @@ export class ProfilePage implements  OnInit {
     }
 
     ngOnInit(): void {
-        console.log(this.userService.user);
-        console.log(this.userService.emailVerified);
-        if (this.userService.emailVerified === true) {
-            this.user_verified = 'verified';
+            console.log(this.user);
+            console.log(this.userService.emailVerified);
+            if (this.userService.emailVerified === true) {
+            this.email_verified = 'verified';
         } else {
-            this.user_verified = 'unverified';
+            this.email_verified = 'unverified';
         }
     }
 

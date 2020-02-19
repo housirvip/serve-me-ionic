@@ -3,6 +3,8 @@ import {NavParams, PopoverController} from '@ionic/angular';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {firebase} from 'firebaseui-angular';
 import {ToastService} from '../../services/toast.service';
+import {UserService} from '../../services/user.service';
+import {User} from '../../classes/user';
 
 @Component({
   selector: 'app-verification',
@@ -17,7 +19,8 @@ export class VerificationComponent implements OnInit {
   constructor(private popover: PopoverController,
               public navParams: NavParams,
               private afAuth: AngularFireAuth,
-              private toastService: ToastService) {
+              private toastService: ToastService,
+              private userService: UserService) {
     this.ifVerificationRight = true;
 
   }
@@ -34,14 +37,27 @@ export class VerificationComponent implements OnInit {
     this.ifVerificationRight = true;
     const verificationId = this.navParams.get('recv');
     const cred =  firebase.auth.PhoneAuthProvider.credential(verificationId, this.code);
-    this.afAuth.auth.currentUser.updatePhoneNumber(cred).then(() => {
-          this.toastService.presentToast('verify phone successfull! ', 2000).then(r => {
+    this.afAuth.auth.currentUser.updatePhoneNumber(cred).then((res) => {
+      // verify phone successfull
+      // send phone number to backend
+            console.log('verfiy success');
+            console.log(res);
+            this.toastService.presentToast('verify phone successfull! ', 2000).then(r => {
           });
-          this.dismiss();
+            const user = new User();
+            user.phone = this.navParams.get('phoneNumber');
+            console.log(user);
+            this.userService.updateUser(user).then(r => {
+                console.log(r);
+            });
+            this.dismiss();
             }
 
-        ).catch(() => {
-          this.ifVerificationRight = false;
+
+        ).catch((res) => {
+        console.log('verfiy failed');
+        console.log(res);
+        this.ifVerificationRight = false;
         }
     );
   }

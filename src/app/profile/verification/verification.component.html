@@ -10,6 +10,7 @@
 
       <ion-input [(ngModel)]="code"></ion-input>
        <ion-label  *ngIf="ifVerificationRight"></ion-label>
+
       <ion-label color="danger" class="tipwrong" *ngIf="!ifVerificationRight">verification is wrong</ion-label>
 
 
