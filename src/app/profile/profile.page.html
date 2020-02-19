@@ -11,6 +11,11 @@
     <div class="profile-userpic">
       <ion-avatar slot="start">
         <img src="../../assets/img/avatar.png" alt="" />
+        <ion-input
+          type="file"
+          accept="image/*"
+          (change)="changeListener($event)"
+        ></ion-input>
         <ion-icon name="create"></ion-icon>
         <ion-label> </ion-label>
       </ion-avatar>
@@ -38,7 +43,7 @@
     </ion-item>
   </div>
 
-  <div class="phone-container" (click)="updatePhonemModal()" >
+  <div class="phone-container" (click)="updatePhonemModal()">
     <ion-item>
       <ion-avatar>
         <div class="phone-icon">
@@ -68,8 +73,8 @@
       </ion-label>
       <ion-label>
         <h2
-          [ngClass]="{ 'verified': email_verified == 'verified', 'unverified':
-          email_verified == 'unverified' }"
+          [ngClass]="{ 'verified': email_verified === 'verified', 'unverified':
+          email_verified === 'unverified' }"
         >
           {{email_verified}}
         </h2>
@@ -100,6 +105,4 @@
       </ion-button>
     </ion-item>
   </div>
-
-
 </ion-content>

@@ -11,9 +11,17 @@
   <ion-item lines="none">
     <div class="text-container">
       <ion-label position="stacked">{{edit_msg}}</ion-label>
-      <ion-input type="{{input_type}}"></ion-input>
+      <ion-input
+        type="{{input_type}}"
+        #user_input
+        user_input.value=""
+      ></ion-input>
     </div>
-    <ion-button class="edit-button" expand="full" (click)="onClick('Email');">
+    <ion-button
+      class="edit-button"
+      expand="full"
+      (click)="onClick(user_input.value);"
+    >
       {{button_text}}
     </ion-button>
   </ion-item>
