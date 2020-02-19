@@ -58,9 +58,6 @@ export class ProfilePage implements OnInit {
         // user already have a phone number ,the phone number of this user must have been verified
         console.log(this.userService.user);
         // hack
-        if (this.userService.user.email) {
-            return;
-        }
 
         const modal = await this.modalController.create({
             component: UpdateEmailPage

@@ -8,14 +8,14 @@
 
   <div class="tiplabel">
     <ion-label >
-      <h2>You can update your number and we'll send a verification code to this number</h2>
+      <h2>You can update your E-mail</h2>
     </ion-label>
   </div>
-  <ion-input pattern="tel" placeholder="phone number" [(ngModel)]="phoneNumber"></ion-input>
+  <ion-input pattern="tel" placeholder="E-mail" [(ngModel)]="email"></ion-input>
   <div>
     <ion-label color="danger" class="warning" >{{warningMessage}}</ion-label>
   </div>
 
   <div id='recaptcha-container'></div>
-  <ion-button (click)="submitPhoneNumber()" expand="full">next</ion-button>
+  <ion-button (click)="submitEmail()" expand="full">next</ion-button>
 </ion-content>

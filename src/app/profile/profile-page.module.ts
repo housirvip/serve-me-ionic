@@ -5,6 +5,7 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {ProfilePage} from './profile.page';
 import {UpdatePhonePageModule} from './update_phone/update-phone.module';
+import {UpdateEmailPageModule} from './update_email/update-email.module';
 import {VerificationPhoneModule} from './update_phone/verification-phone/verification-phone.module';
 import {VerificationEmailModule} from './update_email/verification-email/verification-email.module';
 
@@ -16,6 +17,7 @@ import {VerificationEmailModule} from './update_email/verification-email/verific
         UpdatePhonePageModule,
         VerificationPhoneModule,
         VerificationEmailModule,
+        UpdateEmailPageModule,
         RouterModule.forChild([
             {path: '', component: ProfilePage},
             {path: 'edit/:field', loadChildren: () => import('./edit/edit-page.module').then(m => m.EditPageModule)}

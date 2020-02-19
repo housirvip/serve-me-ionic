@@ -3,9 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
-import { UpdatePhonePageRoutingModule } from './update-email-routing.module';
-
+import { UpdateEmailPageRoutingModule } from './update-email-routing.module';
 import { UpdateEmailPage } from './update-email.page';
 import {TypePage} from '../../dashboard/type/type.page';
 
@@ -14,9 +12,9 @@ import {TypePage} from '../../dashboard/type/type.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    UpdatePhonePageRoutingModule
+    UpdateEmailPageRoutingModule
   ],
   declarations: [UpdateEmailPage],
   entryComponents: [UpdateEmailPage],
 })
-export class UpdatePhonePageModule {}
+export class UpdateEmailPageModule {}

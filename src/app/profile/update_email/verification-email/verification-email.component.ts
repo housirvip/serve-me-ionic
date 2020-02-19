@@ -35,17 +35,18 @@ export class VerificationEmailComponent implements OnInit {
   verify() {
     // tslint:disable-next-line:only-arrow-functions
     this.ifVerificationRight = true;
+    const provider = this.afAuth.auth.currentUser;
     const verificationId = this.navParams.get('recv');
     const cred =  firebase.auth.PhoneAuthProvider.credential(verificationId, this.code);
-    this.afAuth.auth.currentUser.updatePhoneNumber(cred).then((res) => {
-      // verify phone successful
-      // send phone number to backend
+    provider.reauthenticateWithCredential(cred).then((res) => {
             console.log('verfiy success');
             console.log(res);
             this.toastService.presentToast('verify phone successfull! ', 2000).then(r => {
           });
+            provider.updateEmail(this.navParams.get('email'))
             const user = new User();
-            user.phone = this.navParams.get('phoneNumber');
+            console.log(this.navParams);
+            user.email = this.navParams.get('email');
             console.log(user);
             this.userService.updateUser(user).then(r => {
                 console.log(r);
