@@ -71,6 +71,12 @@ export class ProfilePage implements  OnInit {
     }
 
     async updateEmailModal() {
+        if (!this.user.phone) {
+            this.toastService.presentToast('if you want to change email please verify your phone number first! ', 2000).then(r => {
+            });
+            return ;
+        }
+
         // user already have a phone number ,the phone number of this user must have been verified
         console.log(this.userService.user);
         // hack
@@ -81,7 +87,11 @@ export class ProfilePage implements  OnInit {
         return await modal.present();
     }
     async updatePasswordModal() {
-
+        if (!this.user.phone) {
+            this.toastService.presentToast('if you want to change password please verify your phone number first! ', 2000).then(r => {
+            });
+            return ;
+        }
 
         const modal = await this.modalController.create({
             component: UpdatePasswordPage
