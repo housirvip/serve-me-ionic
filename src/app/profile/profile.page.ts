@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActionSheetController, ModalController} from '@ionic/angular';
+import {ActionSheetController, LoadingController, ModalController} from '@ionic/angular';
 import {UserService} from '../services/user.service';
 import {TypePage} from '../dashboard/type/type.page';
 import {UpdatePhonePage} from './update-phone/update-phone.page';
@@ -48,7 +48,8 @@ export class ProfilePage implements  OnInit {
     private actionSheetController: ActionSheetController,
     private imageService: ImageService,
     private afAuth: AngularFireAuth,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private loadingController: LoadingController
   ) {}
 
     get user() {
@@ -110,10 +111,13 @@ export class ProfilePage implements  OnInit {
                             const base64Image = 'data:image/jpeg;base64,' + imageData;
                             // const base64Image =  imageData;
                             const storageRef = firebase.storage().ref('static/photo/' + this.userService.user.firebaseUid + '.jpg');
+                            this.presentLoading();
                             storageRef.putString(base64Image, 'data_url').then( snapshot => {
                                 console.log('upload successful');
                                 // get a url of uploaded img just now
                                 storageRef.getDownloadURL().then(url => {
+                                    // loading end
+                                    this.loadingDismiss();
                                     this.afAuth.auth.currentUser.updateProfile({
                                         displayName: this.afAuth.auth.currentUser.displayName,
                                         photoURL: url
@@ -143,9 +147,11 @@ export class ProfilePage implements  OnInit {
                                 const base64Image = 'data:image/jpeg;base64,' + imageData;
                                 // const base64Image =  imageData;
                                 const storageRef = firebase.storage().ref('static/photo' + this.userService.user.firebaseUid);
+                                this.presentLoading();
                                 storageRef.putString(base64Image, 'data_url').then( snapshot => {
                                     console.log('upload successful');
                                     console.log(snapshot);
+                                    this.loadingDismiss();
                                     storageRef.getDownloadURL().then(url => {
                                         this.afAuth.auth.currentUser.updateProfile({
                                             displayName: this.afAuth.auth.currentUser.displayName,
@@ -174,7 +180,20 @@ export class ProfilePage implements  OnInit {
         });
         await actionSheet.present();
     }
+    async presentLoading() {
+        const loading = await this.loadingController.create({
+            message: 'Please wait...',
+            duration: 2000
+        });
+        await loading.present();
 
+        const { role, data } = await loading.onDidDismiss();
+        console.log('Loading dismissed!');
+    }
+    loadingDismiss() {
+        this.loadingController.dismiss('test').then(() => {
+        });
+    }
 
 
     ngOnInit(): void {
@@ -186,8 +205,6 @@ export class ProfilePage implements  OnInit {
             this.email_verified = 'unverified';
         }
     }
-
-
   edit(field: string) {
     this.router.navigate(['/edit', field]);
   }

@@ -3,7 +3,8 @@
         <ion-toolbar color="dark" class="user-profile">
             <ion-item margin-bottom>
                 <ion-avatar slot="start" class="user-avatar">
-                    <img src="../../assets/img/avatar.png" alt="">
+<!--                    <img src="../../assets/img/avatar.png"/>-->
+                    <img src="{{this.user?(this.user.photoUrl?this.user.photoUrl:defaultPhoto):defaultPhoto}}" alt="">
                 </ion-avatar>
                 <ion-label>
                     <ion-text color="medium">
