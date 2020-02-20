@@ -8,7 +8,6 @@ import {UpdatePhonePageModule} from './update-phone/update-phone.module';
 import {VerificationModule} from './update-phone/verification/verification.module';
 import {UpdatePasswordPageModule} from './update-password/update-password.module';
 
-// @ts-ignore
 @NgModule({
     imports: [
         IonicModule,

@@ -18,6 +18,7 @@ import {SlideMenuModule} from './slide-menu/slide-menu.module';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireMessagingModule} from '@angular/fire/messaging';
+import { Camera } from '@ionic-native/camera/ngx';
 
 @NgModule({
     declarations: [AppComponent],
@@ -36,6 +37,7 @@ import {AngularFireMessagingModule} from '@angular/fire/messaging';
         SplashScreen,
         FingerprintAIO,
         FirebaseX,
+        Camera,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
         {provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true},
     ],

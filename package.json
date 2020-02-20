@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "@ionic-native/camera": "^5.21.5",
     "@ionic-native/core": "^5.21.5",
     "@ionic-native/fingerprint-aio": "^5.21.5",
     "@ionic-native/firebase-x": "^5.21.5",
@@ -30,6 +31,7 @@
     "cordova-ios": "5.1.1",
     "cordova-plugin-androidx": "^1.0.2",
     "cordova-plugin-androidx-adapter": "^1.1.0",
+    "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-fingerprint-aio": "^3.0.1",
     "cordova-plugin-firebasex": "^7.0.2",
     "core-js": "^2.5.4",
@@ -99,6 +101,9 @@
         "ANDROID_FIREBASE_AUTH_VERSION": "19.1.0",
         "ANDROID_CRASHLYTICS_VERSION": "2.10.1",
         "ANDROID_CRASHLYTICS_NDK_VERSION": "2.1.1"
+      },
+      "cordova-plugin-camera": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
       }
     },
     "platforms": [

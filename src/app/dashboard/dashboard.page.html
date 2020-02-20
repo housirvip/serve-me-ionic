@@ -15,11 +15,11 @@
     <ion-searchbar showCancelButton="always"></ion-searchbar>
     <ion-row class="filter">
         <ion-button (click)="typeModal()" expand="full" fill="outline">
-            <ion-label class="unprocessed" *ngIf="!this.filterService._typeFilled " >
+            <ion-label class="unprocessed" *ngIf="!this.filterService._typeFilled "   >
                 type
                 <ion-icon class="unprocessed"  name="arrow-down"></ion-icon>
             </ion-label>
-            <ion-label class="smallFont" color="primary" *ngIf="this.filterService._typeFilled">
+            <ion-label class="smallFont" color="primary" *ngIf="this.filterService._typeFilled"  mode="md">
                 {{this.filterService.displayGender()}},{{this.filterService.displayType()}}
             </ion-label>
 

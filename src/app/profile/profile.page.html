@@ -7,10 +7,10 @@
 </ion-header>
 
 <ion-content>
-  <div class="profile-header">
+  <div class="profile-header" (click)="selectImage()">
     <div class="profile-userpic">
       <ion-avatar slot="start">
-        <img src="../../assets/img/avatar.png" alt="" />
+        <img src="{{this.user.photoUrl?this.user.photoUrl:this.default_photoUrl}}" alt="" />
         <ion-icon name="create"></ion-icon>
         <ion-label> </ion-label>
       </ion-avatar>

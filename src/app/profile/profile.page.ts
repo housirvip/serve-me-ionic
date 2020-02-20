@@ -1,10 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {ModalController} from '@ionic/angular';
+import {ActionSheetController, ModalController} from '@ionic/angular';
 import {UserService} from '../services/user.service';
 import {TypePage} from '../dashboard/type/type.page';
 import {UpdatePhonePage} from './update-phone/update-phone.page';
 import { Router } from '@angular/router';
 import {UpdatePasswordPage} from './update-password/update-password.page';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import * as firebase from 'firebase';
+import {ImageService} from '../services/image.service';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {User} from '../classes/user';
+import {ToastService} from '../services/toast.service';
+
+
 
 @Component({
   selector: 'app-profile',
@@ -32,7 +40,11 @@ export class ProfilePage implements  OnInit {
   constructor(
     private modalController: ModalController,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private actionSheetController: ActionSheetController,
+    private imageService: ImageService,
+    private afAuth: AngularFireAuth,
+    private toastService: ToastService
   ) {}
 
     get user() {
@@ -60,6 +72,84 @@ export class ProfilePage implements  OnInit {
         });
         return await modal.present();
     }
+
+    async selectImage() {
+        const actionSheet = await this.actionSheetController.create({
+            header: 'Select Image source',
+            buttons: [{
+                text: 'Load from Library',
+                handler: () => {
+                    this.imageService.getImageFromLibrary().then(
+                        (imageData) => {
+                            const base64Image = 'data:image/jpeg;base64,' + imageData;
+                            // const base64Image =  imageData;
+                            const storageRef = firebase.storage().ref('static/photo/' + this.userService.user.firebaseUid + '.jpg');
+                            storageRef.putString(base64Image, 'data_url').then( snapshot => {
+                                console.log('upload successful');
+                                // get a url of uploaded img just now
+                                storageRef.getDownloadURL().then(url => {
+                                    this.afAuth.auth.currentUser.updateProfile({
+                                        displayName: this.afAuth.auth.currentUser.displayName,
+                                        photoURL: url
+                                    }).then(res => {
+                                         const  user = new User();
+                                         user.photoUrl = url;
+                                         this.userService.updateUser(user).then();
+                                        }
+                                    );
+                                });
+                            }).catch( err => {
+                                this.toastService.presentToast('upload failed! ', 2000).then(r => {
+                                });
+                            });
+
+
+                        }
+                    );
+
+                }
+            },
+                {
+                    text: 'Use Camera',
+                    handler: () => {
+                        this.imageService.getImageFromCamera().then(
+                            (imageData) => {
+                                const base64Image = 'data:image/jpeg;base64,' + imageData;
+                                // const base64Image =  imageData;
+                                const storageRef = firebase.storage().ref('static/photo' + this.userService.user.firebaseUid);
+                                storageRef.putString(base64Image, 'data_url').then( snapshot => {
+                                    console.log('upload successful');
+                                    console.log(snapshot);
+                                    storageRef.getDownloadURL().then(url => {
+                                        this.afAuth.auth.currentUser.updateProfile({
+                                            displayName: this.afAuth.auth.currentUser.displayName,
+                                            photoURL: url
+                                        }).then(res => {
+                                                const  user = new User();
+                                                user.photoUrl = url;
+                                                this.userService.updateUser(user).then();
+                                            }
+                                        );
+                                    });
+                                }).catch( err => {
+                                    this.toastService.presentToast('upload failed! ', 2000).then(r => {
+                                    });
+                                });
+
+                            }
+                        );
+                    }
+                },
+                {
+                    text: 'Cancel',
+                    role: 'cancel'
+                }
+            ]
+        });
+        await actionSheet.present();
+    }
+
+
 
     ngOnInit(): void {
             console.log(this.user);
