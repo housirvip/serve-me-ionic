@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UpdateEmailPageRoutingModule } from './update-email-routing.module';
-
 import { UpdateEmailPage } from './update-email.page';
 
 @NgModule({
@@ -13,8 +11,8 @@ import { UpdateEmailPage } from './update-email.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    UpdateEmailPageRoutingModule
   ],
-  declarations: [UpdateEmailPage]
+  declarations: [UpdateEmailPage],
+  entryComponents: [UpdateEmailPage]
 })
 export class UpdateEmailPageModule {}

@@ -1,10 +1,16 @@
-.tiplabel{
 
-  padding-left: 40px;
-  padding-right: 40px;
+ion-card{
+  padding: 0;
+}
+.tiplabel{
+  margin-left: 50px;
   h2{
     font-weight: bolder;
   }
+}
+
+ion-card-subtitle{
+  margin-left: 30px;
 }
 
 ion-input{
@@ -18,15 +24,12 @@ ion-input{
 
 ion-button{
   width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
+  margin-left: 30px;
   --background: black;
+  margin-top: 50px;
 }
 
-.warning{
-  margin-left: 50px;
-  h2{
-    font-weight: bolder;
-  }
+.tipwrong{
+  margin-left: 30px;
+  margin-top: 10px;
 }

@@ -32,10 +32,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./profile/edit/edit-page.module').then(m => m.EditPageModule)
   },
-  {
-    path: 'update-email',
-    loadChildren: () => import('./profile/update-email/update-email.module').then( m => m.UpdateEmailPageModule)
-  }
 ];
 
 @NgModule({

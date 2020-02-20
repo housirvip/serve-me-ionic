@@ -1,10 +1,10 @@
 <ion-header>
     <ion-toolbar color='secondary'>
-        <ion-title >Customer</ion-title>
+        <ion-title>Customer</ion-title>
     </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ion-refresher slot="fixed" >
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
         <ion-refresher-content
                 pullingIcon="arrow-dropdown"
                 pullingText="Pull to refresh"
@@ -12,27 +12,25 @@
                 refreshingText="Refreshing...">
         </ion-refresher-content>
     </ion-refresher>
-    <ion-searchbar showCancelButton="always"></ion-searchbar>
+    <ion-searchbar showCancelButton="always" (ionChange)="doSearch($event)" debounce="1000"></ion-searchbar>
     <ion-row class="filter">
         <ion-button (click)="typeModal()" expand="full" fill="outline">
-            <ion-label class="unprocessed" *ngIf="!this.filterService._typeFilled "   >
+            <ion-label class="unprocessed" *ngIf="!this.filterService._typeFilled ">
                 type
-                <ion-icon class="unprocessed"  name="arrow-down"></ion-icon>
+                <ion-icon class="unprocessed" name="arrow-down"></ion-icon>
             </ion-label>
-            <ion-label class="smallFont" color="primary" *ngIf="this.filterService._typeFilled"  mode="md">
+            <ion-label class="smallFont" color="primary" *ngIf="this.filterService._typeFilled">
                 {{this.filterService.displayGender()}},{{this.filterService.displayType()}}
             </ion-label>
-
         </ion-button>
         <ion-button (click)="priceModal()" expand="full" fill="outline">
-            <ion-label class="unprocessed"  *ngIf="!this.filterService._priceFilled " >
+            <ion-label class="unprocessed" *ngIf="!this.filterService._priceFilled ">
                 Price
                 <ion-icon name="arrow-down" class="unprocessed"></ion-icon>
             </ion-label>
             <ion-label class="smallFont" color="primary" *ngIf="this.filterService._priceFilled">
-               $ {{this.filterService.minPrice}} - {{this.filterService.maxPrice}}
+                $ {{this.filterService.minPrice}} - {{this.filterService.maxPrice}}
             </ion-label>
-
         </ion-button>
         <ion-button expand="full" fill="outline">
             <ion-label class="unprocessed">
@@ -42,23 +40,23 @@
         </ion-button>
     </ion-row>
     <ion-list *ngFor="let vendor of vendors">
-        <ion-card color="" >
+        <ion-card color="">
             <ion-card-header>
                 <ion-card-title>{{vendor.titleName}}</ion-card-title>
                 <ion-card-subtitle>{{vendor.typeString}}</ion-card-subtitle>
             </ion-card-header>
-            <ion-card-content >
-            <ion-item color="" >
-                <ion-label class="pricehour">
-                   <h1>${{vendor.priceString}}/hour</h1>
-                    <ion-label>{{vendor.workday}}</ion-label>
-                    <ion-label>{{vendor.workHour}}</ion-label>
-                </ion-label>
-                <ion-avatar ><img src="../../assets/img/avatar.png"></ion-avatar>
-            </ion-item>
+            <ion-card-content>
+                <ion-item color="">
+                    <ion-label class="pricehour">
+                        <h1>${{vendor.priceString}}/hour</h1>
+                        <ion-label>{{vendor.workday}}</ion-label>
+                        <ion-label>{{vendor.workHour}}</ion-label>
+                    </ion-label>
+                    <ion-avatar><img src="../../assets/img/avatar.png"></ion-avatar>
+                </ion-item>
                 <div class="ratingInformation">
-                        <ion-icon class="readonlyRating"  *ngFor="let i of [1, 2, 3, 4, 5]" name="star" size="small">
-                        </ion-icon>
+                    <ion-icon class="readonlyRating" *ngFor="let i of [1, 2, 3, 4, 5]" name="star" size="small">
+                    </ion-icon>
                     <ion-label>{{vendor.commentsNum}} comments</ion-label>
                 </div>
             </ion-card-content>

@@ -5,6 +5,7 @@ import {TypePage} from '../dashboard/type/type.page';
 import {UpdatePhonePage} from './update-phone/update-phone.page';
 import { Router } from '@angular/router';
 import {UpdatePasswordPage} from './update-password/update-password.page';
+import {UpdateEmailPage} from './update-email/update-email.page';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import * as firebase from 'firebase';
 import {ImageService} from '../services/image.service';
@@ -35,7 +36,7 @@ export class ProfilePage implements  OnInit {
     // tslint:disable-next-line:variable-name
     user_password = '****';
     // tslint:disable-next-line:variable-name
-    user_verified = 'unverified';
+    email_verified = 'unverified';
 
   constructor(
     private modalController: ModalController,
@@ -61,6 +62,17 @@ export class ProfilePage implements  OnInit {
 
         const modal = await this.modalController.create({
             component: UpdatePhonePage
+        });
+        return await modal.present();
+    }
+
+    async updateEmailModal() {
+        // user already have a phone number ,the phone number of this user must have been verified
+        console.log(this.userService.user);
+        // hack
+
+        const modal = await this.modalController.create({
+            component: UpdateEmailPage
         });
         return await modal.present();
     }
