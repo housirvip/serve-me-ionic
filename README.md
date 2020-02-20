@@ -10,6 +10,7 @@
 - AngularFire
 - Cordova
 - FingerPrientAIO
+- Adb
 
 ## How to use
 
