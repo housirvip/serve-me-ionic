@@ -8,6 +8,7 @@ import {UpdatePhonePageModule} from './update-phone/update-phone.module';
 import {VerificationModule} from './update-phone/verification/verification.module';
 import {UpdatePasswordPageModule} from './update-password/update-password.module';
 import {UpdateEmailPageModule} from './update-email/update-email.module';
+import {UpdateNamePageModule} from './update-name/update-name.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {UpdateEmailPageModule} from './update-email/update-email.module';
         UpdateEmailPageModule,
         VerificationModule,
         UpdatePasswordPageModule,
+        UpdateNamePageModule,
         RouterModule.forChild([{path: '', component: ProfilePage}])
     ],
     declarations: [ProfilePage]

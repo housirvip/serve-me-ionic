@@ -12,6 +12,7 @@ import {ImageService} from '../services/image.service';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {User} from '../classes/user';
 import {ToastService} from '../services/toast.service';
+import {UpdateNamePage} from './update-name/update-name.page';
 
 
 
@@ -37,6 +38,8 @@ export class ProfilePage implements  OnInit {
     user_password = '****';
     // tslint:disable-next-line:variable-name
     email_verified = 'unverified';
+    // tslint:disable-next-line:variable-name
+    default_photoUrl = './../assets/img/avatar.png';
 
   constructor(
     private modalController: ModalController,
@@ -85,6 +88,16 @@ export class ProfilePage implements  OnInit {
         return await modal.present();
     }
 
+    async updateNameModal() {
+
+
+        const modal = await this.modalController.create({
+            component: UpdateNamePage
+        });
+        return await modal.present();
+    }
+
+
     async selectImage() {
         const actionSheet = await this.actionSheetController.create({
             header: 'Select Image source',
@@ -93,6 +106,7 @@ export class ProfilePage implements  OnInit {
                 handler: () => {
                     this.imageService.getImageFromLibrary().then(
                         (imageData) => {
+                            // convert base64 to base64Url
                             const base64Image = 'data:image/jpeg;base64,' + imageData;
                             // const base64Image =  imageData;
                             const storageRef = firebase.storage().ref('static/photo/' + this.userService.user.firebaseUid + '.jpg');

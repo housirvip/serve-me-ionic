@@ -1,0 +1,17 @@
+<div id="closedButton">
+  <ion-icon name="close" (click)="dismiss()"></ion-icon>
+</div>
+
+
+<ion-content>
+  <ion-item lines="none">
+    <div class="text-container">
+      <ion-label position="stacked">Input your new Name</ion-label>
+      <ion-input type="" [(ngModel)]="inputtedName"></ion-input>
+    </div>
+    <ion-button class="edit-button" expand="full" (click)="submitName()">
+      Submit
+    </ion-button>
+  </ion-item>
+</ion-content>
+

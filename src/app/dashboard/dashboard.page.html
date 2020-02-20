@@ -20,7 +20,7 @@
                 <ion-icon class="unprocessed" name="arrow-down"></ion-icon>
             </ion-label>
             <ion-label class="smallFont" color="primary" *ngIf="this.filterService._typeFilled">
-                {{this.filterService.displayGender()}},{{this.filterService.displayType()}}
+                    {{this.filterService.displayType()}}
             </ion-label>
         </ion-button>
         <ion-button (click)="priceModal()" expand="full" fill="outline">

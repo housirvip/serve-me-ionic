@@ -21,7 +21,7 @@
                         <p>{{user ? 'Your ROLE is ' + user.role : ''}}</p>
                     </ion-label> -->
   </div>
-  <div class="name-container">
+  <div class="name-container" (click)="updateNameModal()">
     <ion-item>
       <ion-avatar>
         <div class="name-icon">
@@ -32,7 +32,7 @@
         <h1>{{'Name'}}</h1>
         <p>{{user ? user.username : user_name}}</p>
       </ion-label>
-      <ion-button (click)="edit('Name');" fill="clear" color="medium">
+      <ion-button (click)="updateNameModal()" fill="clear" color="medium">
         <ion-icon slot="end" name="chevron-forward"></ion-icon>
       </ion-button>
     </ion-item>
