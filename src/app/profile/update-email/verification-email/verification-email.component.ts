@@ -2,16 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import {NavParams, PopoverController} from '@ionic/angular';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {firebase} from 'firebaseui-angular';
-import {ToastService} from '../../services/toast.service';
-import {UserService} from '../../services/user.service';
-import {User} from '../../classes/user';
+import {ToastService} from '../../../services/toast.service';
+import {UserService} from '../../../services/user.service';
+import {User} from '../../../classes/user';
 
 @Component({
   selector: 'app-verification',
-  templateUrl: './verification.component.html',
-  styleUrls: ['./verification.component.scss'],
+  templateUrl: './verification-email.component.html',
+  styleUrls: ['./verification-email.component.scss'],
 })
-export class VerificationComponent implements OnInit {
+export class VerificationEmailComponent implements OnInit {
 
   private code: string;
   private ifVerificationRight: boolean;
@@ -35,17 +35,18 @@ export class VerificationComponent implements OnInit {
   verify() {
     // tslint:disable-next-line:only-arrow-functions
     this.ifVerificationRight = true;
+    const provider = this.afAuth.auth.currentUser;
     const verificationId = this.navParams.get('recv');
     const cred =  firebase.auth.PhoneAuthProvider.credential(verificationId, this.code);
-    this.afAuth.auth.currentUser.updatePhoneNumber(cred).then((res) => {
-      // verify phone successfull
-      // send phone number to backend
+    provider.reauthenticateWithCredential(cred).then((res) => {
             console.log('verfiy success');
             console.log(res);
             this.toastService.presentToast('verify phone successfull! ', 2000).then(r => {
           });
+            provider.updateEmail(this.navParams.get('email'))
             const user = new User();
-            user.phone = this.navParams.get('phoneNumber');
+            console.log(this.navParams);
+            user.email = this.navParams.get('email');
             console.log(user);
             this.userService.updateUser(user).then(r => {
                 console.log(r);

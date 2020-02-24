@@ -13,4 +13,5 @@ export class User {
     state: string;
     birthday: Date;
     fcmToken: string;
+    photoUrl: string;
 }

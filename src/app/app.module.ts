@@ -16,9 +16,10 @@ import { FirebaseX } from "@ionic-native/firebase-x/ngx";
 import { SlideMenuModule } from "./slide-menu/slide-menu.module";
 
 import { AngularFireModule } from "@angular/fire";
-import { AngularFireStorageModule } from "@angular/fire/storage";
 import { environment } from "../environments/environment";
 import { AngularFireMessagingModule } from "@angular/fire/messaging";
+import { Camera } from "@ionic-native/camera/ngx";
+import { OrderDetailsPageModule } from "./orders/order-details/order-details.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,14 +31,15 @@ import { AngularFireMessagingModule } from "@angular/fire/messaging";
     HttpClientModule,
     SlideMenuModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule,
-    AngularFireMessagingModule
+    AngularFireMessagingModule,
+    OrderDetailsPageModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     FingerprintAIO,
     FirebaseX,
+    Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true }
   ],

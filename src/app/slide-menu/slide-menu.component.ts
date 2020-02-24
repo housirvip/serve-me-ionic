@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {MenuController, ModalController} from '@ionic/angular';
 import {LoginPage} from '../login/login.page';
 import {ToastService} from '../services/toast.service';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
     selector: 'app-slide-menu',
@@ -14,15 +15,20 @@ export class SlideMenuComponent implements OnInit {
     @Input() menuId: string;
     @Input() contentId: string;
 
+    defaultPhoto = '../../assets/img/avatar.png';
 
     get user() {
         return this.userService.user;
+    }
+    get afUser() {
+        return this.afAuth.auth.currentUser;
     }
 
     constructor(private userService: UserService,
                 private router: Router,
                 private menu: MenuController,
                 private toastService: ToastService,
+                private afAuth: AngularFireAuth,
                 private modalController: ModalController) {
     }
 

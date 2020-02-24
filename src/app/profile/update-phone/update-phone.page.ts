@@ -2,7 +2,7 @@ import {assertPlatform, Component, OnInit} from '@angular/core';
 import {ModalController, PopoverController} from '@ionic/angular';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {firebase} from 'firebaseui-angular';
-import {VerificationComponent} from '../verification/verification.component';
+import {VerificationComponent} from './verification/verification.component';
 import {tokenReference} from '@angular/compiler';
 
 

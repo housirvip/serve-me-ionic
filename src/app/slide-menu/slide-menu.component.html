@@ -1,9 +1,10 @@
 <ion-menu [menuId]="menuId" [contentId]="contentId">
     <ion-header>
         <ion-toolbar color="dark" class="user-profile">
-            <ion-item margin-bottom>
+            <ion-item>
                 <ion-avatar slot="start" class="user-avatar">
-                    <img src="../../assets/img/avatar.png" alt="">
+<!--                    <img src="../../assets/img/avatar.png"/>-->
+                    <img src="{{this.user?(this.user.photoUrl?this.user.photoUrl:defaultPhoto):defaultPhoto}}" alt="">
                 </ion-avatar>
                 <ion-label>
                     <ion-text color="medium">
@@ -56,14 +57,6 @@
                     <ion-toggle color="secondary"></ion-toggle>
                 </ion-item>
             </ion-menu-toggle>
-            <ion-menu-toggle auto-hide="false" *ngIf="user">
-                <ion-item (click)="toLogout()">
-                    <ion-icon slot="start" name="log-out-outline" color="primary"></ion-icon>
-                    <ion-label>
-                        Sign out
-                    </ion-label>
-                </ion-item>
-            </ion-menu-toggle>
             <ion-menu-toggle auto-hide="false">
                 <ion-item (click)="jump('/settings')">
                     <ion-icon slot="start" name="settings-outline" color="primary"></ion-icon>
@@ -74,17 +67,25 @@
             </ion-menu-toggle>
             <ion-menu-toggle auto-hide="false">
                 <ion-item (click)="verifyEmail()" *ngIf="!userService.emailVerified">
-                    <ion-icon slot="start" name="settings-outline" color="primary"></ion-icon>
+                    <ion-icon slot="start" name="mail-outline" color="primary"></ion-icon>
                     <ion-label>
                         Verify Email
                     </ion-label>
                 </ion-item>
             </ion-menu-toggle>
-            <ion-menu-toggle auto-hide="false">
+            <ion-menu-toggle auto-hide="false" *ngIf="user">
                 <ion-item>
                     <ion-icon slot="start" name="add-outline" color="primary"></ion-icon>
                     <ion-label>
                         Make New Request
+                    </ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false" *ngIf="user">
+                <ion-item (click)="toLogout()">
+                    <ion-icon slot="start" name="log-out-outline" color="primary"></ion-icon>
+                    <ion-label>
+                        Sign out
                     </ion-label>
                 </ion-item>
             </ion-menu-toggle>

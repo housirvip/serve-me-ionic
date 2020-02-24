@@ -7,15 +7,13 @@
 </ion-header>
 
 <ion-content>
-  <div class="profile-header">
+  <div class="profile-header" (click)="selectImage()">
     <div class="profile-userpic">
       <ion-avatar slot="start">
-        <img src="../../assets/img/avatar.png" alt="" />
-        <ion-input
-          type="file"
-          accept="image/*"
-          (change)="changeListener($event)"
-        ></ion-input>
+        <img
+          src="{{this.user?(this.user.photoUrl?this.user.photoUrl:this.default_photoUrl):this.default_photoUrl}}"
+          alt=""
+        />
         <ion-icon name="create"></ion-icon>
         <ion-label> </ion-label>
       </ion-avatar>
@@ -26,7 +24,7 @@
                         <p>{{user ? 'Your ROLE is ' + user.role : ''}}</p>
                     </ion-label> -->
   </div>
-  <div class="name-container">
+  <div class="name-container" (click)="updateNameModal()">
     <ion-item>
       <ion-avatar>
         <div class="name-icon">
@@ -37,7 +35,7 @@
         <h1>{{'Name'}}</h1>
         <p>{{user ? user.username : user_name}}</p>
       </ion-label>
-      <ion-button (click)="edit('Name');" fill="clear" color="medium">
+      <ion-button (click)="updateNameModal()" fill="clear" color="medium">
         <ion-icon slot="end" name="chevron-forward"></ion-icon>
       </ion-button>
     </ion-item>
@@ -54,13 +52,18 @@
         <h1>Phone</h1>
         <p>{{user ? user.phone : user_phone}}</p>
       </ion-label>
+      <ion-label *ngIf="user?.phone">
+        <h2 class="verified">
+          verified
+        </h2>
+      </ion-label>
       <ion-button fill="clear" color="medium">
         <ion-icon slot="end" name="chevron-forward"></ion-icon>
       </ion-button>
     </ion-item>
   </div>
 
-  <div class="email-container">
+  <div class="email-container" (click)="updateEmailModal()">
     <ion-item>
       <ion-avatar>
         <div class="email-icon">
@@ -79,13 +82,13 @@
           {{email_verified}}
         </h2>
       </ion-label>
-      <ion-button (click)="edit('Email');" fill="clear" color="medium">
+      <ion-button fill="clear" color="medium">
         <ion-icon slot="end" name="chevron-forward"></ion-icon>
       </ion-button>
     </ion-item>
   </div>
 
-  <div class="password-container">
+  <div class="password-container" (click)="updatePasswordModal()">
     <ion-item>
       <ion-avatar>
         <div class="password-icon">
@@ -96,11 +99,7 @@
         <h1>{{'Password'}}</h1>
         <p>{{user_password}}</p>
       </ion-label>
-      <ion-button
-        (click)="edit('Enter your current password');"
-        fill="clear"
-        color="medium"
-      >
+      <ion-button fill="clear" color="medium">
         <ion-icon slot="end" name="chevron-forward"></ion-icon>
       </ion-button>
     </ion-item>
