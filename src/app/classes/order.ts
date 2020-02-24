@@ -13,4 +13,8 @@ export class Order {
   orderID: number;
   description: string;
   location: string;
+  //maybe should add a list of bidders (ie bidders uid)
+  //maybe should add selected provider (uid of the provider who will fullfill the request)
+  //maybe should add priceRangeMin and priceRangeMax, which are set by customer
+  //  and have price be the agreed price
 }

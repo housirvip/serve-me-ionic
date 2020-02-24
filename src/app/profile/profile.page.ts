@@ -41,7 +41,6 @@ export class ProfilePage implements OnInit {
   default_photoUrl = "./../assets/img/avatar.png";
 
   constructor(
-    private afAuth: AngularFireAuth,
     private modalController: ModalController,
     private userService: UserService,
     private router: Router,
@@ -60,7 +59,7 @@ export class ProfilePage implements OnInit {
     // user already have a phone number ,the phone number of this user must have been verifed
     console.log(this.userService.user);
     // hack
-    if (this.userService.user.phone) {
+    if (!this.userService.user.phone) {
       return;
     }
 
@@ -100,7 +99,6 @@ export class ProfilePage implements OnInit {
         .then(r => {});
       return;
     }
-  }
 
     const modal = await this.modalController.create({
       component: UpdatePasswordPage
