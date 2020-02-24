@@ -1,0 +1,113 @@
+.order-info {
+  margin: 10px 10px;
+}
+
+.title-date h1 {
+  position: relative;
+  color: black;
+  font-size: 25px;
+  margin: 0px;
+}
+
+// .title-date h2 {
+//   position: relative;
+//   color: gray;
+//   font-size: 15px;
+//   margin: 0px;
+// }
+
+.title-date p {
+  position: relative;
+  color: gray;
+  font-size: 12px;
+  margin-top: 2px;
+  margin-bottom: 15px;
+}
+
+.description h2 {
+  position: relative;
+  color: gray;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.description p {
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.requestor {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.requestor-label {
+  position: relative;
+  display: inline-block;
+}
+
+.requestor-label h2 {
+  color: gray;
+  font-size: 13px;
+  font-weight: 300;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.requestor-info {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+.requestor-info p {
+  color: black;
+  font-size: 14px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.bid-button {
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  --padding-bottom: 0px;
+  --padding-top: 0px;
+  margin-top: 30px;
+  --background: black;
+  box-sizing: border-box;
+  height: 50px;
+  font-size: 15px;
+}
+
+.bid-block {
+  text-align: center;
+}
+
+.best-bid {
+  margin-top: 30px;
+  margin-right: 15px;
+  display: inline-block;
+}
+
+.best-bid h2 {
+  color: gray;
+  font-size: 12px;
+  font-weight: 300;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.best-bid p {
+  color: green;
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+.line {
+  border: 0;
+  background-color: gray;
+  height: 1px;
+  position: relative;
+}

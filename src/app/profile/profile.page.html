@@ -10,7 +10,10 @@
   <div class="profile-header" (click)="selectImage()">
     <div class="profile-userpic">
       <ion-avatar slot="start">
-        <img src="{{this.user?(this.user.photoUrl?this.user.photoUrl:this.default_photoUrl):this.default_photoUrl}}" alt="" />
+        <img
+          src="{{this.user?(this.user.photoUrl?this.user.photoUrl:this.default_photoUrl):this.default_photoUrl}}"
+          alt=""
+        />
         <ion-icon name="create"></ion-icon>
         <ion-label> </ion-label>
       </ion-avatar>
@@ -38,7 +41,7 @@
     </ion-item>
   </div>
 
-  <div class="phone-container" (click)="updatePhonemModal()" >
+  <div class="phone-container" (click)="updatePhonemModal()">
     <ion-item>
       <ion-avatar>
         <div class="phone-icon">
@@ -50,17 +53,17 @@
         <p>{{user ? user.phone : user_phone}}</p>
       </ion-label>
       <ion-label *ngIf="user?.phone">
-        <h2 class="verified" >
-            verified
+        <h2 class="verified">
+          verified
         </h2>
       </ion-label>
-      <ion-button  fill="clear" color="medium">
+      <ion-button fill="clear" color="medium">
         <ion-icon slot="end" name="chevron-forward"></ion-icon>
       </ion-button>
     </ion-item>
   </div>
 
-  <div class="email-container" (click) = "updateEmailModal()" >
+  <div class="email-container" (click)="updateEmailModal()">
     <ion-item>
       <ion-avatar>
         <div class="email-icon">
@@ -79,7 +82,7 @@
           {{email_verified}}
         </h2>
       </ion-label>
-      <ion-button (click)="edit('Email');" fill="clear" color="medium">
+      <ion-button fill="clear" color="medium">
         <ion-icon slot="end" name="chevron-forward"></ion-icon>
       </ion-button>
     </ion-item>
@@ -96,14 +99,9 @@
         <h1>{{'Password'}}</h1>
         <p>{{user_password}}</p>
       </ion-label>
-      <ion-button
-        fill="clear"
-        color="medium"
-      >
+      <ion-button fill="clear" color="medium">
         <ion-icon slot="end" name="chevron-forward"></ion-icon>
       </ion-button>
     </ion-item>
   </div>
-
-
 </ion-content>
