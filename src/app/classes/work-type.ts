@@ -1,4 +1,11 @@
 export enum WorkType {
-    Cleaner,
-    Repairing
+    Appliances,
+    Electrical,
+    Plumbing,
+    HomeCleaning,
+    Tutoring,
+    PackagingAndMoving,
+    ComputerRepair,
+    HomeRepairAndPainting,
+    PestControl
 }

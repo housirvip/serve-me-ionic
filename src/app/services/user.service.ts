@@ -5,6 +5,7 @@ import {BaseResponse} from '../core/base-response';
 import {User} from '../classes/user';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {FirebaseService} from './firebase.service';
+import {environment} from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -65,6 +66,9 @@ export class UserService {
             this._jwt = jwt;
             this.getUser();
             firebaseService.notifyToUpdate();
+            if (!environment.production) {
+                console.log(jwt);
+            }
         });
     }
 

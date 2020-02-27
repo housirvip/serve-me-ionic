@@ -19,7 +19,7 @@ export class OrderService {
                     {
                         title: 'Look for cleaner',
                         price: '12.99$',
-                        type: WorkType.Cleaner,
+                        type: WorkType.ComputerRepair,
                         status: OrderStatus.waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
@@ -28,7 +28,7 @@ export class OrderService {
                     {
                         title: 'Really need someone help me',
                         price: '20.99$',
-                        type: WorkType.Repairing,
+                        type: WorkType.ComputerRepair,
                         status: OrderStatus.waiting,
                         serverProvider: 'Jack',
                         time: '02/01/2020',
@@ -40,7 +40,7 @@ export class OrderService {
                     {
                         title: 'Look for cleaner',
                         price: '12.99$',
-                        type: WorkType.Cleaner,
+                        type: WorkType.ComputerRepair,
                         status: OrderStatus.waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
@@ -51,7 +51,7 @@ export class OrderService {
                     {
                         title: 'Look for cleaner',
                         price: '12.99$',
-                        type: WorkType.Cleaner,
+                        type: WorkType.ComputerRepair,
                         status: OrderStatus.waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
@@ -60,7 +60,7 @@ export class OrderService {
                     {
                         title: 'Look for cleaner',
                         price: '12.99$',
-                        type: WorkType.Cleaner,
+                        type: WorkType.ComputerRepair,
                         status: OrderStatus.waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
@@ -71,7 +71,7 @@ export class OrderService {
                     {
                         title: 'Look for cleaner',
                         price: '12.99$',
-                        type: WorkType.Cleaner,
+                        type: WorkType.ComputerRepair,
                         status: OrderStatus.waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
@@ -80,7 +80,7 @@ export class OrderService {
                     {
                         title: 'Look for cleaner',
                         price: '12.99$',
-                        type: WorkType.Cleaner,
+                        type: WorkType.ComputerRepair,
                         status: OrderStatus.waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
@@ -89,7 +89,7 @@ export class OrderService {
                     {
                         title: 'Look for cleaner',
                         price: '12.99$',
-                        type: WorkType.Cleaner,
+                        type: WorkType.ComputerRepair,
                         status: OrderStatus.waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',

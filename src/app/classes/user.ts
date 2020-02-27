@@ -8,10 +8,9 @@ export class User {
     role: string[];
     points: number;
     firebaseUid: string;
-    sex: string;
-    job: string;
-    state: string;
-    birthday: Date;
+    gender: string;
+    categories: string[];
+    address: string;
     fcmToken: string;
     photoUrl: string;
 }
