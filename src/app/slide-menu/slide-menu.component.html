@@ -73,11 +73,20 @@
                     </ion-label>
                 </ion-item>
             </ion-menu-toggle>
-            <ion-menu-toggle auto-hide="false" *ngIf="user">
+            <ion-menu-toggle auto-hide="false" >
                 <ion-item>
                     <ion-icon slot="start" name="add-outline" color="primary"></ion-icon>
                     <ion-label>
                         Make New Request
+                    </ion-label>
+                </ion-item>
+            </ion-menu-toggle>
+
+            <ion-menu-toggle auto-hide="false" *ngIf="user">
+                <ion-item (click)="jump('/address')">
+                    <ion-icon slot="start" name="home-outline" color="primary"></ion-icon>
+                    <ion-label>
+                        Your Address
                     </ion-label>
                 </ion-item>
             </ion-menu-toggle>

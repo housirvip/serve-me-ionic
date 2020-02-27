@@ -36,6 +36,10 @@ const routes: Routes = [
     path: 'update-name',
     loadChildren: () => import('./profile/update-name/update-name.module').then( m => m.UpdateNamePageModule)
   },
+  {
+    path: 'address',
+    loadChildren: () => import('./address/address.module').then( m => m.AddressPageModule)
+  },
 ];
 
 @NgModule({

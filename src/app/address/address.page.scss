@@ -1,0 +1,23 @@
+ion-button{
+  width: 80%;
+  margin: 0 auto;
+  color: white;
+}
+ion-title{
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+ion-card{
+  padding: 30px;
+
+  ion-card-content{
+    color: black;
+    p{
+      font-size: 16px;
+    }
+    ion-button{
+      width: 33%;
+    }
+  }
+}
