@@ -3,7 +3,6 @@ import {ModalController} from '@ionic/angular';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {ToastService} from '../../services/toast.service';
 import {firebase} from 'firebaseui-angular';
-firebase.database().ref()
 
 @Component({
   selector: 'app-update-password',
