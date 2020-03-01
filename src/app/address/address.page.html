@@ -1,17 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Your Address</ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
   <ion-title>Your Address</ion-title>
-  <ion-button expand="block" >add a new address</ion-button>
+  <ion-item>
+   <ion-button expand="block" >add a new address</ion-button>
+  </ion-item>
   <ion-title>Personal Address</ion-title>
-  <ion-list>
+  <ion-list *ngFor="let address of this.AddresList">
     <ion-card>
       <ion-card-title>
-        JiamingPan
+        {{address.username}}
       </ion-card-title>
       <ion-card-content>
-        <p>930 benge driver,105D</p>
-        <p>ARLINGTON,TX,76013-26</p>
-        <p>United States</p>
-        <p>PhoneNumber:6822345804</p>
+        <p>{{address.address2}}</p>
+        <p>{{address.city}},{{address.state}},{{address.zipCode}}</p>
+        <p>PhoneNumber:{{address.phone}}</p>
         <div style="display: flex">
           <ion-button size="small">Edit</ion-button>
           <ion-button size="small">Remove</ion-button>

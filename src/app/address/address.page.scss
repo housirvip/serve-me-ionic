@@ -3,13 +3,17 @@ ion-button{
   margin: 0 auto;
   color: white;
 }
-ion-title{
-  margin-top: 50px;
-  margin-bottom: 30px;
+ion-content{
+  ion-title{
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
 }
 
 ion-card{
   padding: 30px;
+  margin: 1px;
+  background-color:  #fffbfb;
 
   ion-card-content{
     color: black;
