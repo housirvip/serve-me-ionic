@@ -4,10 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { UpdateaddressPage } from './updateaddress.page';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: UpdateaddressPage
-  }
 ];
 
 @NgModule({

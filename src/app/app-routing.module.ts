@@ -40,6 +40,10 @@ const routes: Routes = [
     path: 'address',
     loadChildren: () => import('./address/address.module').then( m => m.AddressPageModule)
   },
+  {
+    path: 'new-request',
+    loadChildren: () => import('./new-request/new-request.module').then( m => m.NewRequestPageModule)
+  },
 ];
 
 @NgModule({

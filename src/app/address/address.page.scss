@@ -2,6 +2,7 @@ ion-button{
   width: 80%;
   margin: 0 auto;
   color: white;
+  --background: black
 }
 ion-content{
   ion-title{
@@ -22,6 +23,7 @@ ion-card{
     }
     ion-button{
       width: 33%;
+
     }
   }
 }

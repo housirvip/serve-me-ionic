@@ -1,0 +1,31 @@
+
+ion-item ion-label{
+  color: grey;
+  font-size: 16px;
+  margin-left: 13px;
+}
+
+ ion-input {
+  width: 90%;
+  margin: 0 auto;
+  font-size: 21px;
+  border-bottom: 2px solid #000000;
+}
+
+.edit-button {
+  padding-left: 40px;
+  padding-right: 40px;
+  --padding-bottom: 0px;
+  --padding-top: 0px;
+  margin-top: 30px;
+  --background: black;
+  box-sizing: border-box;
+  height: 50px;
+  width: 100%;
+  font-size: 15px;
+}
+
+.error-message{
+  margin-left: 10%;
+  color: var(--ion-color-danger);
+}
