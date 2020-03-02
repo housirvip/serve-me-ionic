@@ -13,7 +13,7 @@ import {ToastService} from '../services/toast.service';
 })
 export class DashboardPage implements OnInit {
     get vendors() {
-        return this.filterService.vendorList;
+        return this.filterService.getVendorList();
     }
 
     constructor(private modalController: ModalController,
@@ -22,7 +22,7 @@ export class DashboardPage implements OnInit {
     }
 
     ngOnInit() {
-        this.filterService.getVendorList();
+        // this.filterService.getVendorList();
     }
 
     async typeModal() {
