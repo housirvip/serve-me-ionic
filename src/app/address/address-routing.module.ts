@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: AddressPage
+  },
+  {
+    path: 'updateaddress',
+    loadChildren: () => import('./updateaddress/updateaddress.module').then( m => m.UpdateaddressPageModule)
   }
 ];
 

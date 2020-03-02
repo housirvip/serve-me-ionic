@@ -1,20 +1,13 @@
-.text-container {
-  padding-left: 10px;
-  padding-right: 10px;
-  box-sizing: border-box;
-  width: 100%;
-}
-.text-container ion-label {
-  color: gray;
-  font-size: 20px;
-  margin-top: 60px;
-  label{
-    color: red;
-  }
+
+ion-item ion-label{
+  color: grey;
+  font-size: 16px;
+  margin-left: 13px;
 }
 
-.text-container ion-input {
-  margin-top: 10px;
+ ion-input {
+  width: 90%;
+  margin: 0 auto;
   font-size: 21px;
   border-bottom: 2px solid #000000;
 }
@@ -30,4 +23,9 @@
   height: 50px;
   width: 100%;
   font-size: 15px;
+}
+
+.error-message{
+  margin-left: 10%;
+  color: var(--ion-color-danger);
 }

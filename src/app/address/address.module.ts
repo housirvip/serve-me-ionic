@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AddressPageRoutingModule } from './address-routing.module';
 
 import { AddressPage } from './address.page';
+import {UpdateaddressPageModule} from './updateaddress/updateaddress.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AddressPageRoutingModule
+    AddressPageRoutingModule,
+      UpdateaddressPageModule
   ],
   declarations: [AddressPage]
 })

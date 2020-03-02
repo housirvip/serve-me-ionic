@@ -6,21 +6,34 @@ import {Address} from '../classes/address';
 })
 export class AddressService {
 
-  constructor() { }
-  // tslint:disable-next-line:variable-name
-  private _currentAddressList: Address[];
-
-  set currentAddressList(value: Address[]) {
-    this._currentAddressList = value;
-  }
   get currentAddressList(): Address[] {
     return this._currentAddressList;
   }
+  // tslint:disable-next-line:variable-name
+  private _currentAddressList: Address[];
+r() { }
 
 
-
-  getAddress() {
-
+  getAddress(uid: string) {
+    this._currentAddressList = [{
+      id: 1,
+    address2: '930benge drive',
+    state: 'TX',
+    city: 'Arlington',
+    username: 'Jiaming Pan',
+    phone: '6822345804',
+    zipCode: '76013',
+    },
+      {
+        id: 2,
+        address2: '930benge drive',
+        state: 'TX',
+        city: 'Arlington',
+        username: 'Jiaming Pan',
+        phone: '6822345804',
+        zipCode: '76013',
+      }
+    ];
   }
   addAddress() {
 
@@ -31,8 +44,13 @@ export class AddressService {
   updateAddress() {
 
   }
+  getCurrentAddressFromGoogleMap() {
+    return Address;
+  }
   verifyState(state: string) {
+    return false;
   }
   verifyCity(state: string) {
+    return false;
   }
 }

@@ -84,7 +84,7 @@ export class FilterService {
 
     getVendorList() {
         // request for vendors with filter
-        this.vendorList = [{
+        return [{
             commentsNum: 3,
             priceString: '30',
             rate: 5,

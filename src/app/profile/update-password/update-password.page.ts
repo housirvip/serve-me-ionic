@@ -4,6 +4,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {ToastService} from '../../services/toast.service';
 import {firebase} from 'firebaseui-angular';
 
+
 @Component({
   selector: 'app-update-password',
   templateUrl: './update-password.page.html',
