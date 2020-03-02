@@ -11,7 +11,7 @@ import {UserService} from '../../services/user.service';
 })
 export class ShowAddressPage implements OnInit {
   get AddresList() {
-    return this.addressService.currentAddressList;
+    return this.addressService.addresses;
   }
 
   constructor(private addressService: AddressService,
@@ -19,7 +19,7 @@ export class ShowAddressPage implements OnInit {
               private  userService: UserService) { }
   selectedAddress: Address;
   ngOnInit() {
-    this.userService.user ? this.addressService.getAddress(this.userService.user.id) :
+    this.userService.user ? this.addressService.getAddresses() :
         console.log('error no user,please enter this page again');
   }
 

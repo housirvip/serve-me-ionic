@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {Address} from '../../classes/address';
 import {FormBuilder, Validator, Validators} from '@angular/forms';
+import {AddressService} from '../../services/address.service';
 
 @Component({
   selector: 'app-updateaddress',
@@ -65,7 +66,8 @@ export class UpdateaddressPage implements OnInit {
   private newAddress: Address;
   private fullname: string;
   constructor(private modalController: ModalController,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private addressService: AddressService) {
     this.newAddress = new Address();
   }
   ngOnInit() {
@@ -73,6 +75,7 @@ export class UpdateaddressPage implements OnInit {
 
   saved() {
     console.log(this.newAddress);
+    this.addressService.updateAddress(this.newAddress);
     this.dismiss();
   }
   dismiss() {

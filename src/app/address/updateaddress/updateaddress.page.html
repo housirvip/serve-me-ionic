@@ -15,7 +15,7 @@
 <form [formGroup]="updateAddressForm" (ngSubmit)="saved()"><ion-list>
   <ion-item lines="none">
       <ion-label position="floating" > Full Name</ion-label>
-      <ion-input formControlName="name" [(ngModel)]="newAddress.username" ></ion-input>
+      <ion-input formControlName="name" [(ngModel)]="newAddress.name" ></ion-input>
   </ion-item>
   <div *ngFor="let error of errorMessages.name">
     <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
@@ -24,7 +24,7 @@
   </div>
   <ion-item lines="none">
     <ion-label position="floating">Street,Apart,Suit,unit,Building,floor,etc</ion-label>
-    <ion-input  formControlName="address2" [(ngModel)]="newAddress.address2"></ion-input>
+    <ion-input  formControlName="address2" [(ngModel)]="newAddress.street"></ion-input>
   </ion-item>
   <div *ngFor="let error of errorMessages.address2">
     <ng-container *ngIf="address2.hasError(error.type) && (address2.dirty || address2.touched)">

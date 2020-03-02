@@ -3,7 +3,7 @@ export class Address {
     street: string;
     state: string;
     city: string;
-    username: string;
+    name: string;
     phone: string;
     zipCode: number;
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ModalController} from '@ionic/angular';
-import {WorkType, getAllWorkTypestring} from '../classes/work-type';
 import {UpdateaddressPage} from '../address/updateaddress/updateaddress.page';
 import {ShowAddressPage} from './show-address/show-address.page';
 import {AddressService} from '../services/address.service';
@@ -16,7 +15,7 @@ import {AddressService} from '../services/address.service';
 })
 export class NewRequestPage implements OnInit {
   get WorkTypeList() {
-    return getAllWorkTypestring();
+    return null;
   }
     requestForm = this.formBuilder.group({
     discription: ['', [Validators.required, Validators.maxLength(10)]],

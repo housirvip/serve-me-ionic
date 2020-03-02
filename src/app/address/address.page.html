@@ -12,15 +12,15 @@
   <ion-list *ngFor="let address of this.AddressList">
     <ion-card>
       <ion-card-title>
-        {{address.username}}
+        {{address.name}}
       </ion-card-title>
       <ion-card-content>
-        <p>{{address.address2}}</p>
+        <p>{{address.street}}</p>
         <p>{{address.city}},{{address.state}},{{address.zipCode}}</p>
         <p>PhoneNumber:{{address.phone}}</p>
         <div style="display: flex">
           <ion-button size="small">Edit</ion-button>
-          <ion-button size="small">Remove</ion-button>
+          <ion-button size="small" (click)="removeAddress(address)">Remove</ion-button>
         </div>
       </ion-card-content>
     </ion-card>
