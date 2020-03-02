@@ -1,25 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import {Address} from '../classes/address';
 import {ModalController} from '@ionic/angular';
-import {WorkType, getAllWorkTypestring} from '../classes/work-type';
-
-
-
 
 @Component({
   selector: 'app-new-request',
   templateUrl: './new-request.page.html',
   styleUrls: ['./new-request.page.scss'],
 })
-
-
-
-
-
 export class NewRequestPage implements OnInit {
   get WorkTypeList() {
-    return getAllWorkTypestring();
+    return null;
   }
   updateAddressForm = this.formBuilder.group({
     discription: ['', [Validators.required, Validators.maxLength(10)]],
@@ -45,6 +35,4 @@ export class NewRequestPage implements OnInit {
 
   saved() {
   }
-
-
 }

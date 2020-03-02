@@ -1,56 +1,56 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Address} from '../classes/address';
+import {BaseResponse} from '../core/base-response';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AddressService {
 
-  get currentAddressList(): Address[] {
-    return this._currentAddressList;
-  }
-  // tslint:disable-next-line:variable-name
-  private _currentAddressList: Address[];
-r() { }
+    get currentAddressList(): Address[] {
+        return this._currentAddressList;
+    }
 
+    // tslint:disable-next-line:variable-name
+    private _currentAddressList: Address[];
 
-  getAddress(uid: string) {
-    this._currentAddressList = [{
-      id: 1,
-    address2: '930benge drive',
-    state: 'TX',
-    city: 'Arlington',
-    username: 'Jiaming Pan',
-    phone: '6822345804',
-    zipCode: '76013',
-    },
-      {
-        id: 2,
-        address2: '930benge drive',
-        state: 'TX',
-        city: 'Arlington',
-        username: 'Jiaming Pan',
-        phone: '6822345804',
-        zipCode: '76013',
-      }
-    ];
-  }
-  addAddress() {
+    constructor(private http: HttpClient) {
+    }
 
-  }
-  deleteAddress() {
+    getAddress() {
+        this.http.get<BaseResponse>('user/address', {}).subscribe(
+            res => {
+                if (res.code !== 0) {
+                    return;
+                }
+                this._currentAddressList = res.result;
+            });
+    }
 
-  }
-  updateAddress() {
+    deleteAddress() {
 
-  }
-  getCurrentAddressFromGoogleMap() {
-    return Address;
-  }
-  verifyState(state: string) {
-    return false;
-  }
-  verifyCity(state: string) {
-    return false;
-  }
+    }
+
+    updateAddress(address: Address) {
+        this.http.put<BaseResponse>('user/address', address).subscribe(
+            res => {
+                if (res.code !== 0) {
+                    return;
+                }
+                this.getAddress();
+            });
+    }
+
+    getCurrentAddressFromGoogleMap() {
+        return Address;
+    }
+
+    verifyState(state: string) {
+        return false;
+    }
+
+    verifyCity(state: string) {
+        return false;
+    }
 }
