@@ -13,18 +13,18 @@
         </ion-refresher-content>
     </ion-refresher>
     <ion-searchbar showCancelButton="always"></ion-searchbar>
-    <ion-segment (ionChange)="segmentChanged($event)" value="waiting">
-        <ion-segment-button value="waiting">
-            <ion-label>waiting</ion-label>
+    <ion-segment (ionChange)="segmentChanged($event)" value="Pending">
+        <ion-segment-button value="Biding">
+            <ion-label>Biding</ion-label>
         </ion-segment-button>
-        <ion-segment-button value="biding">
-            <ion-label>biding</ion-label>
+        <ion-segment-button value="Pending">
+            <ion-label>Pending</ion-label>
         </ion-segment-button>
-        <ion-segment-button value="progress">
-            <ion-label>progress</ion-label>
+        <ion-segment-button value="Progressing">
+            <ion-label>Progressing</ion-label>
         </ion-segment-button>
-        <ion-segment-button value="completed">
-            <ion-label>completed</ion-label>
+        <ion-segment-button value="Completed">
+            <ion-label>Completed</ion-label>
         </ion-segment-button>
     </ion-segment>
     <ion-list *ngFor="let order of orders">

@@ -18,7 +18,7 @@ export class OrdersPage implements OnInit {
     }
 
     ngOnInit() {
-        this.getOrders(OrderStatus.waiting);
+        this.getOrders(OrderStatus.Pending);
     }
 
     getOrders(status: OrderStatus) {

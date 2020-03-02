@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActionSheetController, LoadingController, ModalController} from '@ionic/angular';
 import {UserService} from '../services/user.service';
-import {TypePage} from '../dashboard/type/type.page';
 import {UpdatePhonePage} from './update-phone/update-phone.page';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 import {UpdatePasswordPage} from './update-password/update-password.page';
 import {UpdateEmailPage} from './update-email/update-email.page';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import * as firebase from 'firebase';
 import {ImageService} from '../services/image.service';
 import {AngularFireAuth} from '@angular/fire/auth';
@@ -15,15 +13,14 @@ import {ToastService} from '../services/toast.service';
 import {UpdateNamePage} from './update-name/update-name.page';
 
 
-
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.page.html',
-  styleUrls: ['./profile.page.scss']
+    selector: 'app-profile',
+    templateUrl: './profile.page.html',
+    styleUrls: ['./profile.page.scss']
 })
 
 
-export class ProfilePage implements  OnInit {
+export class ProfilePage implements OnInit {
 
     // example values. Acutal values should be retrieved from db
     // tslint:disable-next-line:variable-name
@@ -41,23 +38,24 @@ export class ProfilePage implements  OnInit {
     // tslint:disable-next-line:variable-name
     default_photoUrl = './../assets/img/avatar.png';
 
-  constructor(
-    private modalController: ModalController,
-    private userService: UserService,
-    private router: Router,
-    private actionSheetController: ActionSheetController,
-    private imageService: ImageService,
-    private afAuth: AngularFireAuth,
-    private toastService: ToastService,
-    private loadingController: LoadingController
-  ) {}
+    constructor(
+        private modalController: ModalController,
+        private userService: UserService,
+        private router: Router,
+        private actionSheetController: ActionSheetController,
+        private imageService: ImageService,
+        private afAuth: AngularFireAuth,
+        private toastService: ToastService,
+        private loadingController: LoadingController
+    ) {
+    }
 
     get user() {
         return this.userService.user;
     }
 
     async updatePhonemModal() {
-      // user already have a phone number ,the phone number of this user must have been verifed
+        // user already have a phone number ,the phone number of this user must have been verifed
         console.log(this.userService.user);
         // hack
         if (this.userService.user.phone) {
@@ -74,7 +72,7 @@ export class ProfilePage implements  OnInit {
         if (!this.user.phone) {
             this.toastService.presentToast('if you want to change email please verify your phone number first! ', 2000).then(r => {
             });
-            return ;
+            return;
         }
 
         // user already have a phone number ,the phone number of this user must have been verified
@@ -86,11 +84,12 @@ export class ProfilePage implements  OnInit {
         });
         return await modal.present();
     }
+
     async updatePasswordModal() {
         if (!this.user.phone) {
             this.toastService.presentToast('if you want to change password please verify your phone number first! ', 2000).then(r => {
             });
-            return ;
+            return;
         }
 
         const modal = await this.modalController.create({
@@ -122,7 +121,7 @@ export class ProfilePage implements  OnInit {
                             // const base64Image =  imageData;
                             const storageRef = firebase.storage().ref('static/photo/' + this.userService.user.firebaseUid + '.jpg');
                             this.presentLoading();
-                            storageRef.putString(base64Image, 'data_url').then( snapshot => {
+                            storageRef.putString(base64Image, 'data_url').then(snapshot => {
                                 console.log('upload successful');
                                 // get a url of uploaded img just now
                                 storageRef.getDownloadURL().then(url => {
@@ -132,13 +131,13 @@ export class ProfilePage implements  OnInit {
                                         displayName: this.afAuth.auth.currentUser.displayName,
                                         photoURL: url
                                     }).then(res => {
-                                         const  user = new User();
-                                         user.photoUrl = url;
-                                         this.userService.updateUser(user).then();
+                                            const user = new User();
+                                            user.photoUrl = url;
+                                            this.userService.updateUser(user).then();
                                         }
                                     );
                                 });
-                            }).catch( err => {
+                            }).catch(err => {
                                 this.toastService.presentToast('upload failed! ', 2000).then(r => {
                                 });
                             });
@@ -158,7 +157,7 @@ export class ProfilePage implements  OnInit {
                                 // const base64Image =  imageData;
                                 const storageRef = firebase.storage().ref('static/photo' + this.userService.user.firebaseUid);
                                 this.presentLoading();
-                                storageRef.putString(base64Image, 'data_url').then( snapshot => {
+                                storageRef.putString(base64Image, 'data_url').then(snapshot => {
                                     console.log('upload successful');
                                     console.log(snapshot);
                                     this.loadingDismiss();
@@ -167,13 +166,13 @@ export class ProfilePage implements  OnInit {
                                             displayName: this.afAuth.auth.currentUser.displayName,
                                             photoURL: url
                                         }).then(res => {
-                                                const  user = new User();
+                                                const user = new User();
                                                 user.photoUrl = url;
                                                 this.userService.updateUser(user).then();
                                             }
                                         );
                                     });
-                                }).catch( err => {
+                                }).catch(err => {
                                     this.toastService.presentToast('upload failed! ', 2000).then(r => {
                                     });
                                 });
@@ -190,6 +189,7 @@ export class ProfilePage implements  OnInit {
         });
         await actionSheet.present();
     }
+
     async presentLoading() {
         const loading = await this.loadingController.create({
             message: 'Please wait...',
@@ -197,9 +197,10 @@ export class ProfilePage implements  OnInit {
         });
         await loading.present();
 
-        const { role, data } = await loading.onDidDismiss();
+        const {role, data} = await loading.onDidDismiss();
         console.log('Loading dismissed!');
     }
+
     loadingDismiss() {
         this.loadingController.dismiss('test').then(() => {
         });
@@ -207,15 +208,15 @@ export class ProfilePage implements  OnInit {
 
 
     ngOnInit(): void {
-            console.log(this.user);
-            console.log(this.userService.emailVerified);
-            if (this.userService.emailVerified === true) {
+        if (this.userService.emailVerified === true) {
             this.email_verified = 'verified';
         } else {
             this.email_verified = 'unverified';
         }
     }
-  edit(field: string) {
-    this.router.navigate(['/edit', field]);
-  }
+
+    edit(field: string) {
+        this.router.navigate(['/edit', field]).then(() => {
+        });
+    }
 }

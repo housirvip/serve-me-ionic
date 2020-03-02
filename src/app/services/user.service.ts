@@ -6,6 +6,8 @@ import {User} from '../classes/user';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {FirebaseService} from './firebase.service';
 import {environment} from '../../environments/environment';
+import {UserRole} from '../classes/user-role';
+import {Vendor} from '../classes/vendor';
 
 @Injectable({
     providedIn: 'root'
@@ -15,6 +17,8 @@ export class UserService {
     private _jwt: string;
     // tslint:disable-next-line:variable-name
     private _user: User;
+    // tslint:disable-next-line:variable-name
+    private _vendor: Vendor;
     // tslint:disable-next-line:variable-name
     private _isLogin = false;
     // tslint:disable-next-line:variable-name
@@ -30,6 +34,10 @@ export class UserService {
 
     get user(): User {
         return this._user;
+    }
+
+    get vendor(): Vendor {
+        return this._vendor;
     }
 
     get isLogin(): boolean {
@@ -108,6 +116,19 @@ export class UserService {
             });
     }
 
+    getVendor() {
+        if (!this._jwt) {
+            return;
+        }
+        this.http.get<BaseResponse>('user/vendor', {}).subscribe(
+            res => {
+                if (res.code !== 0) {
+                    return;
+                }
+                this._vendor = res.result;
+            });
+    }
+
     async updateUser(user: User) {
         return this.http.put<BaseResponse>('user/update', user).subscribe(
             res => {
@@ -127,14 +148,15 @@ export class UserService {
     setUser(user: User) {
         this._user = user;
         this._isLogin = true;
-        if (user.role.indexOf('ROLE_ADMIN') > 0) {
+        if (user.role.indexOf(UserRole.ROLE_ADMIN) > 0) {
             this._isAdmin = true;
         }
-        if (user.role.indexOf('ROLE_CUSTOMER') > 0) {
+        if (user.role.indexOf(UserRole.ROLE_CUSTOMER) > 0) {
             this._isCustomer = true;
         }
-        if (user.role.indexOf('ROLE_VENDOR') > 0) {
-            this._isLogin = true;
+        if (user.role.indexOf(UserRole.ROLE_VENDOR) > 0) {
+            this._isVendor = true;
+            this.getVendor();
         }
     }
 }

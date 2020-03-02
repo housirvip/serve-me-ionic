@@ -1,6 +1,9 @@
 export enum OrderStatus {
-    waiting = 'waiting',
-    biding = 'biding',
-    progress = 'progress',
-    completed = 'completed'
+    Waiting = 'Waiting',
+    Biding = 'Biding',
+    Progressing = 'Progressing',
+    Completed = 'Completed',
+    Pending = 'Pending',
+    Closed = 'Closed',
+    Finished = 'Finished'
 }

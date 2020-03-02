@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
-import {VendorGender, VendorType, VendorResult} from '../classes/vendor';
 import {HttpClient} from '@angular/common/http';
+import {VendorCategory} from '../classes/vendor-category';
+import {VendorResult} from '../classes/vendor-result';
+import {VendorGender} from '../classes/vendor-gender';
 
 const MAX_PRICE_LIMIT = 2000;
 const MIN_PRICE_LIMIT = 0;
@@ -13,8 +15,6 @@ export class FilterService {
     constructor(private httpClient: HttpClient) {
         this._typeFilled = false;
         this._priceFilled = false;
-        this._gender = VendorGender.whatever;
-        this._type = VendorType.whatever;
         this._maxPrice = MAX_PRICE_LIMIT;
         this._minPrice = MIN_PRICE_LIMIT;
     }
@@ -24,7 +24,7 @@ export class FilterService {
     // tslint:disable-next-line:variable-name
     private _gender: VendorGender;
     // tslint:disable-next-line:variable-name
-    private _type: VendorType;
+    private _type: VendorCategory;
 
     // tslint:disable-next-line:variable-name
     public _priceFilled: boolean;
@@ -55,7 +55,7 @@ export class FilterService {
         this._gender = value;
     }
 
-    set type(value: VendorType) {
+    set type(value: VendorCategory) {
         this._type = value;
     }
 
@@ -71,13 +71,13 @@ export class FilterService {
 
     displayType() {
         switch (this._type) {
-            case VendorType.Cleaner:
-                return 'cleaner';
-            case VendorType.Painter:
-                return 'Painter';
-            case VendorType.DogWalker:
-                return 'DogWalker';
-            case VendorType.ElectricalWork:
+            case VendorCategory.HomeCleaning:
+                return 'HomeCleaning';
+            case VendorCategory.HomeRepairAndPainting:
+                return 'HomeRepairAndPainting';
+            case VendorCategory.PackagingAndMoving:
+                return 'PackagingAndMoving';
+            case VendorCategory.Electrical:
                 return 'Electrical';
         }
     }
@@ -89,9 +89,9 @@ export class FilterService {
             priceString: '30',
             rate: 5,
             titleName: 'Tom',
-            typeString: 'Cleaner',
+            typeString: 'HomeCleaning',
             workHour: '9AM-9PM',
-            workday: 'Mon Tues Wed Thurs Fri Sat Sun',
+            workDay: 'Mon Tues Wed Thurs Fri Sat Sun',
             photoUrl: '../../assets/img/avatar.png'
         }, {
             commentsNum: 3,
@@ -100,16 +100,16 @@ export class FilterService {
             titleName: 'James',
             typeString: 'Dog Walker',
             workHour: '9AM-9PM',
-            workday: 'Mon Tues Wed Thurs Fri Sat Sun',
+            workDay: 'Mon Tues Wed Thurs Fri Sat Sun',
             photoUrl: '../../assets/img/avatar.png'
         }, {
             commentsNum: 3,
             priceString: '15',
             rate: 5,
             titleName: 'Jack',
-            typeString: 'Cleaner',
+            typeString: 'HomeCleaning',
             workHour: '9AM-9PM',
-            workday: 'Mon Tues Wed Thurs Fri Sat Sun',
+            workDay: 'Mon Tues Wed Thurs Fri Sat Sun',
             photoUrl: '../../assets/img/avatar.png'
         }];
     }

@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {WorkType} from '../classes/work-type';
 import {OrderStatus} from '../classes/order-status';
 import {HttpClient} from '@angular/common/http';
 import {Order} from '../classes/order';
+import {VendorCategory} from '../classes/vendor-category';
 
 @Injectable({
     providedIn: 'root'
@@ -14,83 +14,102 @@ export class OrderService {
 
     getOrders(filter: OrderStatus): Order[] {
         switch (filter) {
-            case OrderStatus.waiting:
+            case OrderStatus.Pending:
                 return [
                     {
-                        title: 'Look for cleaner',
-                        price: '12.99$',
-                        type: WorkType.ComputerRepair,
-                        status: OrderStatus.waiting,
-                        serverProvider: 'Bill',
-                        time: '01/01/2020',
-                        imgUrl: '../../assets/order/cleaner.png'
-                    },
-                    {
+                        id: 1,
+                        uid: 1,
+                        vid: 1,
+                        description: 'asdasd',
                         title: 'Really need someone help me',
-                        price: '20.99$',
-                        type: WorkType.ComputerRepair,
-                        status: OrderStatus.waiting,
+                        price: 20.99,
+                        type: VendorCategory.ComputerRepair,
+                        status: OrderStatus.Pending,
                         serverProvider: 'Jack',
                         time: '02/01/2020',
                         imgUrl: '../../assets/order/cleaner.png'
                     },
                 ];
-            case OrderStatus.biding:
+            case OrderStatus.Biding:
                 return [
                     {
+                        id: 1,
+                        uid: 1,
+                        vid: 1,
+                        description: 'asdasd',
                         title: 'Look for cleaner',
-                        price: '12.99$',
-                        type: WorkType.ComputerRepair,
-                        status: OrderStatus.waiting,
+                        price: 12.99,
+                        type: VendorCategory.ComputerRepair,
+                        status: OrderStatus.Waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
                         imgUrl: '../../assets/order/repair.png'
                     }];
-            case OrderStatus.progress:
+            case OrderStatus.Progressing:
                 return [
                     {
+                        id: 1,
+                        uid: 1,
+                        vid: 1,
+                        description: 'asdasd',
                         title: 'Look for cleaner',
-                        price: '12.99$',
-                        type: WorkType.ComputerRepair,
-                        status: OrderStatus.waiting,
+                        price: 12.99,
+                        type: VendorCategory.ComputerRepair,
+                        status: OrderStatus.Waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
                         imgUrl: '../../assets/order/weedcleaner.png'
                     },
                     {
+                        id: 1,
+                        uid: 1,
+                        vid: 1,
+                        description: 'asdasd',
                         title: 'Look for cleaner',
-                        price: '12.99$',
-                        type: WorkType.ComputerRepair,
-                        status: OrderStatus.waiting,
+                        price: 12.99,
+                        type: VendorCategory.ComputerRepair,
+                        status: OrderStatus.Waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
                         imgUrl: '../../assets/order/weedcleaner.png'
                     }];
-            case OrderStatus.completed:
+            case OrderStatus.Completed:
                 return [
                     {
+                        id: 1,
+                        uid: 1,
+                        vid: 1,
+                        description: 'asdasd',
                         title: 'Look for cleaner',
-                        price: '12.99$',
-                        type: WorkType.ComputerRepair,
-                        status: OrderStatus.waiting,
+                        price: 12.99,
+                        type: VendorCategory.ComputerRepair,
+                        status: OrderStatus.Waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
                         imgUrl: '../../assets/order/dogwalker.png'
                     },
                     {
+                        id: 1,
+                        uid: 1,
+                        vid: 1,
+                        description: 'asdasd',
                         title: 'Look for cleaner',
-                        price: '12.99$',
-                        type: WorkType.ComputerRepair,
-                        status: OrderStatus.waiting,
+                        price: 12.99,
+                        type: VendorCategory.ComputerRepair,
+                        status: OrderStatus.Waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
                         imgUrl: '../../assets/order/dogwalker.png'
                     },
                     {
+                        id: 1,
+                        uid: 1,
+                        vid: 1,
+                        description: 'asdasd',
                         title: 'Look for cleaner',
-                        price: '12.99$',
-                        type: WorkType.ComputerRepair,
-                        status: OrderStatus.waiting,
+                        price: 12.99,
+                        type: VendorCategory.ComputerRepair,
+                        status: OrderStatus.Waiting,
                         serverProvider: 'Bill',
                         time: '01/01/2020',
                         imgUrl: '../../assets/order/dogwalker.png'

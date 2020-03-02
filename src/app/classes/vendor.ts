@@ -1,25 +1,17 @@
-export enum VendorGender {
-    whatever,
-    male    ,
-    female,
-}
+import {Address} from './address';
+import {VendorCategory} from './vendor-category';
+import {User} from './user';
 
-export enum VendorType {
-    whatever,
-    Cleaner,
-    Painter,
-    DogWalker,
-    ElectricalWork,
-}
-
-
-export class VendorResult {
-    titleName: string;
-    typeString: string;
-    priceString: string;
-    workday: string;
-    workHour: string;
-    rate: number;
-    commentsNum: number;
+export class Vendor {
+    id: number;
+    uid: number;
+    name: string;
+    email: string;
+    phone: string;
     photoUrl: string;
+    address: Address;
+    categories: VendorCategory[];
+    createTime: Date;
+    updateTime: Date;
+    user: User;
 }
