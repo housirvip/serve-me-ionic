@@ -8,6 +8,7 @@ import { NewRequestPageRoutingModule } from './new-request-routing.module';
 
 import { NewRequestPage } from './new-request.page';
 import {ShowAddressPageModule} from './show-address/show-address.module';
+import {UpdateaddressPageModule} from '../address/updateaddress/updateaddress.module';
 
 @NgModule({
     imports: [
@@ -16,7 +17,8 @@ import {ShowAddressPageModule} from './show-address/show-address.module';
         IonicModule,
         NewRequestPageRoutingModule,
         ReactiveFormsModule,
-        ShowAddressPageModule
+        ShowAddressPageModule,
+        UpdateaddressPageModule
     ],
   declarations: [NewRequestPage]
 })

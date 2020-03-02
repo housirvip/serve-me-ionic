@@ -12,9 +12,9 @@ export class Order {
     title: string;
     description: string;
     price: number;
-    type: VendorCategory;
+    category: VendorCategory;
     status: OrderStatus;
-    time: Date;
+    time: string;
     createTime: Date;
     updateTime: Date;
     imgUrl: string;

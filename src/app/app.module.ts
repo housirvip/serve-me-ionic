@@ -19,6 +19,7 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireMessagingModule} from '@angular/fire/messaging';
 import { Camera } from '@ionic-native/camera/ngx';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
     declarations: [AppComponent],
@@ -38,6 +39,7 @@ import { Camera } from '@ionic-native/camera/ngx';
         FingerprintAIO,
         FirebaseX,
         Camera,
+        DatePipe,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
         {provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true},
     ],

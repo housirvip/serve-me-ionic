@@ -13,7 +13,7 @@ export class AddressService {
     }
 
     get addresses(): Address[] {
-        return this._addresses;
+        return this._addresses || [];
     }
 
     // tslint:disable-next-line:variable-name
@@ -34,8 +34,14 @@ export class AddressService {
             });
     }
 
-    deleteAddress(id: number): Observable<BaseResponse> {
-        return this.http.delete<BaseResponse>('order/' + id, {});
+    deleteAddress(id: number) {
+         this.http.delete<BaseResponse>('order/' + id, {}).subscribe(
+            res => {
+                if (res.code !== 0) {
+                    return;
+                }
+                this.getAddresses();
+            });
     }
 
     updateAddress(address: Address) {

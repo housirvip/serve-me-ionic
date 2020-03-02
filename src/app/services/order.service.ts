@@ -46,6 +46,12 @@ export class OrderService {
         });
     }
 
+    createOrder(order: Order) {
+        this.http.post<BaseResponse>('order', order).subscribe(
+            res => {
+            });
+    }
+
     updateOrder(order: Order) {
         this.http.put<BaseResponse>('order', order).subscribe(
             res => {
