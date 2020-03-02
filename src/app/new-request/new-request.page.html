@@ -9,27 +9,49 @@
 </ion-header>
 
 <ion-content >
+  <form>
 <ion-list>
   <ion-item>
-    <ion-select placeholder="Select One" (ionChange)="onTypeChange($event)" >
+    <ion-icon name="build-outline"></ion-icon>
+     <ion-label>category</ion-label>
+    <ion-select placeholder="Select One" >
       <ion-select-option *ngFor="let worktype of WorkTypeList" value="{{worktype}}">{{worktype}}</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>
     <ion-icon name="calendar-outline"></ion-icon>
-    <ion-label>MM DD YY</ion-label>
-    <ion-datetime displayFormat="MM DD YY" placeholder="Select Date"></ion-datetime>
-  </ion-item>
-  <ion-item>
     <ion-label>Start Date</ion-label>
     <ion-datetime value="1990-02-19" placeholder="Select Date" ></ion-datetime>
   </ion-item>
   <ion-item>
-    <ion-label>Start Time</ion-label>
+    <ion-icon name="time-outline"></ion-icon>
+    <ion-label>
+      Start Time</ion-label>
     <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="05:43" hour-values="7,8,9,10,11,12,13,14,15" minute-values="10,20,30,40,50,60"></ion-datetime>
   </ion-item>
-</ion-list>
+  <ion-item>
 
+    <ion-label position="floating">
+      <ion-icon name="arrow-redo-outline"></ion-icon>
+      Title</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">
+      <ion-icon name="document-text-outline"></ion-icon>
+      descripte</ion-label>
+    <ion-textarea></ion-textarea>
+  </ion-item>
+  <ion-item detail="true" (click)="openShowaddress()">
+    <ion-icon name="home-outline"></ion-icon>
+    <label> Select an address</label>
+  </ion-item>
+  <ion-button  class="edit-button"   type="submit" expand="full" >
+    SAVED
+  </ion-button>
+</ion-list>
+  </form>
 </ion-content>
 
 

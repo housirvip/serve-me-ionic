@@ -3,6 +3,9 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {Address} from '../classes/address';
 import {ModalController} from '@ionic/angular';
 import {WorkType, getAllWorkTypestring} from '../classes/work-type';
+import {UpdateaddressPage} from '../address/updateaddress/updateaddress.page';
+import {ShowAddressPage} from './show-address/show-address.page';
+import {AddressService} from '../services/address.service';
 
 
 
@@ -21,13 +24,11 @@ export class NewRequestPage implements OnInit {
   get WorkTypeList() {
     return getAllWorkTypestring();
   }
-  updateAddressForm = this.formBuilder.group({
+    requestForm = this.formBuilder.group({
     discription: ['', [Validators.required, Validators.maxLength(10)]],
+      title: ['', [Validators.required, Validators.maxLength(10)]],
+      address: ['', [Validators.required]],
   });
-
-  get discription() {
-    return this.updateAddressForm.get('name');
-  }
   public errorMessages = {
     discription: [
       {type: 'required', message: 'Name is required'},
@@ -37,10 +38,25 @@ export class NewRequestPage implements OnInit {
 
 
   constructor(private modalController: ModalController,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private addressService: AddressService) {
     console.log(this.WorkTypeList);
   }
   ngOnInit() {
+  }
+
+
+  async openShowaddress() {
+    const modal = await this.modalController.create({
+      component: ShowAddressPage,
+      cssClass: 'my-custom-modal-css'
+    });
+    // @ts-ignore
+    modal.onDidDismiss().then((data) => {
+      console.log('dissmisss');
+      console.log(data);
+    });
+    return await modal.present();
   }
 
   saved() {

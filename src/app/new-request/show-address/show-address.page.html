@@ -1,0 +1,20 @@
+
+
+<ion-content>
+  <ion-list *ngFor="let address of this.AddresList">
+    <ion-card>
+      <ion-card-title>
+        {{address.username}}
+      </ion-card-title>
+      <ion-card-content>
+        <p>{{address.address2}}</p>
+        <p>{{address.city}},{{address.state}},{{address.zipCode}}</p>
+        <p>PhoneNumber:{{address.phone}}</p>
+        <div style="display: flex">
+          <ion-button size="small" (click)="selected(address)">select</ion-button>
+
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

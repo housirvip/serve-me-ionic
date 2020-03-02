@@ -7,13 +7,4 @@ export class Address {
     username: string;
     phone: string;
     zipCode: string;
-    constructor() {
-        this.id = 0;
-        this.address2 = '';
-        this.state = '';
-        this.city = '';
-        this.username = '';
-        this.phone = '';
-        this.zipCode = '';
-    }
 }

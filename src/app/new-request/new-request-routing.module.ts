@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: NewRequestPage
+  },
+  {
+    path: 'show-address',
+    loadChildren: () => import('./show-address/show-address.module').then( m => m.ShowAddressPageModule)
   }
 ];
 

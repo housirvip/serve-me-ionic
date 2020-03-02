@@ -22,7 +22,6 @@ export class AddressPage implements OnInit {
               private afAuth: AngularFireAuth,
               private  modalController: ModalController) { }
   ngOnInit() {
-     console.log(this.afAuth.auth.currentUser);
      this.userService.user ? this.addressService.getAddress(this.userService.user.id) :
          console.log('error no user,please enter this page again');
   }
