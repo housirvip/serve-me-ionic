@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { Location } from '@angular/common';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ModalController} from '@ionic/angular';
 import {UpdateaddressPage} from '../address/updateaddress/updateaddress.page';
@@ -8,6 +9,8 @@ import {VendorCategory} from '../classes/vendor-category';
 import {Order} from '../classes/order';
 import {OrderService} from '../services/order.service';
 import {Address} from '../classes/address';
+import {LoadingService} from '../services/loading.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -39,7 +42,9 @@ export class NewRequestPage implements OnInit {
     constructor(private modalController: ModalController,
                 private formBuilder: FormBuilder,
                 private addressService: AddressService,
-                private  orderService: OrderService) {
+                private  orderService: OrderService,
+                private  loadingService: LoadingService,
+                private  location: Location) {
         this.currentOrder = new Order();
         this.vendorCategory = [];
         // tslint:disable-next-line:forin
@@ -68,7 +73,7 @@ export class NewRequestPage implements OnInit {
                 cssClass: 'my-custom-modal-css'
             });
             modal.onDidDismiss().then((data: any) => {
-                this.selectedAddress = data ? data.data.address : null;
+                this.selectedAddress = data.data ? data.data.address : null;
             });
             return await modal.present();
         }
@@ -81,6 +86,13 @@ export class NewRequestPage implements OnInit {
         // console.log(this.selectedAddress);
         // console.log(this.isoDate);
         this.currentOrder.address = this.selectedAddress;
-        this.orderService.createOrder(this.currentOrder);
+        this.loadingService.present();
+        this.orderService.createOrder(this.currentOrder).subscribe(
+            res => {
+                this.loadingService.dismiss();
+                console.log('create order success!');
+                this.location.back();
+            }
+        );
     }
 }

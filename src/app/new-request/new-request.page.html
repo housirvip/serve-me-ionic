@@ -51,11 +51,29 @@
                 <ion-textarea formControlName="description" [(ngModel)]="this.currentOrder.description"></ion-textarea>
             </ion-item>
 
-            <ion-item detail="true" (click)="openShowAddress()">
+            <ion-item detail="true" (click)="openShowAddress()" >
                 <ion-icon name="home-outline"></ion-icon>
                 <label>{{this.addressService.addresses?.length ? 'select an address' : 'add an new address'}}</label>
             </ion-item>
-            <ion-button class="edit-button" type="submit" expand="full">
+          <ion-item>
+            <ion-card *ngIf="selectedAddress">
+              <ion-card-title>
+                {{this.selectedAddress.name}}
+              </ion-card-title>
+              <ion-card-content>
+                <p>{{this.selectedAddress.street}}</p>
+                <p>{{this.selectedAddress.city}},{{this.selectedAddress.state}},{{this.selectedAddress.zipCode}}</p>
+                <p>PhoneNumber:{{this.selectedAddress.phone}}</p>
+              </ion-card-content>
+            </ion-card>
+            <ion-card *ngIf="!selectedAddress" style="width: 248px;height: 148px">
+              <ion-card-content>
+                  <ion-title> Empty address</ion-title>
+                </ion-card-content>
+            </ion-card>
+          </ion-item>
+
+            <ion-button [disabled]="!requestForm.valid || !this.selectedAddress" class="edit-button" type="submit" expand="full">
                 SAVED
             </ion-button>
         </ion-list>

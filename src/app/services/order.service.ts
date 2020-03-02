@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {BaseResponse} from '../core/base-response';
 import {Order} from '../classes/order';
 import {Bid} from '../classes/bid';
+import {LoadingService} from './loading.service';
 
 @Injectable({
     providedIn: 'root'
@@ -22,7 +23,8 @@ export class OrderService {
     // tslint:disable-next-line:variable-name
     private _currentOrder: Order;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,
+                private loadingService: LoadingService) {
     }
 
     getOrder(id: number) {
@@ -47,9 +49,7 @@ export class OrderService {
     }
 
     createOrder(order: Order) {
-        this.http.post<BaseResponse>('order', order).subscribe(
-            res => {
-            });
+       return  this.http.post<BaseResponse>('order', order);
     }
 
     updateOrder(order: Order) {
