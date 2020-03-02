@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import {Address} from '../classes/address';
 import {ModalController} from '@ionic/angular';
 import {WorkType, getAllWorkTypestring} from '../classes/work-type';
 import {UpdateaddressPage} from '../address/updateaddress/updateaddress.page';
@@ -15,11 +14,6 @@ import {AddressService} from '../services/address.service';
   templateUrl: './new-request.page.html',
   styleUrls: ['./new-request.page.scss'],
 })
-
-
-
-
-
 export class NewRequestPage implements OnInit {
   get WorkTypeList() {
     return getAllWorkTypestring();
@@ -61,6 +55,4 @@ export class NewRequestPage implements OnInit {
 
   saved() {
   }
-
-
 }

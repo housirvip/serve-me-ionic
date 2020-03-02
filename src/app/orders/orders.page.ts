@@ -11,18 +11,20 @@ import {ToastService} from '../services/toast.service';
 })
 export class OrdersPage implements OnInit {
 
-    orders: Order[];
+    get orders(): Order[] {
+        return this.orderService.orders;
+    }
 
     constructor(private orderService: OrderService,
                 private toastService: ToastService) {
     }
 
     ngOnInit() {
-        this.getOrders(OrderStatus.waiting);
+        this.getOrders(OrderStatus.Pending);
     }
 
     getOrders(status: OrderStatus) {
-        this.orders = this.orderService.getOrders(status);
+        this.orderService.getOrders(status);
     }
 
     segmentChanged(ev: any) {

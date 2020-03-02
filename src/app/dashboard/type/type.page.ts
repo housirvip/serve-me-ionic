@@ -1,57 +1,59 @@
 import {Component, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
-import {VendorGender, VendorType} from '../../classes/vendor';
 import {FilterService} from '../../services/filter.service';
+import {VendorCategory} from '../../classes/vendor-category';
+import {VendorGender} from '../../classes/vendor-gender';
 
 @Component({
-  selector: 'app-type',
-  templateUrl: './type.page.html',
-  styleUrls: ['./type.page.scss'],
+    selector: 'app-type',
+    templateUrl: './type.page.html',
+    styleUrls: ['./type.page.scss'],
 })
 export class TypePage implements OnInit {
 
-  private gender: VendorGender;
-  private type: VendorType;
-  get vendorgender() { return VendorGender; }
-  get vendortype() { return VendorType; }
+    private gender: VendorGender;
+    private type: VendorCategory;
 
-  constructor(public modalController: ModalController,
-              private filterService: FilterService) {
-    this.type = VendorType.whatever;
-    this.gender = VendorGender.whatever;
-  }
-  ngOnInit() {
-  }
+    get vendorgender() {
+        return VendorGender;
+    }
+
+    get vendortype() {
+        return VendorCategory;
+    }
+
+    constructor(public modalController: ModalController,
+                private filterService: FilterService) {
+        this.type = VendorCategory.Appliances;
+        this.gender = VendorGender.whatever;
+    }
+
+    ngOnInit() {
+    }
 
 
-  onGenderChange(event) {
-    // tslint:disable-next-line:radix
-    this.gender = parseInt(event.target.value);
-  }
+    onGenderChange(event) {
+        this.gender = event.target.value as VendorGender;
+    }
 
     onTypeChange(event) {
-      // tslint:disable-next-line:radix
-      this.type = parseInt(event.target.value);
-  }
+        this.type = event.target.value as VendorCategory;
+    }
 
-  dismiss() {
-    this.modalController.dismiss({
-      dismissed: true
-    }).then(() => {
-    });
-  }
+    dismiss() {
+        this.modalController.dismiss({
+            dismissed: true
+        }).then(() => {
+        });
+    }
 
-  submit() {
-    this.filterService.gender = this.gender;
-    this.filterService.type = this.type;
-    this.filterService._typeFilled = true;
+    submit() {
+        this.filterService.gender = this.gender;
+        this.filterService.type = this.type;
+        this.filterService._typeFilled = true;
 
-    // refresh VendorList
-    this.filterService.getVendorList();
-    this.dismiss();
-  }
-
-
-
-
+        // refresh VendorList
+        this.filterService.getVendorList();
+        this.dismiss();
+    }
 }
