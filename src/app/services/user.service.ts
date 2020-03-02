@@ -129,8 +129,8 @@ export class UserService {
             });
     }
 
-    async updateUser(user: User) {
-        return this.http.put<BaseResponse>('user/update', user).subscribe(
+    updateUser(user: User) {
+        this.http.put<BaseResponse>('user/update', user).subscribe(
             res => {
                 if (res.code !== 0) {
                     return;

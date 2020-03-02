@@ -54,9 +54,7 @@ export class UpdateEmailPage implements OnInit {
       user.email = this.email;
       console.log(user);
       // tslint:disable-next-line:no-shadowed-variable
-      this.userService.updateUser(user).then(r => {
-        console.log(r);
-      });
+      this.userService.updateUser(user);
       this.dismiss();
     }).catch(
         (err) => {

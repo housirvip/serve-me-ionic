@@ -33,7 +33,7 @@ export class UpdateNamePage implements OnInit {
     }).then(res => {
           const  user = new User();
           user.username = this.inputtedName;
-          this.userService.updateUser(user).then();
+          this.userService.updateUser(user);
           this.toastService.presentToast('change name successfull! ', 2000).then(r => {
       });
           this.dismiss();

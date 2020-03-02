@@ -133,7 +133,7 @@ export class ProfilePage implements OnInit {
                                     }).then(res => {
                                             const user = new User();
                                             user.photoUrl = url;
-                                            this.userService.updateUser(user).then();
+                                            this.userService.updateUser(user);
                                         }
                                     );
                                 });
@@ -168,7 +168,7 @@ export class ProfilePage implements OnInit {
                                         }).then(res => {
                                                 const user = new User();
                                                 user.photoUrl = url;
-                                                this.userService.updateUser(user).then();
+                                                this.userService.updateUser(user);
                                             }
                                         );
                                     });

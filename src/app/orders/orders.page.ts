@@ -22,7 +22,13 @@ export class OrdersPage implements OnInit {
     }
 
     getOrders(status: OrderStatus) {
-        this.orders = this.orderService.getOrders(status);
+        this.orderService.getOrders(status).subscribe(res => {
+            console.log(res.result);
+            if (res.code !== 0) {
+                return;
+            }
+            this.orders = res.result;
+        });
     }
 
     segmentChanged(ev: any) {

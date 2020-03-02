@@ -1,17 +1,21 @@
 import {OrderStatus} from './order-status';
 import {VendorCategory} from './vendor-category';
+import {User} from './user';
+import {Vendor} from './vendor';
+import {Address} from './address';
 
 export class Order {
     id: number;
-    uid: number;
-    vid: number;
+    user: User;
+    vendor: Vendor;
     title: string;
     description: string;
     price: number;
     type: VendorCategory;
     status: OrderStatus;
-    serverProvider: string;
-    time: string;
+    time: Date;
+    createTime: Date;
+    updateTime: Date;
     imgUrl: string;
-    // address: Address;
+    address: Address;
 }

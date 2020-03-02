@@ -4,8 +4,8 @@
 
 export const environment = {
     // apiUrl: 'http://192.168.1.139:8000/',
-    apiUrl: 'https://serve-me-java.herokuapp.com/',
-    // apiUrl: 'http://localhost:8000/',
+    // apiUrl: 'https://serve-me-java.herokuapp.com/',
+    apiUrl: 'http://localhost:8000/',
     production: false,
     firebaseConfig: {
         apiKey: 'AIzaSyDCYS2n_rzJkPL3zN8pKhnYEuC7Kk8Yvbg',
