@@ -1,13 +1,12 @@
 
 export class Address {
-    id: 0;
+    id: number;
     address2: string;
     state: string;
     city: string;
     username: string;
     phone: string;
     zipCode: string;
-    uid: string;
     constructor() {
         this.id = 0;
         this.address2 = '';
@@ -16,6 +15,5 @@ export class Address {
         this.username = '';
         this.phone = '';
         this.zipCode = '';
-        this.uid = '';
     }
 }

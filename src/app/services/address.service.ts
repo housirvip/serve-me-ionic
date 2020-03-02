@@ -22,8 +22,7 @@ r() { }
     city: 'Arlington',
     username: 'Jiaming Pan',
     phone: '6822345804',
-    zipCode: 76013,
-    uid: 'lpfsdfewrweadfdf',
+    zipCode: '76013',
     },
       {
         id: 2,
@@ -32,8 +31,7 @@ r() { }
         city: 'Arlington',
         username: 'Jiaming Pan',
         phone: '6822345804',
-        zipCode: 76013,
-        uid: 'lpfsdfewrweadfdf',
+        zipCode: '76013',
       }
     ];
   }
