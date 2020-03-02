@@ -3,6 +3,7 @@ import {VendorCategory} from './vendor-category';
 import {User} from './user';
 import {Vendor} from './vendor';
 import {Address} from './address';
+import {Bid} from './bid';
 
 export class Order {
     id: number;
@@ -18,4 +19,5 @@ export class Order {
     updateTime: Date;
     imgUrl: string;
     address: Address;
+    bids: Bid[];
 }

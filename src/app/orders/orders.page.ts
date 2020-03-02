@@ -11,7 +11,9 @@ import {ToastService} from '../services/toast.service';
 })
 export class OrdersPage implements OnInit {
 
-    orders: Order[];
+    get orders(): Order[] {
+        return this.orderService.orders;
+    }
 
     constructor(private orderService: OrderService,
                 private toastService: ToastService) {
@@ -22,13 +24,7 @@ export class OrdersPage implements OnInit {
     }
 
     getOrders(status: OrderStatus) {
-        this.orderService.getOrders(status).subscribe(res => {
-            console.log(res.result);
-            if (res.code !== 0) {
-                return;
-            }
-            this.orders = res.result;
-        });
+        this.orderService.getOrders(status);
     }
 
     segmentChanged(ev: any) {
