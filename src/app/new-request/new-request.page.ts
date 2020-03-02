@@ -7,7 +7,6 @@ import {AddressService} from '../services/address.service';
 import {VendorCategory} from '../classes/vendor-category';
 import {Order} from '../classes/order';
 import {OrderService} from '../services/order.service';
-import {DatePipe} from '@angular/common';
 import {Address} from '../classes/address';
 
 
@@ -19,17 +18,8 @@ import {Address} from '../classes/address';
 
 export class NewRequestPage implements OnInit {
     currentOrder: Order;
-    isoDate: Date;
-    private selectedAddress: Address;
-
-    get WorkTypeList() {
-        const ret = [];
-        // tslint:disable-next-line:forin
-        for (const type in VendorCategory) {
-            ret.push(type);
-        }
-        return ret;
-    }
+    selectedAddress: Address;
+    vendorCategory: string[];
 
     requestForm = this.formBuilder.group({
         description: ['', [Validators.required, Validators.maxLength(10)]],
@@ -39,29 +29,30 @@ export class NewRequestPage implements OnInit {
         address: ['']
 
     });
-    public errorMessages = {
-        discription: [
+    errorMessages = {
+        description: [
             {type: 'required', message: 'Name is required'},
-            {type: 'maxlength', message: 'name should be shoter than 50 characters'}
+            {type: 'maxlength', message: 'name should be shorter than 50 characters'}
         ]
     };
-
 
     constructor(private modalController: ModalController,
                 private formBuilder: FormBuilder,
                 private addressService: AddressService,
-                private  orderService: OrderService,
-                private  datePipe: DatePipe) {
+                private  orderService: OrderService) {
         this.currentOrder = new Order();
-        this.isoDate = new Date();
+        this.vendorCategory = [];
+        // tslint:disable-next-line:forin
+        for (const type in VendorCategory) {
+            this.vendorCategory.push(type);
+        }
     }
 
     ngOnInit() {
-      this.addressService.getAddresses();
+        this.addressService.getAddresses();
     }
 
-
-    async openShowaddress() {
+    async openShowAddress() {
         if (!this.addressService.addresses.length) {
             const newAddressModel = await this.modalController.create({
                 component: UpdateaddressPage
@@ -76,7 +67,6 @@ export class NewRequestPage implements OnInit {
                 component: ShowAddressPage,
                 cssClass: 'my-custom-modal-css'
             });
-            // @ts-ignore
             modal.onDidDismiss().then((data: any) => {
                 this.selectedAddress = data ? data.data.address : null;
             });
@@ -85,10 +75,11 @@ export class NewRequestPage implements OnInit {
     }
 
     saved() {
-        const javatime = this.datePipe.transform(this.isoDate, 'yyyy-MM-dd hh:mm:ss');
-        console.log(javatime);
-        this.currentOrder.time = javatime;
-        console.log(this.selectedAddress);
+        // const javatime = this.datePipe.transform(this.isoDate, 'yyyy-MM-dd hh:mm:ss');
+        // console.log(javatime);
+        // this.currentOrder.time = javatime;
+        // console.log(this.selectedAddress);
+        // console.log(this.isoDate);
         this.currentOrder.address = this.selectedAddress;
         this.orderService.createOrder(this.currentOrder);
     }

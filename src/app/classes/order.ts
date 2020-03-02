@@ -14,7 +14,7 @@ export class Order {
     price: number;
     category: VendorCategory;
     status: OrderStatus;
-    time: string;
+    time: Date;
     createTime: Date;
     updateTime: Date;
     imgUrl: string;
