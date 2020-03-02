@@ -29,7 +29,7 @@ export class UserService {
     private _isCustomer = false;
 
     get jwt(): string {
-        return this._jwt;
+        return this._jwt || localStorage.getItem('jwt');
     }
 
     get user(): User {
@@ -72,6 +72,7 @@ export class UserService {
                 return;
             }
             this._jwt = jwt;
+            localStorage.setItem('jwt', jwt);
             this.getUser();
             firebaseService.notifyToUpdate();
             if (!environment.production) {
