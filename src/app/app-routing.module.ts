@@ -28,11 +28,6 @@ const routes: Routes = [
       import('./settings/settings.module').then(m => m.SettingsPageModule)
   },
   {
-    path: 'edit/:field',
-    loadChildren: () =>
-      import('./profile/edit/edit-page.module').then(m => m.EditPageModule)
-  },
-  {
     path: 'update-name',
     loadChildren: () => import('./profile/update-name/update-name.module').then( m => m.UpdateNamePageModule)
   },
@@ -43,6 +38,10 @@ const routes: Routes = [
   {
     path: 'new-request',
     loadChildren: () => import('./new-request/new-request.module').then( m => m.NewRequestPageModule)
+  },
+  {
+    path: 'vendor-dashboard',
+    loadChildren: () => import('./vendor-dashboard/vendor-dashboard.module').then( m => m.VendorDashboardPageModule)
   },
 
 ];
