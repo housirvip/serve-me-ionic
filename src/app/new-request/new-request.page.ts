@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { Location } from '@angular/common';
 import {FormBuilder, Validators} from '@angular/forms';
-import {ModalController} from '@ionic/angular';
+import {AlertController, ModalController} from '@ionic/angular';
 import {UpdateaddressPage} from '../address/updateaddress/updateaddress.page';
 import {ShowAddressPage} from './show-address/show-address.page';
 import {AddressService} from '../services/address.service';
@@ -26,6 +26,7 @@ export class NewRequestPage implements OnInit {
     vendorCategory: string[];
     availableHours: string;
     minDate: string;
+    dateSelected: boolean;
 
     requestForm = this.formBuilder.group({
         description: ['', [Validators.required, Validators.maxLength(10)]],
@@ -48,12 +49,14 @@ export class NewRequestPage implements OnInit {
                 private  orderService: OrderService,
                 private  loadingService: LoadingService,
                 private  location: Location,
-                private  datetimeService: DatetimeService) {
+                private  datetimeService: DatetimeService,
+                private alertController: AlertController) {
         this.currentOrder = new Order();
         this.vendorCategory = [];
         this.availableHours = '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23';
         this.minDate = this.datetimeService.getDatestring();
         this.currentOrder.time =  new Date();
+        this.dateSelected = false;
         // tslint:disable-next-line:forin
         for (const type in VendorCategory) {
             this.vendorCategory.push(type);
@@ -99,7 +102,7 @@ export class NewRequestPage implements OnInit {
         this.orderService.createOrder(this.currentOrder).subscribe(
             res => {
                 this.loadingService.dismiss();
-                console.log('create order success!');
+                this.presentAlert();
                 this.location.back();
             }
         );
@@ -107,7 +110,18 @@ export class NewRequestPage implements OnInit {
 
     refreshAvailableTime() {
         console.log(this.currentOrder.time);
-        this.availableHours = this.datetimeService.getTimeString(new Date(this.currentOrder.time));
-        console.log(this.availableHours);
+        const currentDate = new Date(this.currentOrder.time)
+        this.availableHours = this.datetimeService.getTimeString(currentDate);
+        this.dateSelected = true;
+    }
+
+    async presentAlert() {
+        const alert = await this.alertController.create({
+            header: 'Successful',
+            message: 'Place a new request successfully',
+            buttons: ['OK']
+        });
+
+        await alert.present();
     }
 }

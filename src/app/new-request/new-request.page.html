@@ -15,7 +15,7 @@
                 <ion-icon name="build-outline"></ion-icon>
                 <ion-label>category</ion-label>
                 <ion-select formControlName="category" [(ngModel)]="this.currentOrder.category"
-                            placeholder="Select One">
+                            placeholder="Select Date">
                     <ion-select-option *ngFor="let category of vendorCategory"
                                        value="{{category}}">{{category}}</ion-select-option>
                 </ion-select>
@@ -23,7 +23,10 @@
             <ion-item>
                 <ion-icon name="calendar-outline"></ion-icon>
                 <ion-label>Start Date</ion-label>
-                <ion-datetime formControlName="time"  min="{{this.minDate}}" placeholder="Select Date"
+                <ion-datetime
+                        (ionChange)="refreshAvailableTime()"
+                        formControlName="time"
+                              min="{{this.minDate}}" placeholder="Select Date"
                               [(ngModel)]="this.currentOrder.time"></ion-datetime>
             </ion-item>
             <ion-item>
@@ -31,10 +34,11 @@
                 <ion-label>
                     Start Time
                 </ion-label>
-                <ion-datetime formControlName="time" display-format="HH:mm" picker-format="HH:mm"
+                <ion-datetime [disabled]="!dateSelected" formControlName="time" display-format="HH:mm" picker-format="HH:mm"
+                              placeholder="Select Time"
                                [hourValues]="availableHours"
                                minute-values="0,10,20,30,40,50"
-                              [(ngModel)]="this.currentOrder.time" (click)="refreshAvailableTime()"></ion-datetime>
+                              [(ngModel)]="this.currentOrder.time" ></ion-datetime>
             </ion-item>
             <ion-item>
                 <ion-label position="floating">
