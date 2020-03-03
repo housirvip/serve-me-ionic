@@ -20,7 +20,7 @@ export class OrdersPage implements OnInit {
     }
 
     ngOnInit() {
-        this.getOrders(OrderStatus.Pending);
+       // this.getOrders(OrderStatus.Pending);
     }
 
     getOrders(status: OrderStatus) {
@@ -37,5 +37,8 @@ export class OrdersPage implements OnInit {
             });
             event.target.complete();
         }, 1000);
+    }
+    ionViewDidEnter() {
+        this.getOrders(OrderStatus.Waiting);
     }
 }

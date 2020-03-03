@@ -74,7 +74,8 @@ export class NewRequestPage implements OnInit {
                 component: UpdateaddressPage
             });
             newAddressModel.onDidDismiss().then((data) => {
-                this.addressService.getAddresses();
+                this.selectedAddress = data.data.address;
+               // this.addressService.getAddresses();
                 console.log('dissmisss');
                 console.log(data);
             });
