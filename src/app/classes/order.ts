@@ -4,6 +4,7 @@ import {User} from './user';
 import {Vendor} from './vendor';
 import {Address} from './address';
 import {Bid} from './bid';
+import {WorkType} from './work-type';
 
 export class Order {
     id: number;
@@ -20,4 +21,12 @@ export class Order {
     imgUrl: string;
     address: Address;
     bids: Bid[];
+
+  // Javier
+   type: WorkType;
+   requestor: string;
+   serverProvider: string;
+    orderID: number;
+    location: string;
+
 }

@@ -28,6 +28,14 @@ export class UserService {
     // tslint:disable-next-line:variable-name
     private _isCustomer = false;
 
+    // Javier
+    // tslint:disable-next-line:variable-name
+    private _vendorViewEnabled = false;
+
+    get isVendorViewEnabled(): boolean {
+        return this._vendorViewEnabled;
+    }
+
     get jwt(): string {
         return this._jwt || localStorage.getItem('jwt');
     }
@@ -159,5 +167,10 @@ export class UserService {
             this._isVendor = true;
             this.getVendor();
         }
+    }
+
+    // Javier
+    setVendorView(toggle: boolean) {
+        this._vendorViewEnabled = toggle;
     }
 }

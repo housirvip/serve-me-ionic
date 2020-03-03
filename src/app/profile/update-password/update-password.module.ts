@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { UpdatePasswordPageRoutingModule } from './update-password-routing.module';
 
 import { UpdatePasswordPage } from './update-password.page';
-import {EditPage} from '../edit/edit.page';
+
 
 @NgModule({
   imports: [
