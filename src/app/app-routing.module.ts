@@ -28,11 +28,6 @@ const routes: Routes = [
       import('./settings/settings.module').then(m => m.SettingsPageModule)
   },
   {
-    path: 'edit/:field',
-    loadChildren: () =>
-      import('./profile/edit/edit-page.module').then(m => m.EditPageModule)
-  },
-  {
     path: 'update-name',
     loadChildren: () => import('./profile/update-name/update-name.module').then( m => m.UpdateNamePageModule)
   },
