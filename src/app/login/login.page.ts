@@ -3,7 +3,6 @@ import {ModalController} from '@ionic/angular';
 import {FormBuilder} from '@angular/forms';
 import {UserService} from '../services/user.service';
 import {ToastService} from '../services/toast.service';
-import {FirebaseService} from '../services/firebase.service';
 import {FirebaseUISignInFailure, FirebaseUISignInSuccessWithAuthResult} from 'firebaseui-angular';
 import {User} from '../classes/user';
 
@@ -21,7 +20,7 @@ export class LoginPage {
     }
 
     successCallback(signInSuccessData: FirebaseUISignInSuccessWithAuthResult) {
-        console.log(signInSuccessData)
+        // console.log(signInSuccessData);
         if (signInSuccessData.authResult.additionalUserInfo.isNewUser) {
             const user: User = new User();
             user.email = signInSuccessData.authResult.user.email;

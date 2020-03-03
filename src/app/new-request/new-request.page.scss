@@ -1,0 +1,29 @@
+.error-message{
+  margin-left: 10%;
+  color: var(--ion-color-danger);
+}
+
+ion-icon {
+  margin-right: 10px;
+  color: black;
+}
+
+ion-card{
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color:  #fffbfb;
+
+  ion-card-content{
+    color: black;
+    p{
+      font-size: 16px;
+    }
+    ion-button{
+      width: 33%;
+
+    }
+  }
+}
+
+

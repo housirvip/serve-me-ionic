@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import "~@ionic/angular/css/display.css";
+@import '~@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -25,10 +25,21 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-@import "~firebaseui/dist/firebaseui.css";
 
-#closedButton {
+@import '~firebaseui/dist/firebaseui.css';
+
+
+#closedButton{
   text-align: left;
   margin: 20px 20px;
   font-size: 30px;
 }
+
+.my-custom-modal-css .modal-wrapper {
+  height: 40%;
+  top: 60%;
+  position: absolute;
+  display: block;
+}
+
+

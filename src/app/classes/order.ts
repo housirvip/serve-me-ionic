@@ -1,20 +1,23 @@
-import { WorkType } from "./work-type";
-import { OrderStatus } from "./order-status";
+import {OrderStatus} from './order-status';
+import {VendorCategory} from './vendor-category';
+import {User} from './user';
+import {Vendor} from './vendor';
+import {Address} from './address';
+import {Bid} from './bid';
 
 export class Order {
-  title: string;
-  price: string;
-  type: WorkType;
-  status: OrderStatus;
-  requestor: string; //who posted the order
-  serverProvider: string; //who is providing the service
-  time: string;
-  imgUrl: string;
-  orderID: number;
-  description: string;
-  location: string;
-  //maybe should add a list of bidders (ie bidders uid)
-  //maybe should add selected provider (uid of the provider who will fullfill the request)
-  //maybe should add priceRangeMin and priceRangeMax, which are set by customer
-  //  and have price be the agreed price
+    id: number;
+    user: User;
+    vendor: Vendor;
+    title: string;
+    description: string;
+    price: number;
+    category: VendorCategory;
+    status: OrderStatus;
+    time: Date;
+    createTime: Date;
+    updateTime: Date;
+    imgUrl: string;
+    address: Address;
+    bids: Bid[];
 }

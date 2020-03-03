@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>address</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<div id="closedButton">
+  <ion-icon name="close" (click)="dismiss()"></ion-icon>
+</div>
+
+
+<ion-content >
+<form [formGroup]="updateAddressForm" (ngSubmit)="saved()"><ion-list>
+  <ion-item lines="none">
+      <ion-label position="floating" > Full Name</ion-label>
+      <ion-input formControlName="name" [(ngModel)]="newAddress.name" ></ion-input>
+  </ion-item>
+  <div *ngFor="let error of errorMessages.name">
+    <ng-container *ngIf="name.hasError(error.type) && (name.dirty || name.touched)">
+      <small class="error-message">{{error.message}}</small>
+    </ng-container>
+  </div>
+  <ion-item lines="none">
+    <ion-label position="floating">Street,Apart,Suit,unit,Building,floor,etc</ion-label>
+    <ion-input  formControlName="address2" [(ngModel)]="newAddress.street"></ion-input>
+  </ion-item>
+  <div *ngFor="let error of errorMessages.address2">
+    <ng-container *ngIf="address2.hasError(error.type) && (address2.dirty || address2.touched)">
+      <small class="error-message">{{error.message}}</small>
+    </ng-container>
+  </div>
+  <ion-item lines="none">
+    <ion-label position="floating">City</ion-label>
+    <ion-input formControlName="city" [(ngModel)]="newAddress.city" ></ion-input>
+  </ion-item>
+  <div *ngFor="let error of errorMessages.city">
+    <ng-container *ngIf="city.hasError(error.type) && (city.dirty || city.touched)">
+      <small class="error-message">{{error.message}}</small>
+    </ng-container>
+  </div>
+  <ion-item lines="none">
+    <ion-label position="floating">State/Provice/Region</ion-label>
+    <ion-input formControlName="state"  [(ngModel)]="newAddress.state" ></ion-input>
+  </ion-item>
+  <div *ngFor="let error of errorMessages.state">
+    <ng-container *ngIf="state.hasError(error.type) && (state.dirty || state.touched)">
+      <small class="error-message">{{error.message}}</small>
+    </ng-container>
+  </div>
+  <ion-item lines="none">
+    <ion-label position="floating">Zip Code</ion-label>
+    <ion-input formControlName="zipcode" [(ngModel)]="newAddress.zipCode"></ion-input>
+  </ion-item>
+  <div *ngFor="let error of errorMessages.zipcode">
+    <ng-container *ngIf="zipcode.hasError(error.type) && (zipcode.dirty || zipcode.touched)">
+      <small class="error-message">{{error.message}}</small>
+    </ng-container>
+  </div>
+  <ion-item lines="none">
+    <ion-label position="floating">Phone Number</ion-label>
+    <ion-input formControlName="phone" [(ngModel)]="newAddress.phone"></ion-input>
+  </ion-item>
+  <div *ngFor="let error of errorMessages.phone">
+    <ng-container *ngIf="phone.hasError(error.type) && (phone.dirty || phone.touched)">
+      <small class="error-message">{{error.message}}</small>
+    </ng-container>
+  </div>
+    <ion-button [disabled]="!updateAddressForm.valid" class="edit-button"   type="submit" expand="full" >
+      SAVED
+    </ion-button>
+</ion-list></form>
+
+</ion-content>
+
+
+
+<div id='recaptcha-container'></div>
+

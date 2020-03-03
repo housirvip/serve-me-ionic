@@ -1,3 +1,5 @@
+import {UserRole} from './user-role';
+
 export class User {
     id: string;
     username: string;
@@ -5,13 +7,10 @@ export class User {
     phone: string;
     createTime: Date;
     updateTime: Date;
-    role: string[];
+    role: UserRole[];
     points: number;
     firebaseUid: string;
-    sex: string;
-    job: string;
-    state: string;
-    birthday: Date;
+    gender: string;
     fcmToken: string;
     photoUrl: string;
 }

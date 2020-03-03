@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Your Address</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-title>Your Address</ion-title>
+  <ion-item>
+   <ion-button expand="block" (click)="updateAddress()" >add a new address</ion-button>
+  </ion-item>
+  <ion-title>Personal Address</ion-title>
+  <ion-list *ngFor="let address of this.AddressList">
+    <ion-card>
+      <ion-card-title>
+        {{address.name}}
+      </ion-card-title>
+      <ion-card-content>
+        <p>{{address.street}}</p>
+        <p>{{address.city}},{{address.state}},{{address.zipCode}}</p>
+        <p>PhoneNumber:{{address.phone}}</p>
+        <div style="display: flex">
+          <ion-button size="small">Edit</ion-button>
+          <ion-button size="small" (click)="removeAddress(address)">Remove</ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+</ion-content>
