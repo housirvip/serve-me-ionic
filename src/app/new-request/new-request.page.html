@@ -15,7 +15,7 @@
                 <ion-icon name="build-outline"></ion-icon>
                 <ion-label>category</ion-label>
                 <ion-select formControlName="category" [(ngModel)]="this.currentOrder.category"
-                            placeholder="Select Date">
+                            placeholder="">
                     <ion-select-option *ngFor="let category of vendorCategory"
                                        value="{{category}}">{{category}}</ion-select-option>
                 </ion-select>
