@@ -4,6 +4,7 @@ import { FormsModule } from "@angular/forms";
 import { IonicModule } from "@ionic/angular";
 import { OrderDetailsPageRoutingModule } from "./order-details-routing.module";
 import { OrderDetailsPage } from "./order-details.page";
+import { BidPopoverComponent } from "./bid-popover/bid-popover.component";
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { OrderDetailsPage } from "./order-details.page";
     IonicModule,
     OrderDetailsPageRoutingModule
   ],
-  declarations: [OrderDetailsPage],
-  exports: [OrderDetailsPage]
+  declarations: [OrderDetailsPage, BidPopoverComponent],
+  exports: [OrderDetailsPage],
+  entryComponents: [BidPopoverComponent]
 })
 export class OrderDetailsPageModule {}

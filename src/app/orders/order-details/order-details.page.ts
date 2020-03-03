@@ -4,6 +4,9 @@ import { Order } from "../../classes/order";
 import { WorkType } from "../../classes/work-type";
 import { OrderStatus } from "../../classes/order-status";
 
+import { PopoverController } from "@ionic/angular";
+import { BidPopoverComponent } from "./bid-popover/bid-popover.component";
+
 @Component({
   selector: "app-order-details",
   templateUrl: "./order-details.page.html",
@@ -26,7 +29,10 @@ export class OrderDetailsPage implements OnInit {
   private order_requestor_txt = "CUSTOMER";
   private order_location_txt = "LOCATION";
 
-  constructor(private modalController: ModalController) {}
+  constructor(
+    private modalController: ModalController,
+    public popoverController: PopoverController
+  ) {}
 
   ngOnInit() {
     this.order_price = this.order.price;
@@ -46,7 +52,13 @@ export class OrderDetailsPage implements OnInit {
     this.modalController.dismiss("test").then(() => {});
   }
 
-  onPlaceBidPressed() {
-    
+  async onPlaceBidPressed(ev: any) {
+    const popover = await this.popoverController.create({
+      component: BidPopoverComponent,
+      //event: ev, //use this if you want the popover to be generated at the position of the click
+      backdropDismiss: true
+      //cssClass: "popover-style"
+    });
+    return await popover.present();
   }
 }

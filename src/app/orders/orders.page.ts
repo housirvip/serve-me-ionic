@@ -5,6 +5,7 @@ import { Order } from "../classes/order";
 import { OrderStatus } from "../classes/order-status";
 import { ToastService } from "../services/toast.service";
 import { OrderDetailsPage } from "./order-details/order-details.page";
+import { UserService } from "../services/user.service";
 
 @Component({
   selector: "app-orders",
@@ -13,14 +14,21 @@ import { OrderDetailsPage } from "./order-details/order-details.page";
 })
 export class OrdersPage implements OnInit {
   orders: Order[];
+  serviceProviderView: boolean;
 
   constructor(
     private orderService: OrderService,
     private modalController: ModalController,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private userService: UserService
   ) {}
 
   ngOnInit() {
+    this.serviceProviderView = this.userService.isVendorViewEnabled;
+    console.log(
+      "serviceProviderView in Orders Page: ",
+      this.serviceProviderView
+    );
     this.getOrders(OrderStatus.waiting);
   }
 

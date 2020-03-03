@@ -22,8 +22,8 @@
   --ion-color-secondary-rgb: 91, 95, 222;
   --ion-color-secondary-contrast: #ffffff;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #4B4EB6;
-  --ion-color-secondary-tint: #787CE4;
+  --ion-color-secondary-shade: #4b4eb6;
+  --ion-color-secondary-tint: #787ce4;
 
   /** tertiary **/
   --ion-color-tertiary: #7044ff;
@@ -58,12 +58,12 @@
   --ion-color-danger-tint: #f25454;
 
   /** dark **/
-  --ion-color-dark: #110A3B;
-  --ion-color-dark-rgb: 34,34,34;
+  --ion-color-dark: #110a3b;
+  --ion-color-dark-rgb: 34, 34, 34;
   --ion-color-dark-contrast: #fff;
-  --ion-color-dark-contrast-rgb: 255,255,255;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
   --ion-color-dark-shade: #190e60;
-  --ion-color-dark-tint: #2e256d;;
+  --ion-color-dark-tint: #2e256d;
 
   /** medium **/
   --ion-color-medium: #989aa2;
@@ -92,21 +92,18 @@
   /**minor information**/
   --ion-color-minor: #cfcbf8;
 
-
-
-ion-popover{
-  ion-backdrop{
-    opacity: 0.5 !important;
-  }
-  .popover-wrapper{
-    .popover-content{
-      width:80vw;
-      height: 66vw;
-      max-width:500px;
+  ion-popover {
+    --height: 50%;
+    --width: 85%;
+    ion-backdrop {
+      opacity: 0.5 !important;
+    }
+    .popover-wrapper {
+      .popover-content {
+        //width:80vw;
+        //height: 66vw;
+        max-width: 500px;
+      }
     }
   }
-}
-
-
-
 }
