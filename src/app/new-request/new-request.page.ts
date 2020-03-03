@@ -117,8 +117,7 @@ export class NewRequestPage implements OnInit {
 
     async presentAlert() {
         const alert = await this.alertController.create({
-            header: 'Successful',
-            message: 'Place a new request successfully',
+            header: 'New Request Successful!',
             buttons: ['OK']
         });
 
