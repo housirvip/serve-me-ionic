@@ -39,8 +39,10 @@ export class OrderService {
     }
 
     getOrders(filter: OrderStatus) {
+        this.loadingService.present();
         this.http.get<BaseResponse>('order', {}).subscribe(res => {
             console.log(res.result);
+            this.loadingService.dismiss();
             if (res.code !== 0) {
                 return;
             }

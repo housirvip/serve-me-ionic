@@ -23,7 +23,7 @@
             <ion-item>
                 <ion-icon name="calendar-outline"></ion-icon>
                 <ion-label>Start Date</ion-label>
-                <ion-datetime formControlName="time" value="1990-02-19" placeholder="Select Date"
+                <ion-datetime formControlName="time"  min="{{this.minDate}}" placeholder="Select Date"
                               [(ngModel)]="this.currentOrder.time"></ion-datetime>
             </ion-item>
             <ion-item>
@@ -31,10 +31,10 @@
                 <ion-label>
                     Start Time
                 </ion-label>
-                <ion-datetime formControlName="time" display-format="h:mm A" picker-format="h:mm A"
-                              value="1994-12-15T13:47:20.789"
-                              hour-values="7,8,9,10,11,12,13,14,15" minute-values="10,20,30,40,50,60"
-                              [(ngModel)]="this.currentOrder.time"></ion-datetime>
+                <ion-datetime formControlName="time" display-format="HH:mm" picker-format="HH:mm"
+                               [hourValues]="availableHours"
+                               minute-values="0,10,20,30,40,50"
+                              [(ngModel)]="this.currentOrder.time" (click)="refreshAvailableTime()"></ion-datetime>
             </ion-item>
             <ion-item>
                 <ion-label position="floating">

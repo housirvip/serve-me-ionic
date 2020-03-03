@@ -11,6 +11,7 @@ import {OrderService} from '../services/order.service';
 import {Address} from '../classes/address';
 import {LoadingService} from '../services/loading.service';
 import {Router} from '@angular/router';
+import {DatetimeService} from '../services/datetime.service';
 
 
 @Component({
@@ -23,11 +24,13 @@ export class NewRequestPage implements OnInit {
     currentOrder: Order;
     selectedAddress: Address;
     vendorCategory: string[];
+    availableHours: string;
+    minDate: string;
 
     requestForm = this.formBuilder.group({
         description: ['', [Validators.required, Validators.maxLength(10)]],
-        title: ['', [Validators.required, Validators.maxLength(50)]],
-        time: ['', [Validators.required, Validators.maxLength(50)]],
+        title: ['', [Validators.required, Validators.maxLength(30)]],
+        time: ['', [Validators.required, Validators.maxLength(100)]],
         category: ['', [Validators.required, Validators.maxLength(50)]],
         address: ['']
 
@@ -44,9 +47,13 @@ export class NewRequestPage implements OnInit {
                 private addressService: AddressService,
                 private  orderService: OrderService,
                 private  loadingService: LoadingService,
-                private  location: Location) {
+                private  location: Location,
+                private  datetimeService: DatetimeService) {
         this.currentOrder = new Order();
         this.vendorCategory = [];
+        this.availableHours = '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23';
+        this.minDate = this.datetimeService.getDatestring();
+        this.currentOrder.time =  new Date();
         // tslint:disable-next-line:forin
         for (const type in VendorCategory) {
             this.vendorCategory.push(type);
@@ -55,6 +62,7 @@ export class NewRequestPage implements OnInit {
 
     ngOnInit() {
         this.addressService.getAddresses();
+        console.log(this.datetimeService.getDatestring()) ;
     }
 
     async openShowAddress() {
@@ -63,6 +71,7 @@ export class NewRequestPage implements OnInit {
                 component: UpdateaddressPage
             });
             newAddressModel.onDidDismiss().then((data) => {
+                this.addressService.getAddresses();
                 console.log('dissmisss');
                 console.log(data);
             });
@@ -94,5 +103,11 @@ export class NewRequestPage implements OnInit {
                 this.location.back();
             }
         );
+    }
+
+    refreshAvailableTime() {
+        console.log(this.currentOrder.time);
+        this.availableHours = this.datetimeService.getTimeString(new Date(this.currentOrder.time));
+        console.log(this.availableHours);
     }
 }
