@@ -1,13 +1,26 @@
 <ion-content>
   <ion-list *ngFor="let address of this.AddresList">
     <ion-card>
-      <ion-card-title>
+      <ion-card-title style="margin-left: 28px">
         {{address.name}}
       </ion-card-title>
       <ion-card-content>
-        <p>{{address.street}}</p>
-        <p>{{address.city}},{{address.state}},{{address.zipCode}}</p>
-        <p>PhoneNumber:{{address.phone}}</p>
+        <ion-item lines="none">
+         <ion-label slot="start">Street:</ion-label>
+         {{address.street}}
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label slot="start">City</ion-label>
+          {{address.city}},{{address.state}}
+        </ion-item>
+        <ion-item lines="none">
+      <ion-label slot="start">Zipcode:</ion-label>
+       {{address.zipCode}}
+        </ion-item >
+          <ion-item lines="none">
+      <ion-label slot="start">PhoneNumber:</ion-label>
+            {{address.phone}}
+          </ion-item>
         <div style="display: flex">
           <ion-button size="small" (click)="selected(address)">select</ion-button>
 
