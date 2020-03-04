@@ -21,6 +21,7 @@ import {UpdateNamePageModule} from './update-name/update-name.module';
         VerificationModule,
         UpdatePasswordPageModule,
         UpdateNamePageModule,
+        VerificationModule,
         RouterModule.forChild([{path: '', component: ProfilePage}])
     ],
     declarations: [ProfilePage]
