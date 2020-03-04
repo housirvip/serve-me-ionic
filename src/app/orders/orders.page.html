@@ -15,11 +15,11 @@
   </ion-refresher>
   <ion-searchbar showCancelButton="always"></ion-searchbar>
   <ng-container *ngIf="serviceProviderView">
-    <ion-segment (ionChange)="segmentChanged($event)" value="Waiting">
-      <ion-segment-button value="Waiting">
+    <ion-segment (ionChange)="segmentChanged($event)" value="available">
+      <ion-segment-button value="available">
         <ion-label>Available</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="Biding">
+      <ion-segment-button value="bidding">
         <ion-label>Bidding</ion-label>
       </ion-segment-button>
       <!-- <ion-segment-button value="progress">

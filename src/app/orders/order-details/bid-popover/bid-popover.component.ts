@@ -37,7 +37,6 @@ export class BidPopoverComponent implements OnInit {
       console.log("bid message: ", this.bid_message);
 
       console.log(this.userService);
-      // TODO: put it in db
       var bid: Bid = {
         id: 0,
         uid: this.userService.vendor.id,

@@ -16,7 +16,8 @@ import * as linq from "linq-typescript";
     styleUrls: ['./orders.page.scss']
 })
 export class OrdersPage implements OnInit {
-    orderStatus: OrderStatus;
+    current_tab: string;
+    vendor_id: number;
     orders: Order[];
     serviceProviderView: boolean;
 
@@ -36,13 +37,16 @@ export class OrdersPage implements OnInit {
             'serviceProviderView in Orders Page: ',
             this.serviceProviderView
         );
-        this.orderStatus = OrderStatus.Waiting;
-        this.getOrders(this.orderStatus);
+        // TODO: uncomment this when venodor registration completes
+        // this.vendor_id = this.userService.vendor.id;
+        this.vendor_id = -1;
+        this.current_tab = "available";
+        this.getOrders();
     }
 
-    getOrders(status: OrderStatus) {
+    getOrders() {
         this.loadingService.present();
-        this.orderService.getOrders(status).subscribe( res =>{
+        this.orderService.getOrders().subscribe( res =>{
             console.log(res.result);
             this.loadingService.dismiss();
             if (res.code !== 0) {
@@ -50,7 +54,9 @@ export class OrdersPage implements OnInit {
                 return;
             }
             this.orders = res.result;
-            this.orders = this.orders.filter(x => x.status == status);
+            this.orders = this.orders.filter(x => x.status == OrderStatus.Waiting);
+            if (this.current_tab == "bidding")
+                this.orders = this.orders.filter(x => x.bids.some(b => b.uid == this.vendor_id));
             console.log('Order count:', this.orders.length);
         });
     }
@@ -69,14 +75,14 @@ export class OrdersPage implements OnInit {
     }
 
     segmentChanged(ev: any) {
-        this.orderStatus = ev.detail.value;
-        this.getOrders(this.orderStatus);
+        this.current_tab = ev.detail.value;
+        this.getOrders();
     }
 
     doRefresh(event) {
         setTimeout(() => {
             this.toastService.presentToast('updated', 2000).then(() => {
-                this.getOrders(this.orderStatus);
+                this.getOrders();
             });
             event.target.complete();
         }, 1000);

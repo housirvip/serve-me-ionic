@@ -40,7 +40,7 @@ export class OrderService {
         );
     }
 
-    getOrders(filter: OrderStatus) {
+    getOrders() {
         var _orders: Order[] = []
         this.loadingService.present();
         return this.http.get<BaseResponse>('order', {});
