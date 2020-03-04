@@ -74,7 +74,9 @@ export class NewRequestPage implements OnInit {
             });
             newAddressModel.onDidDismiss().then((data) => {
                 if (data.data.address.name) {
-                    this.selectedAddress = data.data.address;
+                    console.log('current address');
+                    console.log(this.addressService.currentAddress);
+                    this.selectedAddress = this.addressService.currentAddress;
                 }
             });
             return await newAddressModel.present();
