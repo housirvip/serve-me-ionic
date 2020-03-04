@@ -3,7 +3,7 @@
         <ion-title>Orders</ion-title>
     </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content scroll-y="false">
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
         <ion-refresher-content
                 pullingIcon="arrow-dropdown"
@@ -27,9 +27,11 @@
             <ion-label>Completed</ion-label>
         </ion-segment-button>
     </ion-segment>
-    <app-biding *ngIf="currentTab === 'Biding'"> </app-biding>
-    <app-pending *ngIf="currentTab === 'Pending'"> </app-pending>
-    <app-progressing *ngIf="currentTab === 'Progressing'"> </app-progressing>
-    <app-completed *ngIf="currentTab === 'Completed'"> </app-completed>
+    <div class="conpomentStatus">
+        <app-biding *ngIf="currentTab === 'Biding'" > </app-biding>
+        <app-pending *ngIf="currentTab === 'Pending'"> </app-pending>
+        <app-progressing *ngIf="currentTab === 'Progressing'"> </app-progressing>
+        <app-completed *ngIf="currentTab === 'Completed'"> </app-completed>
+    </div>
 
 </ion-content>

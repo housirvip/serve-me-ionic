@@ -39,10 +39,6 @@ const routes: Routes = [
     path: 'new-request',
     loadChildren: () => import('./new-request/new-request.module').then( m => m.NewRequestPageModule)
   },
-  {
-    path: 'vendor-dashboard',
-    loadChildren: () => import('./vendor-dashboard/vendor-dashboard.module').then( m => m.VendorDashboardPageModule)
-  },
 
 ];
 

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { Location } from '@angular/common';
+import {Location} from '@angular/common';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AlertController, ModalController} from '@ionic/angular';
 import {UpdateaddressPage} from '../address/updateaddress/updateaddress.page';
@@ -54,7 +54,7 @@ export class NewRequestPage implements OnInit {
         this.vendorCategory = [];
         this.availableHours = '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23';
         this.minDate = this.datetimeService.getDatestring();
-        this.currentOrder.time =  new Date();
+        this.currentOrder.time = new Date();
         this.dateSelected = false;
         // tslint:disable-next-line:forin
         for (const type in VendorCategory) {
@@ -64,7 +64,7 @@ export class NewRequestPage implements OnInit {
 
     ngOnInit() {
         this.addressService.getAddresses();
-        console.log(this.datetimeService.getDatestring()) ;
+        console.log(this.datetimeService.getDatestring());
     }
 
     async openShowAddress() {
@@ -73,10 +73,9 @@ export class NewRequestPage implements OnInit {
                 component: UpdateaddressPage
             });
             newAddressModel.onDidDismiss().then((data) => {
-                this.selectedAddress = data.data.address;
-               // this.addressService.getAddresses();
-                console.log('dissmisss');
-                console.log(data);
+                if (data.data.address.name) {
+                    this.selectedAddress = data.data.address;
+                }
             });
             return await newAddressModel.present();
         } else {
@@ -85,7 +84,8 @@ export class NewRequestPage implements OnInit {
                 cssClass: 'my-custom-modal-css'
             });
             modal.onDidDismiss().then((data: any) => {
-                this.selectedAddress = data.data ? data.data.address : null;
+                this.selectedAddress = data.data ? data.data.address  :  this.selectedAddress;
+                console.log(this.selectedAddress);
             });
             return await modal.present();
         }
@@ -110,7 +110,7 @@ export class NewRequestPage implements OnInit {
 
     refreshAvailableTime() {
         console.log(this.currentOrder.time);
-        const currentDate = new Date(this.currentOrder.time)
+        const currentDate = new Date(this.currentOrder.time);
         this.availableHours = this.datetimeService.getTimeString(currentDate);
         this.dateSelected = true;
     }

@@ -35,6 +35,7 @@ export class OrdersPage implements OnInit, AfterViewInit {
 
     segmentChanged(ev: any) {
         this.currentTab = ev.detail.value;
+        console.log(ev.detail.value as OrderStatus);
         this.getOrders(ev.detail.value as OrderStatus);
     }
 
