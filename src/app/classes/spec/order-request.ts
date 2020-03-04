@@ -3,6 +3,8 @@ import {VendorCategory} from '../vendor-category';
 import {HttpParams} from '@angular/common/http';
 
 export class OrderRequest {
+    uid: number;
+    vid: number;
     title: string;
     priceMin: number;
     priceMax: number;
