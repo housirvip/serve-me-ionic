@@ -21,12 +21,7 @@ export class OrderRequest {
     toParam(): HttpParams {
         let params = new HttpParams();
         Object.entries(this).forEach(
-            ([key, value]) => {
-                console.log('key value');
-                console.log(key);
-                console.log(value);
-                params = params.append(key, value);
-            }
+            ([key, value]) => params = params.append(key, value)
         );
         return params;
     }
