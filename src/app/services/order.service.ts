@@ -41,15 +41,9 @@ export class OrderService {
     }
 
     getOrders(filter: OrderStatus) {
+        var _orders: Order[] = []
         this.loadingService.present();
-        this.http.get<BaseResponse>('order', {}).subscribe(res => {
-            console.log(res.result);
-            this.loadingService.dismiss();
-            if (res.code !== 0) {
-                return;
-            }
-            this._orders = res.result;
-        });
+        return this.http.get<BaseResponse>('order', {});
     }
 
     createOrder(order: Order) {
@@ -58,7 +52,7 @@ export class OrderService {
 
     updateOrder(order: Order) {
         this.http.put<BaseResponse>('order', order).subscribe(
-            res => {
+            () => {
             });
     }
 

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { Location } from '@angular/common';
+import {Location} from '@angular/common';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AlertController, ModalController} from '@ionic/angular';
 import {UpdateaddressPage} from '../address/updateaddress/updateaddress.page';
@@ -12,6 +12,7 @@ import {Address} from '../classes/address';
 import {LoadingService} from '../services/loading.service';
 import {Router} from '@angular/router';
 import {DatetimeService} from '../services/datetime.service';
+import {OrderStatus} from '../classes/order-status';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class NewRequestPage implements OnInit {
     dateSelected: boolean;
 
     requestForm = this.formBuilder.group({
-        description: ['', [Validators.required, Validators.maxLength(10)]],
+        description: ['', [Validators.required, Validators.maxLength(1000)]],
         title: ['', [Validators.required, Validators.maxLength(30)]],
         time: ['', [Validators.required, Validators.maxLength(100)]],
         category: ['', [Validators.required, Validators.maxLength(50)]],
@@ -52,6 +53,7 @@ export class NewRequestPage implements OnInit {
                 private  datetimeService: DatetimeService,
                 private alertController: AlertController) {
         this.currentOrder = new Order();
+        this.currentOrder.bids = [];
         this.vendorCategory = [];
         this.availableHours = '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23';
         this.minDate = this.datetimeService.getDatestring();
@@ -98,6 +100,8 @@ export class NewRequestPage implements OnInit {
         // console.log(this.selectedAddress);
         // console.log(this.isoDate);
         this.currentOrder.address = this.selectedAddress;
+        this.currentOrder.status = OrderStatus.Waiting;
+        console.log(this.currentOrder);
         this.loadingService.present();
         this.orderService.createOrder(this.currentOrder).subscribe(
             res => {

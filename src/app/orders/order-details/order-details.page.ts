@@ -3,9 +3,12 @@ import {ModalController} from '@ionic/angular';
 import {Order} from '../../classes/order';
 import {WorkType} from '../../classes/work-type';
 import {OrderStatus} from '../../classes/order-status';
+import {OrderService} from '../../services/order.service';
 
 import {PopoverController} from '@ionic/angular';
 import {BidPopoverComponent} from './bid-popover/bid-popover.component';
+import * as moment from 'moment';
+import * as linq from "linq-typescript";
 
 @Component({
     selector: 'app-order-details',
@@ -21,6 +24,7 @@ export class OrderDetailsPage implements OnInit {
     private order_requestor: string; //who posted the order
     private order_serverProvider: string; //who is providing the service
     private order_time: Date;
+    private order_time_str: string;
     private order_imgUrl: string;
     private order_orderID: number;
     private order_description: string;
@@ -30,23 +34,34 @@ export class OrderDetailsPage implements OnInit {
     private order_location_txt = 'LOCATION';
 
     constructor(
+        private orderService: OrderService,
         private modalController: ModalController,
         public popoverController: PopoverController
     ) {
     }
 
     ngOnInit() {
-        this.order_price = this.order.price;
+        if (this.order.bids){
+            const bids = new linq.List(this.order.bids);
+            this.order_price = bids.any() ? bids.min(x => x.price) : 0;
+        }
+        else{
+            this.order_price = 0;
+        }
+        // this.order_price = this.order.bids || this.order.bids.length == 0
+        //     ? 0
+        //     : this.order.bids.reduce((min, bid) => Math.min(min, bid.price), Number.MAX_VALUE);
         this.order_title = this.order.title;
         this.order_type = this.order.type;
         this.order_status = this.order.status;
-        this.order_requestor = this.order.requestor;
+        this.order_requestor = this.order.user.username;
         this.order_serverProvider = this.order.serverProvider;
         this.order_time = this.order.time;
+        this.order_time_str = moment(this.order_time).format('MM/DD - HH:mm');
         this.order_imgUrl = this.order.imgUrl;
         this.order_orderID = this.order.orderID;
         this.order_description = this.order.description;
-        this.order_location = this.order.location;
+        this.order_location = this.order.address.city;
     }
 
     onBackPressed() {
@@ -57,6 +72,7 @@ export class OrderDetailsPage implements OnInit {
     async onPlaceBidPressed(ev: any) {
         const popover = await this.popoverController.create({
             component: BidPopoverComponent,
+            componentProps: {order: this.order},
             // event: ev, //use this if you want the popover to be generated at the position of the click
             backdropDismiss: true
             // cssClass: "popover-style"

@@ -23,10 +23,9 @@ export class Order {
     bids: Bid[];
 
   // Javier
-   type: WorkType;
-   requestor: string;
-   serverProvider: string;
+    type: WorkType;
+    requestor: string;
+    serverProvider: string;
     orderID: number;
     location: string;
-
 }

@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { ToastService } from "../../../services/toast.service";
-import { PopoverController } from "@ionic/angular";
+import { OrderService } from "../../../services/order.service";
+import { PopoverController, NavParams } from "@ionic/angular";
+import { Bid } from 'src/app/classes/bid';
+import { Order } from 'src/app/classes/order';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: "app-bid-popover",
@@ -10,11 +14,17 @@ import { PopoverController } from "@ionic/angular";
 export class BidPopoverComponent implements OnInit {
   bid_amount: number;
   bid_message: string;
+  order: Order;
 
   constructor(
+    private orderService: OrderService,
     private toastService: ToastService,
-    private popoverController: PopoverController
-  ) {}
+    private userService: UserService,
+    private popoverController: PopoverController,
+    private navParams: NavParams
+  ) {
+    this.order = this.navParams.get("order");
+  }
 
   ngOnInit() {}
 
@@ -26,11 +36,18 @@ export class BidPopoverComponent implements OnInit {
       console.log("bid amount: ", this.bid_amount);
       console.log("bid message: ", this.bid_message);
 
-      //Todo: put it in db
+      console.log(this.userService);
+      // TODO: put it in db
+      var bid: Bid = {
+        id: 0,
+        uid: this.userService.vendor.id,
+        price: this.bid_amount,
+        description: this.bid_message,
+        order: this.order,
+        createTime: new Date()
+      };
+      this.orderService.bid(bid);
 
-      if (!this.bid_message) {
-        //message wasn't set. text is undefined! don't put it in DB
-      }
       this.dissmissPopover();
     }
   }
