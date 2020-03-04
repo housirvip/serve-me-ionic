@@ -1,0 +1,93 @@
+ion-content{
+  --background: #fffbfb;
+  ion-list{
+    background-color:  #fffbfb;
+  }
+}
+
+.filter{
+  ion-button{
+    width: 32%;
+    --border-width:0px
+  }
+}
+
+.smallFont{
+  font-size: 3vw;
+  word-break: break-all
+}
+
+.unprocessed{
+  color: rgba(0, 0, 0, 0.51);
+}
+
+rating{
+  margin-left: 0;
+  width: 0px;
+}
+
+
+ion-card-content {
+  margin-top: -10px;
+}
+
+.pricehour{
+  padding: 0;
+  color: #86888f;
+  font-weight: bold;
+}
+.ratingInformation{
+  padding-left: 13px;
+  ion-icon{
+    padding-top: 10px;
+    width: 13px;
+    height: 13px;
+  }
+  ion-label{
+    padding-left: 10px;
+    font-weight: 500;
+    color: black;
+    padding-bottom: 30px;
+  }
+}
+
+ion-button{
+  margin-left: 0;
+}
+
+
+ion-card{
+  margin-top: -6px;
+  img{
+    width: 80px;
+    height: 80px;
+  }
+  ion-card-subtitle{
+    color: orange;
+  }
+
+  .readonlyRating{
+    color: orange;
+    //padding:2px
+  }
+}
+
+.bid{
+  color: #d33939;
+}
+
+.nobid{
+  color: #1c7100;
+}
+
+.emptyTips{
+  margin:50% 50% 85% 15%;
+  p{
+    width: 40ch;
+    font-size: 50px;
+    font-family: fantasy;
+    font-weight: 400;
+    color: #86888f;
+
+  }
+}
