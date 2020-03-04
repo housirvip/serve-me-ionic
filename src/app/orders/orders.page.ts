@@ -3,6 +3,7 @@ import {OrderService} from '../services/order.service';
 import {Order} from '../classes/order';
 import {OrderStatus} from '../classes/order-status';
 import {ToastService} from '../services/toast.service';
+import {OrderRequest} from '../classes/spec/order-request';
 
 @Component({
     selector: 'app-orders',
@@ -12,6 +13,7 @@ import {ToastService} from '../services/toast.service';
 export class OrdersPage implements OnInit, AfterViewInit {
     currentTab: string;
     compoentHtml: string;
+
     get orders(): Order[] {
         return this.orderService.orders;
     }
@@ -20,17 +22,21 @@ export class OrdersPage implements OnInit, AfterViewInit {
                 private toastService: ToastService) {
 
     }
+
     ngAfterViewInit() {
         this.compoentHtml = '<app-biding></app-biding>';
         this.currentTab = 'Biding';
     }
 
     ngOnInit() {
-         this.getOrders(OrderStatus.Biding);
+        this.getOrders(OrderStatus.Biding);
     }
 
     getOrders(status: OrderStatus) {
-        this.orderService.getOrders(status);
+        const request = new OrderRequest();
+        request.status = [];
+        request.status.push(status);
+        this.orderService.getOrders(request);
     }
 
     segmentChanged(ev: any) {
