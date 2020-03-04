@@ -23,6 +23,11 @@ const routes: Routes = [
       import('./profile/profile-page.module').then(m => m.ProfilePageModule)
   },
   {
+    path: 'vendor-registration',
+    loadChildren: () =>
+        import('./vendor-registration/vendor-registration.module').then(m => m.VendorRegistrationModule)
+  },
+  {
     path: 'settings',
     loadChildren: () =>
       import('./settings/settings.module').then(m => m.SettingsPageModule)

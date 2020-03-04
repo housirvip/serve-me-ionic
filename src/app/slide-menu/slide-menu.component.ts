@@ -5,6 +5,8 @@ import {MenuController, ModalController} from '@ionic/angular';
 import {LoginPage} from '../login/login.page';
 import {ToastService} from '../services/toast.service';
 import {AngularFireAuth} from '@angular/fire/auth';
+import {VendorRegistrationModule} from '../vendor-registration/vendor-registration.module';
+import {UpdateaddressPage} from '../address/updateaddress/updateaddress.page';
 
 @Component({
     selector: 'app-slide-menu',
@@ -20,6 +22,7 @@ export class SlideMenuComponent implements OnInit {
     get user() {
         return this.userService.user;
     }
+
     get afUser() {
         return this.afAuth.auth.currentUser;
     }
@@ -63,5 +66,23 @@ export class SlideMenuComponent implements OnInit {
     jump(path: string) {
         this.router.navigate([path]).then(() => {
         });
+    }
+
+    vendor(event: CustomEvent) {
+        console.log(event.detail.checked);
+        if (event.detail.checked === true) {
+            this.jump('/vendor-registration');
+        }
+    }
+
+    async updateAddress() {
+        const modal = await this.modalController.create({
+            component: UpdateaddressPage
+        });
+        modal.onDidDismiss().then((data) => {
+            console.log('dissmisss');
+            console.log(data);
+        });
+        return await modal.present();
     }
 }

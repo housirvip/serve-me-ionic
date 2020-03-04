@@ -5,6 +5,9 @@ import {HttpClient} from '@angular/common/http';
 import {LoadingService} from './loading.service';
 import {Vendor} from '../classes/vendor';
 import {VendorRequest} from '../classes/spec/vendor-request';
+import {User} from '../classes/user';
+import {UserService} from './user.service';
+import {Order} from '../classes/order';
 
 @Injectable({
     providedIn: 'root'
@@ -18,6 +21,7 @@ export class VendorService {
     private _vendors: Vendor[];
 
     constructor(private http: HttpClient,
+                private userService: UserService,
                 private loadingService: LoadingService) {
     }
 
@@ -36,4 +40,17 @@ export class VendorService {
             this._vendors = res.result;
         });
     }
+
+    newVendors(vendor: Vendor) {
+        this.http.put<BaseResponse>('user/vendor', vendor).subscribe(
+            res => {
+                if (res.code !== 0) {
+                    return;
+                }
+                this.userService.getUser();
+            });
+    }
+
+
+
 }
