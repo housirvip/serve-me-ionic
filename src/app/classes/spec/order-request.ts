@@ -19,9 +19,14 @@ export class OrderRequest {
     sort: string[];
 
     toParam(): HttpParams {
-        const params = new HttpParams();
+        let params = new HttpParams();
         Object.entries(this).forEach(
-            ([key, value]) => params.set(key, value)
+            ([key, value]) => {
+                console.log('key value');
+                console.log(key);
+                console.log(value);
+                params = params.append(key, value);
+            }
         );
         return params;
     }

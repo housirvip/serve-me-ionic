@@ -13,7 +13,7 @@
         <ion-list>
             <ion-item>
                 <ion-icon name="build" slot="start"></ion-icon>
-                <ion-label>category</ion-label>
+                <ion-label>Category</ion-label>
                 <ion-select formControlName="category" [(ngModel)]="this.currentOrder.category"
                             placeholder="">
                     <ion-select-option *ngFor="let category of vendorCategory"
@@ -32,7 +32,7 @@
             <ion-item>
                 <ion-icon name="time"  slot="start"></ion-icon>
                 <ion-label>
-                    Time
+                    Start Time
                 </ion-label>
                 <ion-datetime [disabled]="!dateSelected" formControlName="time" display-format="HH:mm" picker-format="HH:mm"
                               placeholder="Select Time"

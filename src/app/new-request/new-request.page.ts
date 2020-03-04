@@ -11,6 +11,7 @@ import {OrderService} from '../services/order.service';
 import {Address} from '../classes/address';
 import {LoadingService} from '../services/loading.service';
 import {DatetimeService} from '../services/datetime.service';
+import {OrderStatus} from '../classes/order-status';
 
 
 @Component({

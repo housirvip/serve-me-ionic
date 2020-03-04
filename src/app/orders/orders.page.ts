@@ -13,14 +13,14 @@ import {OrderRequest} from '../classes/spec/order-request';
 export class OrdersPage implements OnInit, AfterViewInit {
     currentTab: string;
     compoentHtml: string;
-
+    filterRequest: OrderRequest;
     get orders(): Order[] {
         return this.orderService.orders;
     }
 
     constructor(private orderService: OrderService,
                 private toastService: ToastService) {
-
+        this.filterRequest = new OrderRequest();
     }
 
     ngAfterViewInit() {
@@ -33,10 +33,9 @@ export class OrdersPage implements OnInit, AfterViewInit {
     }
 
     getOrders(status: OrderStatus) {
-        const request = new OrderRequest();
-        request.status = [];
-        request.status.push(status);
-        this.orderService.getOrders(request);
+        this.filterRequest.status = [];
+        this.filterRequest.status.push(status);
+        this.orderService.getOrders(this.filterRequest);
     }
 
     segmentChanged(ev: any) {
