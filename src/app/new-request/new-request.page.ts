@@ -10,7 +10,6 @@ import {Order} from '../classes/order';
 import {OrderService} from '../services/order.service';
 import {Address} from '../classes/address';
 import {LoadingService} from '../services/loading.service';
-import {Router} from '@angular/router';
 import {DatetimeService} from '../services/datetime.service';
 
 
@@ -29,7 +28,7 @@ export class NewRequestPage implements OnInit {
     dateSelected: boolean;
 
     requestForm = this.formBuilder.group({
-        description: ['', [Validators.required, Validators.maxLength(10)]],
+        description: ['', [Validators.required, Validators.maxLength(100)]],
         title: ['', [Validators.required, Validators.maxLength(30)]],
         time: ['', [Validators.required, Validators.maxLength(100)]],
         category: ['', [Validators.required, Validators.maxLength(50)]],

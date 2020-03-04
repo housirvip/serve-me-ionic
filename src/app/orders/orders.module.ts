@@ -5,6 +5,10 @@ import {IonicModule} from '@ionic/angular';
 
 import {OrdersPage} from './orders.page';
 import {RouterModule} from '@angular/router';
+import {BidingComponent} from './biding/biding.component';
+import {PendingComponent} from './pending/pending.component';
+import {ProgressingComponent} from './progressing/progressing.component';
+import {CompletedComponent} from './completed/completed.component';
 
 @NgModule({
     imports: [
@@ -13,7 +17,8 @@ import {RouterModule} from '@angular/router';
         IonicModule,
         RouterModule.forChild([{path: '', component: OrdersPage}])
     ],
-    declarations: [OrdersPage]
+    declarations: [OrdersPage, BidingComponent, PendingComponent, ProgressingComponent , CompletedComponent]
 })
 export class OrdersPageModule {
 }
+

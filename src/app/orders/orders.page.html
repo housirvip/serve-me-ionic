@@ -13,7 +13,7 @@
         </ion-refresher-content>
     </ion-refresher>
     <ion-searchbar showCancelButton="always"></ion-searchbar>
-    <ion-segment (ionChange)="segmentChanged($event)" value="Pending">
+    <ion-segment (ionChange)="segmentChanged($event)" value="Biding">
         <ion-segment-button value="Biding">
             <ion-label>Biding</ion-label>
         </ion-segment-button>
@@ -27,22 +27,9 @@
             <ion-label>Completed</ion-label>
         </ion-segment-button>
     </ion-segment>
-    <ion-list *ngFor="let order of orders">
-        <ion-card>
-            <img src="{{order.imgUrl||'../../assets/order/dogwalker.png'}}" alt=""/>
-            <ion-card-header>
-                <ion-card-title>{{order.title}}</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-                <ion-list>
-                    <ion-item>
-                        price:{{order.price}}
-                    </ion-item>
-                    <ion-item>
-                        time:{{order.time}}
-                    </ion-item>
-                </ion-list>
-            </ion-card-content>
-        </ion-card>
-    </ion-list>
+    <app-biding *ngIf="currentTab === 'Biding'"> </app-biding>
+    <app-pending *ngIf="currentTab === 'Pending'"> </app-pending>
+    <app-progressing *ngIf="currentTab === 'Progressing'"> </app-progressing>
+    <app-completed *ngIf="currentTab === 'Completed'"> </app-completed>
+
 </ion-content>

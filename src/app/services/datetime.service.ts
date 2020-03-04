@@ -34,7 +34,7 @@ export class DatetimeService {
     }
 
     convertWithFormat(date: Date, format: string) {
-        return this.datePipe.transform(this._date, format);
+        return this.datePipe.transform(date, format);
     }
 
 
