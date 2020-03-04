@@ -48,9 +48,11 @@ export class AddressService {
                 }
 
                 const tmp = [];
-                for ( const addressIndex of this._addresses) {
-                        if ( addressIndex.id === id) { continue; }
-                        tmp.push(addressIndex);
+                for (const addressIndex of this._addresses) {
+                    if (addressIndex.id === id) {
+                        continue;
+                    }
+                    tmp.push(addressIndex);
                 }
                 this._addresses = tmp;
             });
@@ -65,6 +67,7 @@ export class AddressService {
                 if (res.code !== 0) {
                     return;
                 }
+                this._currentAddress = res.result as Address;
                 this.getAddresses();
             });
     }

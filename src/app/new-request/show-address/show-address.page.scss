@@ -1,3 +1,7 @@
+ion-content{
+  ion-button{
+    --background: black;
+  }
 ion-card{
   padding: 10px;
   margin-top:0px;
@@ -11,9 +15,12 @@ ion-card{
     }
     ion-button{
       width: 33%;
-
+      --background: black;
     }
   }
 }
+}
+
+
 
 

@@ -1,5 +1,3 @@
-
-
 <ion-content>
   <ion-list *ngFor="let address of this.AddresList">
     <ion-card>
@@ -17,4 +15,5 @@
       </ion-card-content>
     </ion-card>
   </ion-list>
+  <ion-button expand="block" (click)="updateAddress()">add a new address</ion-button>
 </ion-content>
