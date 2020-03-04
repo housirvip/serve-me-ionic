@@ -13,19 +13,25 @@ export class TypePage implements OnInit {
 
     private gender: VendorGender;
     private type: VendorCategory;
+    vendorCategory: string[];
 
     get vendorgender() {
         return VendorGender;
     }
 
-    get vendortype() {
-        return VendorCategory;
-    }
+    // get vendortype() {
+    //     return vendorCategory;
+    // }
 
     constructor(public modalController: ModalController,
                 private filterService: FilterService) {
         this.type = VendorCategory.Appliances;
         this.gender = VendorGender.whatever;
+        this.vendorCategory = [];
+        // tslint:disable-next-line:forin
+        for (const type in VendorCategory) {
+            this.vendorCategory.push(type);
+        }
     }
 
     ngOnInit() {

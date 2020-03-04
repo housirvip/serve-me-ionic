@@ -12,14 +12,12 @@
 
 
     <ion-item>
-      <ion-label>Type</ion-label>
-      <ion-select placeholder="Select One" (ionChange)="onTypeChange($event)" >
-        <ion-select-option value="{{vendortype.Cleaner}}">Cleaner</ion-select-option>
-        <ion-select-option value="{{vendortype.Painter}}">Painter</ion-select-option>
-        <ion-select-option value="{{vendortype.DogWalker}}">Dog walker</ion-select-option>
-        <ion-select-option value="{{vendortype.ElectricalWork}}">Electrical Work</ion-select-option>
-      </ion-select>
-    </ion-item>
+    <ion-label>Type</ion-label>
+    <ion-select placeholder="Select One" (ionChange)="onTypeChange($event)" >
+      <ion-select-option *ngFor="let category of vendorCategory"
+                         value="{{category}}">{{category}}</ion-select-option>
+    </ion-select>
+  </ion-item>
 
   </ion-list>
 
