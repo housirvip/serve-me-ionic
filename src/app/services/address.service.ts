@@ -65,6 +65,7 @@ export class AddressService {
                 if (res.code !== 0) {
                     return;
                 }
+                this._currentAddress = res.result.address;
                 this.getAddresses();
             });
     }
