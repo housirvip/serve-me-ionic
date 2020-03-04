@@ -27,10 +27,12 @@ export class AddressService {
     }
 
     getAddresses() {
-        this.loadingService.present();
+        this.loadingService.present().then(r => {
+        });
         this.http.get<BaseResponse>('user/address', {}).subscribe(
             res => {
-                this.loadingService.dismiss();
+                this.loadingService.dismiss().then(r => {
+                });
                 if (res.code !== 0) {
                     return;
                 }
@@ -39,10 +41,12 @@ export class AddressService {
     }
 
     deleteAddress(id: number) {
-        this.loadingService.present();
+        this.loadingService.present().then(r => {
+        });
         this.http.delete<BaseResponse>('user/address/' + id, {}).subscribe(
             res => {
-                this.loadingService.dismiss();
+                this.loadingService.dismiss().then(r => {
+                });
                 if (res.code !== 0) {
                     return;
                 }
@@ -60,10 +64,12 @@ export class AddressService {
 
 
     updateAddress(address: Address) {
-        this.loadingService.present();
+        this.loadingService.present().then(r => {
+        });
         this.http.put<BaseResponse>('user/address', address).subscribe(
             res => {
-                this.loadingService.dismiss();
+                this.loadingService.dismiss().then(r => {
+                });
                 if (res.code !== 0) {
                     return;
                 }

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>address</ion-title>
+    <ion-title>Address</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -23,7 +23,7 @@
     </ng-container>
   </div>
   <ion-item lines="none">
-    <ion-label position="floating">Street,Apart,Suit,unit,Building,floor,etc</ion-label>
+    <ion-label position="floating">Street, Apt, BuildingName, Floor </ion-label>
     <ion-input  formControlName="address2" [(ngModel)]="newAddress.street"></ion-input>
   </ion-item>
   <div *ngFor="let error of errorMessages.address2">

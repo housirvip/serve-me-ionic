@@ -32,7 +32,7 @@
             <ion-item>
                 <ion-icon name="time"  slot="start"></ion-icon>
                 <ion-label>
-                    Start Time
+                    Time
                 </ion-label>
                 <ion-datetime [disabled]="!dateSelected" formControlName="time" display-format="HH:mm" picker-format="HH:mm"
                               placeholder="Select Time"
@@ -40,7 +40,6 @@
                                minute-values="0,10,20,30,40,50"
                               [(ngModel)]="this.currentOrder.time" ></ion-datetime>
             </ion-item>
-
             <ion-item>
             <ion-icon name="arrow-redo" slot="start"></ion-icon>
               <ion-label>
