@@ -5,19 +5,19 @@
 </ion-header>
 <ion-content>
 
-    <form onsubmit="processForm(event)">
+    <form [formGroup]="vendorRegistersForm" onsubmit="processForm(event)">
         <ion-list lines="full" class="ion-no-margin ion-no-padding">
             <ion-item>
                 <ion-icon name="person-outline" slot="start"></ion-icon>
                 <ion-label position="floating">Vendor Name</ion-label>
-                <ion-input (ionBlur)="onNameChange($event)"></ion-input>
+                <ion-input formControlName="name" (ionBlur)="onNameChange($event)"></ion-input>
             </ion-item>
         </ion-list>
 
         <ion-item>
             <ion-icon name="hammer-outline" slot="start"></ion-icon>
             <ion-label>Type</ion-label>
-            <ion-select placeholder="Select One" multiple (ionChange)="onTypeChange($event)" >
+            <ion-select formControlName="type" placeholder="Select One" multiple (ionChange)="onTypeChange($event)" >
                 <ion-select-option *ngFor="let category of vendorCategory"
                                    value="{{category}}">{{category}}</ion-select-option>
             </ion-select>
@@ -26,7 +26,7 @@
         <ion-item>
             <ion-icon name="cash-outline" slot="start"></ion-icon>
             <ion-label position="floating">Price</ion-label>
-            <ion-input (ionBlur)="onPriceChange($event)"></ion-input>
+            <ion-input formControlName="price" (ionBlur)="onPriceChange($event)"></ion-input>
         </ion-item>
 
 
@@ -34,7 +34,7 @@
         <ion-item>
             <ion-icon name="calendar-outline" slot="start"></ion-icon>
             <ion-label>AvailableDate</ion-label>
-            <ion-select placeholder="Select One" multiple (ionChange)="onDateChange($event)" >
+            <ion-select formControlName="date" placeholder="Select One" multiple (ionChange)="onDateChange($event)" >
                 <ion-select-option *ngFor="let date of availableDate"
                                    value="{{date}}">{{date}}</ion-select-option>
             </ion-select>
@@ -64,7 +64,7 @@
         </ion-item>
 
         <div class="ion-padding">
-            <ion-button expand="block" class="ion-no-margin" (click)="saved()">Create account</ion-button>
+            <ion-button expand="block" class="ion-no-margin" (click)="saved()" [disabled]="!vendorRegistersForm.valid||!selectedAddress">Create account</ion-button>
             <br>
             <ion-button expand="block" class="ion-no-margin" (click)="returnHome()">Cancel</ion-button>
         </div>

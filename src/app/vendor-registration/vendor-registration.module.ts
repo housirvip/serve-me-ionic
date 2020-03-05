@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {IonicModule} from '@ionic/angular';
 import {VendorRegistrationPage} from './vendor-registration.page';
 import {RouterModule} from '@angular/router';
@@ -16,7 +16,8 @@ import {ShowAddressPageModule} from '../new-request/show-address/show-address.mo
         UpdateaddressPageModule,
         TypePageModule,
         ShowAddressPageModule,
-        RouterModule.forChild([{path: '', component: VendorRegistrationPage}])
+        RouterModule.forChild([{path: '', component: VendorRegistrationPage}]),
+        ReactiveFormsModule
     ],
     declarations: [VendorRegistrationPage]
 })
