@@ -44,6 +44,7 @@ export class VendorOrderPage implements OnInit {
     }
 
     segmentChanged(ev: any) {
+        this.currentTab = ev.detail.value;
         this.getOrders(ev.detail.value as OrderStatus);
     }
 

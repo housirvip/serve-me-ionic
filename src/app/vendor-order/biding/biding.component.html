@@ -1,0 +1,24 @@
+<ion-content>
+    <div *ngIf="!this.bids?.length">
+        <div class="emptyTips">
+            <p> Nothing here ~</p>
+        </div>
+    </div>
+    <ion-list *ngFor="let bid of bids">
+        <ion-card color="">
+            <ion-card-header>
+                <ion-card-title>{{bid.order.title}}</ion-card-title>
+                <ion-card-subtitle>{{bid.order.category}}</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-item color="">
+                    <ion-label class="pricehour">
+                        <h1 class="bid">Your bid price: {{bid.price}}</h1>
+                        <ion-label>CreateTime:{{bid.createTime| date:'short'}}</ion-label>
+                    </ion-label>
+                    <img src="../../../assets/category/{{bid.order.category}}.png" alt="">
+                </ion-item>
+            </ion-card-content>
+        </ion-card>
+    </ion-list>
+</ion-content>

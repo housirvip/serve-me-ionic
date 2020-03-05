@@ -29,28 +29,9 @@
         </ion-segment-button>
     </ion-segment>
     <div class="componentStatus">
-        <div *ngIf="!this.orders?.length">
-            <div class="emptyTips">
-                <p> Nothing here ~</p>
-            </div>
-        </div>
-        <ion-list *ngFor="let request of orders">
-            <ion-card color="">
-                <ion-card-header>
-                    <ion-card-title>{{request.title}}</ion-card-title>
-                    <ion-card-subtitle>{{request.category}}</ion-card-subtitle>
-                </ion-card-header>
-                <ion-card-content>
-                    <ion-item color="">
-                        <ion-label class="pricehour">
-                            <h1 class="bid">Your max price: {{request.bids|bid: vendor.id:'max'}}</h1>
-                            <ion-label>CreateTime:{{request.createTime| date:'short'}}</ion-label>
-                            <ion-label>Contact:{{request.address.name}}</ion-label>
-                        </ion-label>
-                        <img src="../../../assets/category/{{request.category}}.png" alt="">
-                    </ion-item>
-                </ion-card-content>
-            </ion-card>
-        </ion-list>
+        <app-biding *ngIf="currentTab === 'Biding'" > </app-biding>
+        <app-pending *ngIf="currentTab === 'Pending'"> </app-pending>
+        <app-progressing *ngIf="currentTab === 'Progressing'"> </app-progressing>
+        <app-completed *ngIf="currentTab === 'Completed'"> </app-completed>
     </div>
 </ion-content>
