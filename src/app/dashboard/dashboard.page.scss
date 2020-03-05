@@ -26,9 +26,15 @@ rating{
   width: 0px;
 }
 
-
+ion-card{
+  img{
+    height: 80px;
+    width: 80px;
+  }
 ion-card-content {
+
   margin-top: -10px;
+}
 }
 
 .pricehour{

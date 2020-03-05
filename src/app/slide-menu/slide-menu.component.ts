@@ -70,6 +70,11 @@ export class SlideMenuComponent implements OnInit {
     }
 
     vendor(event: CustomEvent) {
+        if (this.userService.vendorView) {
+            this.userService.vendorView = false;
+            this.jump('/dashboard');
+            return;
+        }
         if (this.userService.isVendor) {
             this.userService.vendorView = true;
             this.jump('/vendor-page');

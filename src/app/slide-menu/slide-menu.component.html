@@ -41,7 +41,7 @@
                 </ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle auto-hide="false" *ngIf="user">
-                <ion-item (click)="jump('/orders')">
+                <ion-item (click)="this.userService.vendorView ? jump('/vendor-order') :jump('/orders') ">
                     <ion-icon slot="start" name="clipboard-outline" color="primary"></ion-icon>
                     <ion-label>
                         Orders
@@ -54,7 +54,7 @@
                     <ion-label>
                         Service Provider
                     </ion-label>
-                    <ion-toggle color="secondary" ></ion-toggle>
+                    <ion-toggle color="secondary" (ionChange)="vendor($event)"></ion-toggle>
                 </ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle auto-hide="false">

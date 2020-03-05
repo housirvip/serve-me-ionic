@@ -48,6 +48,10 @@ const routes: Routes = [
     path: 'vendor-page',
     loadChildren: () => import('./vendor-page/vendor-page.module').then( m => m.VendorPagePageModule)
   },
+  {
+    path: 'vendor-order',
+    loadChildren: () => import('./vendor-order/vendor-order.module').then( m => m.VendorOrderPageModule)
+  },
 
 ];
 
