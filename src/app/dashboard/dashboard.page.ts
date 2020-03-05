@@ -4,7 +4,10 @@ import {TypePage} from './type/type.page';
 import {FilterService} from '../services/filter.service';
 import {PricePage} from './price/price.page';
 import {ToastService} from '../services/toast.service';
-
+import {VendorResult} from '../classes/vendor-result';
+import {VendorService} from '../services/vendor.service';
+import {VendorRequest} from '../classes/spec/vendor-request';
+import {Vendor} from '../classes/vendor';
 
 @Component({
     selector: 'app-dashboard',
@@ -12,17 +15,23 @@ import {ToastService} from '../services/toast.service';
     styleUrls: ['dashboard.page.scss']
 })
 export class DashboardPage implements OnInit {
-    get vendors() {
-        return this.filterService.getVendorList();
-    }
+    vendorRequest: VendorRequest;
+
 
     constructor(private modalController: ModalController,
                 private toastService: ToastService,
-                private  filterService: FilterService) {
+                private vendorService: VendorService,
+                private filterService: FilterService) {
+        this.vendorRequest = new VendorRequest();
+    }
+
+    get vendors() {
+        return this.vendorService.vendors;
+        // return this.filterService.getVendorList();
     }
 
     ngOnInit() {
-        // this.filterService.getVendorList();
+        this.vendorService.getVendors(this.vendorRequest);
     }
 
     async typeModal() {
