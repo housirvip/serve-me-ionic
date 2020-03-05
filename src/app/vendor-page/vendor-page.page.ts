@@ -74,9 +74,13 @@ export class VendorPagePage implements OnInit {
 
 
 
-    async requestDetailsModal() {
+    async requestDetailsModal(event, request) {
+        console.log(request)
         const modal = await this.modalController.create({
-            component: RequestDetailsPage
+            component: RequestDetailsPage,
+            componentProps: {
+                request
+            }
         });
         return await modal.present();
     }

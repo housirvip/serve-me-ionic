@@ -41,7 +41,7 @@
     </ion-button>
   </ion-row>
   <ion-list *ngFor="let request of requests">
-    <ion-card color="" (click)="requestDetailsModal()">
+    <ion-card color="" (click)="requestDetailsModal($event, request)">
       <ion-card-header>
         <div style="display: flex;justify-content: space-between">
           <ion-card-title>{{request.title}}</ion-card-title>

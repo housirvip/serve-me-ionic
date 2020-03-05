@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { VendorPagePageRoutingModule } from './vendor-page-routing.module';
 
 import { VendorPagePage } from './vendor-page.page';
+import {RequestDetailsPageModule} from './request-details/request-details.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    VendorPagePageRoutingModule
+    VendorPagePageRoutingModule,
+      RequestDetailsPageModule
   ],
   declarations: [VendorPagePage]
 })
