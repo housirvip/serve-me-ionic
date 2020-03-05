@@ -15,19 +15,19 @@
   </ion-refresher>
   <ion-searchbar showCancelButton="always"></ion-searchbar>
   <ng-container *ngIf="serviceProviderView">
-    <ion-segment (ionChange)="segmentChanged($event)" value="available">
-      <ion-segment-button value="available">
+    <ion-segment (ionChange)="segmentChanged($event)" value="Progressing">
+      <!-- <ion-segment-button value="waiting">
         <ion-label>Available</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="bidding">
+      <ion-segment-button value="biding">
         <ion-label>Bidding</ion-label>
+      </ion-segment-button> -->
+      <ion-segment-button value="Progressing">
+        <ion-label>In-rogress</ion-label>
       </ion-segment-button>
-      <!-- <ion-segment-button value="progress">
-      <ion-label>progress</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="completed">
-      <ion-label>completed</ion-label>
-    </ion-segment-button> -->
+      <ion-segment-button value="Completed">
+        <ion-label>Completed</ion-label>
+      </ion-segment-button>
     </ion-segment>
   </ng-container>
   <ng-container *ngIf="serviceProviderView">
@@ -40,10 +40,10 @@
         <ion-card-content>
           <ion-list>
             <ion-item>
-              Best Bid:{{order.price}}
+              price:{{order.price}}
             </ion-item>
             <ion-item>
-              Time:{{order.time}}
+              time:{{order.time}}
             </ion-item>
           </ion-list>
         </ion-card-content>

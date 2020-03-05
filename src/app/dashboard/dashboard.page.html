@@ -1,66 +1,139 @@
-<ion-header>
-    <ion-toolbar color='secondary'>
-        <ion-title>Customer</ion-title>
+<ng-container *ngIf="serviceProviderView==false">
+  <ion-header>
+    <ion-toolbar color="secondary">
+      <ion-title>Customer</ion-title>
     </ion-toolbar>
-</ion-header>
-<ion-content>
+  </ion-header>
+  <ion-content>
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content
-                pullingIcon="arrow-dropdown"
-                pullingText="Pull to refresh"
-                refreshingSpinner="circles"
-                refreshingText="Refreshing...">
-        </ion-refresher-content>
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing..."
+      >
+      </ion-refresher-content>
     </ion-refresher>
-    <ion-searchbar showCancelButton="always" (ionChange)="doSearch($event)" debounce="1000"></ion-searchbar>
+    <ion-searchbar
+      showCancelButton="always"
+      (ionChange)="doSearch($event)"
+      debounce="1000"
+    ></ion-searchbar>
     <ion-row class="filter">
-        <ion-button (click)="typeModal()" expand="full" fill="outline">
-            <ion-label class="unprocessed" *ngIf="!this.filterService._typeFilled ">
-                type
-                <ion-icon class="unprocessed" name="arrow-down"></ion-icon>
-            </ion-label>
-            <ion-label class="smallFont" color="primary" *ngIf="this.filterService._typeFilled">
-                    {{this.filterService.displayType()}}
-            </ion-label>
-        </ion-button>
-        <ion-button (click)="priceModal()" expand="full" fill="outline">
-            <ion-label class="unprocessed" *ngIf="!this.filterService._priceFilled ">
-                Price
-                <ion-icon name="arrow-down" class="unprocessed"></ion-icon>
-            </ion-label>
-            <ion-label class="smallFont" color="primary" *ngIf="this.filterService._priceFilled">
-                $ {{this.filterService.minPrice}} - {{this.filterService.maxPrice}}
-            </ion-label>
-        </ion-button>
-        <ion-button expand="full" fill="outline">
-            <ion-label class="unprocessed">
-                Date
-                <ion-icon name="arrow-down"></ion-icon>
-            </ion-label>
-        </ion-button>
+      <ion-button (click)="typeModal()" expand="full" fill="outline">
+        <ion-label class="unprocessed" *ngIf="!this.filterService._typeFilled ">
+          type
+          <ion-icon class="unprocessed" name="arrow-down"></ion-icon>
+        </ion-label>
+        <ion-label
+          class="smallFont"
+          color="primary"
+          *ngIf="this.filterService._typeFilled"
+        >
+          {{this.filterService.displayType()}}
+        </ion-label>
+      </ion-button>
+      <ion-button (click)="priceModal()" expand="full" fill="outline">
+        <ion-label
+          class="unprocessed"
+          *ngIf="!this.filterService._priceFilled "
+        >
+          Price
+          <ion-icon name="arrow-down" class="unprocessed"></ion-icon>
+        </ion-label>
+        <ion-label
+          class="smallFont"
+          color="primary"
+          *ngIf="this.filterService._priceFilled"
+        >
+          $ {{this.filterService.minPrice}} - {{this.filterService.maxPrice}}
+        </ion-label>
+      </ion-button>
+      <ion-button expand="full" fill="outline">
+        <ion-label class="unprocessed">
+          Date
+          <ion-icon name="arrow-down"></ion-icon>
+        </ion-label>
+      </ion-button>
     </ion-row>
     <ion-list *ngFor="let vendor of vendors">
-        <ion-card color="">
-            <ion-card-header>
-                <ion-card-title>{{vendor.titleName}}</ion-card-title>
-                <ion-card-subtitle>{{vendor.typeString}}</ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content>
-                <ion-item color="">
-                    <ion-label class="pricehour">
-                        <h1>${{vendor.priceString}}/hour</h1>
-                        <ion-label>{{vendor.workDay}}</ion-label>
-                        <ion-label>{{vendor.workHour}}</ion-label>
-                    </ion-label>
-                    <ion-avatar><img src="../../assets/img/avatar.png"></ion-avatar>
-                </ion-item>
-                <div class="ratingInformation">
-                    <ion-icon class="readonlyRating" *ngFor="let i of [1, 2, 3, 4, 5]" name="star" size="small">
-                    </ion-icon>
-                    <ion-label>{{vendor.commentsNum}} comments</ion-label>
-                </div>
-            </ion-card-content>
-        </ion-card>
+      <ion-card color="">
+        <ion-card-header>
+          <ion-card-title>{{vendor.titleName}}</ion-card-title>
+          <ion-card-subtitle>{{vendor.typeString}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item color="">
+            <ion-label class="pricehour">
+              <h1>${{vendor.priceString}}/hour</h1>
+              <ion-label>{{vendor.workDay}}</ion-label>
+              <ion-label>{{vendor.workHour}}</ion-label>
+            </ion-label>
+            <ion-avatar><img src="../../assets/img/avatar.png"/></ion-avatar>
+          </ion-item>
+          <div class="ratingInformation">
+            <ion-icon
+              class="readonlyRating"
+              *ngFor="let i of [1, 2, 3, 4, 5]"
+              name="star"
+              size="small"
+            >
+            </ion-icon>
+            <ion-label>{{vendor.commentsNum}} comments</ion-label>
+          </div>
+        </ion-card-content>
+      </ion-card>
     </ion-list>
-
-</ion-content>
+  </ion-content>
+</ng-container>
+<ng-container *ngIf="serviceProviderView==true">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Orders</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="arrow-dropdown"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing..."
+      >
+      </ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar showCancelButton="always"></ion-searchbar>
+    <ion-segment (ionChange)="segmentChanged($event)" value="available">
+      <ion-segment-button value="available">
+        <ion-label>Available</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="bidding">
+        <ion-label>Bidding</ion-label>
+      </ion-segment-button>
+      <!-- <ion-segment-button value="progress">
+      <ion-label>progress</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="completed">
+      <ion-label>completed</ion-label>
+    </ion-segment-button> -->
+    </ion-segment>
+    <ion-list *ngFor="let order of orders">
+      <ion-card (click)="orderDetailsModal($event, order)">
+        <img src="{{order.imgUrl}}" alt="" />
+        <ion-card-header>
+          <ion-card-title>{{order.title}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              Best bid: ${{order.best_bid}}
+            </ion-item>
+            <ion-item>
+              Posted: {{order.time_str}}
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </ion-content>
+</ng-container>

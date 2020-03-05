@@ -1,103 +1,138 @@
 <ion-menu [menuId]="menuId" [contentId]="contentId">
-    <ion-header>
-        <ion-toolbar color="dark" class="user-profile">
-            <ion-item>
-                <ion-avatar slot="start" class="user-avatar">
-<!--                    <img src="../../assets/img/avatar.png"/>-->
-                    <img src="{{this.user?(this.user.photoUrl?this.user.photoUrl:defaultPhoto):defaultPhoto}}" alt="">
-                </ion-avatar>
-                <ion-label>
-                    <ion-text color="medium">
-                        <h1 *ngIf="user"><strong>{{user.username||user.email||user.phone}}</strong></h1>
-                        <h1 *ngIf="!user" (click)="toLogin()"><strong>Sign in</strong></h1>
-                    </ion-text>
-                    <ion-text color="primary" *ngIf="user">
-                        <h2>point: {{user.points}}</h2>
-                    </ion-text>
-                </ion-label>
-            </ion-item>
-        </ion-toolbar>
-    </ion-header>
+  <ion-header>
+    <ion-toolbar color="dark" class="user-profile">
+      <ion-item>
+        <ion-avatar slot="start" class="user-avatar">
+          <!--                    <img src="../../assets/img/avatar.png"/>-->
+          <img
+            src="{{
+              this.user
+                ? this.user.photoUrl
+                  ? this.user.photoUrl
+                  : defaultPhoto
+                : defaultPhoto
+            }}"
+            alt=""
+          />
+        </ion-avatar>
+        <ion-label>
+          <ion-text color="medium">
+            <h1 *ngIf="user">
+              <strong>{{ user.username || user.email || user.phone }}</strong>
+            </h1>
+            <h1 *ngIf="!user" (click)="toLogin()"><strong>Sign in</strong></h1>
+          </ion-text>
+          <ion-text color="primary" *ngIf="user">
+            <h2>point: {{ user.points }}</h2>
+          </ion-text>
+        </ion-label>
+      </ion-item>
+    </ion-toolbar>
+  </ion-header>
 
-    <ion-content>
-        <ion-list>
-            <ion-list-header>
-                <ion-label>Menu</ion-label>
-            </ion-list-header>
-            <ion-menu-toggle auto-hide="false">
-                <ion-item (click)="jump('/dashboard')">
-                    <ion-icon slot="start" name="home-outline" color="primary"></ion-icon>
-                    <ion-label>
-                        Dashboard
-                    </ion-label>
-                </ion-item>
-            </ion-menu-toggle>
-            <ion-menu-toggle auto-hide="false" *ngIf="user">
-                <ion-item (click)="jump('/profile')">
-                    <ion-icon slot="start" name="person-outline" color="primary"></ion-icon>
-                    <ion-label>
-                        Profile
-                    </ion-label>
-                </ion-item>
-            </ion-menu-toggle>
-            <ion-menu-toggle auto-hide="false" *ngIf="user">
-                <ion-item (click)="jump('/orders')">
-                    <ion-icon slot="start" name="clipboard-outline" color="primary"></ion-icon>
-                    <ion-label>
-                        Orders
-                    </ion-label>
-                </ion-item>
-            </ion-menu-toggle>
-            <ion-menu-toggle auto-hide="false" *ngIf="user">
-                <ion-item>
-                    <ion-icon slot="start" name="hammer-outline" color="primary"></ion-icon>
-                    <ion-label>
-                        Service Provider
-                    </ion-label>
-                    <ion-toggle color="secondary"></ion-toggle>
-                </ion-item>
-            </ion-menu-toggle>
-            <ion-menu-toggle auto-hide="false">
-                <ion-item (click)="jump('/settings')">
-                    <ion-icon slot="start" name="settings-outline" color="primary"></ion-icon>
-                    <ion-label>
-                        Settings
-                    </ion-label>
-                </ion-item>
-            </ion-menu-toggle>
-            <ion-menu-toggle auto-hide="false">
-                <ion-item (click)="verifyEmail()" *ngIf="!userService.emailVerified">
-                    <ion-icon slot="start" name="mail-outline" color="primary"></ion-icon>
-                    <ion-label>
-                        Verify Email
-                    </ion-label>
-                </ion-item>
-            </ion-menu-toggle>
-            <ion-menu-toggle auto-hide="false" >
-                <ion-item (click)="jump('/new-request')">
-                    <ion-icon slot="start" name="add-outline" color="primary"></ion-icon>
-                    <ion-label>
-                        Make New Request
-                    </ion-label>
-                </ion-item>
-            </ion-menu-toggle>
+  <ion-content>
+    <ion-list>
+      <ion-list-header>
+        <ion-label>Menu</ion-label>
+      </ion-list-header>
+      <ion-menu-toggle auto-hide="false">
+        <ion-item (click)="jump('/dashboard')">
+          <ion-icon slot="start" name="home-outline" color="primary"></ion-icon>
+          <ion-label>
+            Dashboard
+          </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle auto-hide="false" *ngIf="user">
+        <ion-item (click)="jump('/profile')">
+          <ion-icon
+            slot="start"
+            name="person-outline"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            Profile
+          </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle auto-hide="false" *ngIf="user">
+        <ion-item (click)="jump('/orders')">
+          <ion-icon
+            slot="start"
+            name="clipboard-outline"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            Orders
+          </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle auto-hide="false" *ngIf="user">
+        <ion-item>
+          <ion-icon
+            slot="start"
+            name="hammer-outline"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            Service Provider
+          </ion-label>
+          <ion-toggle
+            color="secondary"
+            [(ngModel)]="serviceProviderView"
+            (ionChange)="onChange()"
+          ></ion-toggle>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle auto-hide="false">
+        <ion-item (click)="jump('/settings')">
+          <ion-icon
+            slot="start"
+            name="settings-outline"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            Settings
+          </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle auto-hide="false">
+        <ion-item (click)="verifyEmail()" *ngIf="!userService.emailVerified">
+          <ion-icon slot="start" name="mail-outline" color="primary"></ion-icon>
+          <ion-label>
+            Verify Email
+          </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle auto-hide="false">
+        <ion-item (click)="jump('/new-request')">
+          <ion-icon slot="start" name="add-outline" color="primary"></ion-icon>
+          <ion-label>
+            Make New Request
+          </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
 
-            <ion-menu-toggle auto-hide="false" *ngIf="user">
-                <ion-item (click)="jump('/address')">
-                    <ion-icon slot="start" name="home-outline" color="primary"></ion-icon>
-                    <ion-label>
-                        Your Address
-                    </ion-label>
-                </ion-item>
-            </ion-menu-toggle>
-            <ion-menu-toggle auto-hide="false" *ngIf="user">
-                <ion-item (click)="toLogout()">
-                    <ion-icon slot="start" name="log-out-outline" color="primary"></ion-icon>
-                    <ion-label>
-                        Sign out
-                    </ion-label>
-                </ion-item>
-            </ion-menu-toggle>
-        </ion-list>
-    </ion-content>
+      <ion-menu-toggle auto-hide="false" *ngIf="user">
+        <ion-item (click)="jump('/address')">
+          <ion-icon slot="start" name="home-outline" color="primary"></ion-icon>
+          <ion-label>
+            Your Address
+          </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle auto-hide="false" *ngIf="user">
+        <ion-item (click)="toLogout()">
+          <ion-icon
+            slot="start"
+            name="log-out-outline"
+            color="primary"
+          ></ion-icon>
+          <ion-label>
+            Sign out
+          </ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
 </ion-menu>

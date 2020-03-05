@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { ToastService } from "../../../services/toast.service";
-import { OrderService } from "../../../services/order.service";
 import { PopoverController, NavParams } from "@ionic/angular";
-import { Bid } from 'src/app/classes/bid';
-import { Order } from 'src/app/classes/order';
-import { UserService } from 'src/app/services/user.service';
+import { Order } from "../../../classes/order";
+import { Bid } from "src/app/classes/bid";
+import { UserService } from "src/app/services/user.service";
+import { OrderService } from "../../../services/order.service";
 
 @Component({
   selector: "app-bid-popover",
@@ -26,7 +26,11 @@ export class BidPopoverComponent implements OnInit {
     this.order = this.navParams.get("order");
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("Order details:");
+    console.log("Title: ", this.order.title);
+    console.log("Description: ", this.order.description);
+  }
 
   onFormSubmit() {
     if (!this.bid_amount) {
@@ -39,7 +43,8 @@ export class BidPopoverComponent implements OnInit {
       console.log(this.userService);
       var bid: Bid = {
         id: 0,
-        uid: this.userService.vendor.id,
+        //uid: this.userService.vendor.id, //uncomment when implemented
+        uid: 342, //for testing purposes - Javier's id
         price: this.bid_amount,
         description: this.bid_message,
         order: this.order,
@@ -52,6 +57,6 @@ export class BidPopoverComponent implements OnInit {
   }
 
   async dissmissPopover() {
-    await this.popoverController.dismiss();
+    await this.popoverController.dismiss(this.bid_amount);
   }
 }
