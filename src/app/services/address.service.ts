@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Address} from '../classes/address';
 import {BaseResponse} from '../core/base-response';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
 import {LoadingService} from './loading.service';
 
 @Injectable({

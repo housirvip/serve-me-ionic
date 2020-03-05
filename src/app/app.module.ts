@@ -18,8 +18,9 @@ import {SlideMenuModule} from './slide-menu/slide-menu.module';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireMessagingModule} from '@angular/fire/messaging';
-import { Camera } from '@ionic-native/camera/ngx';
+import {Camera} from '@ionic-native/camera/ngx';
 import {DatePipe} from '@angular/common';
+import {BidPipe} from './pipes/bid.pipe';
 
 @NgModule({
     declarations: [AppComponent],
@@ -40,6 +41,7 @@ import {DatePipe} from '@angular/common';
         FirebaseX,
         Camera,
         DatePipe,
+        BidPipe,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
         {provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true},
     ],

@@ -27,11 +27,10 @@
             <ion-label>Completed</ion-label>
         </ion-segment-button>
     </ion-segment>
-    <div class="conpomentStatus">
+    <div class="componentStatus">
         <app-biding *ngIf="currentTab === 'Biding'" > </app-biding>
         <app-pending *ngIf="currentTab === 'Pending'"> </app-pending>
         <app-progressing *ngIf="currentTab === 'Progressing'"> </app-progressing>
         <app-completed *ngIf="currentTab === 'Completed'"> </app-completed>
     </div>
-
 </ion-content>
