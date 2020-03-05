@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+              (click)="onBackPressed()"
+              defaultHref="dashboard"
+              icon="arrow-back-outline"
+      >
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="order-image">
+    <img src="{{order_imgUrl}}" />
+  </div>
+  <div class="order-info">
+    <div class="title-date">
+      <h1>{{order_title}}</h1>
+      <p>Posted {{order_time_str}}</p>
+    </div>
+    <div class="line"></div>
+    <div class="description">
+      <h2>{{order_description_txt}}</h2>
+      <p>{{order_description}}</p>
+    </div>
+    <div class="date">
+      <h2>{{order_date_date_txt}}</h2>
+      <p>{{order_date_date_str}}</p>
+    </div>
+    <div class="time">
+      <h2>{{order_date_time_txt}}</h2>
+      <p>{{order_date_time_str}}</p>
+    </div>
+    <div class="line"></div>
+    <div class="requestor">
+      <div class="requestor-label">
+        <h2>{{order_requestor_txt}}</h2>
+        <h2>{{order_location_txt}}</h2>
+      </div>
+      <div class="requestor-info">
+        <p>{{order_requestor}}</p>
+        <p>{{order_location}}</p>
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="bid-block">
+      <div class="best-bid">
+        <h2>BEST BID</h2>
+        <p>{{order_price}}</p>
+      </div>
+      <ion-button class="bid-button" (click)="onPlaceBidPressed($event);">
+        PLACE BID
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

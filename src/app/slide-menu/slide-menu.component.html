@@ -22,7 +22,7 @@
     <ion-content>
         <ion-list>
             <ion-list-header>
-                <ion-label>Menu</ion-label>
+                <ion-label style="font-weight: 900">{{this.userService.vendorView ? "Vendor" : "Customer"}}</ion-label>
             </ion-list-header>
             <ion-menu-toggle auto-hide="false">
                 <ion-item  (click)="this.userService.vendorView ? jump('/vendor-page') :jump('/dashboard')">

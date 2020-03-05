@@ -1,9 +1,65 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>vendorPage</ion-title>
+<ion-header >
+  <ion-toolbar style="--background: black;color: white">
+    <ion-title>Vendor dashboard</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="Pull to refresh"
+            refreshingSpinner="circles"
+            refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-searchbar showCancelButton="always" (ionChange)="doSearch($event)" debounce="1000"></ion-searchbar>
+  <ion-row class="filter">
+    <ion-button (click)="typeModal()" expand="full" fill="outline">
+      <ion-label class="unprocessed" *ngIf="!this.filterService._typeFilled ">
+        type
+        <ion-icon class="unprocessed" name="arrow-down"></ion-icon>
+      </ion-label>
+      <ion-label class="smallFont" color="primary" *ngIf="this.filterService._typeFilled">
+        {{this.filterService.displayType()}}
+      </ion-label>
+    </ion-button>
+    <ion-button (click)="priceModal()" expand="full" fill="outline">
+      <ion-label class="unprocessed" *ngIf="!this.filterService._priceFilled ">
+        Price
+        <ion-icon name="arrow-down" class="unprocessed"></ion-icon>
+      </ion-label>
+      <ion-label class="smallFont" color="primary" *ngIf="this.filterService._priceFilled">
+        $ {{this.filterService.minPrice}} - {{this.filterService.maxPrice}}
+      </ion-label>
+    </ion-button>
+    <ion-button expand="full" fill="outline">
+      <ion-label class="unprocessed">
+        Date
+        <ion-icon name="arrow-down"></ion-icon>
+      </ion-label>
+    </ion-button>
+  </ion-row>
+  <ion-list *ngFor="let request of requests">
+    <ion-card color="" (click)="requestDetailsModal()">
+      <ion-card-header>
+        <div style="display: flex;justify-content: space-between">
+          <ion-card-title>{{request.title}}</ion-card-title>
+          <ion-card-title [ngClass]="request.bids.length? 'bid' : ' nobid' ">{{request.bids.length?"Lowest:" + request.bids[0].price + '$' : "No one bid"}}</ion-card-title>
+        </div>
+        <ion-card-subtitle>{{request.category}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <img src="../../assets/category/{{request.category}}.png">
+        <ion-item color="">
+          <ion-label class="pricehour">
+            <ion-label>Work Time:</ion-label>
+            <ion-label>{{this.datetimeService.convertWithFormat(request.createTime,"short")}}</ion-label>
+          </ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 
 </ion-content>
+
