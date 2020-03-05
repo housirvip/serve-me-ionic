@@ -49,6 +49,7 @@ export class DashboardPage implements OnInit {
     }
 
     doRefresh(event) {
+        this.vendorService.getVendors(this.vendorRequest);
         setTimeout(() => {
             this.toastService.presentToast('updated', 2000).then(() => {
             });

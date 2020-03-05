@@ -40,7 +40,7 @@ export class VendorOrderPage implements OnInit {
     getOrders(status: OrderStatus) {
         this.filterRequest.status = [];
         this.filterRequest.status.push(status);
-        this.orderService.getOrders(this.filterRequest);
+        // this.orderService.getOrders(this.filterRequest);
     }
 
     segmentChanged(ev: any) {

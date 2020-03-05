@@ -4,7 +4,7 @@ export class Bid {
     id: number;
     // todo change uid to vid
     uid: number;
-    vid: number;
+   // vid: number;
     description: string;
     price: number;
     createTime: Date;

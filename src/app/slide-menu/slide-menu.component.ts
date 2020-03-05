@@ -69,23 +69,25 @@ export class SlideMenuComponent implements OnInit {
         });
     }
 
-    vendor(event: CustomEvent) {
+    vendor() {
         if (this.userService.vendorView) {
             this.userService.vendorView = false;
             this.jump('/dashboard');
             return;
         }
         if (this.userService.isVendor) {
-            this.userService.vendorView = true;
             this.jump('/vendor-page');
+            this.userService.vendorView = true;
         } else {
             this.handleButtonClick(
+                'You are not a Vendor ', 'Do you want to register as a Vendor?',
                 () => {
                     console.log('agree');
                     this.jump('/vendor-registration');
                 },
                 () => {
                     console.log('disagree');
+                    this.userService.vendorView = false;
                 });
         }
     }
@@ -101,10 +103,10 @@ export class SlideMenuComponent implements OnInit {
         return await modal.present();
     }
 
-    async handleButtonClick(agree, disagree) {
+    async handleButtonClick(title, text, agree, disagree) {
         const alert = await this.alertController.create({
-            header: 'You are not a vendor',
-            message: 'Do you want to register as a Vendor?',
+            header: title,
+            message: text,
             buttons: [{
                 text: 'Agree',
                 role: 'agree',

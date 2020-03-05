@@ -8,6 +8,7 @@ import { VendorPagePageRoutingModule } from './vendor-page-routing.module';
 
 import { VendorPagePage } from './vendor-page.page';
 import {RequestDetailsPageModule} from './request-details/request-details.module';
+import {BidPopoverComponent} from './request-details/bid-popover/bid-popover.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import {RequestDetailsPageModule} from './request-details/request-details.module
     VendorPagePageRoutingModule,
       RequestDetailsPageModule
   ],
-  declarations: [VendorPagePage]
+  declarations: [VendorPagePage, BidPopoverComponent],
+  entryComponents: [BidPopoverComponent]
 })
 export class VendorPagePageModule {}

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { RequestDetailsPageRoutingModule } from './request-details-routing.module';
 
 import { RequestDetailsPage } from './request-details.page';
+import {BidPopoverComponent} from './bid-popover/bid-popover.component';
 
 @NgModule({
   imports: [

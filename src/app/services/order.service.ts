@@ -93,9 +93,7 @@ export class OrderService {
     }
 
     bid(bid: Bid) {
-        this.http.put<BaseResponse>('order/bid', bid).subscribe(
-            res => {
-            });
+      return  this.http.put<BaseResponse>('order/bid', bid);
     }
 
     confirm(bid: Bid) {

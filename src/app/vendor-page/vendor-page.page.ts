@@ -60,6 +60,7 @@ export class VendorPagePage implements OnInit {
     }
 
     doRefresh(event) {
+        this.getOrders(OrderStatus.Biding);
         setTimeout(() => {
             this.toastService.presentToast('updated', 2000).then(() => {
             });
@@ -75,7 +76,7 @@ export class VendorPagePage implements OnInit {
 
 
     async requestDetailsModal(event, request) {
-        console.log(request)
+        console.log(request);
         const modal = await this.modalController.create({
             component: RequestDetailsPage,
             componentProps: {

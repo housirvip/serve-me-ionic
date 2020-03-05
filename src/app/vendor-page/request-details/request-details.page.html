@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar style="--background: black;color: white">
     <ion-title>{{this.order.title}}</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,7 +16,7 @@
   <div class="order-info">
     <div class="title-date">
       <h1>{{this.order.title}}</h1>
-      <p>Posted {{order_time_str}}</p>
+      <p>Posted {{this.datetimeService.convertWithFormat(this.order.createTime,"longDate")}}</p>
     </div>
     <div class="line"></div>
     <div class="description">
@@ -25,28 +25,29 @@
     </div>
     <div class="date">
       <h2>Order date</h2>
-      <p>{{order_date_date_str}}</p>
+      <p>{{this.datetimeService.convertWithFormat(this.order.time,"longDate")}}</p>
     </div>
     <div class="time">
       <h2>Order Time</h2>
-      <p>{{order_date_time_str}}</p>
+      <p>{{this.datetimeService.convertWithFormat(this.order.time,"mediumTime")}}</p>
     </div>
     <div class="line"></div>
     <div class="requestor">
       <div class="requestor-label">
         <h2>Customer</h2>
-        <h2>{{order.address.city}}</h2>
+        <h2>{{order.address.name}}</h2>
       </div>
       <div class="requestor-info">
-        <p>{{order_requestor}}</p>
-        <p>{{order_location}}</p>
+        <p>{{this.order.address.street}}</p>
+        <p>{{this.order.address.city}}</p>
+        <p>{{this.order.address.state}}</p>
       </div>
     </div>
     <div class="line"></div>
     <div class="bid-block">
       <div class="best-bid">
         <h2>BEST BID</h2>
-        <p>{{order_price}}</p>
+        <p>{{this.order.bids.length?this.order.bids[0].price + '$' : "No one bid"}}</p>
       </div>
       <ion-button class="bid-button" (click)="onPlaceBidPressed($event);">
         PLACE BID
