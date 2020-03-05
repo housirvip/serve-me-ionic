@@ -40,7 +40,7 @@ export class DashboardPage implements OnInit {
 
   ngOnInit() {
     // this.filterService.getVendorList();
-    this.serviceProviderView = this.userService.isVendorViewEnabled; //comment for testing
+    this.serviceProviderView = this.userService.isVendorViewEnabled(); //comment for testing
     //this.serviceProviderView = true; //uncomment for testing so there's no need to toggle on
     console.log(
       "serviceProviderView in Dashboard Page: ",
@@ -121,6 +121,7 @@ export class DashboardPage implements OnInit {
       this.toastService.presentToast("updated", 2000).then(() => {
         this.getOrders();
       });
+      this.serviceProviderView = this.userService.isVendorViewEnabled();
       event.target.complete();
     }, 1000);
   }

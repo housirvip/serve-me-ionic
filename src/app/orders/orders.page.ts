@@ -25,7 +25,7 @@ export class OrdersPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.serviceProviderView = this.userService.isVendorViewEnabled;
+    this.serviceProviderView = this.userService.isVendorViewEnabled();
     console.log(
       "serviceProviderView in Orders Page: ",
       this.serviceProviderView
@@ -46,6 +46,7 @@ export class OrdersPage implements OnInit {
       this.toastService.presentToast("updated", 2000).then(() => {});
       event.target.complete();
     }, 1000);
+    this.serviceProviderView = this.userService.isVendorViewEnabled();
   }
 
   async orderDetailsModal(order: Jorder) {
