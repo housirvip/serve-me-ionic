@@ -11,10 +11,10 @@ import {UserService} from '../services/user.service';
     templateUrl: './orders.page.html',
     styleUrls: ['./orders.page.scss'],
 })
-export class OrdersPage implements OnInit, AfterViewInit {
+export class OrdersPage implements OnInit {
     currentTab: string;
-    compoentHtml: string;
     filterRequest: OrderRequest;
+
     get orders(): Order[] {
         return this.orderService.orders;
     }
@@ -23,27 +23,22 @@ export class OrdersPage implements OnInit, AfterViewInit {
                 private toastService: ToastService,
                 private userService: UserService) {
         this.filterRequest = new OrderRequest();
-    }
-
-    ngAfterViewInit() {
-        this.compoentHtml = '<app-biding></app-biding>';
-        this.currentTab = 'Biding';
+        this.filterRequest.uid = this.userService.user.id;
     }
 
     ngOnInit() {
+        this.currentTab = 'Biding';
         this.getOrders(OrderStatus.Biding);
     }
 
     getOrders(status: OrderStatus) {
         this.filterRequest.status = [];
         this.filterRequest.status.push(status);
-        this.filterRequest.uid = this.userService.user.id;
         this.orderService.getOrders(this.filterRequest);
     }
 
     segmentChanged(ev: any) {
         this.currentTab = ev.detail.value;
-        console.log(ev.detail.value as OrderStatus);
         this.getOrders(ev.detail.value as OrderStatus);
     }
 

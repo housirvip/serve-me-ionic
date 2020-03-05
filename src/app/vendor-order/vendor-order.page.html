@@ -1,9 +1,56 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>vendor Order</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Vendor Order</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+                pullingIcon="arrow-dropdown"
+                pullingText="Pull to refresh"
+                refreshingSpinner="circles"
+                refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar showCancelButton="always"></ion-searchbar>
+    <ion-segment (ionChange)="segmentChanged($event)" value="Biding">
+        <ion-segment-button value="Biding">
+            <ion-label>Biding</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Pending">
+            <ion-label>Pending</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Processing">
+            <ion-label>Progressing</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Completed">
+            <ion-label>Completed</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+    <div class="componentStatus">
+        <div *ngIf="!this.orders?.length">
+            <div class="emptyTips">
+                <p> Nothing here ~</p>
+            </div>
+        </div>
+        <ion-list *ngFor="let request of orders">
+            <ion-card color="">
+                <ion-card-header>
+                    <ion-card-title>{{request.title}}</ion-card-title>
+                    <ion-card-subtitle>{{request.category}}</ion-card-subtitle>
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-item color="">
+                        <ion-label class="pricehour">
+                            <h1 class="bid">Your max price: {{request.bids|bid: vendor.id:'max'}}</h1>
+                            <ion-label>CreateTime:{{request.createTime| date:'short'}}</ion-label>
+                            <ion-label>Contact:{{request.address.name}}</ion-label>
+                        </ion-label>
+                        <img src="../../../assets/category/{{request.category}}.png" alt="">
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
+        </ion-list>
+    </div>
 </ion-content>

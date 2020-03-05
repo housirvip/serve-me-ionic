@@ -1,20 +1,21 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 
-import { VendorOrderPageRoutingModule } from './vendor-order-routing.module';
-
-import { VendorOrderPage } from './vendor-order.page';
+import {VendorOrderPage} from './vendor-order.page';
+import {RouterModule} from '@angular/router';
+import {BidPipe} from '../pipes/bid.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    VendorOrderPageRoutingModule
-  ],
-  declarations: [VendorOrderPage]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        RouterModule.forChild([{path: '', component: VendorOrderPage}])
+    ],
+    declarations: [VendorOrderPage, BidPipe]
 })
-export class VendorOrderPageModule {}
+export class VendorOrderPageModule {
+}
