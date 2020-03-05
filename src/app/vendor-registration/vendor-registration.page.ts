@@ -13,6 +13,7 @@ import {VendorCategory} from '../classes/vendor-category';
 import {Vendor} from '../classes/vendor';
 import {VendorService} from '../services/vendor.service';
 import {LoadingService} from '../services/loading.service';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-VendorRegistration',
@@ -25,6 +26,14 @@ export class VendorRegistrationPage implements OnInit {
     vendorCategory: string[];
     private currentVendor: Vendor;
     private availableDate: string[];
+
+
+    vendorRegistersForm = this.formBuilder.group({
+        name: ['', [Validators.required, Validators.maxLength(20)]],
+        price: ['', [Validators.required, Validators.pattern('[0-9]+\\.?[0-9]*')]],
+        type: ['', [Validators.required, Validators.minLength(1)]],
+        date: ['', [Validators.required, Validators.minLength(1)]]
+    });
 
     ngOnInit(): void {
         this.addressService.getAddresses();
@@ -39,6 +48,7 @@ export class VendorRegistrationPage implements OnInit {
                 private addressService: AddressService,
                 private vendorService: VendorService,
                 private loadingService: LoadingService,
+                private formBuilder: FormBuilder,
                 private modalController: ModalController) {
         // this.type = VendorCategory.Appliances;
         this.vendorCategory = [];
