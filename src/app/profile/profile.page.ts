@@ -230,7 +230,7 @@ export class ProfilePage implements OnInit {
             console.log();
             this.jump('/vendor-registration');
         } else {
-            this.toastService.presentToast('You are already a Vendor', 2000).then(r => {
+            this.toastService.presentToast('You are already a Vendor', 3000).then(r => {
                 this.jump('dashboard');
             });
         }

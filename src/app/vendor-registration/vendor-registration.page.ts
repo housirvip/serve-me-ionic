@@ -24,7 +24,7 @@ export class VendorRegistrationPage implements OnInit {
     private type: VendorCategory;
     vendorCategory: string[];
     private currentVendor: Vendor;
-    vendorType: VendorCategory[];
+    private availableDate: string[];
 
     ngOnInit(): void {
         this.addressService.getAddresses();
@@ -43,6 +43,7 @@ export class VendorRegistrationPage implements OnInit {
         // this.type = VendorCategory.Appliances;
         this.vendorCategory = [];
         this.currentVendor = new Vendor();
+        this.availableDate = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
         // tslint:disable-next-line:forin
         for (const type1 in VendorCategory) {
             this.vendorCategory.push(type1);
@@ -86,6 +87,13 @@ export class VendorRegistrationPage implements OnInit {
         this.currentVendor.categories = event.target.value;
     }
 
+    onDateChange(event) {
+        // this.type = event.target.value as VendorCategory;
+        console.log(event.target.value);
+
+    }
+
+
     onNameChange(event) {
         this.currentVendor.name = event.target.value;
         // console.log(this.currentVendor.name);
@@ -99,7 +107,22 @@ export class VendorRegistrationPage implements OnInit {
 
         this.loadingService.present();
         this.vendorService.newVendors(this.currentVendor);
-
         console.log(this.currentVendor);
+        this.returnHome();
+
+    }
+
+    jump(path: string) {
+        this.router.navigate([path]).then(() => {
+        });
+    }
+
+    async returnHome() {
+        this.jump('dashboard');
+    }
+
+    onPriceChange(event) {
+        this.currentVendor.price = event.target.value;
+        console.log(event.target.value);
     }
 }

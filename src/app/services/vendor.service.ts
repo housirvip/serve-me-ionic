@@ -13,6 +13,7 @@ import {Order} from '../classes/order';
     providedIn: 'root'
 })
 export class VendorService {
+
     get vendors(): Vendor[] {
         return this._vendors;
     }
@@ -28,7 +29,7 @@ export class VendorService {
     getVendors(request: VendorRequest) {
         this.loadingService.present().then(r => {
         });
-        this.http.get<BaseResponse>('order/bids', {
+        this.http.get<BaseResponse>('user/vendors', {
             params: request.toParam()
         }).subscribe(res => {
             console.log(res.result);
@@ -50,7 +51,5 @@ export class VendorService {
                 this.userService.getUser();
             });
     }
-
-
 
 }

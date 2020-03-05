@@ -67,22 +67,4 @@ export class SlideMenuComponent implements OnInit {
         this.router.navigate([path]).then(() => {
         });
     }
-
-    vendor(event: CustomEvent) {
-        console.log(event.detail.checked);
-        if (event.detail.checked === true) {
-            this.jump('/vendor-registration');
-        }
-    }
-
-    async updateAddress() {
-        const modal = await this.modalController.create({
-            component: UpdateaddressPage
-        });
-        modal.onDidDismiss().then((data) => {
-            console.log('dissmisss');
-            console.log(data);
-        });
-        return await modal.present();
-    }
 }

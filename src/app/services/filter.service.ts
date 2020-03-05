@@ -3,6 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {VendorCategory} from '../classes/vendor-category';
 import {VendorResult} from '../classes/vendor-result';
 import {VendorGender} from '../classes/vendor-gender';
+import {BaseResponse} from '../core/base-response';
+
 
 const MAX_PRICE_LIMIT = 2000;
 const MIN_PRICE_LIMIT = 0;
@@ -17,6 +19,7 @@ export class FilterService {
         this._priceFilled = false;
         this._maxPrice = MAX_PRICE_LIMIT;
         this._minPrice = MIN_PRICE_LIMIT;
+
     }
 
     // tslint:disable-next-line:variable-name
@@ -84,12 +87,15 @@ export class FilterService {
 
     getVendorList() {
         // request for vendors with filter
+
+        console.log(this.vendorList);
+        // return this.vendorList;
         return [{
             commentsNum: 3,
             priceString: '30',
             rate: 5,
-            titleName: 'Tom',
-            typeString: 'HomeCleaning',
+            name: 'Tom',
+            categories: ['HomeCleaning'],
             workHour: '9AM-9PM',
             workDay: 'Mon Tues Wed Thurs Fri Sat Sun',
             photoUrl: '../../assets/img/avatar.png'
@@ -97,8 +103,8 @@ export class FilterService {
             commentsNum: 3,
             priceString: '23',
             rate: 5,
-            titleName: 'James',
-            typeString: 'Dog Walker',
+            name: 'James',
+            categories: ['Dog Walker'],
             workHour: '9AM-9PM',
             workDay: 'Mon Tues Wed Thurs Fri Sat Sun',
             photoUrl: '../../assets/img/avatar.png'
@@ -106,8 +112,8 @@ export class FilterService {
             commentsNum: 3,
             priceString: '15',
             rate: 5,
-            titleName: 'Jack',
-            typeString: 'HomeCleaning',
+            name: 'Jack',
+            categories: ['HomeCleaning'],
             workHour: '9AM-9PM',
             workDay: 'Mon Tues Wed Thurs Fri Sat Sun',
             photoUrl: '../../assets/img/avatar.png'
