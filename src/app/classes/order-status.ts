@@ -4,7 +4,7 @@ export enum OrderStatus {
     Biding = 'Biding',
     // customer confirm one bid and wait vendor accept
     Accepting = 'Accepting',
-    Progressing = 'Progressing',
+    Progressing = 'Processing',
     Completed = 'Completed',
     Pending = 'Pending',
     Refunding = 'Refunding',

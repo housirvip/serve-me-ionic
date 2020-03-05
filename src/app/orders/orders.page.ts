@@ -4,6 +4,7 @@ import {Order} from '../classes/order';
 import {OrderStatus} from '../classes/order-status';
 import {ToastService} from '../services/toast.service';
 import {OrderRequest} from '../classes/spec/order-request';
+import {UserService} from '../services/user.service';
 
 @Component({
     selector: 'app-orders',
@@ -19,7 +20,8 @@ export class OrdersPage implements OnInit, AfterViewInit {
     }
 
     constructor(private orderService: OrderService,
-                private toastService: ToastService) {
+                private toastService: ToastService,
+                private userService: UserService) {
         this.filterRequest = new OrderRequest();
     }
 
@@ -35,6 +37,7 @@ export class OrdersPage implements OnInit, AfterViewInit {
     getOrders(status: OrderStatus) {
         this.filterRequest.status = [];
         this.filterRequest.status.push(status);
+        this.filterRequest.uid = this.userService.user.id;
         this.orderService.getOrders(this.filterRequest);
     }
 
