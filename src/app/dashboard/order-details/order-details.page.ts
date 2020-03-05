@@ -111,8 +111,10 @@ export class OrderDetailsPage implements OnInit {
     popover.onWillDismiss().then(result => {
       if (result.data) {
         console.log(result.data);
-        this.order_price = result.data;
-        //this.doRefresh(ev);
+        if (result.data < this.order_price) {
+          this.order_price = result.data;
+          //this.doRefresh(ev);
+        }
       }
     });
     return;
