@@ -23,13 +23,18 @@ export class OrderDetailsPage implements OnInit {
   private order_status: OrderStatus;
   private order_requestor: string; //who posted the order
   private order_serverProvider: string; //who is providing the service
-  private order_time: Date;
+  private order_time: Date; //creation date
   private order_time_str: string;
   private order_imgUrl: string;
   private order_orderID: number;
   private order_description: string;
   private order_location: string;
   private order_description_txt = "DESCRIPTION";
+  private order_date: Date; //fullfillment date
+  private order_date_date_str: string;
+  private order_date_time_str: string;
+  private order_date_date_txt = "DATE";
+  private order_date_time_txt = "TIME";
   private order_requestor_txt = "CUSTOMER";
   private order_location_txt = "LOCATION";
 
@@ -79,8 +84,11 @@ export class OrderDetailsPage implements OnInit {
     this.order_status = this.order.status;
     this.order_requestor = this.order.user.username;
     this.order_serverProvider = this.order.serverProvider;
-    this.order_time = this.order.time;
+    this.order_time = this.order.createTime; //fixed, was order.time
+    this.order_date = this.order.time; //fullfillment date
     this.order_time_str = moment(this.order_time).format("MM/DD - HH:mm");
+    this.order_date_date_str = moment(this.order_date).format("MM/DD/YYYY");
+    this.order_date_time_str = moment(this.order_date).format("HH:mm");
     this.order_imgUrl = this.order.imgUrl;
     this.order_orderID = this.order.orderID;
     this.order_description = this.order.description;
@@ -111,7 +119,8 @@ export class OrderDetailsPage implements OnInit {
     popover.onWillDismiss().then(result => {
       if (result.data) {
         console.log(result.data);
-        if (result.data < this.order_price) {
+        if (result.data < this.order_price || this.order_price == 0) {
+          //if the submitted bid is les than the current lowest bid OR if the current lowest bid is 0 (no bids yet)
           this.order_price = result.data;
           //this.doRefresh(ev);
         }

@@ -1,5 +1,8 @@
 .order-info {
-  margin: 10px 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .title-date h1 {
@@ -34,6 +37,36 @@
 .description p {
   position: relative;
   padding-bottom: 5px;
+}
+
+.date h2 {
+  position: relative;
+  color: gray;
+  font-size: 13px;
+  font-weight: 300;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.date p {
+  position: relative;
+  padding-bottom: 5px;
+  margin-top: 5px;
+}
+
+.time h2 {
+  position: relative;
+  color: gray;
+  font-size: 13px;
+  font-weight: 300;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.time p {
+  position: relative;
+  padding-bottom: 5px;
+  margin-top: 5px;
 }
 
 .requestor {
