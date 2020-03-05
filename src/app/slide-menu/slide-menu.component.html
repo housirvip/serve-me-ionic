@@ -25,7 +25,7 @@
                 <ion-label>Menu</ion-label>
             </ion-list-header>
             <ion-menu-toggle auto-hide="false">
-                <ion-item (click)="jump('/dashboard')">
+                <ion-item  (click)="this.userService.vendorView ? jump('/vendor-page') :jump('/dashboard')">
                     <ion-icon slot="start" name="home-outline" color="primary"></ion-icon>
                     <ion-label>
                         Dashboard
