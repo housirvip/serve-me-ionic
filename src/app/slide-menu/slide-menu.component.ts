@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
-import {MenuController, ModalController} from '@ionic/angular';
+import {AlertController, MenuController, ModalController} from '@ionic/angular';
 import {LoginPage} from '../login/login.page';
 import {ToastService} from '../services/toast.service';
 import {AngularFireAuth} from '@angular/fire/auth';
@@ -32,7 +32,8 @@ export class SlideMenuComponent implements OnInit {
                 private menu: MenuController,
                 private toastService: ToastService,
                 private afAuth: AngularFireAuth,
-                private modalController: ModalController) {
+                private modalController: ModalController,
+                private alertController: AlertController) {
     }
 
     ngOnInit() {
@@ -69,9 +70,18 @@ export class SlideMenuComponent implements OnInit {
     }
 
     vendor(event: CustomEvent) {
-        console.log(event.detail.checked);
-        if (event.detail.checked === true) {
-            this.jump('/vendor-registration');
+        if (this.userService.isVendor) {
+            this.userService.vendorView = true;
+            this.jump('/vendor-page');
+        } else {
+            this.handleButtonClick(
+                () => {
+                    console.log('agree');
+                    this.jump('/vendor-registration');
+                },
+                () => {
+                    console.log('disagree');
+                });
         }
     }
 
@@ -85,4 +95,25 @@ export class SlideMenuComponent implements OnInit {
         });
         return await modal.present();
     }
+
+    async handleButtonClick(agree, disagree) {
+        const alert = await this.alertController.create({
+            header: 'You are not a vendor',
+            message: 'Do you want to register as a Vendor?',
+            buttons: [{
+                text: 'Agree',
+                role: 'agree',
+                handler: agree
+            }
+                , {
+                    text: 'Disgree',
+                    role: 'Disgree',
+                    handler: disagree
+                }]
+        });
+
+        await alert.present();
+    }
+
+
 }

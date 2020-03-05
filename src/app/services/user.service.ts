@@ -13,6 +13,7 @@ import {Vendor} from '../classes/vendor';
     providedIn: 'root'
 })
 export class UserService {
+
     // tslint:disable-next-line:variable-name
     private _jwt: string;
     // tslint:disable-next-line:variable-name
@@ -27,6 +28,17 @@ export class UserService {
     private _isVendor = false;
     // tslint:disable-next-line:variable-name
     private _isCustomer = false;
+
+    // tslint:disable-next-line:variable-name
+    private _vendorView = false;
+
+    set vendorView(value: boolean) {
+        this._vendorView = value;
+    }
+
+    get vendorView(): boolean {
+        return this._vendorView;
+    }
 
     get jwt(): string {
         return this._jwt || localStorage.getItem('jwt');
@@ -158,6 +170,16 @@ export class UserService {
         if (user.role.indexOf(UserRole.ROLE_VENDOR) > 0) {
             this._isVendor = true;
             this.getVendor();
+        }
+    }
+
+    ifVendor() {
+        // tslint:disable-next-line:forin
+        for (const role of this.user.role) {
+            if (role === UserRole.ROLE_CUSTOMER) {
+                return true;
+            }
+            return false;
         }
     }
 }
