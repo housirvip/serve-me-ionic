@@ -64,4 +64,19 @@ ion-fab-button{
   --background: black;
 }
 
+ion-popover {
+  --height: 50%;
+  --width: 85%;
+  ion-backdrop {
+    opacity: 0.5 !important;
+  }
+  .popover-wrapper {
+    .popover-content {
+      //width:80vw;
+      //height: 66vw;
+      max-width: 500px;
+    }
+  }
+}
+
 

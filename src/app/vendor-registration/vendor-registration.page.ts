@@ -115,7 +115,7 @@ export class VendorRegistrationPage implements OnInit {
         // this.currentOrder.time = javatime;
         // console.log(this.selectedAddress);
 
-        this.loadingService.present();
+       // this.loadingService.present();
         this.vendorService.newVendors(this.currentVendor);
         console.log(this.currentVendor);
         this.returnHome();

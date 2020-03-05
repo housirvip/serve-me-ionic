@@ -74,7 +74,6 @@ export class VendorPagePage implements OnInit {
     }
 
 
-
     async requestDetailsModal(event, request) {
         console.log(request);
         const modal = await this.modalController.create({
@@ -83,14 +82,22 @@ export class VendorPagePage implements OnInit {
                 request
             }
         });
+        modal.onDidDismiss().then((data) => {
+            console.log(data);
+            if (data.data) {
+                this.getOrders(OrderStatus.Biding);
+            }
+        });
         return await modal.present();
     }
 
-    public get_best_bid(order: Order): number{
-        if(order.bids && order.bids.length){
+    public get_best_bid(order: Order): number {
+        if (order.bids && order.bids.length) {
             const best = order.bids
                 .map(x => x.price)
-                .reduce((acc, cv) =>{return acc < cv ? acc : cv;}, Number.POSITIVE_INFINITY);
+                .reduce((acc, cv) => {
+                    return acc < cv ? acc : cv;
+                }, Number.POSITIVE_INFINITY);
             return best;
         }
         return 0;

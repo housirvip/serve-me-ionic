@@ -17,6 +17,7 @@ class WorkType {
 })
 export class RequestDetailsPage implements OnInit {
     order: Order;
+    // tslint:disable-next-line:variable-name
     best_bid: string;
 
     constructor(
@@ -34,16 +35,18 @@ export class RequestDetailsPage implements OnInit {
         this.order = request;
         this.best_bid = 'No bids';
 
-        if(this.order.bids.length){
+        if (this.order.bids.length) {
             const best = this.order.bids
                 .map(x => x.price)
-                .reduce((acc, cv) =>{return acc < cv ? acc : cv;}, Number.POSITIVE_INFINITY);
+                .reduce((acc, cv) => {
+                    return acc < cv ? acc : cv;
+                }, Number.POSITIVE_INFINITY);
             this.best_bid = '$' + best;
         }
     }
 
-    onBackPressed() {
-        this.modalController.dismiss('test').then(() => {
+    onBackPressed(data) {
+        this.modalController.dismiss(data).then(() => {
         });
     }
 
@@ -58,7 +61,7 @@ export class RequestDetailsPage implements OnInit {
         popover.onWillDismiss().then(result => {
             if (result.data) {
                 console.log(result.data);
-                this.onBackPressed();
+                this.onBackPressed(result.data);
                 // if (result.data < this.order_price || this.order_price == 0) {
                 //     // if the submitted bid is les than the current lowest bid OR if the current lowest bid is 0 (no bids yet)
                 //     this.order_price = result.data;
