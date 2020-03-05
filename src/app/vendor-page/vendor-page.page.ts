@@ -86,5 +86,13 @@ export class VendorPagePage implements OnInit {
         return await modal.present();
     }
 
-
+    public get_best_bid(order: Order): number{
+        if(order.bids && order.bids.length){
+            const best = order.bids
+                .map(x => x.price)
+                .reduce((acc, cv) =>{return acc < cv ? acc : cv;}, Number.POSITIVE_INFINITY);
+            return best;
+        }
+        return 0;
+    }
 }

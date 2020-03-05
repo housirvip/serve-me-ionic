@@ -47,7 +47,7 @@
     <div class="bid-block">
       <div class="best-bid">
         <h2>BEST BID</h2>
-        <p>{{this.order.bids.length?this.order.bids[0].price + '$' : "No one bid"}}</p>
+        <p>{{this.best_bid}}</p>
       </div>
       <ion-button class="bid-button" (click)="onPlaceBidPressed($event);">
         PLACE BID

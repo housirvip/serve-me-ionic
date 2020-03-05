@@ -17,6 +17,7 @@ class WorkType {
 })
 export class RequestDetailsPage implements OnInit {
     order: Order;
+    best_bid: string;
 
     constructor(
         private orderService: OrderService,
@@ -31,6 +32,14 @@ export class RequestDetailsPage implements OnInit {
     ngOnInit() {
         const request = this.navParams.get('request');
         this.order = request;
+        this.best_bid = 'No bids';
+
+        if(this.order.bids.length){
+            const best = this.order.bids
+                .map(x => x.price)
+                .reduce((acc, cv) =>{return acc < cv ? acc : cv;}, Number.POSITIVE_INFINITY);
+            this.best_bid = '$' + best;
+        }
     }
 
     onBackPressed() {

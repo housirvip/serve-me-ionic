@@ -45,7 +45,7 @@
       <ion-card-header>
         <div style="display: flex;justify-content: space-between">
           <ion-card-title>{{request.title}}</ion-card-title>
-          <ion-card-title [ngClass]="request.bids.length? 'bid' : ' nobid' ">{{request.bids.length?"Lowest:" + request.bids[0].price + '$' : "No one bid"}}</ion-card-title>
+          <ion-card-title [ngClass]="request.bids.length? 'bid' : ' nobid' ">{{request.bids.length?"Lowest: $" + this.get_best_bid(request) : "No bids"}}</ion-card-title>
         </div>
         <ion-card-subtitle>{{request.category}}</ion-card-subtitle>
       </ion-card-header>
