@@ -13,7 +13,7 @@ export class BidPipe implements PipeTransform {
         let maxPrice = 0;
         let minPrice = 0;
         value.forEach(bid => {
-            if (args.length > 1 && bid.uid !== args[1]) {
+            if (args.length > 1 && bid.vendor.id !== args[1]) {
                 return;
             }
             if (bid.price > maxPrice) {

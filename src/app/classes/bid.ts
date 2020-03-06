@@ -1,10 +1,9 @@
 import {Order} from './order';
+import {Vendor} from './vendor';
 
 export class Bid {
     id: number;
-    // todo change uid to vid
-    uid: number;
-   // vid: number;
+    vendor: Vendor;
     description: string;
     price: number;
     createTime: Date;

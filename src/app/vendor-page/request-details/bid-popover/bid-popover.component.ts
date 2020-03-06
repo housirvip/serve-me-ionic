@@ -48,7 +48,7 @@ export class BidPopoverComponent implements OnInit {
 
             const bid = new Bid();
             console.log(this.order);
-            bid.uid = this.userService.vendor.id;
+            // bid.vid = this.userService.vendor.id;
             bid.order = this.order;
             bid.price = this.bid_amount;
             bid.description = this.bid_message;
