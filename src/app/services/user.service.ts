@@ -1,37 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
-import {BaseResponse} from '../core/base-response';
 import {User} from '../classes/user';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {FirebaseService} from './firebase.service';
 import {environment} from '../../environments/environment';
-import {UserRole} from '../classes/user-role';
 import {Vendor} from '../classes/vendor';
+import {FirebaseService} from './firebase.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
-
-    // tslint:disable-next-line:variable-name
-    private _jwt: string;
-    // tslint:disable-next-line:variable-name
-    private _user: User;
-    // tslint:disable-next-line:variable-name
-    private _vendor: Vendor;
-    // tslint:disable-next-line:variable-name
-    private _isLogin = false;
-    // tslint:disable-next-line:variable-name
-    private _isAdmin = false;
-    // tslint:disable-next-line:variable-name
-    private _isVendor = false;
-    // tslint:disable-next-line:variable-name
-    private _isCustomer = false;
-
-    // tslint:disable-next-line:variable-name
-    private _vendorView = false;
-
     set vendorView(value: boolean) {
         this._vendorView = value;
     }
@@ -52,20 +31,8 @@ export class UserService {
         return this._vendor;
     }
 
-    get isLogin(): boolean {
-        return this._isLogin;
-    }
-
-    get isAdmin(): boolean {
-        return this._isAdmin;
-    }
-
     get isVendor(): boolean {
         return this._isVendor;
-    }
-
-    get isCustomer(): boolean {
-        return this._isCustomer;
     }
 
     get emailVerified(): boolean {
@@ -75,9 +42,23 @@ export class UserService {
         return this.afAuth.auth.currentUser.emailVerified;
     }
 
+    // tslint:disable-next-line:variable-name
+    private _jwt: string;
+    // tslint:disable-next-line:variable-name
+    private _user: User;
+    // tslint:disable-next-line:variable-name
+    private _vendor: Vendor;
+    // tslint:disable-next-line:variable-name
+    private _isLogin = false;
+    // tslint:disable-next-line:variable-name
+    private _isVendor = false;
+
+    // tslint:disable-next-line:variable-name
+    private _vendorView = false;
+
     constructor(private http: HttpClient,
                 private afAuth: AngularFireAuth,
-                private firebaseService: FirebaseService
+                private firebaseService: FirebaseService,
     ) {
         afAuth.idToken.subscribe(jwt => {
             if (!jwt) {
@@ -86,7 +67,7 @@ export class UserService {
             this._jwt = jwt;
             localStorage.setItem('jwt', jwt);
             this.getUser();
-            firebaseService.notifyToUpdate();
+            this.syncDeviceToken(this.firebaseService.deviceToken);
             if (!environment.production) {
                 console.log(jwt);
             }
@@ -99,20 +80,17 @@ export class UserService {
                 this._user = null;
                 this._jwt = null;
                 this._isLogin = false;
-                this._isAdmin = false;
-                this._isCustomer = false;
                 this._isVendor = false;
+                this._vendorView = false;
             }
         );
     }
 
     newUser(user: User) {
-        this.http.post<BaseResponse>('auth/register', user).subscribe(
+        user.password = 'serve-me';
+        this.http.post<User>('auth/local/register', user).subscribe(
             res => {
-                if (res.code !== 0) {
-                    return;
-                }
-                this.setUser(res.result);
+                this.setUser(res);
             });
     }
 
@@ -120,35 +98,19 @@ export class UserService {
         if (!this._jwt) {
             return;
         }
-        this.http.get<BaseResponse>('user/myself', {}).subscribe(
+        this.http.get<User>('users/me', {}).subscribe(
             res => {
-                if (res.code !== 0) {
-                    return;
-                }
-                this.setUser(res.result);
-            });
-    }
-
-    getVendor() {
-        if (!this._jwt) {
-            return;
-        }
-        this.http.get<BaseResponse>('user/vendor', {}).subscribe(
-            res => {
-                if (res.code !== 0) {
-                    return;
-                }
-                this._vendor = res.result;
+                this.setUser(res);
             });
     }
 
     updateUser(user: User) {
-        this.http.put<BaseResponse>('user/update', user).subscribe(
+        if (!this._isLogin) {
+            return;
+        }
+        this.http.put<User>('users/' + this._user.id, user).subscribe(
             res => {
-                if (res.code !== 0) {
-                    return;
-                }
-                this.getUser();
+                this.setUser(res);
             }
         );
     }
@@ -161,25 +123,15 @@ export class UserService {
     setUser(user: User) {
         this._user = user;
         this._isLogin = true;
-        if (user.role.indexOf(UserRole.ROLE_ADMIN) > 0) {
-            this._isAdmin = true;
-        }
-        if (user.role.indexOf(UserRole.ROLE_CUSTOMER) > 0) {
-            this._isCustomer = true;
-        }
-        if (user.role.indexOf(UserRole.ROLE_VENDOR) > 0) {
+        if (user.vendor) {
+            this._vendor = user.vendor;
             this._isVendor = true;
-            this.getVendor();
         }
     }
 
-    ifVendor() {
-        // tslint:disable-next-line:forin
-        for (const role of this.user.role) {
-            if (role === UserRole.ROLE_CUSTOMER) {
-                return true;
-            }
-            return false;
-        }
+    syncDeviceToken(deviceToken: string) {
+        const user = new User();
+        user.deviceToken = deviceToken;
+        this.updateUser(user);
     }
 }

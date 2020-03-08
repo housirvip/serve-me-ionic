@@ -1,45 +1,34 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Subject} from 'rxjs';
 import {FirebaseX} from '@ionic-native/firebase-x/ngx';
 
 @Injectable({
     providedIn: 'root'
 })
 export class FirebaseService {
-    private token: string;
-    private subject = new Subject<string>();
+    get deviceToken(): string {
+        return this._deviceToken;
+    }
+
+    // tslint:disable-next-line:variable-name
+    private _deviceToken: string;
 
     constructor(private http: HttpClient,
                 private firebase: FirebaseX,
     ) {
-        this.readyToSendToken();
+        this._deviceToken = localStorage.getItem('deviceToken');
         this.initialService();
     }
 
-    private readyToSendToken() {
-        this.token = localStorage.getItem('fcm_token');
-        this.subject.asObservable().subscribe(value => {
-            this.http.put('user/update', {fcmToken: value})
-                .subscribe(() => {
-                });
-        });
-    }
-
-    notifyToUpdate() {
-        this.subject.next(this.token);
-    }
-
     initialService() {
-        // save the token server-side and use it to push notifications to this device
+        // save the deviceToken server-side and use it to push notifications to this device
         this.firebase.getToken()
             .then(() => {
             });
         this.firebase.onTokenRefresh()
             .subscribe(token => {
-                this.token = token;
-                localStorage.setItem('fcm_token', token);
-                this.notifyToUpdate();
+                this._deviceToken = token;
+                localStorage.setItem('deviceToken', token);
             });
         // check notification permission
         this.firebase.hasPermission()

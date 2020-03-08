@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://serve-me-java.herokuapp.com/',
+    apiUrl: 'https://serve-me-api.herokuapp.com/',
     // apiUrl: 'http://192.168.1.139/'
     // apiUrl: 'http://192.168.1.139:8000/',
     firebaseConfig: {

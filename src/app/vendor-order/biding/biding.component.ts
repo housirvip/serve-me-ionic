@@ -31,7 +31,7 @@ export class BidingComponent implements OnInit {
 
     ngOnInit() {
         console.log('biding component init');
-        this.bidRequest.uid = this.vendor.id;
+        this.bidRequest.vendor = this.vendor.id;
         this.getBids();
     }
 

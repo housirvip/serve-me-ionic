@@ -1,7 +1,8 @@
 import {HttpParams} from '@angular/common/http';
 
 export class BidRequest {
-    uid: number;
+    // this vendor means vendor.id
+    vendor: number;
     orderId: number;
     priceMin: number;
     priceMax: number;

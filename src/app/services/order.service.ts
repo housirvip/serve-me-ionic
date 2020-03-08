@@ -6,6 +6,7 @@ import {Bid} from '../classes/bid';
 import {LoadingService} from './loading.service';
 import {OrderRequest} from '../classes/spec/order-request';
 import {BidRequest} from '../classes/spec/bid-request';
+import {environment} from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +15,7 @@ export class OrderService {
     get bids(): Bid[] {
         return this._bids;
     }
+
     get currentOrder(): Order {
         return this._currentOrder;
     }
@@ -34,12 +36,9 @@ export class OrderService {
     }
 
     getOrder(id: number) {
-        return this.http.get<BaseResponse>('order/' + id, {}).subscribe(
+        return this.http.get<Order>('orders/' + id, {}).subscribe(
             res => {
-                if (res.code !== 0) {
-                    return;
-                }
-                this._currentOrder = res.result;
+                this._currentOrder = res;
             }
         );
     }
@@ -47,70 +46,109 @@ export class OrderService {
     getOrders(request: OrderRequest) {
         this.loadingService.present().then(r => {
         });
-        this.http.get<BaseResponse>('order', {
+        this.http.get<Order[]>('orders', {
             params: request.toParam()
         }).subscribe(res => {
-            console.log(res.result);
             this.loadingService.dismiss().then(r => {
             });
-            if (res.code !== 0) {
-                return;
+            this._orders = res;
+            if (!environment.production) {
+                console.log(res);
             }
-            this._orders = res.result;
         });
     }
 
     getBids(request: BidRequest) {
         this.loadingService.present().then(r => {
         });
-        this.http.get<BaseResponse>('order/bids', {
+        this.http.get<Bid[]>('bids', {
             params: request.toParam()
         }).subscribe(res => {
-            console.log(res.result);
             this.loadingService.dismiss().then(r => {
             });
-            if (res.code !== 0) {
-                return;
+            this._bids = res;
+            if (!environment.production) {
+                console.log(res);
             }
-            this._bids = res.result;
         });
     }
 
+    // api for customer, create a new order, then status => Biding
     createOrder(order: Order) {
-        return this.http.post<BaseResponse>('order', order);
+        return this.http.post<Order>('orders', order);
     }
 
     updateOrder(order: Order) {
-        this.http.put<BaseResponse>('order', order).subscribe(
+        this.http.put<Order>('orders/' + order.id, order).subscribe(
             res => {
+                if (!environment.production) {
+                    console.log(res);
+                }
             });
     }
 
+    // not suggested to do this
     deleteOrder(id: number) {
-        this.http.delete<BaseResponse>('order/' + id, {}).subscribe(
+        this.http.delete<Order>('orders/' + id, {}).subscribe(
             res => {
+                if (!environment.production) {
+                    console.log(res);
+                }
             });
     }
 
+    // api for vendor, give a new bid to an order, then status still Biding
     bid(bid: Bid) {
-      return  this.http.put<BaseResponse>('order/bid', bid);
+        return this.http.put<Bid>('order/bid', bid);
     }
 
+    // api for customer, accept the bid, then status => Accepting
+    accept(bid: Bid) {
+        this.http.put<Bid>('order/accept', bid).subscribe(
+            res => {
+                if (!environment.production) {
+                    console.log(res);
+                }
+            });
+    }
+
+    // api for vendor, accept the order of which owner accept your bid, then status => Pending(waiting customer pay for it)
     confirm(bid: Bid) {
         this.http.put<BaseResponse>('order/confirm', bid).subscribe(
             res => {
+                if (!environment.production) {
+                    console.log(res);
+                }
             });
     }
 
+    // api for customer, pay to an order, then status => Progressing
     pay(order: Order) {
-        this.http.put<BaseResponse>('order/pay', order).subscribe(
+        this.http.put<Order>('order/pay', order).subscribe(
             res => {
+                if (!environment.production) {
+                    console.log(res);
+                }
             });
     }
 
+    // api for vendor, mark this order as finished, then status => Finished
     finish(order: Order) {
-        this.http.put<BaseResponse>('order/finish', order).subscribe(
+        this.http.put<Order>('order/finish', order).subscribe(
             res => {
+                if (!environment.production) {
+                    console.log(res);
+                }
+            });
+    }
+
+    // api for customer, mark this order as completed, then status => Completed
+    complete(order: Order) {
+        this.http.put<Order>('order/complete', order).subscribe(
+            res => {
+                if (!environment.production) {
+                    console.log(res);
+                }
             });
     }
 }

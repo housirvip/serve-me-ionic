@@ -1,13 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Address} from '../classes/address';
-import {BaseResponse} from '../core/base-response';
 import {HttpClient} from '@angular/common/http';
 import {LoadingService} from './loading.service';
 import {Vendor} from '../classes/vendor';
 import {VendorRequest} from '../classes/spec/vendor-request';
 import {User} from '../classes/user';
 import {UserService} from './user.service';
-import {Order} from '../classes/order';
 
 @Injectable({
     providedIn: 'root'
@@ -29,27 +26,20 @@ export class VendorService {
     getVendors(request: VendorRequest) {
         this.loadingService.present().then(r => {
         });
-        this.http.get<BaseResponse>('user/vendors', {
+        this.http.get<Vendor[]>('vendors', {
             params: request.toParam()
         }).subscribe(res => {
-            console.log(res.result);
+            console.log(res);
             this.loadingService.dismiss().then(r => {
             });
-            if (res.code !== 0) {
-                return;
-            }
-            this._vendors = res.result;
+            this._vendors = res;
         });
     }
 
     newVendors(vendor: Vendor) {
-        this.http.put<BaseResponse>('user/vendor', vendor).subscribe(
+        this.http.put<User>('/vendor/upgrade', vendor).subscribe(
             res => {
-                if (res.code !== 0) {
-                    return;
-                }
                 this.userService.getUser();
             });
     }
-
 }

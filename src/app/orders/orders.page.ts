@@ -23,7 +23,7 @@ export class OrdersPage implements OnInit {
                 private toastService: ToastService,
                 private userService: UserService) {
         this.filterRequest = new OrderRequest();
-        this.filterRequest.uid = this.userService.user.id;
+        this.filterRequest.user = this.userService.user.id;
     }
 
     ngOnInit() {

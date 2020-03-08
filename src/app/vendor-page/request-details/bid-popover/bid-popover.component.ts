@@ -53,10 +53,10 @@ export class BidPopoverComponent implements OnInit {
             bid.price = this.bid_amount;
             bid.description = this.bid_message;
             this.orderService.bid(bid).subscribe(res => {
-                if (res.code === 0) {
-                    this.dissmissPopover();
-                    this.toastService.presentToast('Bid successful!', 1000);
-                }
+                this.dissmissPopover().then(r => {
+                });
+                this.toastService.presentToast('Bid successful!', 1000).then(r => {
+                });
             });
 
 
