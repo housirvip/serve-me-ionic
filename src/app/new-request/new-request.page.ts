@@ -64,7 +64,7 @@ export class NewRequestPage implements OnInit {
     }
 
     ngOnInit() {
-        this.addressService.getAddresses();
+        this.addressService.getList();
         console.log(this.datetimeService.getDatestring());
     }
 

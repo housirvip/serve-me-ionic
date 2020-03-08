@@ -20,7 +20,7 @@ export class ShowAddressPage implements OnInit {
               private  userService: UserService) { }
   selectedAddress: Address;
   ngOnInit() {
-    this.userService.user ? this.addressService.getAddresses() :
+    this.userService.user ? this.addressService.getList() :
         console.log('error no user,please enter this page again');
   }
 

@@ -84,7 +84,11 @@ export class UpdateaddressPage implements OnInit {
 
     saved() {
         console.log(this.newAddress);
-        this.addressService.updateAddress(this.newAddress);
+        if (this.newAddress.id) {
+            this.addressService.update(this.newAddress);
+        } else {
+            this.addressService.create(this.newAddress);
+        }
         this.dismiss();
     }
 

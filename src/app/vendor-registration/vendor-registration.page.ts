@@ -36,7 +36,7 @@ export class VendorRegistrationPage implements OnInit {
     });
 
     ngOnInit(): void {
-        this.addressService.getAddresses();
+        this.addressService.getList();
     }
 
     constructor(private userService: UserService,

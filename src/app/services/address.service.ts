@@ -3,6 +3,7 @@ import {Address} from '../classes/address';
 import {BaseResponse} from '../core/base-response';
 import {HttpClient} from '@angular/common/http';
 import {LoadingService} from './loading.service';
+import {UserService} from './user.service';
 
 @Injectable({
     providedIn: 'root'
@@ -22,34 +23,32 @@ export class AddressService {
     private _currentAddress: Address;
 
     constructor(private http: HttpClient,
+                private userService: UserService,
                 private loadingService: LoadingService) {
     }
 
-    getAddresses() {
+    getList() {
         this.loadingService.present().then(r => {
         });
-        this.http.get<BaseResponse>('user/address', {}).subscribe(
+        this.http.get<Address[]>('addresses', {
+            params: {
+                user: this.userService.user.id.toString(),
+            }
+        }).subscribe(
             res => {
                 this.loadingService.dismiss().then(r => {
                 });
-                if (res.code !== 0) {
-                    return;
-                }
-                this._addresses = res.result;
+                this._addresses = res;
             });
     }
 
-    deleteAddress(id: number) {
+    delete(id: number) {
         this.loadingService.present().then(r => {
         });
-        this.http.delete<BaseResponse>('user/address/' + id, {}).subscribe(
+        this.http.delete<BaseResponse>('addresses/' + id, {}).subscribe(
             res => {
                 this.loadingService.dismiss().then(r => {
                 });
-                if (res.code !== 0) {
-                    return;
-                }
-
                 const tmp = [];
                 for (const addressIndex of this._addresses) {
                     if (addressIndex.id === id) {
@@ -61,19 +60,27 @@ export class AddressService {
             });
     }
 
-
-    updateAddress(address: Address) {
+    create(address: Address) {
         this.loadingService.present().then(r => {
         });
-        this.http.put<BaseResponse>('user/address', address).subscribe(
+        this.http.post<Address>('addresses', address).subscribe(
             res => {
                 this.loadingService.dismiss().then(r => {
                 });
-                if (res.code !== 0) {
-                    return;
-                }
-                this._currentAddress = res.result as Address;
-                this.getAddresses();
+                this._currentAddress = res;
+                this.getList();
+            });
+    }
+
+    update(address: Address) {
+        this.loadingService.present().then(r => {
+        });
+        this.http.put<Address>('addresses/' + address.id, address).subscribe(
+            res => {
+                this.loadingService.dismiss().then(r => {
+                });
+                this._currentAddress = res;
+                this.getList();
             });
     }
 
