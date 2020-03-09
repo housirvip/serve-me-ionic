@@ -29,7 +29,7 @@ export class VendorOrderPage implements OnInit {
                 private toastService: ToastService,
                 private userService: UserService) {
         this.filterRequest = new OrderRequest();
-        this.filterRequest.vid = this.userService.vendor.id;
+        this.filterRequest.vendor = this.userService.vendor.id;
     }
 
     ngOnInit() {
@@ -38,8 +38,8 @@ export class VendorOrderPage implements OnInit {
     }
 
     getOrders(status: OrderStatus) {
-        this.filterRequest.status = [];
-        this.filterRequest.status.push(status);
+        this.filterRequest.statusIn = [];
+        this.filterRequest.statusIn.push(status);
         // this.orderService.getOrders(this.filterRequest);
     }
 

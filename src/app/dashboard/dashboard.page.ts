@@ -17,17 +17,18 @@ import {Vendor} from '../classes/vendor';
 export class DashboardPage implements OnInit {
     vendorRequest: VendorRequest;
 
-
     constructor(private modalController: ModalController,
                 private toastService: ToastService,
                 private vendorService: VendorService,
                 private filterService: FilterService) {
         this.vendorRequest = new VendorRequest();
+        // this.vendorRequest.limit = 10; page size
+        // this.vendorRequest.start = 1; page num
+        // this.vendorRequest.nameContains = 'hou'; for search
     }
 
     get vendors() {
         return this.vendorService.vendors;
-        // return this.filterService.getVendorList();
     }
 
     ngOnInit() {

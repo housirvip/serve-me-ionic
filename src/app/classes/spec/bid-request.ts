@@ -1,22 +1,36 @@
 import {HttpParams} from '@angular/common/http';
+import {ParamsHelper} from './params-helper';
 
 export class BidRequest {
+    // page size
+    set limit(value: number) {
+        this._limit = value;
+    }
+
+    // page number
+    set start(value: number) {
+        this._start = value - 1;
+    }
+
+    // for example sort="id:asc,price:desc"
+    set sort(value: string) {
+        this._sort = value;
+    }
+
     // this vendor means vendor.id
     vendor: number;
-    orderId: number;
-    priceMin: number;
-    priceMax: number;
-    // from 0 to max, 0 was the first page
-    page: number;
-    size: number;
-    // for example sort=["id,asc","price,desc"]
-    sort: string[];
+    order: number;
+    priceGte: number;
+    priceLte: number;
+
+    // tslint:disable-next-line:variable-name
+    _limit: number;
+    // tslint:disable-next-line:variable-name
+    _start: number;
+    // tslint:disable-next-line:variable-name
+    _sort: string;
 
     toParam(): HttpParams {
-        let params = new HttpParams();
-        Object.entries(this).forEach(
-            ([key, value]) => params = params.append(key, value)
-        );
-        return params;
+        return ParamsHelper.toParam(this);
     }
 }
