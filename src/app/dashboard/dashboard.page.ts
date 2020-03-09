@@ -22,9 +22,7 @@ export class DashboardPage implements OnInit {
                 private vendorService: VendorService,
                 private filterService: FilterService) {
         this.vendorRequest = new VendorRequest();
-        // this.vendorRequest.limit = 10; page size
-        // this.vendorRequest.start = 1; page num
-        // this.vendorRequest.nameContains = 'hou'; for search
+        // plz review VendorRequest, there shows some specification
     }
 
     get vendors() {

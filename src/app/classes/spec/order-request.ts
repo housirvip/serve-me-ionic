@@ -4,20 +4,16 @@ import {HttpParams} from '@angular/common/http';
 import {ParamsHelper} from './params-helper';
 
 export class OrderRequest {
-    // page size
-    set limit(value: number) {
-        this._limit = value;
-    }
-
-    // page number
-    set start(value: number) {
-        this._start = value - 1;
-    }
-
-    // for example sort="id:asc,price:desc"
-    set sort(value: string) {
-        this._sort = value;
-    }
+    /*
+    * this.orderRequest['_start'] = 1; page number
+    * this.orderRequest['_limit'] = 1; page size
+    * this.orderRequest['_sort'] = 'price:desc,rate:desc'; for sort, support multiple sort
+    * this.orderRequest['address.city'] = 'asd'; // deep filter
+    * this.orderRequest['address.state'] = 'asd'; // deep filter
+    * this.orderRequest.vendor = 1; vendor.id
+    * this.orderRequest.user = 1; user.id
+    * this.orderRequest.titleContains = 'asd'; for search
+     */
 
     // this user mean user.id
     user: number;
@@ -31,13 +27,6 @@ export class OrderRequest {
     timeLte: Date;
     statusIn: OrderStatus[];
     categoryIn: VendorCategory[];
-
-    // tslint:disable-next-line:variable-name
-    _limit: number;
-    // tslint:disable-next-line:variable-name
-    _start: number;
-    // tslint:disable-next-line:variable-name
-    _sort: string;
 
     toParam(): HttpParams {
         return ParamsHelper.toParam(this);

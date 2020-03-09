@@ -23,6 +23,7 @@ export class OrdersPage implements OnInit {
                 private toastService: ToastService,
                 private userService: UserService) {
         this.filterRequest = new OrderRequest();
+        // plz review OrderRequest, there shows some specification
         this.filterRequest.user = this.userService.user.id;
     }
 

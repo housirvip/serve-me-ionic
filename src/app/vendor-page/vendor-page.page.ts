@@ -25,9 +25,9 @@ export class VendorPagePage implements OnInit {
                 private toastService: ToastService,
                 private vendorService: VendorService,
                 private filterService: FilterService,
-                private orderService: OrderService,
-                private datetimeService: DatetimeService) {
+                private orderService: OrderService) {
         this.filterRequest = new OrderRequest();
+        // plz review OrderRequest, there shows some specification
     }
 
     get requests() {

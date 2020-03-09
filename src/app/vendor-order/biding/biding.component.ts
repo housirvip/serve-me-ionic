@@ -27,6 +27,7 @@ export class BidingComponent implements OnInit {
     constructor(private orderService: OrderService,
                 private userService: UserService) {
         this.bidRequest = new BidRequest();
+        // plz review BidRequest, there shows some specification
     }
 
     ngOnInit() {
