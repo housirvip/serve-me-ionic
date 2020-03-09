@@ -24,14 +24,14 @@ export class VendorService {
     }
 
     getVendors(request: VendorRequest) {
-        this.loadingService.present().then(r => {
-        });
+        // this.loadingService.present().then(r => {
+        // });
         this.http.get<Vendor[]>('vendors', {
             params: request.toParam()
         }).subscribe(res => {
             console.log(res);
-            this.loadingService.dismiss().then(r => {
-            });
+            // this.loadingService.dismiss().then(r => {
+            // });
             this._vendors = res;
         });
     }

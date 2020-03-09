@@ -3,8 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {VendorCategory} from '../classes/vendor-category';
 import {VendorResult} from '../classes/vendor-result';
 import {VendorGender} from '../classes/vendor-gender';
-import {BaseResponse} from '../core/base-response';
-
 
 const MAX_PRICE_LIMIT = 2000;
 const MIN_PRICE_LIMIT = 0;

@@ -5,8 +5,8 @@ import {AlertController, MenuController, ModalController} from '@ionic/angular';
 import {LoginPage} from '../login/login.page';
 import {ToastService} from '../services/toast.service';
 import {AngularFireAuth} from '@angular/fire/auth';
-import {VendorRegistrationModule} from '../vendor-registration/vendor-registration.module';
 import {UpdateaddressPage} from '../address/updateaddress/updateaddress.page';
+import {FcmService} from '../services/fcm.service';
 
 @Component({
     selector: 'app-slide-menu',
@@ -32,11 +32,12 @@ export class SlideMenuComponent implements OnInit {
                 private menu: MenuController,
                 private toastService: ToastService,
                 private afAuth: AngularFireAuth,
+                private fcmService: FcmService,
                 private modalController: ModalController,
                 private alertController: AlertController) {
     }
 
-    ngOnInit() {
+    async ngOnInit() {
         this.menu.enable(true, 'first').then(r => {
         });
     }

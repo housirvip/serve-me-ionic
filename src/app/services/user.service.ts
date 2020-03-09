@@ -5,7 +5,7 @@ import {User} from '../classes/user';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {environment} from '../../environments/environment';
 import {Vendor} from '../classes/vendor';
-import {FirebaseService} from './firebase.service';
+import {Subject} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -20,7 +20,7 @@ export class UserService {
     }
 
     get jwt(): string {
-        return this._jwt || localStorage.getItem('jwt');
+        return this._jwt;
     }
 
     get user(): User {
@@ -56,18 +56,20 @@ export class UserService {
     // tslint:disable-next-line:variable-name
     private _vendorView = false;
 
+    user$: Subject<User> = new Subject();
+
     constructor(private http: HttpClient,
                 private afAuth: AngularFireAuth,
-                private firebaseService: FirebaseService,
     ) {
         afAuth.idToken.subscribe(jwt => {
             if (!jwt) {
+                this.user$.next(null);
                 return;
             }
             this._jwt = jwt;
-            localStorage.setItem('jwt', jwt);
-            this.getUser();
-            this.syncDeviceToken(this.firebaseService.deviceToken);
+            this.getUser().then(user => {
+                this.user$.next(user);
+            });
             if (!environment.production) {
                 console.log(jwt);
             }
@@ -95,13 +97,16 @@ export class UserService {
     }
 
     getUser() {
-        if (!this._jwt) {
-            return;
-        }
-        this.http.get<User>('users/me', {}).subscribe(
-            res => {
-                this.setUser(res);
-            });
+        return new Promise<User>((resolve, reject) => {
+            if (!this._jwt) {
+                return;
+            }
+            this.http.get<User>('users/me', {}).subscribe(
+                res => {
+                    this.setUser(res);
+                    resolve(res);
+                }, error => reject(error));
+        });
     }
 
     updateUser(user: User) {
@@ -127,11 +132,5 @@ export class UserService {
             this._vendor = user.vendor;
             this._isVendor = true;
         }
-    }
-
-    syncDeviceToken(deviceToken: string) {
-        const user = new User();
-        user.deviceToken = deviceToken;
-        this.updateUser(user);
     }
 }

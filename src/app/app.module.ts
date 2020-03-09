@@ -15,12 +15,15 @@ import {FirebaseX} from '@ionic-native/firebase-x/ngx';
 
 import {SlideMenuModule} from './slide-menu/slide-menu.module';
 
-import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
+import {AngularFireModule} from '@angular/fire';
 import {AngularFireMessagingModule} from '@angular/fire/messaging';
 import {Camera} from '@ionic-native/camera/ngx';
 import {DatePipe} from '@angular/common';
 import {BidPipe} from './pipes/bid.pipe';
+import {FcmServiceProvider} from './services/fcm.service';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
 @NgModule({
     declarations: [AppComponent],
@@ -33,6 +36,8 @@ import {BidPipe} from './pipes/bid.pipe';
         SlideMenuModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireMessagingModule,
+        AngularFireStorageModule,
+        AngularFireAuthModule,
     ],
     providers: [
         StatusBar,
@@ -42,6 +47,7 @@ import {BidPipe} from './pipes/bid.pipe';
         Camera,
         DatePipe,
         BidPipe,
+        FcmServiceProvider,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
         {provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true},
     ],
