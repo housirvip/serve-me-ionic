@@ -7,6 +7,7 @@ import {ToastService} from '../services/toast.service';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {UpdateaddressPage} from '../address/updateaddress/updateaddress.page';
 import {FcmService} from '../services/fcm.service';
+import {VersionService} from '../services/version.service';
 
 @Component({
     selector: 'app-slide-menu',
@@ -27,19 +28,29 @@ export class SlideMenuComponent implements OnInit {
         return this.afAuth.auth.currentUser;
     }
 
+    get shouldUpdate() {
+        return this.versionService.shouldUpdate;
+    }
+
     constructor(private userService: UserService,
                 private router: Router,
                 private menu: MenuController,
                 private toastService: ToastService,
                 private afAuth: AngularFireAuth,
                 private fcmService: FcmService,
+                private versionService: VersionService,
                 private modalController: ModalController,
                 private alertController: AlertController) {
     }
 
-    async ngOnInit() {
+    ngOnInit() {
+        this.versionService.checkAppUpdate();
         this.menu.enable(true, 'first').then(r => {
         });
+    }
+
+    appUpdate() {
+        this.versionService.checkAppUpdate();
     }
 
     async toLogin() {

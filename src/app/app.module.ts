@@ -24,6 +24,7 @@ import {BidPipe} from './pipes/bid.pipe';
 import {FcmServiceProvider} from './services/fcm.service';
 import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AppUpdate} from '@ionic-native/app-update/ngx';
 
 @NgModule({
     declarations: [AppComponent],
@@ -47,6 +48,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
         Camera,
         DatePipe,
         BidPipe,
+        AppUpdate,
         FcmServiceProvider,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
         {provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true},
