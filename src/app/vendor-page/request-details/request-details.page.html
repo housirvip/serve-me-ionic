@@ -9,8 +9,8 @@
 </div>
 
 <ion-content>
-    <div class="order-image">
-        <img src="{{order.imgUrl}}" alt=""/>
+    <div class="order-image" *ngFor="let img of order.imgUrls">
+        <img src="{{img}}" alt=""/>
     </div>
     <div class="order-info">
         <div class="title-date">

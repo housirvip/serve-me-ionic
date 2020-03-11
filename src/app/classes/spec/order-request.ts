@@ -25,6 +25,7 @@ export class OrderRequest {
     priceLte: number;
     timeGte: Date;
     timeLte: Date;
+    status: OrderStatus;
     statusIn: OrderStatus[];
     categoryIn: VendorCategory[];
 

@@ -4,11 +4,13 @@ import {User} from './user';
 import {Vendor} from './vendor';
 import {Address} from './address';
 import {Bid} from './bid';
+import {Review} from './review';
 
 export class Order {
     id: number;
     user: User;
     vendor: Vendor;
+    review: Review;
     title: string;
     description: string;
     price: number;
@@ -17,7 +19,7 @@ export class Order {
     time: Date;
     createTime: Date;
     updateTime: Date;
-    imgUrl: string;
+    imgUrls: string[];
     address: Address;
     bids: Bid[];
 }

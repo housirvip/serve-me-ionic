@@ -8,10 +8,8 @@ import {PricePage} from '../dashboard/price/price.page';
 import {OrderService} from '../services/order.service';
 import {OrderRequest} from '../classes/spec/order-request';
 import {OrderStatus} from '../classes/order-status';
-import {DatetimeService} from '../services/datetime.service';
 import {Order} from '../classes/order';
 import {RequestDetailsPage} from './request-details/request-details.page';
-
 
 @Component({
     selector: 'app-vendor-page',
@@ -36,8 +34,7 @@ export class VendorPagePage implements OnInit {
     }
 
     getOrders(status: OrderStatus) {
-        this.filterRequest.statusIn = [];
-        this.filterRequest.statusIn.push(status);
+        this.filterRequest.status = status;
         this.orderService.getOrders(this.filterRequest);
     }
 

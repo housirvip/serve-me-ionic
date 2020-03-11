@@ -1,9 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Address} from '../classes/address';
-import {BaseResponse} from '../core/base-response';
 import {HttpClient} from '@angular/common/http';
 import {LoadingService} from './loading.service';
-import {UserService} from './user.service';
 
 @Injectable({
     providedIn: 'root'
@@ -23,18 +21,13 @@ export class AddressService {
     private _currentAddress: Address;
 
     constructor(private http: HttpClient,
-                private userService: UserService,
                 private loadingService: LoadingService) {
     }
 
     getList() {
         this.loadingService.present().then(r => {
         });
-        this.http.get<Address[]>('addresses', {
-            params: {
-                user: this.userService.user.id.toString(),
-            }
-        }).subscribe(
+        this.http.get<Address[]>('addresses', {}).subscribe(
             res => {
                 this.loadingService.dismiss().then(r => {
                 });
@@ -45,7 +38,7 @@ export class AddressService {
     delete(id: number) {
         this.loadingService.present().then(r => {
         });
-        this.http.delete<BaseResponse>('addresses/' + id, {}).subscribe(
+        this.http.delete<Address>('addresses/' + id, {}).subscribe(
             res => {
                 this.loadingService.dismiss().then(r => {
                 });

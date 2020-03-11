@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BaseResponse} from '../core/base-response';
 import {Order} from '../classes/order';
 import {Bid} from '../classes/bid';
 import {LoadingService} from './loading.service';
@@ -104,7 +103,8 @@ export class OrderService {
 
     // api for customer, accept the bid, then status => Accepting
     accept(bid: Bid) {
-        this.http.put<Bid>('order/accept', bid).subscribe(
+        // give a bid, return an order
+        this.http.put<Order>('order/accept', bid).subscribe(
             res => {
                 if (!environment.production) {
                     console.log(res);
@@ -113,8 +113,8 @@ export class OrderService {
     }
 
     // api for vendor, accept the order of which owner accept your bid, then status => Pending(waiting customer pay for it)
-    confirm(bid: Bid) {
-        this.http.put<BaseResponse>('order/confirm', bid).subscribe(
+    confirm(order: Order) {
+        this.http.put<Order>('order/confirm', order).subscribe(
             res => {
                 if (!environment.production) {
                     console.log(res);
@@ -144,6 +144,7 @@ export class OrderService {
 
     // api for customer, mark this order as completed, then status => Completed
     complete(order: Order) {
+        // order should contain a review
         this.http.put<Order>('order/complete', order).subscribe(
             res => {
                 if (!environment.production) {
