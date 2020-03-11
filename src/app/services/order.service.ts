@@ -152,4 +152,65 @@ export class OrderService {
                 }
             });
     }
+
+    // api for customer, select a vendor without bid, status => Accepting
+    select(order: Order) {
+        // order should contain a vendor, and price
+        this.http.post<Order>('order/select', order).subscribe(
+            res => {
+                if (!environment.production) {
+                    console.log(res);
+                }
+            });
+    }
+
+    // api for vendor, deny this order, status => Denied
+    deny(order: Order) {
+        this.http.put<Order>('order/deny', order).subscribe(
+            res => {
+                if (!environment.production) {
+                    console.log(res);
+                }
+            });
+    }
+
+    // api for customer, deny this order, status => Denied
+    close(order: Order) {
+        this.http.put<Order>('order/deny', order).subscribe(
+            res => {
+                if (!environment.production) {
+                    console.log(res);
+                }
+            });
+    }
+
+    // api for customer, request refund this order, status => Refunding
+    refund(order: Order) {
+        this.http.put<Order>('order/deny', order).subscribe(
+            res => {
+                if (!environment.production) {
+                    console.log(res);
+                }
+            });
+    }
+
+    // api for vendor, agree refund this order, status => Refunded
+    refundAgree(order: Order) {
+        this.http.put<Order>('order/deny', order).subscribe(
+            res => {
+                if (!environment.production) {
+                    console.log(res);
+                }
+            });
+    }
+
+    // api for vendor, deny refund this order, status => Progressing
+    refundDeny(order: Order) {
+        this.http.put<Order>('order/deny', order).subscribe(
+            res => {
+                if (!environment.production) {
+                    console.log(res);
+                }
+            });
+    }
 }
