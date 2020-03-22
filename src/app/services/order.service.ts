@@ -96,6 +96,16 @@ export class OrderService {
             });
     }
 
+    // api for vendor, update the bid
+    updateBid(bid: Bid) {
+        this.http.put<Bid>('bids/' + bid.id, bid).subscribe(
+            res => {
+                if (!environment.production) {
+                    console.log(res);
+                }
+            });
+    }
+
     // api for vendor, delete or revoke the bid
     deleteBid(id: number) {
         this.http.delete<Bid>('bids/' + id, {}).subscribe(
