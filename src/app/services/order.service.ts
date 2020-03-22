@@ -96,6 +96,16 @@ export class OrderService {
             });
     }
 
+    // api for vendor, delete or revoke the bid
+    deleteBid(id: number) {
+        this.http.delete<Bid>('bids/' + id, {}).subscribe(
+            res => {
+                if (!environment.production) {
+                    console.log(res);
+                }
+            });
+    }
+
     // api for vendor, give a new bid to an order, then status still Biding
     bid(bid: Bid) {
         return this.http.put<Bid>('order/bid', bid);
