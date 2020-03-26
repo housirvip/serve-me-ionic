@@ -124,22 +124,12 @@ export class OrderService {
     // api for customer, accept the bid, then status => Accepting
     accept(bid: Bid) {
         // give a bid, return an order
-        this.http.put<Order>('order/accept', bid).subscribe(
-            res => {
-                if (!environment.production) {
-                    console.log(res);
-                }
-            });
+       return  this.http.put<Order>('order/accept', bid);
     }
 
     // api for vendor, accept the order of which owner accept your bid, then status => Pending(waiting customer pay for it)
     confirm(order: Order) {
-        this.http.put<Order>('order/confirm', order).subscribe(
-            res => {
-                if (!environment.production) {
-                    console.log(res);
-                }
-            });
+        return this.http.put<Order>('order/confirm', order);
     }
 
     // api for customer, pay to an order, then status => Progressing

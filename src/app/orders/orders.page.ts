@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {OrderService} from '../services/order.service';
 import {Order} from '../classes/order';
 import {OrderStatus} from '../classes/order-status';
@@ -33,8 +33,13 @@ export class OrdersPage implements OnInit {
     }
 
     getOrders(status: OrderStatus) {
+
         this.filterRequest.statusIn = [];
         this.filterRequest.statusIn.push(status);
+        if (status === OrderStatus.Biding) {
+     //       this.filterRequest.status = OrderStatus.Accepting;
+            this.filterRequest.statusIn.push(OrderStatus.Accepting);
+        }
         this.orderService.getOrders(this.filterRequest);
     }
 

@@ -36,6 +36,12 @@ export class BidingComponent implements OnInit {
         this.getBids();
     }
 
+    goPending(bid: Bid) {
+        this.orderService.confirm(bid.order).subscribe(res => {
+            console.log(res);
+        });
+    }
+
     getBids() {
         this.orderService.getBids(this.bidRequest);
     }

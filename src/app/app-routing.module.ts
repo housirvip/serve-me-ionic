@@ -52,6 +52,14 @@ const routes: Routes = [
     path: 'vendor-order',
     loadChildren: () => import('./vendor-order/vendor-order.module').then( m => m.VendorOrderPageModule)
   },
+  {
+    path: 'map',
+    loadChildren: () => import('./dashboard/map/map.module').then( m => m.MapPageModule)
+  },
+  {
+    path: 'biding-check',
+    loadChildren: () => import('./orders/biding/biding-check/biding-check.module').then( m => m.BidingCheckPageModule)
+  },
 
 ];
 
