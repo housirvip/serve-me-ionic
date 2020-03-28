@@ -12,6 +12,7 @@ import {Address} from '../classes/address';
 import {LoadingService} from '../services/loading.service';
 import {DatetimeService} from '../services/datetime.service';
 import {OrderStatus} from '../classes/order-status';
+import {ToastService} from '../services/toast.service';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class NewRequestPage implements OnInit {
         title: ['', [Validators.required, Validators.maxLength(30)]],
         time: ['', [Validators.required, Validators.maxLength(100)]],
         category: ['', [Validators.required, Validators.maxLength(50)]],
-        address: ['']
+        address: ['', ]
 
     });
     errorMessages = {
@@ -50,7 +51,8 @@ export class NewRequestPage implements OnInit {
                 private  loadingService: LoadingService,
                 private  location: Location,
                 private  datetimeService: DatetimeService,
-                private alertController: AlertController) {
+                private alertController: AlertController,
+                private toastService: ToastService) {
         this.currentOrder = new Order();
         this.vendorCategory = [];
         this.availableHours = '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23';
@@ -100,6 +102,10 @@ export class NewRequestPage implements OnInit {
         // this.currentOrder.time = javatime;
         // console.log(this.selectedAddress);
         // console.log(this.isoDate);
+        if (!this.selectedAddress) {
+            this.toastService.presentToast('please seletct a address' , 2000);
+            return;
+        }
         this.currentOrder.address = this.selectedAddress;
         this.loadingService.present();
         this.orderService.createOrder(this.currentOrder).subscribe(

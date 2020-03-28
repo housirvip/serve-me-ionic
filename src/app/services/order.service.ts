@@ -124,53 +124,39 @@ export class OrderService {
     // api for customer, accept the bid, then status => Accepting
     accept(bid: Bid) {
         // give a bid, return an order
-        this.http.put<Order>('order/accept', bid).subscribe(
-            res => {
-                if (!environment.production) {
-                    console.log(res);
-                }
-            });
+       return  this.http.put<Order>('order/accept', bid);
     }
 
     // api for vendor, accept the order of which owner accept your bid, then status => Pending(waiting customer pay for it)
     confirm(order: Order) {
-        this.http.put<Order>('order/confirm', order).subscribe(
-            res => {
-                if (!environment.production) {
-                    console.log(res);
-                }
-            });
+        return this.http.put<Order>('order/confirm', order);
     }
 
     // api for customer, pay to an order, then status => Progressing
     pay(order: Order) {
-        this.http.put<Order>('order/pay', order).subscribe(
-            res => {
-                if (!environment.production) {
-                    console.log(res);
-                }
-            });
+        return  this.http.put<Order>('order/pay', order);
     }
 
     // api for vendor, mark this order as finished, then status => Finished
     finish(order: Order) {
-        this.http.put<Order>('order/finish', order).subscribe(
-            res => {
-                if (!environment.production) {
-                    console.log(res);
-                }
-            });
+       return  this.http.put<Order>('order/finish', order);
     }
 
     // api for customer, mark this order as completed, then status => Completed
-    complete(order: Order) {
+    complete(order: Order, callback: any) {
         // order should contain a review
+        this.loadingService.present().then(r => {
+        });
         this.http.put<Order>('order/complete', order).subscribe(
-            res => {
-                if (!environment.production) {
-                    console.log(res);
-                }
-            });
+             res => {
+                 this.loadingService.dismiss().then(r => {
+                 });
+                 if (!environment.production) {
+                     console.log(res);
+                 }
+                 callback();
+             }
+         );
     }
 
     // api for customer, select a vendor without bid, status => Accepting

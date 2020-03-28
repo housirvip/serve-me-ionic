@@ -84,6 +84,7 @@ export class UserService {
                 this._isLogin = false;
                 this._isVendor = false;
                 this._vendorView = false;
+                localStorage.clear();
             }
         );
     }

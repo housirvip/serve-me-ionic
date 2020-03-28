@@ -1,7 +1,41 @@
 <ion-content>
-  <div>
-    <div class="emptyTips">
-      <p> Nothing here ~</p>
+  <ion-list >
+    <div  *ngFor="let bid of bids">
+    <ion-card color=""  *ngIf="bid.order.status === 'Progressing'">
+      <ion-card-header>
+        <ion-card-title>{{bid.order.title}}</ion-card-title>
+        <ion-card-subtitle>Please follow your schedule </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item color="">
+          <ion-label class="pricehour">
+            <h1 class="bid">Your bid price: {{bid.price}}$</h1>
+            <h2 class="nobid">Customer have paid</h2>
+            <ion-label>Worktime:{{bid.order.time| date:'short'}}</ion-label>
+          </ion-label>
+          <img src="../../../assets/img/working.png" alt="">
+        </ion-item>
+        <ion-button color="dark"  (click)="Done(bid)"> Done</ion-button>
+      </ion-card-content>
+    </ion-card>
+    <ion-card color="" *ngIf="bid.order.status === 'Finished'">
+      <ion-card-header>
+        <ion-card-title>{{bid.order.title}}</ion-card-title>
+        <ion-card-subtitle> </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item color="">
+          <ion-label class="pricehour">
+            <h1 class="bid"> bid price: {{bid.price}}$</h1>
+            <h2 class="nobid">Waiting Customer confirmed</h2>
+       <!--            fixme it's not closed time-->
+            <ion-label>close time:{{bid.order.updateTime| date:'short'}}</ion-label>
+
+          </ion-label>
+          <img src="../../../assets/img/waiting.png" alt="">
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
     </div>
-  </div>
+  </ion-list>
 </ion-content>

@@ -37,6 +37,8 @@ export class VendorOrderPage implements OnInit {
         this.getOrders(OrderStatus.Biding);
     }
 
+    getBids(status: OrderStatus) {
+    }
     getOrders(status: OrderStatus) {
         this.filterRequest.statusIn = [];
         this.filterRequest.statusIn.push(status);
