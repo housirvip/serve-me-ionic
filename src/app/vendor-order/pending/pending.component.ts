@@ -13,6 +13,7 @@ import {Bid} from '../../classes/bid';
 })
 export class PendingComponent implements OnInit {
   bidRequest: BidRequest;
+  haveTargetOrder = false;
   constructor(private orderService: OrderService,
               private userService: UserService) {
     this.bidRequest = new BidRequest();
@@ -32,6 +33,7 @@ export class PendingComponent implements OnInit {
     console.log('pending component init');
     this.bidRequest.vendor = this.vendor.id;
     this.getBids();
+
   }
 
   getBids() {

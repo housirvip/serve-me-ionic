@@ -1,10 +1,7 @@
 <ion-content>
-    <div *ngIf="!this.bids?.length">
-        <div class="emptyTips">
-            <p> Nothing here ~</p>
-        </div>
-    </div>
-    <ion-list *ngFor="let bid of bids">
+
+    <ion-list>
+        <div  *ngFor="let bid of bids">
         <ion-card color="" *ngIf="bid.order.status === 'Biding'">
             <ion-card-header>
                 <ion-card-title>{{bid.order.title}}</ion-card-title>
@@ -38,8 +35,6 @@
                 <ion-button color="dark"  (click)="goPending(bid)"> Start Work!</ion-button>
             </ion-card-content>
         </ion-card>
-
-
-
+        </div>
     </ion-list>
 </ion-content>

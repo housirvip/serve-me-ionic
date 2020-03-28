@@ -134,33 +134,29 @@ export class OrderService {
 
     // api for customer, pay to an order, then status => Progressing
     pay(order: Order) {
-        this.http.put<Order>('order/pay', order).subscribe(
-            res => {
-                if (!environment.production) {
-                    console.log(res);
-                }
-            });
+        return  this.http.put<Order>('order/pay', order);
     }
 
     // api for vendor, mark this order as finished, then status => Finished
     finish(order: Order) {
-        this.http.put<Order>('order/finish', order).subscribe(
-            res => {
-                if (!environment.production) {
-                    console.log(res);
-                }
-            });
+       return  this.http.put<Order>('order/finish', order);
     }
 
     // api for customer, mark this order as completed, then status => Completed
-    complete(order: Order) {
+    complete(order: Order, callback: any) {
         // order should contain a review
+        this.loadingService.present().then(r => {
+        });
         this.http.put<Order>('order/complete', order).subscribe(
-            res => {
-                if (!environment.production) {
-                    console.log(res);
-                }
-            });
+             res => {
+                 this.loadingService.dismiss().then(r => {
+                 });
+                 if (!environment.production) {
+                     console.log(res);
+                 }
+                 callback();
+             }
+         );
     }
 
     // api for customer, select a vendor without bid, status => Accepting

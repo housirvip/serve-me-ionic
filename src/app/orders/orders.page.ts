@@ -40,6 +40,10 @@ export class OrdersPage implements OnInit {
      //       this.filterRequest.status = OrderStatus.Accepting;
             this.filterRequest.statusIn.push(OrderStatus.Accepting);
         }
+        if (status === OrderStatus.Progressing) {
+            //       this.filterRequest.status = OrderStatus.Accepting;
+            this.filterRequest.statusIn.push(OrderStatus.Finished);
+        }
         this.orderService.getOrders(this.filterRequest);
     }
 

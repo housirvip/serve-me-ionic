@@ -7,6 +7,7 @@ import {Vendor} from '../../classes/vendor';
 import {UserService} from '../../services/user.service';
 import {BidRequest} from '../../classes/spec/bid-request';
 import {Bid} from '../../classes/bid';
+import {ToastService} from '../../services/toast.service';
 
 @Component({
     selector: 'app-biding',
@@ -15,7 +16,7 @@ import {Bid} from '../../classes/bid';
 })
 export class BidingComponent implements OnInit {
     bidRequest: BidRequest;
-
+    haveTargetOrder = false;
     get vendor(): Vendor {
         return this.userService.vendor;
     }
@@ -25,7 +26,8 @@ export class BidingComponent implements OnInit {
     }
 
     constructor(private orderService: OrderService,
-                private userService: UserService) {
+                private userService: UserService,
+                private toastService: ToastService) {
         this.bidRequest = new BidRequest();
         // plz review BidRequest, there shows some specification
     }
@@ -39,6 +41,8 @@ export class BidingComponent implements OnInit {
     goPending(bid: Bid) {
         this.orderService.confirm(bid.order).subscribe(res => {
             console.log(res);
+            this.toastService.presentToast('confirm successfully', 2000);
+            this.getBids();
         });
     }
 
