@@ -7,6 +7,7 @@ import { IonicModule } from "@ionic/angular";
 import { RequestDetailsPageRoutingModule } from "./bidding-request-details-routing.module";
 
 import { BiddingRequestDetailsPage } from "./bidding-request-details.page";
+import { ModifyPopoverComponent } from "./modify-popover/modify-popover.component";
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { BiddingRequestDetailsPage } from "./bidding-request-details.page";
     IonicModule,
     RequestDetailsPageRoutingModule
   ],
-  declarations: [BiddingRequestDetailsPage]
+  declarations: [BiddingRequestDetailsPage, ModifyPopoverComponent],
+  entryComponents: [ModifyPopoverComponent]
 })
 export class RequestDetailsPageModule {}

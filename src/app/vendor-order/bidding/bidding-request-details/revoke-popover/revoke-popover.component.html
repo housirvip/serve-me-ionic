@@ -1,0 +1,28 @@
+<ion-header>
+  <h1 class="title">Confirmation</h1>
+</ion-header>
+<ion-content>
+  <div class="message-block">
+    <p>Do you want to revoke your bid? This action can't be undone.</p>
+  </div>
+  <div class="button-block">
+    <ion-button
+      class="revoke-button"
+      (click)="onRevokePressed($event)"
+      fill="solid"
+      color="dark"
+      size="large"
+    >
+      Revoke
+    </ion-button>
+    <ion-button
+      class="cancel-button"
+      (click)="onCancelPressed($event)"
+      fill="solid"
+      color="dark"
+      size="large"
+    >
+      Cancel
+    </ion-button>
+  </div>
+</ion-content>

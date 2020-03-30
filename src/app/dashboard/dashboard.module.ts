@@ -6,8 +6,6 @@ import { FormsModule } from "@angular/forms";
 import { DashboardPage } from "./dashboard.page";
 import { TypePageModule } from "./type/type.module";
 import { PricePageModule } from "./price/price.module";
-import { OrderDetailsPage } from "./order-details/order-details.page";
-import { BidPopoverComponent } from "./order-details/bid-popover/bid-popover.component";
 
 @NgModule({
   imports: [
@@ -18,7 +16,6 @@ import { BidPopoverComponent } from "./order-details/bid-popover/bid-popover.com
     PricePageModule,
     RouterModule.forChild([{ path: "", component: DashboardPage }])
   ],
-  declarations: [DashboardPage, OrderDetailsPage, BidPopoverComponent],
-  entryComponents: [OrderDetailsPage, BidPopoverComponent]
+  declarations: [DashboardPage]
 })
 export class DashboardPageModule {}

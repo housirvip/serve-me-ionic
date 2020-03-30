@@ -8,10 +8,11 @@ import { BiddingPageRoutingModule } from "./bidding-routing.module";
 
 import { BiddingPage } from "./bidding.page";
 import { BiddingRequestDetailsPage } from "./bidding-request-details/bidding-request-details.page";
+import { ModifyPopoverComponent } from "./bidding-request-details/modify-popover/modify-popover.component";
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, BiddingPageRoutingModule],
-  declarations: [],
-  entryComponents: [BiddingRequestDetailsPage]
+  declarations: [ModifyPopoverComponent],
+  entryComponents: [BiddingRequestDetailsPage, ModifyPopoverComponent]
 })
 export class BiddingPageModule {}

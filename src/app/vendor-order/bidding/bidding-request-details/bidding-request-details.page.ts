@@ -7,6 +7,8 @@ import { Order } from "../../../classes/order";
 import { DatetimeService } from "../../../services/datetime.service";
 import { Bid } from "src/app/classes/bid";
 import { LoadingService } from "../../../services/loading.service";
+import { ModifyPopoverComponent } from "./modify-popover/modify-popover.component";
+import { RevokePopoverComponent } from "./revoke-popover/revoke-popover.component";
 
 @Component({
   selector: "app-bidding-request-details",
@@ -62,36 +64,37 @@ export class BiddingRequestDetailsPage implements OnInit {
     this.modalController.dismiss(data).then(() => {});
   }
 
-  async onModifyBidPressed(ev: any) {}
-
-  async onRevokeBidPressed(ev: any) {}
-
-  async onPlaceBidPressed(ev: any) {
-    // const popover = await this.popoverController.create({
-    //   component: BidPopoverComponent,
-    //   // event: ev, //use this if you want the popover to be generated at the position of the click
-    //   backdropDismiss: true,
-    //   componentProps: { order: this.order }
-    // });
-    // await popover.present();
-    // popover.onWillDismiss().then(result => {
-    //   if (result.data) {
-    //     console.log(result.data);
-    //     this.onBackPressed(result.data);
-    //     // if (result.data < this.order_price || this.order_price == 0) {
-    //     //     // if the submitted bid is les than the current lowest bid OR if the current lowest bid is 0 (no bids yet)
-    //     //     this.order_price = result.data;
-    //     //     // this.doRefresh(ev);
-    //     // }
-    //   }
-    // });
-    // return;
+  async onModifyBidPressed(ev: any) {
+    const popover = await this.popoverController.create({
+      component: ModifyPopoverComponent,
+      // event: ev, //use this if you want the popover to be generated at the position of the click
+      backdropDismiss: true,
+      componentProps: { order: this.order, bid: this.bid }
+    });
+    await popover.present();
+    popover.onWillDismiss().then(result => {
+      if (result.data) {
+        console.log(result.data);
+        this.onBackPressed(result.data);
+      }
+    });
+    return;
   }
 
-  async onPlaceBid() {
-    //   const popover = await this.popoverController.create({
-    //     component: BidPopoverComponent
-    //   });
-    //   await popover.present();
+  async onRevokeBidPressed(ev: any) {
+    const popover = await this.popoverController.create({
+      component: RevokePopoverComponent,
+      // event: ev, //use this if you want the popover to be generated at the position of the click
+      backdropDismiss: true,
+      componentProps: { order: this.order, bid: this.bid }
+    });
+    await popover.present();
+    popover.onWillDismiss().then(result => {
+      if (result.data) {
+        console.log(result.data);
+        this.onBackPressed(result.data);
+      }
+    });
+    return;
   }
 }

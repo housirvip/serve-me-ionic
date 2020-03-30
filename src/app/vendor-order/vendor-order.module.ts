@@ -12,6 +12,8 @@ import { CompletedComponent } from "./completed/completed.component";
 import { PendingComponent } from "./pending/pending.component";
 import { ProgressingComponent } from "./progressing/progressing.component";
 import { BiddingRequestDetailsPage } from "./bidding/bidding-request-details/bidding-request-details.page";
+import { ModifyPopoverComponent } from "./bidding/bidding-request-details/modify-popover/modify-popover.component";
+import { RevokePopoverComponent } from "./bidding/bidding-request-details/revoke-popover/revoke-popover.component";
 
 @NgModule({
   imports: [
@@ -27,8 +29,14 @@ import { BiddingRequestDetailsPage } from "./bidding/bidding-request-details/bid
     CompletedComponent,
     PendingComponent,
     ProgressingComponent,
-    BiddingRequestDetailsPage
+    BiddingRequestDetailsPage,
+    ModifyPopoverComponent,
+    RevokePopoverComponent
   ],
-  entryComponents: [BiddingRequestDetailsPage]
+  entryComponents: [
+    BiddingRequestDetailsPage,
+    ModifyPopoverComponent,
+    RevokePopoverComponent
+  ]
 })
 export class VendorOrderPageModule {}
