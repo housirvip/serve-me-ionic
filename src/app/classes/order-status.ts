@@ -1,9 +1,16 @@
 export enum OrderStatus {
-  Waiting = "Waiting", //should be removed - deprecated
-  Biding = "Biding", //when created - all vendors can bid
-  Progressing = "Progressing", //when customer selects a bid/vendor
-  Completed = "Completed", //when vendor finished the order
-  Pending = "Pending", //order finished, but pending payment
-  Closed = "Closed", //canceled by the customer
-  Finished = "Finished" //order is done. vendor finished and customer made payment
+    // waiting was depressed
+    Waiting = 'Waiting',
+    Biding = 'Biding',
+    // customer confirm one bid and wait vendor accept
+    Accepting = 'Accepting',
+    // vendor deny this order
+    Denied = 'Denied',
+    Progressing = 'Progressing',
+    Completed = 'Completed',
+    Pending = 'Pending',
+    Refunding = 'Refunding',
+    Refunded = 'Refunded',
+    Closed = 'Closed',
+    Finished = 'Finished'
 }

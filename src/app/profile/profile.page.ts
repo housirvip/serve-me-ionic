@@ -219,4 +219,20 @@ export class ProfilePage implements OnInit {
         this.router.navigate(['/edit', field]).then(() => {
         });
     }
+
+    jump(path: string) {
+        this.router.navigate([path]).then(() => {
+        });
+    }
+
+    vendor() {
+        if (this.userService.isVendor !== true) {
+            console.log();
+            this.jump('/vendor-registration');
+        } else {
+            this.toastService.presentToast('You are already a Vendor', 3000).then(r => {
+                this.jump('dashboard');
+            });
+        }
+    }
 }

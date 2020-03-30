@@ -1,31 +1,31 @@
-//.text-container {
-//  padding-left: 10px;
-//  padding-right: 10px;
-//  box-sizing: border-box;
-//  width: 100%;
-//}
-//.text-container ion-label {
-//  position: "absolute";
-//  color: gray;
-//  font-size: 20px;
-//  margin-top: 60px;
-//}
-//
-//.text-container ion-input {
-//  margin-top: 10px;
-//  font-size: 21px;
-//  border-bottom: 2px solid #000000;
-//}
-//
-//.edit-button {
-//  padding-left: 40px;
-//  padding-right: 40px;
-//  --padding-bottom: 0px;
-//  --padding-top: 0px;
-//  margin-top: 30px;
-//  --background: black;
-//  box-sizing: border-box;
-//  height: 50px;
-//  width: 100%;
-//  font-size: 15px;
-//}
+.text-container {
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box;
+  width: 100%;
+}
+.text-container ion-label {
+  position: absolute;
+  color: gray;
+  font-size: 20px;
+  margin-top: 60px;
+}
+
+.text-container ion-input {
+  margin-top: 10px;
+  font-size: 21px;
+  border-bottom: 2px solid #000000;
+}
+
+.edit-button {
+  padding-left: 40px;
+  padding-right: 40px;
+  --padding-bottom: 0px;
+  --padding-top: 0px;
+  margin-top: 30px;
+  --background: black;
+  box-sizing: border-box;
+  height: 50px;
+  width: 100%;
+  font-size: 15px;
+}

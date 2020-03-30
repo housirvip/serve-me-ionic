@@ -1,12 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { ModalController } from "@ionic/angular";
-import { OrderService } from "../services/order.service";
-import { Order } from "../classes/order";
-import { OrderStatus } from "../classes/order-status";
-import { ToastService } from "../services/toast.service";
-//import {OrderDetailsPage} from './order-details/order-details.page';
-import { UserService } from "../services/user.service";
-import { Jorder } from "../classes/Jorder";
+import {Component, OnInit} from '@angular/core';
+import {OrderService} from '../services/order.service';
+import {Order} from '../classes/order';
+import {OrderStatus} from '../classes/order-status';
+import {ToastService} from '../services/toast.service';
+import {OrderRequest} from '../classes/spec/order-request';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: "app-orders",
@@ -14,8 +12,8 @@ import { Jorder } from "../classes/Jorder";
   styleUrls: ["./orders.page.scss"]
 })
 export class OrdersPage implements OnInit {
-  orders: Jorder[];
-  serviceProviderView: boolean;
+    currentTab: string;
+    filterRequest: OrderRequest;
 
   constructor(
     private orderService: OrderService,
@@ -24,38 +22,46 @@ export class OrdersPage implements OnInit {
     private userService: UserService
   ) {}
 
-  ngOnInit() {
-    this.serviceProviderView = this.userService.isVendorViewEnabled();
-    console.log(
-      "serviceProviderView in Orders Page: ",
-      this.serviceProviderView
-    );
-    this.getOrders(OrderStatus.Progressing);
-  }
+    constructor(private orderService: OrderService,
+                private toastService: ToastService,
+                private userService: UserService) {
+        this.filterRequest = new OrderRequest();
+        // plz review OrderRequest, there shows some specification
+        this.filterRequest.user = this.userService.user.id;
+    }
 
-  getOrders(status: OrderStatus) {
-    this.orders = this.orderService.getHarCodeOrders(status);
-  }
+    ngOnInit() {
+        this.currentTab = 'Biding';
+        this.getOrders(OrderStatus.Biding);
+    }
 
-  segmentChanged(ev: any) {
-    this.getOrders(ev.detail.value as OrderStatus);
-  }
+    getOrders(status: OrderStatus) {
 
-  doRefresh(event) {
-    setTimeout(() => {
-      this.toastService.presentToast("updated", 2000).then(() => {});
-      event.target.complete();
-    }, 1000);
-    this.serviceProviderView = this.userService.isVendorViewEnabled();
-  }
+        this.filterRequest.statusIn = [];
+        this.filterRequest.statusIn.push(status);
+        if (status === OrderStatus.Biding) {
+     //       this.filterRequest.status = OrderStatus.Accepting;
+            this.filterRequest.statusIn.push(OrderStatus.Accepting);
+        }
+        if (status === OrderStatus.Progressing) {
+            //       this.filterRequest.status = OrderStatus.Accepting;
+            this.filterRequest.statusIn.push(OrderStatus.Finished);
+        }
+        this.orderService.getOrders(this.filterRequest);
+    }
 
-  async orderDetailsModal(order: Jorder) {
-    // const modal = await this.modalController.create({
-    //     component: OrderDetailsPage,
-    //     componentProps: {
-    //         order
-    //     }
-    // });
-    // return await modal.present();
-  }
+    segmentChanged(ev: any) {
+        this.currentTab = ev.detail.value;
+        this.getOrders(ev.detail.value as OrderStatus);
+    }
+
+    doRefresh(event) {
+        this.getOrders(this.currentTab as OrderStatus);
+        setTimeout(() => {
+            this.toastService.presentToast('updated', 2000).then(() => {
+            });
+            event.target.complete();
+        }, 1000);
+    }
+
 }

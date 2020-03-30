@@ -1,0 +1,30 @@
+<div id="closedButton">
+  <ion-icon name="close" (click)="dismiss()"></ion-icon>
+</div>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>bidingCheck</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let bid of _order.bids">
+    <ion-card color="">
+      <ion-card-header>
+        <ion-card-title>{{bid.vendor.name}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item color="" >
+          <ion-label class="pricehour">
+            <h1 class="bid">{{bid.price}} $/hour</h1>
+            <ion-label style="max-width:70ch ">{{bid.description}}</ion-label>
+            <ion-label></ion-label>
+            <ion-button color="dark" (click)="accept(bid)">accept</ion-button>
+          </ion-label>
+          <img src="../../../../assets/img/avatar.png">
+
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>

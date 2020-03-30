@@ -1,0 +1,23 @@
+<ion-content>
+
+  <ion-list >
+    <div *ngFor="let bid of bids">
+    <ion-card color="" *ngIf="bid.order.status === 'Completed'">
+      <ion-card-header>
+        <ion-card-title>{{bid.order.title}} </ion-card-title>
+        <ion-card-subtitle>{{bid.order.category}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item color="">
+          <ion-label class="pricehour">
+            <h1 class="bid"> Customer: {{bid.price}}$</h1>
+            <ion-label>CreateTime:{{bid.createTime| date:'short'}}</ion-label>
+          </ion-label>
+          <img src="../../../assets/img/done.jpeg" alt="">
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+    </div>
+  </ion-list>
+
+</ion-content>

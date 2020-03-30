@@ -1,8 +1,9 @@
 import {Order} from './order';
+import {Vendor} from './vendor';
 
 export class Bid {
     id: number;
-    uid: number;
+    vendor: Vendor;
     description: string;
     price: number;
     createTime: Date;

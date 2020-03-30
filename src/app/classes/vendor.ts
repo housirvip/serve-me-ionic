@@ -8,6 +8,7 @@ export class Vendor {
     name: string;
     email: string;
     phone: string;
+    price: number;
     photoUrl: string;
     address: Address;
     categories: VendorCategory[];

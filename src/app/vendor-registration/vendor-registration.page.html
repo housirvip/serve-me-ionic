@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Vender Registration</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="vendorRegistersForm" onsubmit="processForm(event)">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <ion-label position="floating">Vendor Name</ion-label>
+        <ion-input
+          formControlName="name"
+          (ionBlur)="onNameChange($event)"
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-item>
+      <ion-icon name="hammer-outline" slot="start"></ion-icon>
+      <ion-label>Type</ion-label>
+      <ion-select
+        formControlName="type"
+        placeholder="Select One"
+        multiple
+        (ionChange)="onTypeChange($event)"
+      >
+        <ion-select-option
+          *ngFor="let category of vendorCategory"
+          value="{{category}}"
+          >{{category}}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="cash-outline" slot="start"></ion-icon>
+      <ion-label position="floating">Price</ion-label>
+      <ion-input
+        formControlName="price"
+        (ionBlur)="onPriceChange($event)"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="calendar-outline" slot="start"></ion-icon>
+      <ion-label>AvailableDate</ion-label>
+      <ion-select
+        formControlName="date"
+        placeholder="Select One"
+        multiple
+        (ionChange)="onDateChange($event)"
+      >
+        <ion-select-option *ngFor="let date of availableDate" value="{{date}}"
+          >{{date}}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+
+    <ion-item detail="true" (click)="openShowAddress()" lines="full">
+      <ion-icon name="home-outline" slot="start"></ion-icon>
+      <label
+        >{{this.addressService.addresses?.length ? 'Select an address' : 'Add an
+        new address'}}</label
+      >
+    </ion-item>
+    <br />
+    <ion-item lines="full">
+      <ion-card *ngIf="selectedAddress">
+        <ion-card-title>
+          {{this.selectedAddress.name}}
+        </ion-card-title>
+        <ion-card-content>
+          <p>{{this.selectedAddress.street}}</p>
+          <p>
+            {{this.selectedAddress.city}},{{this.selectedAddress.state}},{{this.selectedAddress.zipCode}}
+          </p>
+          <p>PhoneNumber:{{this.selectedAddress.phone}}</p>
+        </ion-card-content>
+      </ion-card>
+      <ion-card *ngIf="!selectedAddress" style="width: 248px;height: 148px">
+        <ion-card-content>
+          <ion-title> Empty address</ion-title>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+
+    <div class="ion-padding">
+      <ion-button
+        expand="block"
+        class="ion-no-margin"
+        (click)="saved()"
+        [disabled]="!vendorRegistersForm.valid||!selectedAddress"
+        >Create account</ion-button
+      >
+      <br />
+      <ion-button expand="block" class="ion-no-margin" (click)="returnHome()"
+        >Cancel</ion-button
+      >
+    </div>
+  </form>
+</ion-content>

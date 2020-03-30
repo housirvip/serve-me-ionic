@@ -13,7 +13,18 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { FingerprintAIO } from "@ionic-native/fingerprint-aio/ngx";
 import { FirebaseX } from "@ionic-native/firebase-x/ngx";
 
-import { SlideMenuModule } from "./slide-menu/slide-menu.module";
+import {SlideMenuModule} from './slide-menu/slide-menu.module';
+
+import {environment} from '../environments/environment';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireMessagingModule} from '@angular/fire/messaging';
+import {Camera} from '@ionic-native/camera/ngx';
+import {DatePipe} from '@angular/common';
+import {BidPipe} from './pipes/bid.pipe';
+import {FcmServiceProvider} from './services/fcm.service';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AppUpdate} from '@ionic-native/app-update/ngx';
 
 import { AngularFireModule } from "@angular/fire";
 import { environment } from "../environments/environment";
@@ -22,28 +33,32 @@ import { Camera } from "@ionic-native/camera/ngx";
 //import { OrderDetailsPageModule } from "./orders/order-details/order-details.module";
 import { DatePipe } from "@angular/common";
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
-    AppRoutingModule,
-    HttpClientModule,
-    SlideMenuModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireMessagingModule
-    //OrderDetailsPageModule
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    FingerprintAIO,
-    FirebaseX,
-    Camera,
-    DatePipe,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent],
+    entryComponents: [],
+    imports: [
+        BrowserModule,
+        IonicModule.forRoot(),
+        AppRoutingModule,
+        HttpClientModule,
+        SlideMenuModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireMessagingModule,
+        AngularFireStorageModule,
+        AngularFireAuthModule,
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        FingerprintAIO,
+        FirebaseX,
+        Camera,
+        DatePipe,
+        BidPipe,
+        AppUpdate,
+        FcmServiceProvider,
+        {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+        {provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true},
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}

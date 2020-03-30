@@ -1,0 +1,29 @@
+<ion-header>
+  <h1 class="title">Bid Details</h1>
+</ion-header>
+<ion-content>
+  <form (ngSubmit)="onFormSubmit()">
+    <div class="bid-block">
+      <ion-label>Bid</ion-label>
+      <ion-input
+              type="number"
+              [(ngModel)]="bid_amount"
+              name="bid"
+              required="true"
+      ></ion-input>
+    </div>
+    <div class="message-block">
+      <ion-label>Message</ion-label>
+      <ion-textarea
+              [(ngModel)]="bid_message"
+              name="message"
+              maxlength="150"
+      ></ion-textarea>
+    </div>
+    <div class="button-block">
+      <ion-button type="submit" fill="solid" color="dark" size="large">
+        Submit Bid
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

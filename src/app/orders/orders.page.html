@@ -3,51 +3,34 @@
     <ion-title>Orders</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-      pullingIcon="arrow-dropdown"
-      pullingText="Pull to refresh"
-      refreshingSpinner="circles"
-      refreshingText="Refreshing..."
-    >
-    </ion-refresher-content>
-  </ion-refresher>
-  <ion-searchbar showCancelButton="always"></ion-searchbar>
-  <ng-container *ngIf="serviceProviderView">
-    <ion-segment (ionChange)="segmentChanged($event)" value="Progressing">
-      <!-- <ion-segment-button value="waiting">
-        <ion-label>Available</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="biding">
-        <ion-label>Bidding</ion-label>
-      </ion-segment-button> -->
-      <ion-segment-button value="Progressing">
-        <ion-label>In-rogress</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="Completed">
-        <ion-label>Completed</ion-label>
-      </ion-segment-button>
+<ion-content scroll-y="false">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+                pullingIcon="arrow-dropdown"
+                pullingText="Pull to refresh"
+                refreshingSpinner="circles"
+                refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-searchbar showCancelButton="always"></ion-searchbar>
+    <ion-segment (ionChange)="segmentChanged($event)" value="Biding">
+        <ion-segment-button value="Biding">
+            <ion-label>Biding</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Pending">
+            <ion-label>Pending</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Progressing">
+            <ion-label>Progressing</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Completed">
+            <ion-label>Completed</ion-label>
+        </ion-segment-button>
     </ion-segment>
-  </ng-container>
-  <ng-container *ngIf="serviceProviderView">
-    <ion-list *ngFor="let order of orders">
-      <ion-card (click)="orderDetailsModal(order)">
-        <img src="{{order.imgUrl}}" alt="" />
-        <ion-card-header>
-          <ion-card-title>{{order.title}}</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <ion-list>
-            <ion-item>
-              price:{{order.price}}
-            </ion-item>
-            <ion-item>
-              time:{{order.time}}
-            </ion-item>
-          </ion-list>
-        </ion-card-content>
-      </ion-card>
-    </ion-list>
-  </ng-container>
+    <div class="componentStatus">
+        <app-biding *ngIf="currentTab === 'Biding'" > </app-biding>
+        <app-pending *ngIf="currentTab === 'Pending'"> </app-pending>
+        <app-progressing *ngIf="currentTab === 'Progressing'"> </app-progressing>
+        <app-completed *ngIf="currentTab === 'Completed'"> </app-completed>
+    </div>
 </ion-content>

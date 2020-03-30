@@ -1,0 +1,28 @@
+<ion-content>
+  <div *ngIf="!this.orders.length">
+    <div class="emptyTips">
+      <p> Nothing here ~</p>
+    </div>
+  </div>
+  <ion-list *ngFor="let request of orders">
+    <ion-card color="">
+      <ion-card-header>
+        <ion-card-title>{{request.title}} </ion-card-title>
+        <ion-card-subtitle>{{request.category}}</ion-card-subtitle>
+        <ion-card-subtitle style="color: green">Your order has completed!</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item color="">
+          <ion-label class="pricehour">
+            <h1 [ngClass]="request.bids.length? 'bid' : ' nobid' ">{{request.bids.length? request.bids[0].price + '$' : "No one bid"}}</h1>
+            <ion-label>CreateTime:{{this.datetimeService.convertWithFormat(request.createTime,"short")}}</ion-label>
+            <ion-label>Service Provider:{{request.vendor.name}}</ion-label>
+          </ion-label>
+          <img src="../../../assets/img/done.jpeg" alt="">
+        </ion-item>
+        <ion-button color="dark" (click)="review(request)">give a review</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+</ion-content>

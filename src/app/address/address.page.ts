@@ -25,11 +25,11 @@ export class AddressPage implements OnInit {
     }
 
     ngOnInit() {
-        this.userService.user ? this.addressService.getAddresses() : console.log('error no user,please enter this page again');
+        this.userService.user ? this.addressService.getList() : console.log('error no user,please enter this page again');
         console.log(this.AddressList);
     }
     removeAddress(address: Address) {
-        this.addressService.deleteAddress(address.id);
+        this.addressService.delete(address.id);
     }
     async updateAddress() {
         const modal = await this.modalController.create({

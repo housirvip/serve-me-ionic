@@ -3,6 +3,7 @@ import {AddressService} from '../../services/address.service';
 import {Address} from '../../classes/address';
 import {ModalController} from '@ionic/angular';
 import {UserService} from '../../services/user.service';
+import {UpdateaddressPage} from '../../address/updateaddress/updateaddress.page';
 
 @Component({
   selector: 'app-show-address',
@@ -19,7 +20,7 @@ export class ShowAddressPage implements OnInit {
               private  userService: UserService) { }
   selectedAddress: Address;
   ngOnInit() {
-    this.userService.user ? this.addressService.getAddresses() :
+    this.userService.user ? this.addressService.getList() :
         console.log('error no user,please enter this page again');
   }
 
@@ -36,6 +37,15 @@ export class ShowAddressPage implements OnInit {
     }).then(() => {
     });
   }
-
-
+  async updateAddress() {
+    const modal = await this.modalController.create({
+      component: UpdateaddressPage
+    });
+    modal.onDidDismiss().then((data) => {
+      console.log('dissmisss');
+      console.log(data);
+    });
+    return await modal.present();
+  }
 }
+

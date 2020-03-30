@@ -1,168 +1,137 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
-import { BaseResponse } from "../core/base-response";
-import { User } from "../classes/user";
-import { AngularFireAuth } from "@angular/fire/auth";
-import { FirebaseService } from "./firebase.service";
-import { environment } from "../../environments/environment";
-import { UserRole } from "../classes/user-role";
-import { Vendor } from "../classes/vendor";
+import {User} from '../classes/user';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {environment} from '../../environments/environment';
+import {Vendor} from '../classes/vendor';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: "root"
 })
 export class UserService {
-  // tslint:disable-next-line:variable-name
-  private _jwt: string;
-  // tslint:disable-next-line:variable-name
-  private _user: User;
-  // tslint:disable-next-line:variable-name
-  private _vendor: Vendor;
-  // tslint:disable-next-line:variable-name
-  private _isLogin = false;
-  // tslint:disable-next-line:variable-name
-  private _isAdmin = false;
-  // tslint:disable-next-line:variable-name
-  private _isVendor = false;
-  // tslint:disable-next-line:variable-name
-  private _isCustomer = false;
-
-  private _vendorViewEnabled = false; //initialized to false
-
-  isVendorViewEnabled(): boolean {
-    return this._vendorViewEnabled;
-  }
-
-  setVendorViewEnabled(value: boolean) {
-    this._vendorViewEnabled = value;
-  }
-
-  get jwt(): string {
-    return this._jwt || localStorage.getItem("jwt");
-  }
-
-  get user(): User {
-    return this._user;
-  }
-
-  get vendor(): Vendor {
-    return this._vendor;
-  }
-
-  get isLogin(): boolean {
-    return this._isLogin;
-  }
-
-  get isAdmin(): boolean {
-    return this._isAdmin;
-  }
-
-  get isVendor(): boolean {
-    return this._isVendor;
-  }
-
-  get isCustomer(): boolean {
-    return this._isCustomer;
-  }
-
-  get emailVerified(): boolean {
-    if (!this.afAuth.auth.currentUser) {
-      return true;
+    set vendorView(value: boolean) {
+        this._vendorView = value;
     }
-    return this.afAuth.auth.currentUser.emailVerified;
-  }
 
-  constructor(
-    private http: HttpClient,
-    private afAuth: AngularFireAuth,
-    private firebaseService: FirebaseService
-  ) {
-    afAuth.idToken.subscribe(jwt => {
-      if (!jwt) {
-        return;
-      }
-      this._jwt = jwt;
-      localStorage.setItem("jwt", jwt);
-      this.getUser();
-      firebaseService.notifyToUpdate();
-      if (!environment.production) {
-        console.log(jwt);
-      }
-    });
-  }
-
-  logout() {
-    // remove all data for user
-    this.afAuth.auth.signOut().then(() => {
-      this._user = null;
-      this._jwt = null;
-      this._isLogin = false;
-      this._isAdmin = false;
-      this._isCustomer = false;
-      this._isVendor = false;
-    });
-  }
-
-  newUser(user: User) {
-    this.http.post<BaseResponse>("auth/register", user).subscribe(res => {
-      if (res.code !== 0) {
-        return;
-      }
-      this.setUser(res.result);
-    });
-  }
-
-  getUser() {
-    if (!this._jwt) {
-      return;
+    get vendorView(): boolean {
+        return this._vendorView;
     }
-    this.http.get<BaseResponse>("user/myself", {}).subscribe(res => {
-      if (res.code !== 0) {
-        return;
-      }
-      this.setUser(res.result);
-    });
-  }
 
-  getVendor() {
-    if (!this._jwt) {
-      return;
+    get jwt(): string {
+        return this._jwt;
     }
-    this.http.get<BaseResponse>("user/vendor", {}).subscribe(res => {
-      if (res.code !== 0) {
-        return;
-      }
-      this._vendor = res.result;
-    });
-  }
 
-  updateUser(user: User) {
-    this.http.put<BaseResponse>("user/update", user).subscribe(res => {
-      if (res.code !== 0) {
-        return;
-      }
-      this.getUser();
-    });
-  }
+    get user(): User {
+        return this._user;
+    }
 
-  async verifyEmail() {
-    const user = this.afAuth.auth.currentUser;
-    return await user.sendEmailVerification();
-  }
+    get vendor(): Vendor {
+        return this._vendor;
+    }
 
-  setUser(user: User) {
-    this._user = user;
-    this._isLogin = true;
-    if (user.role.indexOf(UserRole.ROLE_ADMIN) > 0) {
-      this._isAdmin = true;
+    get isVendor(): boolean {
+        return this._isVendor;
     }
-    if (user.role.indexOf(UserRole.ROLE_CUSTOMER) > 0) {
-      this._isCustomer = true;
+
+    get emailVerified(): boolean {
+        if (!this.afAuth.auth.currentUser) {
+            return true;
+        }
+        return this.afAuth.auth.currentUser.emailVerified;
     }
-    if (user.role.indexOf(UserRole.ROLE_VENDOR) > 0) {
-      this._isVendor = true;
-      this.getVendor();
+
+    // tslint:disable-next-line:variable-name
+    private _jwt: string;
+    // tslint:disable-next-line:variable-name
+    private _user: User;
+    // tslint:disable-next-line:variable-name
+    private _vendor: Vendor;
+    // tslint:disable-next-line:variable-name
+    private _isLogin = false;
+    // tslint:disable-next-line:variable-name
+    private _isVendor = false;
+
+    // tslint:disable-next-line:variable-name
+    private _vendorView = false;
+
+    user$: Subject<User> = new Subject();
+
+    constructor(private http: HttpClient,
+                private afAuth: AngularFireAuth,
+    ) {
+        afAuth.idToken.subscribe(jwt => {
+            if (!jwt) {
+                this.user$.next(null);
+                return;
+            }
+            this._jwt = jwt;
+            this.getUser().then(user => {
+                this.user$.next(user);
+            });
+            if (!environment.production) {
+                console.log(jwt);
+            }
+        });
     }
-  }
+
+    logout() {
+        // remove all data for user
+        this.afAuth.auth.signOut().then(() => {
+                this._user = null;
+                this._jwt = null;
+                this._isLogin = false;
+                this._isVendor = false;
+                this._vendorView = false;
+                localStorage.clear();
+            }
+        );
+    }
+
+    newUser(user: User) {
+        user.password = 'serve-me';
+        this.http.post<User>('auth/local/register', user).subscribe(
+            res => {
+                this.setUser(res);
+            });
+    }
+
+    getUser() {
+        return new Promise<User>((resolve, reject) => {
+            if (!this._jwt) {
+                return;
+            }
+            this.http.get<User>('users/me', {}).subscribe(
+                res => {
+                    this.setUser(res);
+                    resolve(res);
+                }, error => reject(error));
+        });
+    }
+
+    updateUser(user: User) {
+        if (!this._isLogin) {
+            return;
+        }
+        this.http.put<User>('users/' + this._user.id, user).subscribe(
+            res => {
+                this.setUser(res);
+            }
+        );
+    }
+
+    async verifyEmail() {
+        const user = this.afAuth.auth.currentUser;
+        return await user.sendEmailVerification();
+    }
+
+    setUser(user: User) {
+        this._user = user;
+        this._isLogin = true;
+        if (user.vendor) {
+            this._vendor = user.vendor;
+            this._isVendor = true;
+        }
+    }
 }

@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Address} from '../classes/address';
-import {BaseResponse} from '../core/base-response';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
 import {LoadingService} from './loading.service';
 
 @Injectable({
@@ -26,46 +24,56 @@ export class AddressService {
                 private loadingService: LoadingService) {
     }
 
-    getAddresses() {
-        this.loadingService.present();
-        this.http.get<BaseResponse>('user/address', {}).subscribe(
+    getList() {
+        this.loadingService.present().then(r => {
+        });
+        this.http.get<Address[]>('addresses', {}).subscribe(
             res => {
-                this.loadingService.dismiss();
-                if (res.code !== 0) {
-                    return;
-                }
-                this._addresses = res.result;
+                this.loadingService.dismiss().then(r => {
+                });
+                this._addresses = res;
             });
     }
 
-    deleteAddress(id: number) {
-        this.loadingService.present();
-        this.http.delete<BaseResponse>('user/address/' + id, {}).subscribe(
+    delete(id: number) {
+        this.loadingService.present().then(r => {
+        });
+        this.http.delete<Address>('addresses/' + id, {}).subscribe(
             res => {
-                this.loadingService.dismiss();
-                if (res.code !== 0) {
-                    return;
-                }
-
+                this.loadingService.dismiss().then(r => {
+                });
                 const tmp = [];
-                for ( const addressIndex of this._addresses) {
-                        if ( addressIndex.id === id) { continue; }
-                        tmp.push(addressIndex);
+                for (const addressIndex of this._addresses) {
+                    if (addressIndex.id === id) {
+                        continue;
+                    }
+                    tmp.push(addressIndex);
                 }
                 this._addresses = tmp;
             });
     }
 
-
-    updateAddress(address: Address) {
-        this.loadingService.present();
-        this.http.put<BaseResponse>('user/address', address).subscribe(
+    create(address: Address) {
+        this.loadingService.present().then(r => {
+        });
+        this.http.post<Address>('addresses', address).subscribe(
             res => {
-                this.loadingService.dismiss();
-                if (res.code !== 0) {
-                    return;
-                }
-                this.getAddresses();
+                this.loadingService.dismiss().then(r => {
+                });
+                this._currentAddress = res;
+                this.getList();
+            });
+    }
+
+    update(address: Address) {
+        this.loadingService.present().then(r => {
+        });
+        this.http.put<Address>('addresses/' + address.id, address).subscribe(
+            res => {
+                this.loadingService.dismiss().then(r => {
+                });
+                this._currentAddress = res;
+                this.getList();
             });
     }
 

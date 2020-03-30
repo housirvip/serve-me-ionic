@@ -1,0 +1,52 @@
+<ion-content>
+    <div *ngIf="!this.orders?.length">
+        <div class="emptyTips">
+            <p> Nothing here ~</p>
+        </div>
+    </div>
+    <ion-list *ngFor="let request of orders">
+        <ion-card color="" *ngIf="request.status === 'Biding'">
+            <ion-card-header>
+                <ion-card-title>{{request.title}}</ion-card-title>
+                <ion-card-subtitle>{{request.category}}</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-item color="" (click)="bidsCheck(request)">
+                        <ion-label class="pricehour">
+                            <h1 [ngClass]="request.bids.length? 'bid' : ' nobid' ">{{request.bids.length ? request.bids[0].price + '$' : "No one bid"}}</h1>
+                            <ion-label>CreateTime:{{request.createTime|date:'short'}}</ion-label>
+                            <ion-label>Contact:{{request.address.name}}</ion-label>
+                        </ion-label>
+                    <img src="../../../assets/category/{{request.category}}.png" alt="">
+
+                </ion-item>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card class = "acceptingCard" *ngIf="request.status === 'Accepting'">
+            <ion-card-header>
+                <ion-card-title>{{request.title}}</ion-card-title>
+                <div style="display: flex">
+                <ion-card-subtitle>{{request.category}}</ion-card-subtitle>
+                <ion-card-subtitle  style="margin-left: 40%;color: #0d65ff">wating confirm</ion-card-subtitle>
+                </div>
+            </ion-card-header>
+            <ion-card-content>
+                <ion-item color="" >
+                    <ion-label class="pricehour">
+                        <h1 class ="bid">confirmed:{{request.price}}$</h1>
+                        <ion-label>CreateTime:{{request.createTime|date:'short'}}</ion-label>
+                        <ion-label>Contact:{{request.address.name}}</ion-label>
+                    </ion-label>
+                    <div>
+
+                        <div>
+                            <img src="../../../assets/category/{{request.category}}.png" alt="">
+                        </div>
+                    </div>
+
+                </ion-item>
+            </ion-card-content>
+        </ion-card>
+    </ion-list>
+</ion-content>

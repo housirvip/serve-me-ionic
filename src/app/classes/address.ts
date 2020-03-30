@@ -6,4 +6,9 @@ export class Address {
     name: string;
     phone: string;
     zipCode: number;
+    // TODO
+    // latitude for google map
+    lat: number;
+    // longitude for google map
+    lng: number;
 }

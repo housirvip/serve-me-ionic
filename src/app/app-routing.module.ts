@@ -23,6 +23,13 @@ const routes: Routes = [
       import("./profile/profile-page.module").then(m => m.ProfilePageModule)
   },
   {
+    path: "vendor-registration",
+    loadChildren: () =>
+      import("./vendor-registration/vendor-registration.module").then(
+        m => m.VendorRegistrationModule
+      )
+  },
+  {
     path: "settings",
     loadChildren: () =>
       import("./settings/settings.module").then(m => m.SettingsPageModule)
@@ -45,14 +52,40 @@ const routes: Routes = [
       import("./new-request/new-request.module").then(
         m => m.NewRequestPageModule
       )
+  },
+  {
+    path: "vendor-page",
+    loadChildren: () =>
+      import("./vendor-page/vendor-page.module").then(
+        m => m.VendorPagePageModule
+      )
+  },
+  {
+    path: "vendor-order",
+    loadChildren: () =>
+      import("./vendor-order/vendor-order.module").then(
+        m => m.VendorOrderPageModule
+      )
+  },
+  {
+    path: "map",
+    loadChildren: () =>
+      import("./dashboard/map/map.module").then(m => m.MapPageModule)
+  },
+  {
+    path: "biding-check",
+    loadChildren: () =>
+      import("./orders/biding/biding-check/biding-check.module").then(
+        m => m.BidingCheckPageModule
+      )
+  },
+  {
+    path: "bidding",
+    loadChildren: () =>
+      import("./vendor-order/bidding/bidding.module").then(
+        m => m.BiddingPageModule
+      )
   }
-  // {
-  //     path: 'order-details',
-  //     loadChildren: () =>
-  //         import('./orders/order-details/order-details.module').then(
-  //             m => m.OrderDetailsPageModule
-  //         )
-  // }
 ];
 
 @NgModule({

@@ -1,0 +1,45 @@
+<ion-content>
+  <div *ngIf="!this.orders.length">
+    <div class="emptyTips">
+      <p> Nothing here ~</p>
+    </div>
+  </div>
+  <ion-list *ngFor="let request of orders">
+    <ion-card color="" *ngIf="request.status === 'Progressing'">
+      <ion-card-header>
+        <ion-card-title>{{request.title}}</ion-card-title>
+        <ion-card-subtitle>Your {{request.category}} worker is on the way</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item color="">
+          <ion-label class="pricehour">
+            <h1  Class="bid">{{request.bids[0].price + '$'}}</h1>
+            <ion-label>Worktime:{{this.datetimeService.convertWithFormat(request.time,"short")}}</ion-label>
+            <ion-label>Service Provider:{{this.request.vendor.name}}</ion-label>
+          </ion-label>
+          <img src="../../../assets/category/{{request.category}}.png">
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card color="" *ngIf="request.status === 'Finished'">
+      <ion-card-header>
+        <ion-card-title>{{request.title}}</ion-card-title>
+        <ion-card-subtitle style="color: orange">{{request.category}}</ion-card-subtitle>
+        <ion-card-subtitle>Your Service Provider has finished the work</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item color="">
+          <ion-label class="pricehour">
+            <h1  Class="bid">{{request.bids[0].price + '$'}}</h1>
+            <ion-label>Worktime:{{this.datetimeService.convertWithFormat(request.time,"short")}}</ion-label>
+            <ion-label>Service Provider:{{this.request.vendor.name}}</ion-label>
+          </ion-label>
+          <img src="../../../assets/category/{{request.category}}.png">
+        </ion-item>
+        <ion-button color="dark" (click)="confirmFinished(request)">confirm Finished</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+</ion-content>

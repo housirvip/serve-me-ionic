@@ -1,19 +1,20 @@
 import { Injectable } from "@angular/core";
-import { OrderStatus } from "../classes/order-status";
 import { HttpClient } from "@angular/common/http";
-import { BaseResponse } from "../core/base-response";
 import { Order } from "../classes/order";
 import { Bid } from "../classes/bid";
 import { LoadingService } from "./loading.service";
-import { WorkType } from "../classes/work-type";
-import { Jorder } from "../classes/Jorder";
-import { VendorCategory } from "../classes/vendor-category";
-import { VendorResult } from "../classes/vendor-result";
+import { OrderRequest } from "../classes/spec/order-request";
+import { BidRequest } from "../classes/spec/bid-request";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: "root"
 })
 export class OrderService {
+  get bids(): Bid[] {
+    return this._bids;
+  }
+
   get currentOrder(): Order {
     return this._currentOrder;
   }
@@ -26,226 +27,185 @@ export class OrderService {
   private _orders: Order[];
   // tslint:disable-next-line:variable-name
   private _currentOrder: Order;
+  // tslint:disable-next-line:variable-name
+  private _bids: Bid[];
 
   constructor(
     private http: HttpClient,
     private loadingService: LoadingService
   ) {}
 
+  getOrderFromId(id: number) {
+    return this.http.get<Order>("orders/" + id, {});
+  }
+
   getOrder(id: number) {
-    return this.http.get<BaseResponse>("order/" + id, {}).subscribe(res => {
-      if (res.code !== 0) {
-        return;
-      }
-      this._currentOrder = res.result;
+    return this.http.get<Order>("orders/" + id, {}).subscribe(res => {
+      this._currentOrder = res;
     });
   }
 
-  // getOrders(filter: OrderStatus) {
-  //   this.loadingService.present();
-  //   this.http.get<BaseResponse>("order", {}).subscribe(res => {
-  //     console.log(res.result);
-  //     this.loadingService.dismiss();
-  //     if (res.code !== 0) {
-  //       return;
-  //     }
-  //     this._orders = res.result;
-  //   });
-  // }
-
-  getOrders() {
-    var _orders: Order[] = [];
-    this.loadingService.present();
-    return this.http.get<BaseResponse>("order", {});
+  getOrders(request: OrderRequest) {
+    this.loadingService.present().then(r => {});
+    this.http
+      .get<Order[]>("orders", {
+        params: request.toParam()
+      })
+      .subscribe(res => {
+        this.loadingService.dismiss().then(r => {});
+        this._orders = res;
+        if (!environment.production) {
+          console.log(res);
+        }
+      });
   }
 
+  getBids(request: BidRequest) {
+    this.loadingService.present().then(r => {});
+    this.http
+      .get<Bid[]>("bids", {
+        params: request.toParam()
+      })
+      .subscribe(res => {
+        this.loadingService.dismiss().then(r => {});
+        this._bids = res;
+        if (!environment.production) {
+          console.log(res);
+        }
+      });
+  }
+
+  // api for customer, create a new order, then status => Biding
   createOrder(order: Order) {
-    return this.http.post<BaseResponse>("order", order);
+    return this.http.post<Order>("orders", order);
   }
 
   updateOrder(order: Order) {
-    this.http.put<BaseResponse>("order", order).subscribe(res => {});
+    this.http.put<Order>("orders/" + order.id, order).subscribe(res => {
+      if (!environment.production) {
+        console.log(res);
+      }
+    });
   }
 
+  // not suggested to do this
   deleteOrder(id: number) {
-    this.http.delete<BaseResponse>("order/" + id, {}).subscribe(res => {});
+    this.http.delete<Order>("orders/" + id, {}).subscribe(res => {
+      if (!environment.production) {
+        console.log(res);
+      }
+    });
   }
 
+  // api for vendor, update the bid
+  updateBid(bid: Bid) {
+    this.http.put<Bid>("bids/" + bid.id, bid).subscribe(res => {
+      if (!environment.production) {
+        console.log(res);
+      }
+    });
+  }
+
+  // api for vendor, delete or revoke the bid
+  deleteBid(id: number) {
+    this.http.delete<Bid>("bids/" + id, {}).subscribe(res => {
+      if (!environment.production) {
+        console.log(res);
+      }
+    });
+  }
+
+  // api for vendor, give a new bid to an order, then status still Biding
   bid(bid: Bid) {
-    this.http.put<BaseResponse>("order/bid", bid).subscribe(res => {});
+    return this.http.put<Bid>("order/bid", bid);
   }
 
-  confirm(bid: Bid) {
-    this.http.put<BaseResponse>("order/confirm", bid).subscribe(res => {});
+  // api for customer, accept the bid, then status => Accepting
+  accept(bid: Bid) {
+    // give a bid, return an order
+    return this.http.put<Order>("order/accept", bid);
   }
 
+  // api for vendor, accept the order of which owner accept your bid, then status => Pending(waiting customer pay for it)
+  confirm(order: Order) {
+    return this.http.put<Order>("order/confirm", order);
+  }
+
+  // api for customer, pay to an order, then status => Progressing
   pay(order: Order) {
-    this.http.put<BaseResponse>("order/pay", order).subscribe(res => {});
+    return this.http.put<Order>("order/pay", order);
   }
 
+  // api for vendor, mark this order as finished, then status => Finished
   finish(order: Order) {
-    this.http.put<BaseResponse>("order/finish", order).subscribe(res => {});
+    return this.http.put<Order>("order/finish", order);
   }
 
-  getImageUrl(order: Order): string {
-    switch (order.category) {
-      case VendorCategory.Appliances:
-        return "../../assets/order/appliances.png";
-        break;
-      case VendorCategory.ComputerRepair:
-        return "../../assets/order/computerRepair.png";
-        break;
-      case VendorCategory.Electrical:
-        return "../../assets/order/electrical.png";
-        break;
-      case VendorCategory.HomeCleaning:
-        return "../../assets/order/homeCleaning.png";
-        break;
-      case VendorCategory.HomeRepairAndPainting:
-        return "../../assets/order/homeRepair.jpg";
-        break;
-      case VendorCategory.PackagingAndMoving:
-        return "../../assets/order/moving.png";
-        break;
-      case VendorCategory.PestControl:
-        return "../../assets/order/pestControl.jpg";
-        break;
-      case VendorCategory.Plumbing:
-        return "../../assets/order/plumbing.jpg";
-        break;
-      case VendorCategory.Tutoring:
-        return "../../assets/order/tutoring.jpg";
-        break;
-      default:
-        return "../../assets/order/default.jpg";
-        break;
-    }
+  // api for customer, mark this order as completed, then status => Completed
+  complete(order: Order, callback: any) {
+    // order should contain a review
+    this.loadingService.present().then(r => {});
+    this.http.put<Order>("order/complete", order).subscribe(res => {
+      this.loadingService.dismiss().then(r => {});
+      if (!environment.production) {
+        console.log(res);
+      }
+      callback();
+    });
   }
 
-  getHarCodeOrders(filter: OrderStatus): Jorder[] {
-    switch (filter) {
-      case OrderStatus.Waiting:
-        return [
-          {
-            title: "Looking for cleaner",
-            price: "12.99$",
-            type: WorkType.Cleaner,
-            status: OrderStatus.Waiting,
-            requestor: "John",
-            serverProvider: "Bill",
-            time: "01/01/2020",
-            imgUrl: "../../assets/order/cleaner.png",
-            orderID: 0,
-            description:
-              "My house is super dirty and I am in need of a cleaner.",
-            location: "Rowlett, TX"
-          },
-          {
-            title: "Really need someone help me",
-            price: "20.99$",
-            type: WorkType.Repairing,
-            status: OrderStatus.Waiting,
-            requestor: "Rose",
-            serverProvider: "Jack",
-            time: "02/01/2020",
-            imgUrl: "../../assets/order/repair.png",
-            orderID: 1,
-            description:
-              "I messed up my laptop and need someone to fix it ASAP.",
-            location: "Dallas, TX"
-          }
-        ];
-      case OrderStatus.Biding:
-        return [
-          {
-            title: "Look for cleaner",
-            price: "12.99$",
-            type: WorkType.Cleaner,
-            status: OrderStatus.Waiting,
-            requestor: "Jay",
-            serverProvider: "Bill",
-            time: "01/01/2020",
-            imgUrl: "../../assets/order/repair.png",
-            orderID: 2,
-            description:
-              // tslint:disable-next-line:max-line-length
-              "My room is house is a mess. I have gests tonight so I'm looking for cleaning services. House has 3 rooms and 2 bathrooms",
-            location: "Rockwall, TX"
-          }
-        ];
-      case OrderStatus.Progressing:
-        return [
-          {
-            title: "Look for cleaner 1",
-            price: "12.99$",
-            type: WorkType.Cleaner,
-            status: OrderStatus.Progressing,
-            serverProvider: "Bill",
-            time: "01/01/2020",
-            imgUrl: "../../assets/order/weedcleaner.png",
-            requestor: "Sarah",
-            orderID: 3,
-            description: "lorem ipsum order 3",
-            location: "Rowlett, TX"
-          },
-          {
-            title: "Look for cleaner 2",
-            price: "12.99$",
-            type: WorkType.Cleaner,
-            status: OrderStatus.Progressing,
-            serverProvider: "Bill",
-            time: "01/01/2020",
-            imgUrl: "../../assets/order/weedcleaner.png",
-            requestor: "Jose",
-            orderID: 4,
-            description: "lorem ipsum order 4",
-            location: "Rowlett, TX"
-          }
-        ];
-      case OrderStatus.Completed:
-        return [
-          {
-            title: "Look for cleaner",
-            price: "12.99$",
-            type: WorkType.Cleaner,
-            status: OrderStatus.Completed,
-            serverProvider: "Bill",
-            time: "01/01/2020",
-            imgUrl: "../../assets/order/dogwalker.png",
-            requestor: "Jasmine",
-            orderID: 5,
-            description: "lorem ipsum order 5",
-            location: "Rowlett, TX"
-          },
-          {
-            title: "Look for cleaner 2",
-            price: "12.99$",
-            type: WorkType.Cleaner,
-            status: OrderStatus.Completed,
-            serverProvider: "Bill",
-            time: "01/01/2020",
-            imgUrl: "../../assets/order/dogwalker.png",
-            requestor: "Isabelle",
-            orderID: 6,
-            description: "lorem ipsum order 6",
-            location: "Rowlett, TX"
-          },
-          {
-            title: "Look for cleaner 3",
-            price: "12.99$",
-            type: WorkType.Cleaner,
-            status: OrderStatus.Completed,
-            serverProvider: "Bill",
-            time: "01/01/2020",
-            imgUrl: "../../assets/order/dogwalker.png",
-            requestor: "Max",
-            orderID: 7,
-            description: "lorem ipsum order 7",
-            location: "Rowlett, TX"
-          }
-        ];
-      default:
-        return [];
-    }
+  // api for customer, select a vendor without bid, status => Accepting
+  select(order: Order) {
+    // order should contain a vendor, and price
+    this.http.post<Order>("order/select", order).subscribe(res => {
+      if (!environment.production) {
+        console.log(res);
+      }
+    });
+  }
+
+  // api for vendor, deny this order, status => Denied
+  deny(order: Order) {
+    this.http.put<Order>("order/deny", order).subscribe(res => {
+      if (!environment.production) {
+        console.log(res);
+      }
+    });
+  }
+
+  // api for customer, deny this order, status => Denied
+  close(order: Order) {
+    this.http.put<Order>("order/deny", order).subscribe(res => {
+      if (!environment.production) {
+        console.log(res);
+      }
+    });
+  }
+
+  // api for customer, request refund this order, status => Refunding
+  refund(order: Order) {
+    this.http.put<Order>("order/deny", order).subscribe(res => {
+      if (!environment.production) {
+        console.log(res);
+      }
+    });
+  }
+
+  // api for vendor, agree refund this order, status => Refunded
+  refundAgree(order: Order) {
+    this.http.put<Order>("order/deny", order).subscribe(res => {
+      if (!environment.production) {
+        console.log(res);
+      }
+    });
+  }
+
+  // api for vendor, deny refund this order, status => Progressing
+  refundDeny(order: Order) {
+    this.http.put<Order>("order/deny", order).subscribe(res => {
+      if (!environment.production) {
+        console.log(res);
+      }
+    });
   }
 }

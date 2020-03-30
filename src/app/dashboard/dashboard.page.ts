@@ -1,17 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { ModalController } from "@ionic/angular";
-import { TypePage } from "./type/type.page";
-import { FilterService } from "../services/filter.service";
-import { PricePage } from "./price/price.page";
-import { ToastService } from "../services/toast.service";
-import { OrderStatus } from "../classes/order-status";
-import { OrderService } from "../services/order.service";
-import { Order } from "../classes/order";
-import { OrderDetailsPage } from "./order-details/order-details.page";
-import { UserService } from "../services/user.service";
-import { LoadingService } from "../services/loading.service";
-import * as moment from "moment";
-import * as linq from "linq-typescript";
+import {Component, OnInit} from '@angular/core';
+import {ModalController} from '@ionic/angular';
+import {TypePage} from './type/type.page';
+import {FilterService} from '../services/filter.service';
+import {PricePage} from './price/price.page';
+import {ToastService} from '../services/toast.service';
+import {VendorResult} from '../classes/vendor-result';
+import {VendorService} from '../services/vendor.service';
+import {VendorRequest} from '../classes/spec/vendor-request';
+import {Vendor} from '../classes/vendor';
 
 @Component({
   selector: "app-dashboard",
@@ -19,24 +15,23 @@ import * as linq from "linq-typescript";
   styleUrls: ["dashboard.page.scss"]
 })
 export class DashboardPage implements OnInit {
-  serviceProviderView: boolean;
-  //orders: Jorder[];
-  current_tab: string;
-  vendor_id: number;
-  orders: Order[];
+    vendorRequest: VendorRequest;
 
-  get vendors() {
-    return this.filterService.getVendorList();
-  }
+    constructor(private modalController: ModalController,
+                private toastService: ToastService,
+                private vendorService: VendorService,
+                private filterService: FilterService) {
+        this.vendorRequest = new VendorRequest();
+        // plz review VendorRequest, there shows some specification
+    }
 
-  constructor(
-    private modalController: ModalController,
-    private toastService: ToastService,
-    private filterService: FilterService,
-    private orderService: OrderService,
-    private userService: UserService,
-    private loadingService: LoadingService
-  ) {}
+    get vendors() {
+        return this.vendorService.vendors;
+    }
+
+    ngOnInit() {
+        this.vendorService.getVendors(this.vendorRequest);
+    }
 
   ngOnInit() {
     // this.filterService.getVendorList();
@@ -84,9 +79,13 @@ export class DashboardPage implements OnInit {
     });
   }
 
-  stringify_best_bid(order: Order): string {
-    if (!order || !order.bids || order.bids.length == 0) {
-      return "0";
+    doRefresh(event) {
+        this.vendorService.getVendors(this.vendorRequest);
+        setTimeout(() => {
+            this.toastService.presentToast('updated', 2000).then(() => {
+            });
+            event.target.complete();
+        }, 1000);
     }
     const bids = new linq.List(order.bids);
     const best_bid = bids.min(x => x.price);

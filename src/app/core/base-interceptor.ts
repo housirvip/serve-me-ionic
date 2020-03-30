@@ -28,10 +28,11 @@ export class BaseInterceptor implements HttpInterceptor {
             tap(evt => {
                 if (evt instanceof HttpResponse) {
                     if (evt.ok) {
-                        const rsp = evt.body as BaseResponse;
-                        if (rsp.code !== 0) {
+                        const rsp = evt.body;
+                        if (rsp.code && rsp.code !== 0) {
                             this.toastService.presentToast(rsp.message, 2000).then(() => {
                             });
+                            throw new Error(rsp.message);
                         }
                     } else {
                         this.toastService.presentToast(evt.body, 2000).then(() => {
