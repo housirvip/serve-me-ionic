@@ -67,8 +67,17 @@ export class BiddingPage implements OnInit {
       console.log(data);
       if (data.data) {
         this.getBids();
+        this.doRefresh(event);
       }
     });
     return await modal.present();
+  }
+
+  doRefresh(event) {
+    this.getBids();
+    setTimeout(() => {
+      this.toastService.presentToast("updated", 2000).then(() => {});
+      event.target.complete();
+    }, 1000);
   }
 }

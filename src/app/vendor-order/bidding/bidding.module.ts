@@ -12,7 +12,7 @@ import { ModifyPopoverComponent } from "./bidding-request-details/modify-popover
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, BiddingPageRoutingModule],
-  declarations: [ModifyPopoverComponent],
-  entryComponents: [BiddingRequestDetailsPage, ModifyPopoverComponent]
+  declarations: [],
+  entryComponents: [BiddingRequestDetailsPage]
 })
 export class BiddingPageModule {}

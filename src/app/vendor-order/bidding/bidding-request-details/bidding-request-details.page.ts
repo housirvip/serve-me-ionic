@@ -75,7 +75,8 @@ export class BiddingRequestDetailsPage implements OnInit {
     popover.onWillDismiss().then(result => {
       if (result.data) {
         console.log(result.data);
-        this.onBackPressed(result.data);
+        //this.onBackPressed(result.data);
+        this.onBackPressed(false);
       }
     });
     return;
