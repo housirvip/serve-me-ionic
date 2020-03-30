@@ -127,17 +127,18 @@
 
 .bid-block {
   text-align: center;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 .button-block {
   text-align: center;
   ion-button {
-    display: inline-block;
-    padding-left: 10px;
-    padding-right: 10px;
+    //display: inline-block;
+    text-align: center;
     --padding-bottom: 0px;
     --padding-top: 0px;
-    margin-top: 20px;
+    margin-top: 5px;
     --background: black;
     box-sizing: border-box;
     height: 50px;
@@ -146,8 +147,8 @@
 }
 
 .best-bid {
-  margin-top: 30px;
-  //display: inline-block;
+  margin-right: 15px;
+  display: inline-block;
   h2 {
     color: gray;
     font-size: 12px;
@@ -161,14 +162,12 @@
     font-size: 20px;
     font-weight: 600;
     margin-top: 0px;
-    margin-bottom: 10px;
   }
 }
 
 .your-bid {
-  margin-top: 15px;
-  //display: inline-block;
-
+  margin-left: 15px;
+  display: inline-block;
   h2 {
     color: gray;
     font-size: 12px;
@@ -182,7 +181,6 @@
     font-size: 20px;
     font-weight: 600;
     margin-top: 0px;
-    margin-bottom: 10px;
   }
 }
 

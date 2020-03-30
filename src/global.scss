@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -25,11 +25,9 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+@import "~firebaseui/dist/firebaseui.css";
 
-@import '~firebaseui/dist/firebaseui.css';
-
-
-#closedButton{
+#closedButton {
   text-align: left;
   margin: 20px 20px;
   font-size: 30px;
@@ -42,9 +40,9 @@
   display: block;
 }
 
-.emptyTips{
-  margin:50% 50% 70% 30%;
-  p{
+.emptyTips {
+  margin: 50% 50% 70% 30%;
+  p {
     width: 40ch;
     font-size: 30px;
     font-family: fantasy;
@@ -53,14 +51,14 @@
   }
 }
 
-ion-header{
-  ion-toolbar{
+ion-header {
+  ion-toolbar {
     --background: black;
     color: white;
   }
 }
 
-ion-fab-button{
+ion-fab-button {
   --background: black;
 }
 
@@ -70,6 +68,9 @@ ion-popover {
   ion-backdrop {
     opacity: 0.5 !important;
   }
+  ion-button {
+    --background: black;
+  }
   .popover-wrapper {
     .popover-content {
       //width:80vw;
@@ -78,5 +79,3 @@ ion-popover {
     }
   }
 }
-
-

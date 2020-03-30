@@ -6,22 +6,22 @@
     <div class="bid-block">
       <ion-label>Bid</ion-label>
       <ion-input
-              type="number"
-              [(ngModel)]="bid_amount"
-              name="bid"
-              required="true"
+        type="number"
+        [(ngModel)]="bid_amount"
+        name="bid"
+        required="true"
       ></ion-input>
     </div>
     <div class="message-block">
       <ion-label>Message</ion-label>
       <ion-textarea
-              [(ngModel)]="bid_message"
-              name="message"
-              maxlength="150"
+        [(ngModel)]="bid_message"
+        name="message"
+        maxlength="150"
       ></ion-textarea>
     </div>
     <div class="button-block">
-      <ion-button type="submit" fill="solid" color="dark" size="large">
+      <ion-button type="submit" fill="solid" size="large">
         Submit Bid
       </ion-button>
     </div>
