@@ -1,66 +1,91 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: '/dashboard',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "/dashboard",
+    pathMatch: "full"
   },
   {
-    path: 'dashboard',
+    path: "dashboard",
     loadChildren: () =>
-      import('./dashboard/dashboard.module').then(m => m.DashboardPageModule)
+      import("./dashboard/dashboard.module").then(m => m.DashboardPageModule)
   },
   {
-    path: 'orders',
+    path: "orders",
     loadChildren: () =>
-      import('./orders/orders.module').then(m => m.OrdersPageModule)
+      import("./orders/orders.module").then(m => m.OrdersPageModule)
   },
   {
-    path: 'profile',
+    path: "profile",
     loadChildren: () =>
-      import('./profile/profile-page.module').then(m => m.ProfilePageModule)
+      import("./profile/profile-page.module").then(m => m.ProfilePageModule)
   },
   {
-    path: 'vendor-registration',
+    path: "vendor-registration",
     loadChildren: () =>
-        import('./vendor-registration/vendor-registration.module').then(m => m.VendorRegistrationModule)
+      import("./vendor-registration/vendor-registration.module").then(
+        m => m.VendorRegistrationModule
+      )
   },
   {
-    path: 'settings',
+    path: "settings",
     loadChildren: () =>
-      import('./settings/settings.module').then(m => m.SettingsPageModule)
+      import("./settings/settings.module").then(m => m.SettingsPageModule)
   },
   {
-    path: 'update-name',
-    loadChildren: () => import('./profile/update-name/update-name.module').then( m => m.UpdateNamePageModule)
+    path: "update-name",
+    loadChildren: () =>
+      import("./profile/update-name/update-name.module").then(
+        m => m.UpdateNamePageModule
+      )
   },
   {
-    path: 'address',
-    loadChildren: () => import('./address/address.module').then( m => m.AddressPageModule)
+    path: "address",
+    loadChildren: () =>
+      import("./address/address.module").then(m => m.AddressPageModule)
   },
   {
-    path: 'new-request',
-    loadChildren: () => import('./new-request/new-request.module').then( m => m.NewRequestPageModule)
+    path: "new-request",
+    loadChildren: () =>
+      import("./new-request/new-request.module").then(
+        m => m.NewRequestPageModule
+      )
   },
   {
-    path: 'vendor-page',
-    loadChildren: () => import('./vendor-page/vendor-page.module').then( m => m.VendorPagePageModule)
+    path: "vendor-page",
+    loadChildren: () =>
+      import("./vendor-page/vendor-page.module").then(
+        m => m.VendorPagePageModule
+      )
   },
   {
-    path: 'vendor-order',
-    loadChildren: () => import('./vendor-order/vendor-order.module').then( m => m.VendorOrderPageModule)
+    path: "vendor-order",
+    loadChildren: () =>
+      import("./vendor-order/vendor-order.module").then(
+        m => m.VendorOrderPageModule
+      )
   },
   {
-    path: 'map',
-    loadChildren: () => import('./dashboard/map/map.module').then( m => m.MapPageModule)
+    path: "map",
+    loadChildren: () =>
+      import("./dashboard/map/map.module").then(m => m.MapPageModule)
   },
   {
-    path: 'biding-check',
-    loadChildren: () => import('./orders/biding/biding-check/biding-check.module').then( m => m.BidingCheckPageModule)
+    path: "biding-check",
+    loadChildren: () =>
+      import("./orders/biding/biding-check/biding-check.module").then(
+        m => m.BidingCheckPageModule
+      )
   },
-
+  {
+    path: "bidding",
+    loadChildren: () =>
+      import("./vendor-order/bidding/bidding.module").then(
+        m => m.BiddingPageModule
+      )
+  }
 ];
 
 @NgModule({

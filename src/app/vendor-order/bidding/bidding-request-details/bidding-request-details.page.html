@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar style="--background: black;color: white">
+    <ion-title>{{order.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div id="closedButton">
+  <ion-icon name="close" (click)="onBackPressed('asd')"></ion-icon>
+</div>
+
+<ion-content>
+  <div class="order-image" *ngFor="let img of order.imgUrls">
+    <img src="{{img}}" alt="" />
+  </div>
+  <div class="order-info">
+    <div class="title-date">
+      <h1>{{order.title}}</h1>
+      <p>Posted {{order.createTime|date:"longDate"}}</p>
+    </div>
+    <div class="line"></div>
+    <div class="description">
+      <h2>Description</h2>
+      <p>{{order.description}}</p>
+    </div>
+    <div class="date">
+      <h2>Order date</h2>
+      <p>{{order.time|date:"longDate"}}</p>
+    </div>
+    <div class="time">
+      <h2>Order Time</h2>
+      <p>{{order.time|date:"mediumTime"}}</p>
+    </div>
+    <div class="line"></div>
+    <div class="requestor">
+      <div class="requestor-label">
+        <h2>Customer</h2>
+        <h2>{{order.address?.name}}</h2>
+      </div>
+      <div class="requestor-info">
+        <p>{{order.address?.street}}</p>
+        <p>{{order.address?.city}}</p>
+        <p>{{order.address?.state}}</p>
+      </div>
+    </div>
+    <div class="line"></div>
+    <div class="bid-block">
+      <div class="best-bid">
+        <h2>BEST BID</h2>
+        <p>{{best_bid}}</p>
+      </div>
+      <div class="your-bid">
+        <h2>YOUR BID</h2>
+        <p>{{your_bid}}</p>
+      </div>
+    </div>
+    <div class="button-block">
+      <ion-button class="modify-button" (click)="onModifyBidPressed($event);">
+        MODIFY BID
+      </ion-button>
+      <ion-button class="revoke-button" (click)="onRevokeBidPressed($event);">
+        REVOKE BID
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
