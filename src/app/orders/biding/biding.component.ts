@@ -43,12 +43,4 @@ export class BidingComponent implements OnInit, AfterViewInit {
         return await modal.present();
 
     }
-
-    async cancel(request: Order){
-
-    }
-
-    async edit(request: Order){
-
-    }
 }
