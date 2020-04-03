@@ -1,8 +1,6 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://serve-me-api.herokuapp.com/',
-    // apiUrl: 'http://192.168.1.139/'
-    // apiUrl: 'http://192.168.1.139:8000/',
+    apiUrl: 'https://gce.housir.vip/',
     firebaseConfig: {
         apiKey: 'AIzaSyDCYS2n_rzJkPL3zN8pKhnYEuC7Kk8Yvbg',
         authDomain: 'serve-me-ionic.firebaseapp.com',

@@ -4,7 +4,7 @@
 
 export const environment = {
     // apiUrl: 'http://192.168.1.139:8000/',
-    apiUrl: 'https://serve-me-api.herokuapp.com/',
+    apiUrl: 'https://gce.housir.vip/',
     // apiUrl: 'http://localhost:1337/',
     production: false,
     firebaseConfig: {
