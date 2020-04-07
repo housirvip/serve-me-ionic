@@ -182,7 +182,7 @@ export class OrderService {
 
     // api for customer, deny this order, status => Denied
     close(order: Order) {
-        this.http.put<Order>('order/deny', order).subscribe(
+        this.http.put<Order>('order/close', order).subscribe(
             res => {
                 if (!environment.production) {
                     console.log(res);
