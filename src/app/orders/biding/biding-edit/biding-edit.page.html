@@ -1,0 +1,96 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+            <ion-title>Biding edit</ion-title>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="requestForm" (ngSubmit)="saved()">
+        <ion-list>
+            <ion-item>
+                <ion-icon name="build" slot="start"></ion-icon>
+                <ion-label>Category</ion-label>
+                <ion-select formControlName="category" [(ngModel)]="this.tmpOrder.category" value="{{currentOrder? currentOrder.category: cur_category}}">
+                    <ion-select-option *ngFor="let category of vendorCategory"
+                                       value="{{category}}">{{category}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="calendar" slot="start"></ion-icon>
+                <ion-label>Start Date</ion-label>
+                <ion-datetime
+                        (ionChange)="refreshAvailableTime()"
+                        formControlName="time"
+                        min="{{this.minDate}}"
+                        value = "{{currentOrder? currentOrder.time: cur_time}}"
+                        [(ngModel)]="this.tmpOrder.time"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="time" slot="start"></ion-icon>
+                <ion-label>
+                    Start Time
+                </ion-label>
+                <ion-datetime [disabled]="!dateSelected" formControlName="time" display-format="HH:mm"
+                              picker-format="HH:mm"
+                              value = "{{currentOrder? currentOrder.time: cur_time}}"
+                              [hourValues]="availableHours"
+                              minute-values="0,10,20,30,40,50"
+                              [(ngModel)]="this.tmpOrder.time"></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="arrow-redo" slot="start"></ion-icon>
+                <ion-label>
+                    Title
+                </ion-label>
+                <ion-input formControlName="title" [(ngModel)]="this.tmpOrder.title" value="{{currentOrder? currentOrder.title: cur_title}}"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-icon slot="start" name="document-text"></ion-icon>
+                <ion-label>
+                    Description
+                </ion-label>
+                <ion-textarea formControlName="description" [(ngModel)]="this.tmpOrder.description" value="{{currentOrder? currentOrder.description: cur_description}}"></ion-textarea>
+            </ion-item>
+
+            <ion-item detail="true" (click)="openShowAddress()">
+                <ion-icon name="home" slot="start"></ion-icon>
+                <label>{{this.addressService.addresses?.length ? 'Select an address' : 'add an new address'}}</label>
+            </ion-item>
+            <ion-item>
+                <ion-card *ngIf="selectedAddress">
+                    <ion-card-title>
+                        {{this.selectedAddress.name}}
+                    </ion-card-title>
+                    <ion-card-content>
+                        <p>{{this.selectedAddress.street}}</p>
+                        <p>{{this.selectedAddress.city}} {{this.selectedAddress.state}} {{this.selectedAddress.zipCode}}</p>
+                        <p>{{this.selectedAddress.phone}}</p>
+                    </ion-card-content>
+                </ion-card>
+                <ion-card *ngIf="!selectedAddress" style="width: 248px;height: 148px">
+                    <ion-card-content>
+                      <ion-card-title>
+                        {{currentOrder? currentOrder.address.name: cur_address}}
+                      </ion-card-title>
+                      <p>{{currentOrder? currentOrder.address.street: cur_address}}</p>
+                      <p>{{currentOrder? currentOrder.address.city: cur_address}} {{currentOrder? currentOrder.address.state: cur_address}} {{currentOrder? currentOrder.address.zipCode: cur_address}}<p>
+                      <p>{{currentOrder? currentOrder.address.phone: cur_address}}</p>
+                    </ion-card-content>
+                </ion-card>
+            </ion-item>
+
+            <ion-button class="edit-button" type="submit" expand="full">
+                SAVED
+            </ion-button>
+        </ion-list>
+    </form>
+</ion-content>
+
+
+
+
+

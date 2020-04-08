@@ -72,8 +72,10 @@ export class BidingComponent implements OnInit, AfterViewInit {
         });
     }
 
-    async edit(request: any) {
-
+    async edit(request: Order) {
+        this.orderService.getOrder(request.id);
+        // console.log(this.orderService.currentOrder);
+        this.jump('/biding-edit');
     }
 
     async cancel(request: Order) {

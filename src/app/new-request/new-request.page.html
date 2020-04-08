@@ -42,7 +42,7 @@
             </ion-item>
             <ion-item>
             <ion-icon name="arrow-redo" slot="start"></ion-icon>
-              <ion-label>
+                <ion-label>
                     Title
                 </ion-label>
                 <ion-input formControlName="title" [(ngModel)]="this.currentOrder.title"></ion-input>
@@ -52,7 +52,7 @@
                 <ion-label>
                     Description
                 </ion-label>
-                <ion-textarea slot="end" formControlName="description" [(ngModel)]="this.currentOrder.description"></ion-textarea>
+                <ion-textarea formControlName="description" [(ngModel)]="this.currentOrder.description"></ion-textarea>
             </ion-item>
 
             <ion-item detail="true" (click)="openShowAddress()" >

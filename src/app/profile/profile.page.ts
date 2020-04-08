@@ -51,6 +51,7 @@ export class ProfilePage implements OnInit {
     }
 
     get user() {
+        console.log(this.userService.user);
         return this.userService.user;
     }
 

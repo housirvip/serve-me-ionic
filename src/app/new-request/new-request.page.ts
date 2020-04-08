@@ -35,7 +35,6 @@ export class NewRequestPage implements OnInit {
         time: ['', [Validators.required, Validators.maxLength(100)]],
         category: ['', [Validators.required, Validators.maxLength(50)]],
         address: ['', ]
-
     });
     errorMessages = {
         description: [

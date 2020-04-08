@@ -60,6 +60,10 @@ const routes: Routes = [
     path: 'biding-check',
     loadChildren: () => import('./orders/biding/biding-check/biding-check.module').then( m => m.BidingCheckPageModule)
   },
+  {
+    path: 'biding-edit',
+    loadChildren: () => import('./orders/biding/biding-edit/biding-edit.module').then( m => m.BidingEditPageModule)
+  },
 
 ];
 

@@ -16,7 +16,6 @@ export class BidingCheckPage implements OnInit {
               public navParams: NavParams,
               private orderService: OrderService,
               private alertController: AlertController) {
-
   }
 
   ngOnInit() {
