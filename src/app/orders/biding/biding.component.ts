@@ -106,21 +106,4 @@ export class BidingComponent implements OnInit, AfterViewInit {
         });
         await alert.present();
     }
-
-    getOrders(status: OrderStatus) {
-
-        this.filterRequest.statusIn = [];
-        this.filterRequest.statusIn.push(status);
-        if (status === OrderStatus.Biding) {
-            //       this.filterRequest.status = OrderStatus.Accepting;
-            this.filterRequest.statusIn.push(OrderStatus.Accepting);
-        }
-        if (status === OrderStatus.Progressing) {
-            //       this.filterRequest.status = OrderStatus.Accepting;
-            this.filterRequest.statusIn.push(OrderStatus.Finished);
-        }
-        this.orderService.getOrders(this.filterRequest);
-    }
-
-
 }
