@@ -60,5 +60,4 @@ export class OrdersPage implements OnInit {
             event.target.complete();
         }, 1000);
     }
-
 }
