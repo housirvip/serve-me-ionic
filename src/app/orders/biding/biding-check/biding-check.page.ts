@@ -48,4 +48,5 @@ export class BidingCheckPage implements OnInit {
     await alert.present();
   }
 
+
 }

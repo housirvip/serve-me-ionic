@@ -100,7 +100,6 @@ export class ProfilePage implements OnInit {
 
     async updateNameModal() {
 
-
         const modal = await this.modalController.create({
             component: UpdateNamePage
         });

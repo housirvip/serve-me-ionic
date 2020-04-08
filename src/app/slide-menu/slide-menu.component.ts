@@ -133,6 +133,4 @@ export class SlideMenuComponent implements OnInit {
 
         await alert.present();
     }
-
-
 }
