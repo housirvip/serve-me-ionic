@@ -1,7 +1,7 @@
 <ion-content>
 
   <ion-list >
-    <div *ngFor="let bid of bids">
+    <div *ngFor="let bid of bids let r of reviews">
     <ion-card color="" *ngIf="bid.order.status === 'Completed'">
       <ion-card-header>
         <ion-card-title>{{bid.order.title}} </ion-card-title>
@@ -12,6 +12,7 @@
           <ion-label class="pricehour">
             <h1 class="bid"> Customer: {{bid.price}}$</h1>
             <ion-label>CreateTime:{{bid.createTime| date:'short'}}</ion-label>
+            <ion-label>Review:{{r.description}}</ion-label>
           </ion-label>
           <img src="../../../assets/img/done.jpeg" alt="">
         </ion-item>
