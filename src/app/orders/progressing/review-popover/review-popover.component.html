@@ -1,0 +1,40 @@
+<ion-header>
+  <h1 class="title">Review Details</h1>
+</ion-header>
+<ion-content>
+  <form (ngSubmit)="onFormSubmit()">
+    <div class="rating-block" style="margin-bottom: 5px;">
+      <ion-label>Rating:</ion-label>
+      <div class="star-block" style="display: inline-block; margin-left: 10px;">
+        <ion-icon name="{{ star_one }}" (click)="countStar(1)"></ion-icon>
+        <ion-icon name="{{ star_two }}" (click)="countStar(2)"></ion-icon>
+        <ion-icon name="{{ star_three }}" (click)="countStar(3)"></ion-icon>
+        <ion-icon name="{{ star_four }}" (click)="countStar(4)"></ion-icon>
+        <ion-icon name="{{ star_five }}" (click)="countStar(5)"></ion-icon>
+      </div>
+    </div>
+    <div class="title-block">
+      <ion-label>Title:</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="title"
+        name="title"
+        required="true"
+        maxlength="30"
+      ></ion-input>
+    </div>
+    <div class="description-block">
+      <ion-label>Description:</ion-label>
+      <ion-textarea
+        [(ngModel)]="description"
+        name="description"
+        maxlength="150"
+      ></ion-textarea>
+    </div>
+    <div class="button-block">
+      <ion-button type="submit" fill="solid" color="dark" size="large">
+        Submit
+      </ion-button>
+    </div>
+  </form>
+</ion-content>
