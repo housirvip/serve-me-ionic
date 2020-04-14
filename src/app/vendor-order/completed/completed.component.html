@@ -15,14 +15,16 @@
             <ion-label class="pricehour">
               <h1 class="bid">Price: {{ order.price }}$</h1>
               <ion-label>Customer: {{ order.user.username }}</ion-label>
-              <div class="rating" style="display: inline-block;">
-                <ion-label
-                  >Rating: {{ order.review.rate }}
-                  <ion-icon name="star"></ion-icon>
-                </ion-label>
+              <div *ngIf="order.review.rate">
+                <div class="rating" style="display: inline-block;">
+                  <ion-label
+                    >Rating: {{ order.review.rate }}
+                    <ion-icon name="star"></ion-icon>
+                  </ion-label>
+                </div>
+                <br />
+                <ion-label>Tap for review details</ion-label>
               </div>
-              <br />
-              <ion-label>Tap for review details</ion-label>
             </ion-label>
             <img src="../../../assets/img/done.jpeg" alt="" />
           </ion-item>

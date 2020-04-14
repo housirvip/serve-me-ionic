@@ -67,7 +67,10 @@ export class CompletedComponent implements OnInit {
 
   openReviewDetails(order: Order) {
     console.log(order);
-    this.presentAlert(order);
+    if (order.review.rate) {
+      //if a review is set for this order
+      this.presentAlert(order);
+    }
   }
 
   async presentAlert(order: Order) {
