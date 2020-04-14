@@ -69,19 +69,31 @@ export class CompletedComponent implements OnInit {
     console.log(order);
     if (order.review.rate) {
       //if a review is set for this order
-      this.presentAlert(order);
+      var msg: string;
+      if (order.review.title && order.review.description) {
+        //title and description were set for review
+        msg =
+          "<b>Title:</b> " +
+          order.review.title +
+          "<br> <br>" +
+          "<b>Description:</b> " +
+          order.review.description;
+        this.presentAlert(order, msg);
+      } else if (order.review.title) {
+        //only title was set for review
+        msg = "<b>Title:</b> " + order.review.title;
+        this.presentAlert(order, msg);
+      } else if (order.review.description) {
+        msg = "<b>Description:</b> " + order.review.description;
+        this.presentAlert(order, msg);
+      }
     }
   }
 
-  async presentAlert(order: Order) {
+  async presentAlert(order: Order, msg: string) {
     const alert = await this.alertController.create({
       header: "Review",
-      message:
-        "<b>Title:</b> " +
-        order.review.title +
-        "<br> <br>" +
-        "<b>Description:</b> " +
-        order.review.description,
+      message: msg,
       buttons: [
         {
           text: "Ok",

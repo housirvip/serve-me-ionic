@@ -23,7 +23,9 @@
                   </ion-label>
                 </div>
                 <br />
-                <ion-label>Tap for review details</ion-label>
+                <div *ngIf="order.review.title || order.review.description">
+                  <ion-label>Tap for review details</ion-label>
+                </div>
               </div>
             </ion-label>
             <img src="../../../assets/img/done.jpeg" alt="" />
