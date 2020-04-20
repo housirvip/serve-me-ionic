@@ -7,16 +7,21 @@ import { ReviewService } from '../../../services/review.service';
 
 @Component({
   selector: 'app-review-popover',
-  templateUrl: './review-popover.component.html',
-  styleUrls: ['./review-popover.component.scss'],
+  templateUrl: './review-popover-edit.component.html',
+  styleUrls: ['./review-popover-edit.component.scss'],
 })
-export class ReviewPopoverComponent implements OnInit {
+export class ReviewPopoverEditComponent implements OnInit {
   selectedValue: number;
 
+  // tslint:disable-next-line:variable-name
   star_one: string;
+  // tslint:disable-next-line:variable-name
   star_two: string;
+  // tslint:disable-next-line:variable-name
   star_three: string;
+  // tslint:disable-next-line:variable-name
   star_four: string;
+  // tslint:disable-next-line:variable-name
   star_five: string;
 
   title: string;
@@ -31,7 +36,7 @@ export class ReviewPopoverComponent implements OnInit {
     private reviewService: ReviewService
   ) {
     this.order = this.navParams.get('order');
-    this.review = new Review();
+    this.review = this.order.review;
   }
 
   ngOnInit() {
@@ -44,16 +49,16 @@ export class ReviewPopoverComponent implements OnInit {
 
   onFormSubmit() {
     if (this.selectedValue) {
-      // this.review.order = this.order; //setting this will cause a cyclic reference so review.order shouldn't be used
-      this.review.createTime = new Date();
-      this.review.updateTime = new Date();
-      this.review.user = this.order.user;
-      this.review.vendor = this.order.vendor;
+      // this.review.order = this.order; // setting this will cause a cyclic reference so review.order shouldn't be used
+      // this.review.createTime = new Date();
+      // this.review.updateTime = new Date();
+      // this.review.user = this.order.user;
+      // this.review.vendor = this.order.vendor;
       this.review.title = this.title;
       this.review.description = this.description;
       this.review.rate = this.selectedValue;
       console.log(this.review);
-
+      this.order.review = this.review;
       this.dissmissPopover();
     } else {
       this.toastService.presentToast('Please select a rating', 1000);
@@ -117,7 +122,7 @@ export class ReviewPopoverComponent implements OnInit {
   }
 
   async dissmissPopover() {
-    console.log(this.review);
-    await this.popoverController.dismiss(this.review); // passes the review back
+    this.reviewService.update(this.review);
+    await this.popoverController.dismiss(this.order); // passes the review back
   }
 }

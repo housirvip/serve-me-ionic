@@ -20,7 +20,7 @@
           </ion-label>
           <img src="../../../assets/img/done.jpeg" alt="">
         </ion-item>
-        <ion-button color="dark" (click)="review(request)">give a review</ion-button>
+        <ion-button color="dark" (click)="giveReview(request)" disabled="{{request.review.rate != null || request.review.title != null || request.review.description != null}}">give a review</ion-button>
       </ion-card-content>
     </ion-card>
   </ion-list>

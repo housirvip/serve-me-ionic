@@ -12,6 +12,7 @@ import { ReviewPopoverComponent } from "./review-popover/review-popover.componen
   styleUrls: ["./progressing.component.scss"],
 })
 export class ProgressingComponent implements OnInit {
+  // tslint:disable-next-line:variable-name
   toast_msg: string;
   constructor(
     private orderService: OrderService,
@@ -28,28 +29,28 @@ export class ProgressingComponent implements OnInit {
   ngOnInit() {}
 
   confirmFinished(order: Order) {
-    this.presentAlert(order); //show alert asking user if they want to review vendor
+    this.presentAlert(order); // show alert asking user if they want to review vendor
   }
 
   async presentAlert(order: Order) {
     const alert = await this.alertController.create({
-      header: "Review",
+      header: 'Review',
       message:
-        "Would you like to leave a review for " + order.vendor.name + "?",
+        'Would you like to leave a review for ' + order.vendor.name + '?',
       buttons: [
         {
-          text: "Yes",
+          text: 'Yes',
           handler: () => {
-            console.log("Wants to leave a review");
+            console.log('Wants to leave a review');
             this.onYesReviewPressed(order);
           },
         },
         {
-          text: "No",
-          role: "cancel",
+          text: 'No',
+          role: 'cancel',
           handler: () => {
-            console.log("Does NOT want to leave a review");
-            this.toast_msg = "Order marked as Completed";
+            console.log('Does NOT want to leave a review');
+            this.toast_msg = 'Order marked as Completed';
             this.orderService.complete(order, (res) => {
               this.toastService.presentToast(this.toast_msg, 2000);
             });
@@ -68,16 +69,18 @@ export class ProgressingComponent implements OnInit {
       componentProps: { order: order },
     });
     await popover.present();
-    //once popup is dismissed get the data back
+    // once popup is dismissed get the data back
     popover.onWillDismiss().then((result) => {
       console.log(result.data);
       if (result.data) {
-        //if a review was passed back by the popup
+        // if a review was passed back by the popup
         order.review = result.data;
-        this.toast_msg = "Review submitted. Your order is now Completed";
+
+        // console.log(order.review);
+        this.toast_msg = 'Review submitted. Your order is now Completed';
       } else {
-        //popup was opened but was dissmissed so no review was submitted
-        this.toast_msg = "Your order is now Completed";
+        // popup was opened but was dismissed so no review was submitted
+        this.toast_msg = 'Your order is now Completed';
       }
       this.orderService.complete(order, (res) => {
         this.toastService.presentToast(this.toast_msg, 2000);

@@ -12,6 +12,7 @@ import { CompletedComponent } from "./completed/completed.component";
 import { BidingCheckPage } from "./biding/biding-check/biding-check.page";
 import { BidingCheckPageModule } from "./biding/biding-check/biding-check.module";
 import { ReviewPopoverComponent } from "./progressing/review-popover/review-popover.component";
+import {ReviewPopoverEditComponent} from './completed/review-popover-edit/review-popover-edit.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { ReviewPopoverComponent } from "./progressing/review-popover/review-popo
     ProgressingComponent,
     CompletedComponent,
     ReviewPopoverComponent,
+    ReviewPopoverEditComponent,
   ],
-  entryComponents: [ReviewPopoverComponent],
+  entryComponents: [ReviewPopoverComponent, ReviewPopoverEditComponent],
 })
 export class OrdersPageModule {}
