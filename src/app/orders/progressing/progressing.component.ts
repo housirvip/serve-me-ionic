@@ -28,5 +28,4 @@ export class ProgressingComponent implements OnInit {
        this.toastService.presentToast('Complete the work', 2000);
      } );
   }
-
 }
