@@ -1,15 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { AlertController, PopoverController } from "@ionic/angular";
-import { OrderService } from "../../services/order.service";
-import { DatetimeService } from "../../services/datetime.service";
-import { ToastService } from "../../services/toast.service";
-import { Order } from "../../classes/order";
-import { ReviewPopoverComponent } from "./review-popover/review-popover.component";
+import { Component, OnInit } from '@angular/core';
+import { AlertController, PopoverController } from '@ionic/angular';
+import { OrderService } from '../../services/order.service';
+import { DatetimeService } from '../../services/datetime.service';
+import { ToastService } from '../../services/toast.service';
+import { Order } from '../../classes/order';
+import { ReviewPopoverComponent } from './review-popover/review-popover.component';
 
 @Component({
-  selector: "app-progressing",
-  templateUrl: "./progressing.component.html",
-  styleUrls: ["./progressing.component.scss"],
+  selector: 'app-progressing',
+  templateUrl: './progressing.component.html',
+  styleUrls: ['./progressing.component.scss'],
 })
 export class ProgressingComponent implements OnInit {
   // tslint:disable-next-line:variable-name
