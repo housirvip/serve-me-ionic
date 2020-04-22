@@ -4,6 +4,9 @@ ion-content{
     background-color:  #fffbfb;
   }
 }
+ion-popover {
+  --height: 200px;
+}
 
 .filter{
   ion-button{
