@@ -148,6 +148,7 @@ export class FilterService {
         if (this.rateOrderFilled) {
             request['_sort'] = 'rate:' + (this.rateDesc ? 'desc' : 'asc');
         }
+        if (this.queryString)
         request.nameContains = this.queryString;
         return request;
     }
