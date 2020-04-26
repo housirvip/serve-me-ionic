@@ -68,7 +68,6 @@ export class UserService {
             }
             this._jwt = jwt;
             this.getUser().then(user => {
-                this.user$.next(user);
             });
             if (!environment.production) {
                 console.log(jwt);
@@ -90,10 +89,13 @@ export class UserService {
     }
 
     newUser(user: User) {
+        if (this._jwt) {
+            return;
+        }
         user.password = 'serve-me';
-        this.http.post<User>('auth/local/register', user).subscribe(
+        this.http.post<any>('auth/local/register', user).subscribe(
             res => {
-                this.setUser(res);
+                this.setUser(res.user);
             });
     }
 
@@ -127,6 +129,7 @@ export class UserService {
     }
 
     setUser(user: User) {
+        this.user$.next(user);
         this._user = user;
         this._isLogin = true;
         if (user.vendor) {
