@@ -64,6 +64,11 @@ const routes: Routes = [
     path: 'biding-edit',
     loadChildren: () => import('./orders/biding/biding-edit/biding-edit.module').then( m => m.BidingEditPageModule)
   },
+  {
+    path: 'new-request-specific-vendor',
+    // tslint:disable-next-line:max-line-length
+    loadChildren: () => import('./new-request-specific-vendor/new-request-specific-vendor.module').then( m => m.NewRequestSpecificVendorPageModule)
+  },
 
 ];
 
