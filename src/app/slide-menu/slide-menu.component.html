@@ -100,6 +100,15 @@
                     </ion-label>
                 </ion-item>
             </ion-menu-toggle>
+            <ion-menu-toggle auto-hide="false">
+<!--                <ion-item>-->
+                <ion-item (click)="jump('new-request-specific-vendor')">
+                    <ion-icon slot="start" name="add" color="black"></ion-icon>
+                    <ion-label>
+                        Make New Request specific vendor
+                    </ion-label>
+                </ion-item>
+            </ion-menu-toggle>
 
             <ion-menu-toggle auto-hide="false">
                 <ion-item (click)="appUpdate()">

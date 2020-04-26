@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'show-address',
     loadChildren: () => import('./show-address/show-address.module').then( m => m.ShowAddressPageModule)
+  },
+  {
+    path: 'new-request',
+    loadChildren: () => import('./new-request.module').then(m => m.NewRequestPageModule)
   }
 ];
 

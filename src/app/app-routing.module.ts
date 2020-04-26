@@ -68,6 +68,11 @@ const routes: Routes = [
     path: 'sort',
     loadChildren: () => import('./dashboard/sort/sort.module').then( m => m.SortPageModule)
   },
+  {
+    path: 'new-request-specific-vendor',
+    // tslint:disable-next-line:max-line-length
+    loadChildren: () => import('./new-request-specific-vendor/new-request-specific-vendor.module').then( m => m.NewRequestSpecificVendorPageModule)
+  },
 
 ];
 

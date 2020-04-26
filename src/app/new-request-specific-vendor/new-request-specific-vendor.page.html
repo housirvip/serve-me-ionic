@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      <ion-title>Place a new request to {{vendors.name}}</ion-title>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="requestForm" (ngSubmit)="saved()">
+    <ion-list>
+      <ion-item>
+        <ion-icon name="build" slot="start"></ion-icon>
+        <ion-label>Category</ion-label>
+        <ion-select formControlName="category" [(ngModel)]="this.currentOrder.category"
+                    placeholder="">
+          <ion-select-option *ngFor="let category of vendorCategory"
+                             value="{{category}}">{{category}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="calendar"  slot="start"></ion-icon>
+        <ion-label>Start Date</ion-label>
+        <ion-datetime
+                (ionChange)="refreshAvailableTime()"
+                formControlName="time"
+                min="{{this.minDate}}" placeholder="Select Date"
+                [(ngModel)]="this.currentOrder.time"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="time"  slot="start"></ion-icon>
+        <ion-label>
+          Start Time
+        </ion-label>
+        <ion-datetime [disabled]="!dateSelected" formControlName="time" display-format="HH:mm" picker-format="HH:mm"
+                      placeholder="Select Time"
+                      [hourValues]="availableHours"
+                      minute-values="0,10,20,30,40,50"
+                      [(ngModel)]="this.currentOrder.time" ></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="arrow-redo" slot="start"></ion-icon>
+        <ion-label>
+          prices
+        </ion-label>
+        <ion-input formControlName="price" type="number" [(ngModel)]="this.currentOrder.price"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="arrow-redo" slot="start"></ion-icon>
+        <ion-label>
+          Title
+        </ion-label>
+        <ion-input formControlName="title" [(ngModel)]="this.currentOrder.title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-icon slot="start" name="document-text"></ion-icon>
+        <ion-label>
+          Description
+        </ion-label>
+        <ion-textarea formControlName="description" [(ngModel)]="this.currentOrder.description"></ion-textarea>
+      </ion-item>
+
+      <ion-item detail="true" (click)="openShowAddress()" >
+        <ion-icon name="home" slot="start"></ion-icon>
+        <label>{{this.addressService.addresses?.length ? 'Select an address' : 'add an new address'}}</label>
+      </ion-item>
+      <ion-item>
+        <ion-card *ngIf="selectedAddress">
+          <ion-card-title>
+            {{this.selectedAddress.name}}
+          </ion-card-title>
+          <ion-card-content>
+            <p>{{this.selectedAddress.street}}</p>
+            <p>{{this.selectedAddress.city}},{{this.selectedAddress.state}},{{this.selectedAddress.zipCode}}</p>
+            <p>PhoneNumber:{{this.selectedAddress.phone}}</p>
+          </ion-card-content>
+        </ion-card>
+        <ion-card *ngIf="!selectedAddress" style="width: 248px;height: 148px">
+          <ion-card-content>
+            <ion-title> Empty address</ion-title>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+
+      <ion-button [disabled]="!requestForm.valid" class="edit-button" type="submit" expand="full">
+        SAVED
+      </ion-button>
+    </ion-list>
+  </form>
+</ion-content>
+
+
+
+

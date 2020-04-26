@@ -11,7 +11,7 @@ export class VendorRequest {
     * this.vendorRequest['address.state'] = 'asd'; // deep filter
     * this.vendorRequest.nameContains = 'hou'; for search
      */
-
+    id: number;
     name: string;
     nameContains: string;
     // rate less than
