@@ -64,6 +64,10 @@ const routes: Routes = [
     path: 'biding-edit',
     loadChildren: () => import('./orders/biding/biding-edit/biding-edit.module').then( m => m.BidingEditPageModule)
   },
+  {
+    path: 'sort',
+    loadChildren: () => import('./dashboard/sort/sort.module').then( m => m.SortPageModule)
+  },
 
 ];
 

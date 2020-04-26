@@ -32,12 +32,25 @@
                 $ {{this.filterService.minPrice}} - {{this.filterService.maxPrice}}
             </ion-label>
         </ion-button>
-        <ion-button expand="full" fill="outline">
-            <ion-label class="unprocessed">
-                Date
-                <ion-icon name="arrow-down"></ion-icon>
+
+        <ion-button (click)="sortModal()" expand="full" fill="outline">
+            <ion-label class="unprocessed" *ngIf="!this.priceOrderFilled && !this.rateOrderFilled ">
+                sort
+                <ion-icon name="arrow-down" class="unprocessed"></ion-icon>
+            </ion-label>
+            <ion-label color="primary" *ngIf="priceOrderFilled">
+                price
+                <ion-icon name="arrow-down" *ngIf="this.pricedesc"></ion-icon>
+                <ion-icon name="arrow-up" *ngIf="!this.pricedesc"></ion-icon>
+            </ion-label>
+            <ion-label color="primary" *ngIf="rateOrderFilled">
+                rate
+                <ion-icon name="arrow-down" *ngIf="this.ratedesc"></ion-icon>
+                <ion-icon name="arrow-up" *ngIf="!this.ratedesc"></ion-icon>
             </ion-label>
         </ion-button>
+
+
     </ion-row>
     <ion-list *ngFor="let vendor of vendors">
         <ion-card color="">

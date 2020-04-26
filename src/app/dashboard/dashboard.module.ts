@@ -6,6 +6,7 @@ import {FormsModule} from '@angular/forms';
 import {DashboardPage} from './dashboard.page';
 import {TypePageModule} from './type/type.module';
 import {PricePageModule} from './price/price.module';
+import {SortPageModule} from './sort/sort.module';
 
 @NgModule({
     imports: [
@@ -14,6 +15,7 @@ import {PricePageModule} from './price/price.module';
         FormsModule,
         TypePageModule,
         PricePageModule,
+        SortPageModule,
         RouterModule.forChild([{path: '', component: DashboardPage}])
     ],
     declarations: [DashboardPage]
