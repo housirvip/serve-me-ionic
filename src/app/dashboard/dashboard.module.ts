@@ -7,6 +7,8 @@ import {DashboardPage} from './dashboard.page';
 import {TypePageModule} from './type/type.module';
 import {PricePageModule} from './price/price.module';
 import {SortPageModule} from './sort/sort.module';
+import {NewRequestPageModule} from '../new-request/new-request.module';
+// import {NewRequestSpecificVendorPageModule} from '../new-request-specific-vendor/new-request-specific-vendor.module';
 
 @NgModule({
     imports: [
@@ -16,6 +18,7 @@ import {SortPageModule} from './sort/sort.module';
         TypePageModule,
         PricePageModule,
         SortPageModule,
+        // NewRequestPageModule,
         RouterModule.forChild([{path: '', component: DashboardPage}])
     ],
     declarations: [DashboardPage]

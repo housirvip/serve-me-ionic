@@ -9,6 +9,11 @@ import {VendorService} from '../services/vendor.service';
 import {VendorRequest} from '../classes/spec/vendor-request';
 import {Vendor} from '../classes/vendor';
 import {SortPage} from './sort/sort.page';
+import {NewRequestPage} from '../new-request/new-request.page';
+import {Router} from '@angular/router';
+import {Order} from '../classes/order';
+// import {NewRequestSpecificVendorPage} from '../new-request-specific-vendor/new-request-specific-vendor.page';
+
 
 @Component({
     selector: 'app-dashboard',
@@ -20,6 +25,7 @@ export class DashboardPage implements OnInit {
 
     constructor(private modalController: ModalController,
                 private toastService: ToastService,
+                private router: Router,
                 private vendorService: VendorService,
                 private filterService: FilterService) {
         this.vendorRequest = new VendorRequest();
@@ -70,6 +76,17 @@ export class DashboardPage implements OnInit {
             component: SortPage
         });
         return await modal.present();
+    }
+
+    async newRequest(request: Vendor) {
+        this.vendorService.vendor = request;
+        // console.log(this.orderService.currentOrder);
+        this.jump('/new-request-specific-vendor');
+    }
+
+    jump(path: string) {
+        this.router.navigate([path]).then(() => {
+        });
     }
 
     doRefresh(event) {

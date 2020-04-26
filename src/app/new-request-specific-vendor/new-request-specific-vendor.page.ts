@@ -16,6 +16,7 @@ import {ToastService} from '../services/toast.service';
 import {Vendor} from '../classes/vendor';
 import {VendorService} from '../services/vendor.service';
 import {VendorRequest} from '../classes/spec/vendor-request';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -33,9 +34,9 @@ export class NewRequestSpecificVendorPage implements OnInit {
   dateSelected: boolean;
   vendorRequest: VendorRequest;
 
-  get vendors(): Vendor {
-    console.log(this.vendorService.vendors[0]);
-    return this.vendorService.vendors[0];
+  get vendor(): Vendor {
+    console.log(this.vendorService.vendor);
+    return this.vendorService.vendor;
   }
 
   requestForm = this.formBuilder.group({
@@ -62,15 +63,16 @@ export class NewRequestSpecificVendorPage implements OnInit {
               private  datetimeService: DatetimeService,
               private alertController: AlertController,
               private toastService: ToastService,
+              private router: Router,
               private vendorService: VendorService) {
     this.currentOrder = new Order();
-    this.vendorCategory = this.vendors.categories;
+    this.vendorCategory = this.vendor.categories;
     this.availableHours = '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23';
     this.minDate = this.datetimeService.getDatestring();
     this.currentOrder.time = new Date();
     this.dateSelected = false;
-    this.vendorRequest = new VendorRequest();
-    this.vendorRequest.id = 9;
+    // this.vendorRequest = new VendorRequest();
+    // this.vendorRequest.id = 9;
     // tslint:disable-next-line:forin
     // for (const type in VendorCategory) {
     //   this.vendorCategory.push(type);
@@ -79,8 +81,8 @@ export class NewRequestSpecificVendorPage implements OnInit {
 
   ngOnInit() {
     this.addressService.getList();
-    console.log(this.datetimeService.getDatestring());
-    this.vendorService.getVendors(this.vendorRequest);
+    // console.log(this.datetimeService.getDatestring());
+    // this.vendorService.getVendors(this.vendorRequest);
   }
 
   async openShowAddress() {
@@ -116,11 +118,16 @@ export class NewRequestSpecificVendorPage implements OnInit {
     }
     this.currentOrder.address = this.selectedAddress;
     this.loadingService.present();
-    console.log(this.vendors.name);
+    console.log(this.vendor.name);
     console.log(this.currentOrder.title);
-    // this.orderService.select(this.currentOrder);
+    this.orderService.select(this.currentOrder);
+    this.jump('/dashboard');
   }
 
+  jump(path: string) {
+    this.router.navigate([path]).then(() => {
+    });
+  }
   refreshAvailableTime() {
     console.log(this.currentOrder.time);
     const currentDate = new Date(this.currentOrder.time);

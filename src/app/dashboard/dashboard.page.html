@@ -53,7 +53,7 @@
 
     </ion-row>
     <ion-list *ngFor="let vendor of vendors">
-        <ion-card color="">
+        <ion-card color="" >
             <ion-card-header>
                 <ion-card-title>{{vendor.name}}</ion-card-title>
                 <ion-card-subtitle>{{vendor.categories}}</ion-card-subtitle>
@@ -70,7 +70,7 @@
                 <div class="ratingInformation">
                     <ion-icon class="readonlyRating" *ngFor="let i of [1, 2, 3, 4, 5]" name="star" size="small">
                     </ion-icon>
-                    <!--                    <ion-label>{{vendor.commentsNum}} comments</ion-label>-->
+                    <ion-button color="dark" (click)="newRequest(vendor)" style="float:right">order</ion-button>
                 </div>
             </ion-card-content>
         </ion-card>
