@@ -49,7 +49,9 @@ export class VendorService {
     newVendors(vendor: Vendor) {
         this.http.put<User>('vendor/upgrade', vendor).subscribe(
             res => {
-                this.userService.getUser();
+                this.userService.getUser(() => {
+                }, () => {
+                });
             });
     }
 }

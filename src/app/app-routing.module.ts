@@ -40,10 +40,11 @@ const routes: Routes = [
     path: 'address',
     loadChildren: () => import('./address/address.module').then( m => m.AddressPageModule)
   },
-  {
-    path: 'new-request',
-    loadChildren: () => import('./new-request/new-request.module').then( m => m.NewRequestPageModule)
-  },
+    //TODO please check max error, call the stack max size
+  // {
+  //   path: 'new-request',
+  //   loadChildren: () => import('./new-request/new-request.module').then( m => m.NewRequestPageModule)
+  // },
   {
     path: 'vendor-page',
     loadChildren: () => import('./vendor-page/vendor-page.module').then( m => m.VendorPagePageModule)
@@ -68,11 +69,11 @@ const routes: Routes = [
     path: 'sort',
     loadChildren: () => import('./dashboard/sort/sort.module').then( m => m.SortPageModule)
   },
-  {
-    path: 'new-request-specific-vendor',
-    loadChildren: () => import('./new-request-specific-vendor/new-request-specific-vendor.module').then( m => m.NewRequestSpecificVendorPageModule)
-  },
-
+  //TODO please check max error, call the stack max size
+// {
+  //   path: 'new-request-specific-vendor',
+  //   loadChildren: () => import('./new-request-specific-vendor/new-request-specific-vendor.module').then( m => m.NewRequestSpecificVendorPageModule)
+  // }
 ];
 
 @NgModule({

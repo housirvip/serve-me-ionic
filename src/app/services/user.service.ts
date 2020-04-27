@@ -67,7 +67,8 @@ export class UserService {
                 return;
             }
             this._jwt = jwt;
-            this.getUser().then(user => {
+            this.getUser(() => {
+            }, () => {
             });
             if (!environment.production) {
                 console.log(jwt);
@@ -99,17 +100,15 @@ export class UserService {
             });
     }
 
-    getUser() {
-        return new Promise<User>((resolve, reject) => {
-            if (!this._jwt) {
-                return;
-            }
-            this.http.get<User>('users/me', {}).subscribe(
-                res => {
-                    this.setUser(res);
-                    resolve(res);
-                }, error => reject(error));
-        });
+    getUser(callback, reject) {
+        if (!this._jwt) {
+            return;
+        }
+        this.http.get<User>('users/me', {}).subscribe(
+            res => {
+                this.setUser(res);
+                callback(res);
+            }, error => reject(error));
     }
 
     updateUser(user: User) {
