@@ -5,17 +5,18 @@ import { NewRequestPage } from './new-request.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'new-request',
     component: NewRequestPage
   },
   {
     path: 'show-address',
     loadChildren: () => import('./show-address/show-address.module').then( m => m.ShowAddressPageModule)
   },
-  {
-    path: 'new-request',
-    loadChildren: () => import('./new-request.module').then(m => m.NewRequestPageModule)
-  }
+  // TODO DO NOT LOAD CYCLE, stack max call exception
+  // {
+  //   path: 'new-request',
+  //   loadChildren: () => import('./new-request.module').then(m => m.NewRequestPageModule)
+  // }
 ];
 
 @NgModule({

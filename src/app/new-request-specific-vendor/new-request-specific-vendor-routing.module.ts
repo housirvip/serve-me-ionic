@@ -4,17 +4,18 @@ import {NewRequestSpecificVendorPage} from './new-request-specific-vendor.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'new-request-specific-vendor',
     component: NewRequestSpecificVendorPage
   },
   {
     path: 'show-address',
     loadChildren: () => import('../new-request/show-address/show-address.module').then( m => m.ShowAddressPageModule)
   },
-  {
-    path: 'new-request-specific-vendor',
-    loadChildren: () => import('./new-request-specific-vendor.module').then(m => m.NewRequestSpecificVendorPageModule)
-  }
+  // TODO DO NOT LOAD CYCLE, stack max call exception
+  // {
+  //   path: 'new-request-specific-vendor',
+  //   loadChildren: () => import('./new-request-specific-vendor.module').then(m => m.NewRequestSpecificVendorPageModule)
+  // }
 ];
 
 @NgModule({
