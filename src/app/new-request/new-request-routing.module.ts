@@ -5,7 +5,7 @@ import { NewRequestPage } from './new-request.page';
 
 const routes: Routes = [
   {
-    path: 'new-request',
+    path: '',
     component: NewRequestPage
   },
   {

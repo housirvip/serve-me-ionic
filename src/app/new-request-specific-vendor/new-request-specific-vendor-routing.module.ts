@@ -4,7 +4,7 @@ import {NewRequestSpecificVendorPage} from './new-request-specific-vendor.page';
 
 const routes: Routes = [
   {
-    path: 'new-request-specific-vendor',
+    path: '',
     component: NewRequestSpecificVendorPage
   },
   {
