@@ -81,6 +81,7 @@ export class DashboardPage implements OnInit {
 
     async newRequest(request: Vendor) {
         this.vendorService.vendor = request;
+        console.log('new_request' + request.name);
         this.jump('/new-request-specific-vendor');
     }
 

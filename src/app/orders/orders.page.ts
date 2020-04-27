@@ -33,7 +33,6 @@ export class OrdersPage implements OnInit {
     }
 
     getOrders(status: OrderStatus) {
-
         this.filterRequest.statusIn = [];
         this.filterRequest.statusIn.push(status);
         if (status === OrderStatus.Biding) {

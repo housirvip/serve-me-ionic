@@ -32,10 +32,9 @@ export class NewRequestSpecificVendorPage implements OnInit {
   availableHours: string;
   minDate: string;
   dateSelected: boolean;
-  vendorRequest: VendorRequest;
+  // vendorRequest: VendorRequest;
 
   get vendor(): Vendor {
-    console.log(this.vendorService.vendor);
     return this.vendorService.vendor;
   }
 
@@ -121,13 +120,14 @@ export class NewRequestSpecificVendorPage implements OnInit {
     console.log(this.vendor.name);
     console.log(this.currentOrder.title);
     this.orderService.select(this.currentOrder);
-    this.jump('/dashboard');
+    // this.jump('/dashboard');
   }
 
   jump(path: string) {
     this.router.navigate([path]).then(() => {
     });
   }
+
   refreshAvailableTime() {
     console.log(this.currentOrder.time);
     const currentDate = new Date(this.currentOrder.time);
