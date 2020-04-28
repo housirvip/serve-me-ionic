@@ -1,18 +1,18 @@
 <ion-content>
 
     <ion-list >
-        <div *ngFor="let bid of bids">
-        <ion-card color="" *ngIf="bid.order.status === 'Pending'">
+        <div *ngFor="let order of orders">
+        <ion-card color="">
             <ion-card-header>
-                    <ion-card-title>{{bid.order.title}}</ion-card-title>
-                <ion-card-subtitle>{{bid.order.category}}</ion-card-subtitle>
+                    <ion-card-title>{{order.title}}</ion-card-title>
+                <ion-card-subtitle>{{order.category}}</ion-card-subtitle>
             </ion-card-header>
             <ion-card-content>
                 <ion-item color="">
                     <ion-label class="pricehour">
-                        <h1 class="bid">Your bid price: {{bid.price}}$</h1>
+                        <h1 class="bid">Your bid price: {{order.price}}$</h1>
                         <h2 class="nobid">Customer is paying</h2>
-                        <ion-label>CreateTime:{{bid.createTime| date:'short'}}</ion-label>
+                        <ion-label>CreateTime:{{order.createTime| date:'short'}}</ion-label>
                     </ion-label>
                    <img src="../../../assets/icon/clock.jpg" alt="">
                 </ion-item>
