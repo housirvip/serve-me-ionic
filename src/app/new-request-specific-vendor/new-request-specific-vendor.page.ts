@@ -116,11 +116,12 @@ export class NewRequestSpecificVendorPage implements OnInit {
       return;
     }
     this.currentOrder.address = this.selectedAddress;
+    this.currentOrder.vendor = this.vendor;
     this.loadingService.present();
     console.log(this.vendor.name);
     console.log(this.currentOrder.title);
     this.orderService.select(this.currentOrder);
-    // this.jump('/dashboard');
+    this.jump('/dashboard');
   }
 
   jump(path: string) {
