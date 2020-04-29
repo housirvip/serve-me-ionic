@@ -11,13 +11,6 @@ import {UserService} from './user.service';
 })
 export class VendorService {
 
-    // tslint:disable-next-line:variable-name
-    private _vendors: Vendor[];
-    // tslint:disable-next-line:variable-name
-    private _currentVendor: Vendor;
-    // tslint:disable-next-line:variable-name
-    private _account: number;
-
     get vendors(): Vendor[] {
         return this._vendors;
     }
@@ -31,13 +24,21 @@ export class VendorService {
     }
 
     get account(): number {
+        console.log(this._account);
         return this._account;
     }
+    // tslint:disable-next-line:variable-name
+    private _vendors: Vendor[];
+    // tslint:disable-next-line:variable-name
+    private _currentVendor: Vendor;
+    // tslint:disable-next-line:variable-name
+    private _account: number;
 
     constructor(private http: HttpClient,
                 private userService: UserService,
                 private loadingService: LoadingService) {
-
+        this._account = 234;
+        // this._currentVendor.summary = 0;
     }
 
     getVendors(request: VendorRequest) {
@@ -45,7 +46,6 @@ export class VendorService {
             params: request.toParam()
         }).subscribe(res => {
             console.log(res);
-
             this._vendors = res;
         });
     }
@@ -65,6 +65,7 @@ export class VendorService {
             res => {
                 console.log(res);
                 this._account = res;
+                // this._currentVendor.summary = res;
             });
     }
 }

@@ -21,7 +21,6 @@ export class SlideMenuComponent implements OnInit {
     @Input() contentId: string;
 
     defaultPhoto = '../../assets/img/avatar.png';
-    private account: number;
 
     get user() {
         return this.userService.user;
@@ -51,6 +50,7 @@ export class SlideMenuComponent implements OnInit {
                 private versionService: VersionService,
                 private modalController: ModalController,
                 private alertController: AlertController) {
+        this.vendorService.getIncomes();
     }
 
     ngOnInit() {
@@ -58,7 +58,7 @@ export class SlideMenuComponent implements OnInit {
         this.menu.enable(true, 'first').then(r => {
         });
         this.vendorService.getIncomes();
-        this.account = this.vendorService.account;
+        // this.account = this.vendorService.account;
         // console.log(this.vendor.summary);
     }
 
@@ -126,9 +126,9 @@ export class SlideMenuComponent implements OnInit {
         if (this.userService.vendorView && this.userService.isVendor) {
             this.vendorService.getIncomes();
             this.handleButtonClickOne(
-                'Summary ', 'you have already got' + this.account,
+                'you have already got', this.vendorService.account + '$',
                 () => {
-                    console.log(this.vendor.summary);
+                    // console.log(this.vendor.summary);
                     this.dismiss();
                 });
         }
