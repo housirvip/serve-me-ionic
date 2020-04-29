@@ -67,8 +67,8 @@ export class UserService {
                 return;
             }
             this._jwt = jwt;
-            this.getUser().then(user => {
-                this.user$.next(user);
+            this.getUser(() => {
+            }, () => {
             });
             if (!environment.production) {
                 console.log(jwt);
@@ -90,24 +90,25 @@ export class UserService {
     }
 
     newUser(user: User) {
+        if (this._jwt) {
+            return;
+        }
         user.password = 'serve-me';
-        this.http.post<User>('auth/local/register', user).subscribe(
+        this.http.post<any>('auth/local/register', user).subscribe(
             res => {
-                this.setUser(res);
+                this.setUser(res.user);
             });
     }
 
-    getUser() {
-        return new Promise<User>((resolve, reject) => {
-            if (!this._jwt) {
-                return;
-            }
-            this.http.get<User>('users/me', {}).subscribe(
-                res => {
-                    this.setUser(res);
-                    resolve(res);
-                }, error => reject(error));
-        });
+    getUser(callback, reject) {
+        if (!this._jwt) {
+            return;
+        }
+        this.http.get<User>('users/me', {}).subscribe(
+            res => {
+                this.setUser(res);
+                callback(res);
+            }, error => reject(error));
     }
 
     updateUser(user: User) {
@@ -127,6 +128,7 @@ export class UserService {
     }
 
     setUser(user: User) {
+        this.user$.next(user);
         this._user = user;
         this._isLogin = true;
         if (user.vendor) {

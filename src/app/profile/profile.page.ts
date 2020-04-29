@@ -38,6 +38,8 @@ export class ProfilePage implements OnInit {
     // tslint:disable-next-line:variable-name
     default_photoUrl = './../assets/img/avatar.png';
 
+
+
     constructor(
         private modalController: ModalController,
         private userService: UserService,
@@ -51,7 +53,7 @@ export class ProfilePage implements OnInit {
     }
 
     get user() {
-        console.log(this.userService.user);
+        // console.log(this.userService.user);
         return this.userService.user;
     }
 

@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { CompletedComponent } from './completed.component';
+import { SortPage } from './sort.page';
 
-describe('CompletedComponent', () => {
-  let component: CompletedComponent;
-  let fixture: ComponentFixture<CompletedComponent>;
+describe('SortPage', () => {
+  let component: SortPage;
+  let fixture: ComponentFixture<SortPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CompletedComponent ],
+      declarations: [ SortPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CompletedComponent);
+    fixture = TestBed.createComponent(SortPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

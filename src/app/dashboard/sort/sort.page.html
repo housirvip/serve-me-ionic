@@ -1,0 +1,42 @@
+<ion-content>
+
+  <div id="closedButton">
+    <ion-icon name="close" (click)="dismiss()"></ion-icon>
+  </div>
+
+  <ion-list>
+    <ion-radio-group value="" (ionChange)="selecedChanged($event)">
+      <ion-list-header>
+        <ion-label>Price</ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>price Ascending order</ion-label>
+        <ion-radio   slot="start" value="priceAsce"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>pirce Descending order</ion-label>
+        <ion-radio  slot="start" value="priceDesc"></ion-radio>
+      </ion-item>
+
+      <ion-list-header>
+        <ion-label>Rate</ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>rate Ascending order</ion-label>
+        <ion-radio  slot="start" value="rateAsce"></ion-radio>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label>rateDescending order</ion-label>
+        <ion-radio   slot="start" value="rateDesc"></ion-radio>
+      </ion-item>
+
+    </ion-radio-group>
+  </ion-list>
+
+
+  <ion-button expand="full"  class="submit" (click)="submit()">find result</ion-button>
+</ion-content>

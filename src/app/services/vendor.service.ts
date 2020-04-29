@@ -15,8 +15,18 @@ export class VendorService {
         return this._vendors;
     }
 
+    get vendor(): Vendor {
+        return this._currentVendor;
+    }
+
+    set vendor(vendor: Vendor) {
+        this._currentVendor = vendor;
+    }
+
     // tslint:disable-next-line:variable-name
     private _vendors: Vendor[];
+    // tslint:disable-next-line:variable-name
+    private _currentVendor: Vendor;
 
     constructor(private http: HttpClient,
                 private userService: UserService,
@@ -39,7 +49,9 @@ export class VendorService {
     newVendors(vendor: Vendor) {
         this.http.put<User>('vendor/upgrade', vendor).subscribe(
             res => {
-                this.userService.getUser();
+                this.userService.getUser(() => {
+                }, () => {
+                });
             });
     }
 }

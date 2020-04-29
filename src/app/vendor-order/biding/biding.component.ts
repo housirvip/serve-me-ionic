@@ -1,8 +1,5 @@
-import { AfterViewInit, Component, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { OrderService } from "../../services/order.service";
-import { OrderStatus } from "../../classes/order-status";
-import { OrderRequest } from "../../classes/spec/order-request";
-import { Order } from "../../classes/order";
 import { Vendor } from "../../classes/vendor";
 import { UserService } from "../../services/user.service";
 import { BidRequest } from "../../classes/spec/bid-request";
@@ -18,7 +15,7 @@ import { BiddingRequestDetailsPage } from "./bidding-request-details/bidding-req
 })
 export class BidingComponent implements OnInit {
   bidRequest: BidRequest;
-  haveTargetOrder = false;
+
   get vendor(): Vendor {
     return this.userService.vendor;
   }

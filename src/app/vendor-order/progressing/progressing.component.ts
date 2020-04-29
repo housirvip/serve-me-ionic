@@ -1,52 +1,53 @@
-import { Component, OnInit } from '@angular/core';
-import {BidRequest} from '../../classes/spec/bid-request';
+import {Component, OnInit} from '@angular/core';
 import {OrderService} from '../../services/order.service';
 import {UserService} from '../../services/user.service';
 import {Vendor} from '../../classes/vendor';
-import {Bid} from '../../classes/bid';
 import {ToastService} from '../../services/toast.service';
+import {OrderRequest} from "../../classes/spec/order-request";
+import {OrderStatus} from "../../classes/order-status";
+import {Order} from "../../classes/order";
 
 @Component({
-  selector: 'app-progressing',
-  templateUrl: './progressing.component.html',
-  styleUrls: ['./progressing.component.scss'],
+    selector: 'app-progressing',
+    templateUrl: './progressing.component.html',
+    styleUrls: ['./progressing.component.scss'],
 })
 export class ProgressingComponent implements OnInit {
-  bidRequest: BidRequest;
-  haveTargetOrder = false;
-  constructor(private orderService: OrderService,
-              private userService: UserService,
-              private toastService: ToastService) {
-    this.bidRequest = new BidRequest();
-    // plz review BidRequest, there shows some specification
-  }
-  get vendor(): Vendor {
-    return this.userService.vendor;
-  }
+    orderRequest: OrderRequest;
 
-  get bids(): Bid[] {
-    return this.orderService.bids;
-  }
-  get orders() {
-    return this.orderService.orders;
-  }
-  ngOnInit() {
-    console.log('pending component init');
-    this.bidRequest.vendor = this.vendor.id;
-    this.getBids();
-  }
+    constructor(private orderService: OrderService,
+                private userService: UserService,
+                private toastService: ToastService) {
+        this.orderRequest = new OrderRequest();
+        // plz review OrderRequest, there shows some specification
+    }
 
-  getBids() {
-    this.orderService.getBids(this.bidRequest);
-  }
+    get vendor(): Vendor {
+        return this.userService.vendor;
+    }
 
-  Done(bid: Bid) {
-    console.log(bid.order);
-    this.orderService.finish(bid.order).subscribe(
-        res => {
-          this.toastService.presentToast('You have already done, please wait your customer confirm', 2000);
-          this.getBids();
-        }
-    );
-  }
+    get orders() {
+        return this.orderService.orders;
+    }
+
+    ngOnInit() {
+        this.orderRequest.vendor = this.vendor.id;
+        this.orderRequest.statusIn = [OrderStatus.Progressing, OrderStatus.Finished, OrderStatus.Refunding];
+        this.getOrders();
+    }
+
+    getOrders() {
+        this.orderService.getOrders(this.orderRequest);
+    }
+
+    Done(order: Order) {
+        console.log(order);
+        this.orderService.finish(order).subscribe(
+            res => {
+                this.toastService.presentToast('You have already done, please wait your customer confirm', 2000).then(r => {
+                });
+                this.getOrders();
+            }
+        );
+    }
 }

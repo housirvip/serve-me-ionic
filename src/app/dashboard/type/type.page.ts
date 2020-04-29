@@ -3,6 +3,8 @@ import {ModalController} from '@ionic/angular';
 import {FilterService} from '../../services/filter.service';
 import {VendorCategory} from '../../classes/vendor-category';
 import {VendorGender} from '../../classes/vendor-gender';
+import {VendorRequest} from '../../classes/spec/vendor-request';
+import {VendorService} from '../../services/vendor.service';
 
 @Component({
     selector: 'app-type',
@@ -10,7 +12,7 @@ import {VendorGender} from '../../classes/vendor-gender';
     styleUrls: ['./type.page.scss'],
 })
 export class TypePage implements OnInit {
-
+    vendorRequest: VendorRequest;
     private gender: VendorGender;
     private type: VendorCategory;
     vendorCategory: string[];
@@ -24,9 +26,10 @@ export class TypePage implements OnInit {
     // }
 
     constructor(public modalController: ModalController,
-                private filterService: FilterService) {
+                private filterService: FilterService,
+                private vendorService: VendorService) {
+        this.vendorRequest = new VendorRequest();
         this.type = VendorCategory.Appliances;
-        this.gender = VendorGender.whatever;
         this.vendorCategory = [];
         // tslint:disable-next-line:forin
         for (const type in VendorCategory) {
@@ -54,12 +57,10 @@ export class TypePage implements OnInit {
     }
 
     submit() {
-        this.filterService.gender = this.gender;
         this.filterService.type = this.type;
         this.filterService._typeFilled = true;
-
-        // refresh VendorList
-        this.filterService.getVendorList();
+        console.log(this.filterService.vendorRequestFactory());
+        this.vendorService.getVendors(this.filterService.vendorRequestFactory());
         this.dismiss();
     }
 }

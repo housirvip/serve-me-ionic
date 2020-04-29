@@ -13,7 +13,7 @@
 
     <ion-item>
     <ion-label>Type</ion-label>
-    <ion-select placeholder="Select One" (ionChange)="onTypeChange($event)" >
+    <ion-select placeholder="Appliances" (ionChange)="onTypeChange($event)" >
       <ion-select-option *ngFor="let category of vendorCategory"
                          value="{{category}}">{{category}}</ion-select-option>
     </ion-select>

@@ -58,7 +58,10 @@ ion-card-content {
 }
 
 ion-button{
-  margin-left: 0;
+  width: 32%;
+  --border-width:0px;
+  right: auto;
+  left: 0;
 }
 
 

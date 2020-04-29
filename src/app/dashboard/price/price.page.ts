@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ModalController} from '@ionic/angular';
 import {FilterService} from '../../services/filter.service';
+import {VendorService} from '../../services/vendor.service';
 
 @Component({
   selector: 'app-price',
@@ -10,7 +11,8 @@ import {FilterService} from '../../services/filter.service';
 export class PricePage implements OnInit {
 
   constructor(private modalController: ModalController,
-              private filterService: FilterService) {
+              private filterService: FilterService,
+              private vendorService: VendorService) {
     this.minPrice = 0;
     this.maxPrice = 0;
   }
@@ -39,8 +41,8 @@ export class PricePage implements OnInit {
     this.filterService._priceFilled = true;
 
     // refresh VendorList
-    this.filterService.getVendorList();
-    console.log(this.filterService);
+    console.log(this.filterService.vendorRequestFactory());
+    this.vendorService.getVendors(this.filterService.vendorRequestFactory());
     this.dismiss();
   }
 
