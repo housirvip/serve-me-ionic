@@ -118,11 +118,11 @@ export class SlideMenuComponent implements OnInit {
         });
     }
 
-    summary() {
+    earnings() {
         if (this.userService.vendorView && this.userService.isVendor) {
             this.vendorService.getIncomes(res => {
                 this.handleButtonClickOne(
-                    'you have already got', res + '$',
+                    'Total Earnings: ', res + '$',
                     () => {
                         // console.log(this.vendor.summary);
                         this.dismiss();
@@ -136,7 +136,7 @@ export class SlideMenuComponent implements OnInit {
             component: UpdateaddressPage
         });
         modal.onDidDismiss().then((data) => {
-            console.log('dissmisss');
+            console.log('dissmiss');
             console.log(data);
         });
         return await modal.present();
