@@ -63,7 +63,11 @@ const routes: Routes = [
   {
     path: 'biding-edit',
     loadChildren: () => import('./orders/biding/biding-edit/biding-edit.module').then( m => m.BidingEditPageModule)
+  },  {
+    path: 'bidding-request-details',
+    loadChildren: () => import('./vendor-order/biding/bidding-request-details/bidding-request-details.module').then( m => m.BiddingRequestDetailsPageModule)
   },
+
 
 ];
 

@@ -1,49 +1,51 @@
-ion-content{
+ion-content {
   --background: #fffbfb;
-  ion-list{
-    background-color:  #fffbfb;
+  ion-list {
+    background-color: #fffbfb;
   }
 }
 
-.filter{
-  ion-button{
+.filter {
+  ion-button {
     width: 32%;
-    --border-width:0px
+    --border-width: 0px;
   }
 }
 
-.smallFont{
+.smallFont {
   font-size: 3vw;
-  word-break: break-all
+  word-break: break-all;
 }
 
-.unprocessed{
+.unprocessed {
   color: rgba(0, 0, 0, 0.51);
 }
 
-rating{
+rating {
   margin-left: 0;
   width: 0px;
 }
-
 
 ion-card-content {
   margin-top: -10px;
 }
 
-.pricehour{
+.pricehour {
   padding: 0;
   color: #86888f;
   font-weight: bold;
+  ion-label {
+    font-size: 85%;
+  }
 }
-.ratingInformation{
+.ratingInformation {
   padding-left: 13px;
-  ion-icon{
+  ion-icon {
     padding-top: 10px;
     width: 13px;
     height: 13px;
   }
-  ion-label{
+  ion-label {
     padding-left: 10px;
     font-weight: 500;
     color: black;
@@ -51,32 +53,32 @@ ion-card-content {
   }
 }
 
-ion-button{
+ion-button {
   margin-left: 0;
 }
 
-
-ion-card{
+ion-card {
   margin-top: -6px;
-  img{
+  img {
     width: 80px;
     height: 80px;
   }
-  ion-card-subtitle{
+  ion-card-subtitle {
     color: orange;
   }
 
-  .readonlyRating{
+  .readonlyRating {
     color: orange;
     //padding:2px
   }
 }
 
-.bid{
+.bid {
   color: #d33939;
+  font-size: 85%;
 }
 
-.nobid{
+.nobid {
   color: #1c7100;
+  font-size: 85%;
 }
-
