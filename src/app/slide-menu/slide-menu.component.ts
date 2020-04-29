@@ -7,9 +7,7 @@ import {ToastService} from '../services/toast.service';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {UpdateaddressPage} from '../address/updateaddress/updateaddress.page';
 import {FcmService} from '../services/fcm.service';
-import {VersionService} from '../services/version.service';
 import {VendorService} from '../services/vendor.service';
-import {Vendor} from '../classes/vendor';
 
 @Component({
     selector: 'app-slide-menu',
@@ -26,12 +24,7 @@ export class SlideMenuComponent implements OnInit {
         return this.userService.user;
     }
 
-    get shouldUpdate() {
-        return this.versionService.shouldUpdate;
-    }
-
     get vendor() {
-        // console.log(this.vendorService.vendor);
         return this.vendorService.vendor;
     }
 
@@ -43,23 +36,13 @@ export class SlideMenuComponent implements OnInit {
                 private fcmService: FcmService,
                 private vendorService: VendorService,
                 private popover: PopoverController,
-                private versionService: VersionService,
                 private modalController: ModalController,
                 private alertController: AlertController) {
-        // this.vendorService.getIncomes();
     }
 
     ngOnInit() {
-        this.versionService.checkAppUpdate();
         this.menu.enable(true, 'first').then(r => {
         });
-        // this.vendorService.getIncomes();
-        // this.account = this.vendorService.account;
-        // console.log(this.vendor.summary);
-    }
-
-    appUpdate() {
-        this.versionService.checkAppUpdate();
     }
 
     async toLogin() {

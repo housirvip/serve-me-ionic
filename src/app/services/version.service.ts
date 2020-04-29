@@ -8,6 +8,15 @@ import {ToastService} from './toast.service';
     providedIn: 'root'
 })
 export class VersionService {
+    set shouldCheck(value: boolean) {
+        localStorage.setItem('shouldCheck', String(value));
+        this._shouldCheck = value;
+    }
+
+    get shouldCheck(): boolean {
+        return this._shouldCheck;
+    }
+
     get shouldUpdate(): boolean {
         return this._shouldUpdate;
     }
@@ -18,12 +27,19 @@ export class VersionService {
 
     // tslint:disable-next-line:variable-name
     private _shouldUpdate: boolean;
+    // tslint:disable-next-line:variable-name
+    private _shouldCheck: boolean;
 
     constructor(private http: HttpClient,
                 private toastService: ToastService,
                 private appUpdate: AppUpdate) {
         this._shouldUpdate = false;
         this.updateUrl = environment.apiUrl + 'version';
+
+        this._shouldCheck = Boolean(localStorage.getItem('shouldCheck'));
+        if (this._shouldCheck) {
+            this.checkAppUpdate()
+        }
     }
 
     checkAppUpdate() {

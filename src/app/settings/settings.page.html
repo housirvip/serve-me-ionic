@@ -1,24 +1,28 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>settings</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>settings</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-label>Notifications</ion-label>
-      <ion-toggle color="secondary"></ion-toggle>
-    </ion-item>
-    <ion-item>
-      <ion-label>Vibration</ion-label>
-      <ion-toggle color="secondary"></ion-toggle>
-    </ion-item>
-    <ion-item (click)="appUpdate()">
-     <ion-icon slot="start" name="log-out-outline" color="black"></ion-icon>
-     <ion-label>
-       {{ shouldUpdate ? 'Update available!' : 'Running latest version'}}
-     </ion-label>
-    </ion-item>
-  </ion-list>
+    <ion-list>
+        <ion-item>
+            <ion-label>Notifications</ion-label>
+            <ion-toggle color="secondary" (click)="notifyToggle()" [value]="notify"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>Vibration</ion-label>
+            <ion-toggle color="secondary" (click)="vibrateToggle()" [value]="vibrate"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>AutoCheckUpdate</ion-label>
+            <ion-toggle color="secondary" (click)="autoCheckToggle()" [value]="autoCheck"></ion-toggle>
+        </ion-item>
+        <ion-item (click)="appUpdate()">
+            <ion-icon slot="start" name="log-out-outline" color="black"></ion-icon>
+            <ion-label>
+                {{ shouldUpdate ? 'Update available!' : 'Running latest version'}}
+            </ion-label>
+        </ion-item>
+    </ion-list>
 </ion-content>
