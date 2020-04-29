@@ -122,7 +122,7 @@ export class SlideMenuComponent implements OnInit {
         if (this.userService.vendorView && this.userService.isVendor) {
             this.vendorService.getIncomes(res => {
                 this.handleButtonClickOne(
-                    'you have already got', res + '$',
+                    'You have already got', res + '$ from ServeMe',
                     () => {
                         // console.log(this.vendor.summary);
                         this.dismiss();

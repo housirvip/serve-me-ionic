@@ -16,4 +16,5 @@ export class User {
     deviceToken: string;
     photoUrl: string;
     vendor: Vendor;
+    wallet: number;
 }
