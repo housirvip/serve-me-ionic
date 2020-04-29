@@ -4,7 +4,6 @@ import {Observable} from 'rxjs';
 import {UserService} from '../services/user.service';
 import {environment} from '../../environments/environment';
 import {tap} from 'rxjs/operators';
-import {BaseResponse} from './base-response';
 import {ToastService} from '../services/toast.service';
 
 @Injectable()

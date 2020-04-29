@@ -26,10 +26,6 @@ export class SlideMenuComponent implements OnInit {
         return this.userService.user;
     }
 
-    get afUser() {
-        return this.afAuth.auth.currentUser;
-    }
-
     get shouldUpdate() {
         return this.versionService.shouldUpdate;
     }
@@ -50,14 +46,14 @@ export class SlideMenuComponent implements OnInit {
                 private versionService: VersionService,
                 private modalController: ModalController,
                 private alertController: AlertController) {
-        this.vendorService.getIncomes();
+        // this.vendorService.getIncomes();
     }
 
     ngOnInit() {
         this.versionService.checkAppUpdate();
         this.menu.enable(true, 'first').then(r => {
         });
-        this.vendorService.getIncomes();
+        // this.vendorService.getIncomes();
         // this.account = this.vendorService.account;
         // console.log(this.vendor.summary);
     }
@@ -124,13 +120,14 @@ export class SlideMenuComponent implements OnInit {
 
     summary() {
         if (this.userService.vendorView && this.userService.isVendor) {
-            this.vendorService.getIncomes();
-            this.handleButtonClickOne(
-                'you have already got', this.vendorService.account + '$',
-                () => {
-                    // console.log(this.vendor.summary);
-                    this.dismiss();
-                });
+            this.vendorService.getIncomes(res => {
+                this.handleButtonClickOne(
+                    'you have already got', res + '$',
+                    () => {
+                        // console.log(this.vendor.summary);
+                        this.dismiss();
+                    }).then(r => {});
+            });
         }
     }
 

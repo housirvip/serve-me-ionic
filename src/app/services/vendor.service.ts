@@ -24,9 +24,9 @@ export class VendorService {
     }
 
     get account(): number {
-        console.log(this._account);
         return this._account;
     }
+
     // tslint:disable-next-line:variable-name
     private _vendors: Vendor[];
     // tslint:disable-next-line:variable-name
@@ -37,7 +37,6 @@ export class VendorService {
     constructor(private http: HttpClient,
                 private userService: UserService,
                 private loadingService: LoadingService) {
-        this._account = 234;
         // this._currentVendor.summary = 0;
     }
 
@@ -59,12 +58,12 @@ export class VendorService {
             });
     }
 
-    getIncomes() {
+    getIncomes(callback) {
         // this._currentVendor.summary = 0;
-        this.http.get<number>('order/incomes').subscribe(
+        this.http.get<any>('order/incomes').subscribe(
             res => {
-                console.log(res);
-                this._account = res;
+                callback(res.res);
+                this._account = res.res;
                 // this._currentVendor.summary = res;
             });
     }
