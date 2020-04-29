@@ -11,9 +11,9 @@ import { BidingComponent } from "./biding/biding.component";
 import { CompletedComponent } from "./completed/completed.component";
 import { PendingComponent } from "./pending/pending.component";
 import { ProgressingComponent } from "./progressing/progressing.component";
-import { BiddingRequestDetailsPage } from "./biding/bidding-request-details/bidding-request-details.page";
-import { ModifyPopoverComponent } from "./biding/bidding-request-details/modify-popover/modify-popover.component";
-import { RevokePopoverComponent } from "./biding/bidding-request-details/revoke-popover/revoke-popover.component";
+import { BidingRequestDetailsComponent } from "./biding/biding-request-details/biding-request-details.component";
+import { ModifyPopoverComponent } from "./biding/biding-request-details/modify-popover/modify-popover.component";
+import { RevokePopoverComponent } from "./biding/biding-request-details/revoke-popover/revoke-popover.component";
 
 @NgModule({
   imports: [
@@ -29,12 +29,12 @@ import { RevokePopoverComponent } from "./biding/bidding-request-details/revoke-
     CompletedComponent,
     PendingComponent,
     ProgressingComponent,
-    BiddingRequestDetailsPage,
+    BidingRequestDetailsComponent,
     ModifyPopoverComponent,
     RevokePopoverComponent,
   ],
   entryComponents: [
-    BiddingRequestDetailsPage,
+    BidingRequestDetailsComponent,
     ModifyPopoverComponent,
     RevokePopoverComponent,
   ],

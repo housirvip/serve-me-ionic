@@ -98,13 +98,6 @@ const routes: Routes = [
         "./new-request-specific-vendor/new-request-specific-vendor.module"
       ).then((m) => m.NewRequestSpecificVendorPageModule),
   },
-  {
-    path: "bidding-request-details",
-    loadChildren: () =>
-      import(
-        "./vendor-order/biding/bidding-request-details/bidding-request-details.module"
-      ).then((m) => m.BiddingRequestDetailsPageModule),
-  },
 ];
 
 @NgModule({

@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { BiddingRequestDetailsPage } from './bidding-request-details.page';
+import { BidingRequestDetailsComponent } from './biding-request-details.component';
 
-describe('BiddingRequestDetailsPage', () => {
-  let component: BiddingRequestDetailsPage;
-  let fixture: ComponentFixture<BiddingRequestDetailsPage>;
+describe('BidingRequestDetailsComponent', () => {
+  let component: BidingRequestDetailsComponent;
+  let fixture: ComponentFixture<BidingRequestDetailsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BiddingRequestDetailsPage ],
+      declarations: [ BidingRequestDetailsComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(BiddingRequestDetailsPage);
+    fixture = TestBed.createComponent(BidingRequestDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

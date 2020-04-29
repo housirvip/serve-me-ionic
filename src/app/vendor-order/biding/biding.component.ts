@@ -6,7 +6,7 @@ import { BidRequest } from "../../classes/spec/bid-request";
 import { Bid } from "../../classes/bid";
 import { ToastService } from "../../services/toast.service";
 import { ModalController } from "@ionic/angular";
-import { BiddingRequestDetailsPage } from "./bidding-request-details/bidding-request-details.page";
+import { BidingRequestDetailsComponent } from "./biding-request-details/biding-request-details.component";
 
 @Component({
   selector: "app-biding",
@@ -55,7 +55,7 @@ export class BidingComponent implements OnInit {
   async requestDetailsModal(event, bid) {
     console.log("bid:", bid);
     const modal = await this.modalController.create({
-      component: BiddingRequestDetailsPage,
+      component: BidingRequestDetailsComponent,
       componentProps: {
         bid,
       },

@@ -11,11 +11,11 @@ import { ModifyPopoverComponent } from "./modify-popover/modify-popover.componen
 import { RevokePopoverComponent } from "./revoke-popover/revoke-popover.component";
 
 @Component({
-  selector: "app-bidding-request-details",
-  templateUrl: "./bidding-request-details.page.html",
-  styleUrls: ["./bidding-request-details.page.scss"],
+  selector: "app-biding-request-details",
+  templateUrl: "./biding-request-details.component.html",
+  styleUrls: ["./biding-request-details.component.scss"],
 })
-export class BiddingRequestDetailsPage implements OnInit {
+export class BidingRequestDetailsComponent implements OnInit {
   bid: Bid;
   order: Order;
   // tslint:disable-next-line:variable-name
