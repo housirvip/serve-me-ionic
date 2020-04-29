@@ -1,13 +1,15 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
-import {AlertController, MenuController, ModalController} from '@ionic/angular';
+import {AlertController, MenuController, ModalController, PopoverController} from '@ionic/angular';
 import {LoginPage} from '../login/login.page';
 import {ToastService} from '../services/toast.service';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {UpdateaddressPage} from '../address/updateaddress/updateaddress.page';
 import {FcmService} from '../services/fcm.service';
 import {VersionService} from '../services/version.service';
+import {VendorService} from '../services/vendor.service';
+import {Vendor} from '../classes/vendor';
 
 @Component({
     selector: 'app-slide-menu',
@@ -19,6 +21,7 @@ export class SlideMenuComponent implements OnInit {
     @Input() contentId: string;
 
     defaultPhoto = '../../assets/img/avatar.png';
+    private account: number;
 
     get user() {
         return this.userService.user;
@@ -32,12 +35,19 @@ export class SlideMenuComponent implements OnInit {
         return this.versionService.shouldUpdate;
     }
 
+    get vendor() {
+        // console.log(this.vendorService.vendor);
+        return this.vendorService.vendor;
+    }
+
     constructor(private userService: UserService,
                 private router: Router,
                 private menu: MenuController,
                 private toastService: ToastService,
                 private afAuth: AngularFireAuth,
                 private fcmService: FcmService,
+                private vendorService: VendorService,
+                private popover: PopoverController,
                 private versionService: VersionService,
                 private modalController: ModalController,
                 private alertController: AlertController) {
@@ -47,6 +57,9 @@ export class SlideMenuComponent implements OnInit {
         this.versionService.checkAppUpdate();
         this.menu.enable(true, 'first').then(r => {
         });
+        this.vendorService.getIncomes();
+        this.account = this.vendorService.account;
+        // console.log(this.vendor.summary);
     }
 
     appUpdate() {
@@ -81,7 +94,7 @@ export class SlideMenuComponent implements OnInit {
         });
     }
 
-    vendor() {
+    isVendor() {
         if (this.userService.vendorView) {
             this.userService.vendorView = false;
             this.jump('/dashboard');
@@ -100,6 +113,23 @@ export class SlideMenuComponent implements OnInit {
                 () => {
                     console.log('disagree');
                     this.userService.vendorView = false;
+                });
+        }
+    }
+
+    dismiss() {
+        this.popover.dismiss().then(r => {
+        });
+    }
+
+    summary() {
+        if (this.userService.vendorView && this.userService.isVendor) {
+            this.vendorService.getIncomes();
+            this.handleButtonClickOne(
+                'Summary ', 'you have already got' + this.account,
+                () => {
+                    console.log(this.vendor.summary);
+                    this.dismiss();
                 });
         }
     }
@@ -129,6 +159,20 @@ export class SlideMenuComponent implements OnInit {
                     role: 'Disgree',
                     handler: disagree
                 }]
+        });
+
+        await alert.present();
+    }
+
+    async handleButtonClickOne(title, text, back) {
+        const alert = await this.alertController.create({
+            header: title,
+            message: text,
+            buttons: [{
+                text: 'cancel',
+                role: 'cancel',
+                handler: back
+            }]
         });
 
         await alert.present();

@@ -15,4 +15,5 @@ export class Vendor {
     createTime: Date;
     updateTime: Date;
     user: User;
+    summary: number;
 }

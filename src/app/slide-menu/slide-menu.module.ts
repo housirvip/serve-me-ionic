@@ -15,5 +15,7 @@ import {LoginPageModule} from '../login/login.module';
         SlideMenuComponent
     ]
 })
+
 export class SlideMenuModule {
+
 }

@@ -49,6 +49,14 @@
                     </ion-label>
                 </ion-item>
             </ion-menu-toggle>
+            <ion-menu-toggle disabled auto-hide="false" *ngIf="user">
+                <ion-item (click)="summary()">
+                    <ion-icon slot="start" name="log-out-outline" color="black"></ion-icon>
+                    <ion-label>
+                        Summary
+                    </ion-label>
+                </ion-item>
+            </ion-menu-toggle>
             <ion-menu-toggle auto-hide="false" *ngIf="user">
                 <ion-item>
                     <ion-icon slot="start" name='{{this.userService.vendorView ? "flower" : "hammer"}}'
@@ -56,7 +64,7 @@
                     <ion-label>
                         {{this.userService.vendorView ? 'Customer' : 'Vendor'}}
                     </ion-label>
-                    <ion-button style="--background: black;color: white" (click)="vendor()">switch</ion-button>
+                    <ion-button style="--background: black;color: white" (click)="isVendor()">switch</ion-button>
                 </ion-item>
             </ion-menu-toggle>
             <ion-menu-toggle auto-hide="false">
