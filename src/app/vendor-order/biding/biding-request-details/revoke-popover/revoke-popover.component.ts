@@ -37,16 +37,16 @@ export class RevokePopoverComponent implements OnInit {
     this.revoked = true;
     // call api function that removes bid
     this.orderService.deleteBid(this.bid.id);
-    this.dissmissPopover().then((r) => {});
+    this.dismissPopover().then((r) => {});
     this.toastService.presentToast('Bid was revoked!', 1000).then((r) => {});
   }
 
   onCancelPressed() {
     this.revoked = false;
-    this.dissmissPopover().then((r) => {});
+    this.dismissPopover().then((r) => {});
   }
 
-  async dissmissPopover() {
+  async dismissPopover() {
     await this.popoverController.dismiss(this.revoked);
   }
 }
