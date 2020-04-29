@@ -8,15 +8,15 @@
     <ion-list>
         <ion-item>
             <ion-label>Notifications</ion-label>
-            <ion-toggle color="secondary" (click)="notifyToggle()" [value]="notify"></ion-toggle>
+            <ion-toggle color="secondary" (click)="notifyToggle()" [(ngModel)]="notify"></ion-toggle>
         </ion-item>
         <ion-item>
             <ion-label>Vibration</ion-label>
-            <ion-toggle color="secondary" (click)="vibrateToggle()" [value]="vibrate"></ion-toggle>
+            <ion-toggle color="secondary" (click)="vibrateToggle()" [(ngModel)]="vibrate"></ion-toggle>
         </ion-item>
         <ion-item>
             <ion-label>AutoCheckUpdate</ion-label>
-            <ion-toggle color="secondary" (click)="autoCheckToggle()" [value]="autoCheck"></ion-toggle>
+            <ion-toggle color="secondary" (click)="autoCheckToggle()" [(ngModel)]="autoCheck"></ion-toggle>
         </ion-item>
         <ion-item (click)="appUpdate()">
             <ion-icon slot="start" name="log-out-outline" color="black"></ion-icon>

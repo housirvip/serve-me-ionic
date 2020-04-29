@@ -21,6 +21,7 @@ export class SettingsPage implements OnInit {
     }
 
     ngOnInit() {
+        this.autoCheck = this.versionService.shouldCheck;
     }
 
     appUpdate() {
@@ -28,19 +29,16 @@ export class SettingsPage implements OnInit {
     }
 
     notifyToggle() {
-        this.notify = !this.notify;
         this.toastService.presentToast('Notification ' + (this.notify ? 'enable' : 'disable') + ' successfully', 2000).then(r => {
         });
     }
 
     vibrateToggle() {
-        this.vibrate = !this.vibrate;
         this.toastService.presentToast('Vibration ' + (this.vibrate ? 'enable' : 'disable') + ' successfully', 2000).then(r => {
         });
     }
 
     autoCheckToggle() {
-        this.autoCheck = !this.autoCheck;
         this.toastService.presentToast('AutoCheckUpdate ' + (this.autoCheck ? 'enable' : 'disable') + ' successfully', 2000).then(r => {
         });
     }
