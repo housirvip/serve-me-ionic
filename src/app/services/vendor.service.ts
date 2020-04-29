@@ -23,9 +23,6 @@ export class VendorService {
         this._currentVendor = vendor;
     }
 
-    get account(): number {
-        return this._account;
-    }
 
     // tslint:disable-next-line:variable-name
     private _vendors: Vendor[];
