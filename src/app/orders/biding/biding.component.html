@@ -14,7 +14,7 @@
                 <ion-item color="" (click)="bidsCheck(request)">
                         <ion-label class="pricehour">
                             <h1 [ngClass]="request.bids.length? 'bid' : ' nobid' ">{{request.bids.length ? request.bids[0].price + '$' : "No one bid"}}</h1>
-                            <ion-label>CreateTime:{{request.createTime|date:'short'}}</ion-label>
+                            <ion-label>Time:{{request.time|date:'short'}}</ion-label>
                             <ion-label>Contact:{{request.address.name}}</ion-label>
                         </ion-label>
                     <img src="../../../assets/category/{{request.category}}.png" alt="">
